@@ -339,7 +339,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
     
     def show5s(self):
        
-
+        print("*******************CLIQUEEEEEEEEEEEEI CADEO PRINT!!!!!!!!!!!!!!")
         Addr5s = self.thread.API.load5s(self.Station.Name)
         print("Este foi o resultado 5s:")
         print(str(Addr5s))
