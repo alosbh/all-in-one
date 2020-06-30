@@ -23,6 +23,10 @@ import logging
 import traceback
 from WebService import *
 
+
+global logger
+logger=logging.getLogger() 
+logger.setLevel(logging.DEBUG)
 # Instance of the class that manages the global parameters
 GlobalParameters = GlobalParameters()
 
@@ -341,9 +345,9 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
        
         print("*******************CLIQUEEEEEEEEEEEEI CADEO PRINT!!!!!!!!!!!!!!")
         Addr5s = self.thread.API.load5s(self.Station.Name)
-        print("Este foi o resultado 5s:")
-        print(str(Addr5s))
-
+        
+        logger.debug("Este foio resultado 5s")
+        logger.debug(str(Addr5s))
         # self.webfoto.load(QUrl(Addr5s))
         self.webfoto.show()
         self.FotoWindow.show()
