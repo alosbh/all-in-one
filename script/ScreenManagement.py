@@ -346,8 +346,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         print("*******************CLIQUEEEEEEEEEEEEI CADEO PRINT!!!!!!!!!!!!!!")
         Addr5s = self.thread.API.load5s(self.Station.Name)
         
-        logger.debug("Este foio resultado 5s")
-        logger.debug(str(Addr5s))
+        logger.error("Este foio resultado 5s")
+        logger.error(str(Addr5s))
         # self.webfoto.load(QUrl(Addr5s))
         self.webfoto.show()
         self.FotoWindow.show()
