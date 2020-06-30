@@ -1,0 +1,24 @@
+<RCC>
+  <qresource prefix="Imgs">
+    <file>Check.png</file>
+    <file>5sbadge.png</file>
+    <file>home.png</file>
+    <file>main.png</file>
+    <file>leftarrow.png</file>
+    <file>rightarrow.png</file>
+    <file>circlegray.png</file>
+    <file>circlegreen.png</file>
+    <file>LogoJabil.png</file>
+    <file>boasideia.png</file>
+    <file>jabilcoin.png</file>
+    <file>Produtividade.png</file>
+    <file>Yield.png</file>
+    <file>Webp.net-resizeimage (1).png</file>
+    <file>20180306103204_JabilLogo_PMS2955_3415_1_331x51.jpg</file>
+    <file>20180306103204_JabilLogo_PMS2955_3415_381x71.jpg</file>
+    <file>Webp.net-resizeimage.jpg</file>
+    <file>Default.jpg</file>
+    <file>JOTA.png</file>
+    <file>image (1).png</file>
+  </qresource>
+</RCC>

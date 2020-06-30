@@ -1,0 +1,14 @@
+---
+    Screen: 
+        Width: 1920
+        Height: 1080
+        FullSreen: false
+
+    BadgeReader:
+        MinimumGoodsReads: 3
+        BadgeReadFrequency: 500 #in milli seconds
+
+    Version:
+        Actual: 'v0.52'
+        
+              

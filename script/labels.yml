@@ -1,0 +1,39 @@
+---
+    Labels:
+        Product: "LINK2500"
+
+        0:
+          Pages: 1
+          Doc: "LINK2500-PREP"
+        1:
+          Pages: 1
+          Doc: "LINK2500-1"
+        2:
+          Pages: 2
+          Doc: "LINK2500-2" 
+        3:
+          Pages: 1
+          Doc: "LINK2500-3"          
+        4:
+          GENERAL: "Botão customizado por Área. Não disponível ainda"
+          INGCUS:
+                 1: "Link para OR MONITOR no CNCS"
+    Buttons:
+        Product: "LINK2500"
+
+        0:
+          Pages: 1
+          Doc: "LINK2500-PREP"
+        1:
+          Pages: 1
+          Doc: "LINK2500-1"
+        2:
+          Pages: 2
+          Doc: "LINK2500-2" 
+        3:
+          Pages: 1
+          Doc: "LINK2500-3"          
+        4:
+          GENERAL: "Em construção"
+          INGCUS:
+                 1: "OR MONITOR"    

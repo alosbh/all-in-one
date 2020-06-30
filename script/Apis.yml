@@ -1,0 +1,84 @@
+---
+    OJT: 
+        baseUrl: http://brbelm0itqa01/OJT/ojtws/
+
+        Configuration:
+            ChangeLeaderPassword:
+                Type: Post
+                ArgumentsCount: 1
+    
+        Document:
+            GetDocumentsByFilter:
+                Type: Post
+                ArgumentsCount: 1
+
+        Authentication:
+            LoginByLeader:
+                Type: Post
+                ArgumentsCount: 1 
+
+            LoginByWorker:
+                Type: Post
+                ArgumentsCount: 2 
+
+            Logout:
+                Type: Post
+                ArgumentsCount: 2 
+
+        Workstation:            
+            GetNameByRaspberry:
+                Type: Post
+                ArgumentsCount: 1 
+
+            GetSatus:
+                Type: Post
+                ArgumentsCount: 1 
+
+            GetLoggedInWorkstationByRoute:
+                Type: Post
+                ArgumentsCount: 1 
+                
+            GetWorkstationDocuments:
+                Type: Get
+                ArgumentsCount: 1  
+
+    AIO: 
+        baseUrl: http://brbelm0itqa01/AIOServiceSTG/
+
+
+        CNCS:
+            GetDocumentsByFilter:
+                Type: Post
+                ArgumentsCount: 1  
+
+        Estation:
+            GetEquipmentByHostname:
+                Type: Get
+                ArgumentsCount: 1  
+            
+        JMD:
+            GetMasterControlDocument:
+                Type: Post
+                ArgumentsCount: 1  
+
+            GetJmdRouteIdByMesId:
+                Type: Post
+                ArgumentsCount: 1  
+
+            GetJmdRouteIdByMesId:
+                Type: Post
+                ArgumentsCount: 1
+
+    AIO_Dashboard:
+
+        baseUrl: http://brbelm0itqa01/AIOService_AIODashboard/
+
+        Prodash:
+            GetActualUserAttributes:
+                Type: Get
+                ArgumentsCount: 1
+            GetByLine:
+                Type: Get
+                ArgumentsCount: 1
+
+

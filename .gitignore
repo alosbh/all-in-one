@@ -1,0 +1,7 @@
+.png
+.emf
+.jpg
+.db
+.pyc
+/script/__pycache__
+/Logs

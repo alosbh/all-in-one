@@ -1,0 +1,16 @@
+# Automation Team - Jabil Belo
+# Agosto de 2019
+# v1.1
+
+version: '2'
+services:
+  # All in One appication
+  AIO:
+    image: aioandre:latest
+    volumes:
+      - /run/dbus:/host/run/dbus
+      - /proc/sysrq-trigger:/aio/sysrq
+    privileged: true
+    tty: true
+    hostname: BRBELRASP124
+    dns_search: corp.jabil.org

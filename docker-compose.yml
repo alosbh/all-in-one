@@ -1,0 +1,19 @@
+# Automation Team - Jabil Belo
+# Agosto de 2019
+# v1.2
+
+version: '2'
+services:
+  # All in One appication
+  AIO:
+   # image: docker.corp.jabil.org/automation-bel/aio:latest
+    image: aio:latest
+    volumes:
+      - /run/dbus:/host/run/dbus
+      - /storage/pi/:/storage/pi/
+    ports:
+      - 8082:5900
+    privileged: true
+    tty: false
+    hostname: BRBELRASP280
+    dns_search: corp.jabil.org
