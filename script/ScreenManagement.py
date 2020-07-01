@@ -239,7 +239,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.thread.NonLogged_Window = NonLogged_Window
         self.thread.Logged_Window = self
 
-        self.obj5s = self.thread.API.load5s(Station)
+        self.obj5s = self.thread.API.load5s(self.Station.Name)
         self.contador = len(self.obj5s)-1
         self.state5s=0
 
