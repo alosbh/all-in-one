@@ -369,6 +369,10 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
                 self.barra.setVisible(True)
                 self.previous5s.setVisible(True)
                 self.next5s.setVisible(True)
+
+            else:
+                self.FotoWindow.setGeometry(QtCore.QRect(342, 192, 683, 384))
+                self.webfoto.setGeometry(QtCore.QRect(0, 0, 683, 384))
         else:
             url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
         self.webfoto.load(QUrl(url))
