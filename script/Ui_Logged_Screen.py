@@ -697,6 +697,12 @@ class Ui_Logged_Screen(object):
         self.barra.setStyleSheet("background-color:transparent;")
         self.barra.setObjectName("barra")
         
+        self.pagtotal.setVisible(False)
+        self.pagtual.setVisible(False)
+        self.barra.setVisible(False)
+        self.previous5s.setVisible(False)
+        self.next5s.setVisible(False)
+        
 
       
 

@@ -199,8 +199,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         global LabelsObject        
         LabelsObject = labels()
 
-        print("-****************Area Station Name: " + str(Station.Area) )
-        print("-***************Area Station Index: " + str(Station.Index) )
+        
         self.labels=[self.Titulo,self.ReleaseNotes,self.LPA_Label,self.FI_Label,self.BI_Label,self.SCTC_Label,self.Custom_Label]
         try:
            self.Custom_Label.setText(LabelsObject.data['Labels'][4][str(Station.Area)][int(Station.Index)])
@@ -230,6 +229,11 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
         self.thread.host = Raspberry.Name
         self.thread.objStation = Station
+
+        
+        self.obj5s = self.thread.API.load5s(Station)
+        self.contador = len(self.obj5s)-1
+        self.state5s=0
      
 
 
@@ -261,6 +265,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
         self.botao5s.label.clicked.connect(self.show5s)
         self.tag5s.clicked.connect(self.show5s)
+        self.next5s.clicked.connect(self.proxpage)
+        self.previous5s.clicked.connect(self.antpage)
 
         self.firight.clicked.connect(self.next_fi)
         self.fileft.clicked.connect(self.previous_fi)
@@ -343,12 +349,26 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
     
     def show5s(self):
        
-        print("*******************CLIQUEEEEEEEEEEEEI CADEO PRINT!!!!!!!!!!!!!!")
-        Addr5s = self.thread.API.load5s(self.Station.Name)
+        
+        
         
         logger.error("Este foio resultado 5s")
         logger.error(str(Addr5s))
-        # self.webfoto.load(QUrl(Addr5s))
+
+        if(self.contador>=0):
+            url = str(self.obj5s[self.state5s]['Path'])
+            logger.error(url)
+            if(self.contador>1):
+                self.pagtotal.setText(str(self.contador+1))
+                self.pagtual.setText("1")
+                self.pagtotal.setVisible(True)
+                self.pagtual.setVisible(True)
+                self.barra.setVisible(True)
+                self.previous5s.setVisible(True)
+                self.next5s.setVisible(True)
+        else:
+            url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
+        self.webfoto.load(QUrl(url))
         self.webfoto.show()
         self.FotoWindow.show()
 
