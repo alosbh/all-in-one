@@ -23,7 +23,10 @@ import time
 from datetime import datetime
 
 import platform
-
+import logging
+global logger
+logger=logging.getLogger() 
+logger.setLevel(logging.DEBUG)
 
 class ApiManager:
     
@@ -182,10 +185,11 @@ class ApiManager:
         try:
             
             response = requests.get(baseUrl)
-
+            logger.error(response.json())
             return response.json();
         except Exception as e:
             print("Erro API 5s:: " + type(e).__name__)
+            logger.error("Erro API 5s:: " + type(e).__name__)
             return
 
 
