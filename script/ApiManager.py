@@ -181,7 +181,7 @@ class ApiManager:
 
         baseUrl = 'http://brbelm0itqa01/AIOService/Images5S/GetAll?query='
         baseUrl = baseUrl + str(Workstation)
-        
+        logger.error(baseUrl)
         try:
             
             response = requests.get(baseUrl)
