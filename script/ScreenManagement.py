@@ -354,9 +354,10 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         
         
         
+        logger.error(self.obj5s)
         
-        
-
+        logger.error("contador 5s")
+        logger.error(self.contador)
         if(self.contador>=0):
             url = str(self.obj5s[self.state5s]['Path'])
             logger.error(url)
