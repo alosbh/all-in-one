@@ -650,18 +650,18 @@ class Ui_Logged_Screen(object):
         self.webfoto.setStyleSheet("border-top: 1px solid black;\n"
 "margin: 2px;")
         self.webfoto.setObjectName("webfoto")
-        self.previous = QtWidgets.QPushButton(self.FotoWindow)
-        self.previous.setGeometry(QtCore.QRect(545, 10, 23, 23))
-        self.previous.setStyleSheet("image: url(:/Imgs/leftarrow.png);\n"
+        self.previous5s = QtWidgets.QPushButton(self.FotoWindow)
+        self.previous5s.setGeometry(QtCore.QRect(545, 10, 23, 23))
+        self.previous5s.setStyleSheet("image: url(:/Imgs/leftarrow.png);\n"
 "border:10px;")
-        self.previous.setText("")
-        self.previous.setObjectName("previous")
-        self.next = QtWidgets.QPushButton(self.FotoWindow)
-        self.next.setGeometry(QtCore.QRect(642, 10, 23, 23))
-        self.next.setStyleSheet("image: url(:/Imgs/rightarrow.png);\n"
+        self.previous5s.setText("")
+        self.previous5s.setObjectName("previous5s")
+        self.next5s = QtWidgets.QPushButton(self.FotoWindow)
+        self.next5s.setGeometry(QtCore.QRect(642, 10, 23, 23))
+        self.next5s.setStyleSheet("image: url(:/Imgs/rightarrow.png);\n"
 "border:10px;")
-        self.next.setText("")
-        self.next.setObjectName("next")
+        self.next5s.setText("")
+        self.next5s.setObjectName("next5s")
         self.pagtual = QtWidgets.QLabel(self.FotoWindow)
         self.pagtual.setGeometry(QtCore.QRect(580, 7, 30, 31))
         font = QtGui.QFont()

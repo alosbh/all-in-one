@@ -372,6 +372,34 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.webfoto.show()
         self.FotoWindow.show()
 
+    def proxpage(self):
+
+
+        self.state5s = self.state5s+1
+        self.previous5s.setVisible(True)
+        
+        self.pagtual.setText(str(self.state5s+1))
+
+        print("Estado:"+str(self.state5s)+"Contador:"+str(self.contador))
+        if(self.state5s==self.contador):
+            self.next5s.setVisible(False)
+        url = str(self.obj5s[self.state5s]['Path'])
+        self.webfoto.load(QUrl(url))
+
+    def antpage(self):
+
+
+        self.state5s = self.state5s-1
+        self.next5s.setVisible(True)
+        
+        self.pagtual.setText(str(self.state5s+1))
+
+        print("Estado:"+str(self.state5s)+"Contador:"+str(self.contador))
+        if(self.state5s==0):
+            self.previous5s.setVisible(False)
+        url = str(self.obj5s[self.state5s]['Path'])
+        self.webfoto.load(QUrl(url))
+
 
 
 
