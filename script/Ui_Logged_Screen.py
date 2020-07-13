@@ -641,12 +641,12 @@ class Ui_Logged_Screen(object):
 
 
         self.FotoWindow = QtWidgets.QWidget()
-        self.FotoWindow.setGeometry(QtCore.QRect(342, 192, 683, 424))
+        self.FotoWindow.setGeometry(QtCore.QRect(0, 0, 1366, 808))
         self.FotoWindow.setWindowTitle("Posto Exemplo 5S")
         self.FotoWindow.setStyleSheet("background-color:white;")
         self.FotoWindow.setObjectName("FotoWindow")
         self.webfoto = QWebView(self.FotoWindow)
-        self.webfoto.setGeometry(QtCore.QRect(0, 40, 683, 384))
+        self.webfoto.setGeometry(QtCore.QRect(0, 40, 1366, 768))
         self.webfoto.setStyleSheet("border-top: 1px solid black;\n"
 "margin: 2px;")
         self.webfoto.setObjectName("webfoto")
