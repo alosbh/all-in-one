@@ -15,5 +15,5 @@ services:
       - 8082:5900
     privileged: true
     tty: false
-    hostname: BRBELRASP280
+    hostname: BRBELRASP370
     dns_search: corp.jabil.org
