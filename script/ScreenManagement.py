@@ -331,7 +331,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
     def home(self):
 
-        debug.error("cloquei para voltar a tela inicial")
+        logger.error("cloquei para voltar a tela inicial")
 
         self.web.setVisible(False)
         self.web_2.setVisible(False)
@@ -395,28 +395,41 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
     def proxpage(self):
 
+        logger.error("Estado inicial:"+str(self.state5s)+"Contador:"+str(self.contador))
 
         self.state5s = self.state5s+1
+
+        logger.error("Estado novo:"+str(self.state5s)+"Contador:"+str(self.contador))
+
+
+
         self.previous5s.setVisible(True)
         
         self.pagtual.setText(str(self.state5s+1))
 
-        print("Estado:"+str(self.state5s)+"Contador:"+str(self.contador))
+        logger.error("Estado:"+str(self.state5s)+"Contador:"+str(self.contador))
         if(self.state5s==self.contador):
+            
+            logger.error("escondi o botao de proximo")
             self.next5s.setVisible(False)
         url = str(self.obj5s[self.state5s]['Path'])
         self.button_signal.signal.emit(url)
 
     def antpage(self):
 
-
+        logger.error("Estado inicial:"+str(self.state5s)+"Contador:"+str(self.contador))
         self.state5s = self.state5s-1
+        logger.error("Estado novo:"+str(self.state5s)+"Contador:"+str(self.contador))
+
+
         self.next5s.setVisible(True)
         
         self.pagtual.setText(str(self.state5s+1))
 
-        print("Estado:"+str(self.state5s)+"Contador:"+str(self.contador))
+        logger.error("Estado:"+str(self.state5s)+"Contador:"+str(self.contador))
         if(self.state5s==0):
+            
+            logger.error("escondi o botao de anterior")
             self.previous5s.setVisible(False)
         url = str(self.obj5s[self.state5s]['Path'])
         self.button_signal.signal.emit(url)
