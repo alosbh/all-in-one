@@ -351,7 +351,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.pagtotal.setVisible(True)
         self.pagtual.setVisible(True)
         self.barra.setVisible(True)
-        self.previous5s.setVisible(True)
+        
         self.next5s.setVisible(True)
 
     def controllers5sOFF(self):
@@ -363,7 +363,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
     def show5s(self):
 
-        self.previous5s.setVisible(True)
+        
         self.homepage.setVisible(False)
         self.Toggle_textosOFF()
 
