@@ -358,7 +358,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         if(self.contador>=0):
             url = str(self.obj5s[self.state5s]['Path'])
             
-            if(self.contador>1):
+            if(self.contador>0):
                 self.pagtotal.setText(str(self.contador+1))
                 self.pagtual.setText("1")
                 self.pagtotal.setVisible(True)
