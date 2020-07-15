@@ -362,7 +362,11 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.next5s.setVisible(False)
 
     def show5s(self):
-       
+
+        self.previous5s.setVisible(True)
+        self.homepage.setVisible(False)
+        self.Toggle_textosOFF()
+
         self.obj5s = self.thread.API.load5s(self.Station.Name)
         self.contador = len(self.obj5s)-1
         self.state5s=0
@@ -378,17 +382,13 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
                 self.controllers5sON()
                 
 
-            else:
-                self.FotoWindow.setGeometry(QtCore.QRect(361, 51, 1011, 721))
-                self.webfoto.setGeometry(QtCore.QRect(0, 0, 1011, 721))
+            
         else:
             url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
-            self.FotoWindow.setGeometry(QtCore.QRect(361, 51, 1011, 721))
-            self.webfoto.setGeometry(QtCore.QRect(0, 0, 1011, 721))
+            
         
         self.button_signal.signal.emit(url)
-        self.homepage.setVisible(False)
-        self.Toggle_textosOFF()
+        
         # self.webfoto.load(QUrl(url))
         # self.webfoto.show()
         # self.FotoWindow.show()
