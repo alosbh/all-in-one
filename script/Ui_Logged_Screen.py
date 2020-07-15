@@ -757,9 +757,10 @@ class Ui_Logged_Screen(object):
         self.pagtotal.raise_()
         self.pagtual.raise_()
         self.barra.raise_()
+        
+        self.jabil.raise_()
         self.previous5s.raise_()
         self.next5s.raise_()
-        self.jabil.raise_()
 
         Logged.setCentralWidget(self.centralwidget)
 
