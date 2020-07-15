@@ -755,6 +755,11 @@ class Ui_Logged_Screen(object):
         self.Custom_Label.raise_()
         self.botao5s.raise_()
         self.tag5s.raise_()
+        self.pagtotal.raise_()
+        self.pagtual.raise_()
+        self.barra.raise_()
+        self.previous5s.raise_()
+        self.next5s.raise_()
         Logged.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Logged)
