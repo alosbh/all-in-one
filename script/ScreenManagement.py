@@ -412,6 +412,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
             
             logger.error("escondi o botao de proximo")
             self.next5s.setVisible(False)
+            self.previous5s.setVisible(True)
         url = str(self.obj5s[self.state5s]['Path'])
         self.button_signal.signal.emit(url)
 
@@ -431,6 +432,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
             
             logger.error("escondi o botao de anterior")
             self.previous5s.setVisible(False)
+            self.next5s.setVisible(True)
         url = str(self.obj5s[self.state5s]['Path'])
         self.button_signal.signal.emit(url)
 
