@@ -352,8 +352,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.obj5s = self.thread.API.load5s(self.Station.Name)
         self.contador = len(self.obj5s)-1
         self.state5s=0
-        print("contador: "  + self.contador)
-        debug.error("contador: "  + self.contador)
+        print("contador: "  + str(self.contador))
+        debug.error("contador: "  + str(self.contador))
         
         if(self.contador>=0):
             url = str(self.obj5s[self.state5s]['Path'])
