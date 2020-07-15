@@ -377,6 +377,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         
         self.button_signal.signal.emit(url)
         self.homepage.setVisible(False)
+        self.Toggle_textosOFF()
         # self.webfoto.load(QUrl(url))
         # self.webfoto.show()
         # self.FotoWindow.show()
