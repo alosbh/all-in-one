@@ -625,33 +625,13 @@ class Ui_Logged_Screen(object):
         
         self.botao5s.thread.startThread(self.botao5s.proxy,self.botao5s.label,self.tag5s)
 
-        # self.FotoWindow = QtWidgets.QWidget()
-        # self.FotoWindow.setGeometry(QtCore.QRect(342,192,683,424))
         
-        # self.FotoWindow.setWindowTitle("Posto Exemplo 5S")
-
-        
-        
-        
-        # self.webfoto = QWebView(self.FotoWindow)
-        
-        # self.webfoto.setGeometry(QtCore.QRect(0,0,683,384))
-        # self.webfoto.setObjectName("webfoto")
-        # self.webfoto.setVisible(True)
 
 
-        self.FotoWindow = QtWidgets.QWidget(self.centralwidget)
-        self.FotoWindow.setGeometry(QtCore.QRect(361, 51, 1011, 721))
-        self.FotoWindow.setWindowTitle("Posto Exemplo 5S")
-        self.FotoWindow.setStyleSheet("background-color:white;")
-        self.FotoWindow.setObjectName("FotoWindow")
-        self.webfoto = QWebView(self.FotoWindow)
-        self.webfoto.setGeometry(QtCore.QRect(0, 0, 1011, 721))
-        self.webfoto.setStyleSheet("border-top: 1px solid black;\n"
-"margin: 2px;")
-        self.webfoto.setObjectName("webfoto")
+        
+        
         self.previous5s = QtWidgets.QPushButton(self.centralwidget)
-        self.previous5s.setGeometry(QtCore.QRect(545395, 10, 23, 23))
+        self.previous5s.setGeometry(QtCore.QRect(395, 10, 23, 23))
         self.previous5s.setStyleSheet("image: url(:/Imgs/leftarrow.png);\n"
 "border:10px;")
         self.previous5s.setText("")
