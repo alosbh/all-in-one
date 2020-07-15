@@ -344,9 +344,23 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
         self.TurnOFF_Label()
         self.Toggle_textosON()
+        self.controllers5sOFF()
 
     
-    
+    def controllers5sON(self):
+        self.pagtotal.setVisible(True)
+        self.pagtual.setVisible(True)
+        self.barra.setVisible(True)
+        self.previous5s.setVisible(True)
+        self.next5s.setVisible(True)
+
+    def controllers5sOFF(self):
+        self.pagtotal.setVisible(False)
+        self.pagtual.setVisible(False)
+        self.barra.setVisible(False)
+        self.previous5s.setVisible(False)
+        self.next5s.setVisible(False)
+
     def show5s(self):
        
         self.obj5s = self.thread.API.load5s(self.Station.Name)
@@ -361,11 +375,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
             if(self.contador>0):
                 self.pagtotal.setText(str(self.contador+1))
                 self.pagtual.setText("1")
-                self.pagtotal.setVisible(True)
-                self.pagtual.setVisible(True)
-                self.barra.setVisible(True)
-                self.previous5s.setVisible(True)
-                self.next5s.setVisible(True)
+                self.controllers5sON()
+                
 
             else:
                 self.FotoWindow.setGeometry(QtCore.QRect(361, 51, 1011, 721))
@@ -394,7 +405,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         if(self.state5s==self.contador):
             self.next5s.setVisible(False)
         url = str(self.obj5s[self.state5s]['Path'])
-        self.webfoto.load(QUrl(url))
+        self.button_signal.signal.emit(url)
 
     def antpage(self):
 
@@ -408,7 +419,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         if(self.state5s==0):
             self.previous5s.setVisible(False)
         url = str(self.obj5s[self.state5s]['Path'])
-        self.webfoto.load(QUrl(url))
+        self.button_signal.signal.emit(url)
 
 
 
@@ -454,7 +465,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.web_2.setVisible(False)
         
         self.homepage.setVisible(False)
-
+        self.controllers5sOFF()
         # Loads the tooling URL
         CustomAddr = self.thread.API.custom_button(self.Station.Area, self.Station.RouteName, self.Station.Index) 
 
@@ -478,7 +489,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.web_2.setVisible(False)
         
         self.homepage.setVisible(False)
-
+        self.controllers5sOFF()
         # Loads the tooling URL
         JigaAddr = self.thread.API.load_Jiga(self.thread.objStation.RouteId) 
 
@@ -500,7 +511,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.web_2.setVisible(False)
        
         self.homepage.setVisible(False)
-        
+        self.controllers5sOFF()
         self.Toggle_textosOFF()
 
         # Loads the LPA URL
@@ -531,7 +542,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.web_2.setVisible(False) 
 
         self.homepage.setVisible(False)
-        
+        self.controllers5sOFF()
         self.Toggle_textosOFF()
         # Send the url via signal to the socket 
         #self.thread_loading.startThread(self.button_signal,BIAddr,self)
@@ -591,7 +602,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.web_2.setVisible(False) 
 
         self.homepage.setVisible(False)
-        
+        self.controllers5sOFF()
         self.Toggle_textosOFF()
         # Send the url via signal to the socket 
         #self.thread_loading.startThread(self.button_signal,BIAddr,self)
