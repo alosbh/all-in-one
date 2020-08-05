@@ -43,7 +43,7 @@
                 ArgumentsCount: 1  
 
     AIO: 
-        baseUrl: http://brbelm0itqa01/AIOServiceSTG/
+        baseUrl: http://brbelm0apps02/AIOService/
 
 
         CNCS:
