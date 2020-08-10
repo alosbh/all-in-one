@@ -4,6 +4,10 @@ import time
 import sys
 from Ui_chamado import *
 from datetime import datetime
+import logging
+global logger
+logger=logging.getLogger() 
+logger.setLevel(logging.DEBUG)
 
 class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
@@ -39,5 +43,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.motivo = self.lista_motivos.currentText()
         self.horario = datetime.now().time()
+        logger.error("enviei chamado")
+        logger.error(self.posto,self.time, self.motivo, self.horario)
         print(self.posto,self.time, self.motivo, self.horario)
     #     #lib.requestSupport(time, linha, nome, work)
