@@ -8,6 +8,12 @@ from Ui_chamado import *
 class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
+        self.Support_QtWindow = QtWidgets.QMainWindow()
+        self.setupUi(self.Support_QtWindow)
+
+    def Show(self):
+
+        self.Support_QtWindow.show()
     
     # def button_handle(self):
     #     # self.pushButton.clicked.connect(self.enviaChamado)

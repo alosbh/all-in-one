@@ -331,7 +331,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         # os.system(command)
 
     def suporte(self):
-        self.Support_Window.show()
+        self.Support_Window.Show()
 
     def home(self):
 
