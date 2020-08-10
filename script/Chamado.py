@@ -10,7 +10,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.Support_QtWindow = QtWidgets.QMainWindow()
         self.setupUi(self.Support_QtWindow)
-         self.Support_QtWindow.move((1366 - 511)/2, (768 - 240)/2)
+        self.Support_QtWindow.move((1366 - 511)/2, (768 - 240)/2)
 
     def Show(self):
 
