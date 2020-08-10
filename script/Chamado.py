@@ -14,11 +14,12 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
     
 
     def __init__(self, *args, **kwargs):
+
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.Support_QtWindow = QtWidgets.QMainWindow()
         self.setupUi(self.Support_QtWindow)
         self.Support_QtWindow.move((1366 - 511)/2, (768 - 240)/2)
-
+        logger.error("instanciei a classe")
         self.posto = ""
         self.time = ""
         self.motivo = ""
@@ -28,11 +29,14 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         for motivo in motivos:
             self.lista_motivos.addItem(motivo)
 
+        self.button_handle()
+
     def Show(self):
 
         self.Support_QtWindow.show()
     
     def button_handle(self):
+        logger.error("enviei chamado")
         self.btn_solicitar.clicked.connect(self.enviaChamado)
     
     def enviaChamado(self):
