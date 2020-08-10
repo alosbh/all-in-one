@@ -7,16 +7,18 @@ from datetime import datetime
 
 class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
-    self.posto = ""
-    self.time = ""
-    self.motivo = ""
-    self.horario = ""
+    
 
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.Support_QtWindow = QtWidgets.QMainWindow()
         self.setupUi(self.Support_QtWindow)
         self.Support_QtWindow.move((1366 - 511)/2, (768 - 240)/2)
+
+        self.posto = ""
+        self.time = ""
+        self.motivo = ""
+        self.horario = ""
 
         motivos = ["Descrição de problema 1", "Descrição de problema 2", "Descrição de problema 3", "Descrição de problema 4"]
         for motivo in motivos:
