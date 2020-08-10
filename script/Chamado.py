@@ -12,6 +12,10 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self.Support_QtWindow)
         self.Support_QtWindow.move((1366 - 511)/2, (768 - 240)/2)
 
+        motivos = ["Descrição de problema 1", "Descrição de problema 2", "Descrição de problema 3", "Descrição de problema 4"]
+        for motivo in motivos:
+            self.lista_motivos.addItem(motivo)
+
     def Show(self):
 
         self.Support_QtWindow.show()

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>511</width>
+    <width>353</width>
     <height>240</height>
    </rect>
   </property>
@@ -54,41 +54,17 @@ border-color: transparent;</string>
    <widget class="QComboBox" name="lista_motivos">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>90</x>
       <y>130</y>
-      <width>161</width>
+      <width>231</width>
       <height>22</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lbl_time">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>20</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI Semibold</family>
-      <pointsize>9</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Solicitar suporte:</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_solicitar">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>30</x>
       <y>180</y>
       <width>131</width>
       <height>41</height>
@@ -121,7 +97,7 @@ border-color: transparent;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>30</x>
       <y>30</y>
       <width>82</width>
       <height>17</height>
@@ -137,7 +113,7 @@ border-color: transparent;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>30</x>
       <y>50</y>
       <width>82</width>
       <height>17</height>
@@ -153,7 +129,7 @@ border-color: transparent;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>30</x>
       <y>90</y>
       <width>82</width>
       <height>17</height>
@@ -169,7 +145,7 @@ border-color: transparent;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>30</x>
       <y>70</y>
       <width>82</width>
       <height>17</height>
@@ -182,9 +158,9 @@ border-color: transparent;</string>
    <widget class="QLabel" name="lbl_motivos">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>10</x>
       <y>130</y>
-      <width>101</width>
+      <width>61</width>
       <height>31</height>
      </rect>
     </property>
@@ -206,9 +182,9 @@ border-color: transparent;</string>
    <widget class="QLabel" name="lbl_tempo">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>70</y>
-      <width>111</width>
+      <x>170</x>
+      <y>60</y>
+      <width>141</width>
       <height>51</height>
      </rect>
     </property>
@@ -222,13 +198,16 @@ border-color: transparent;</string>
     <property name="text">
      <string>00:00</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="lbl_status">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>40</y>
-      <width>101</width>
+      <x>180</x>
+      <y>30</y>
+      <width>121</width>
       <height>31</height>
      </rect>
     </property>
@@ -253,7 +232,7 @@ border-color: transparent;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>190</x>
       <y>180</y>
       <width>131</width>
       <height>41</height>
@@ -283,7 +262,7 @@ border-color: transparent;</string>
    <widget class="QPushButton" name="btn_finalizar">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>30</x>
       <y>180</y>
       <width>131</width>
       <height>41</height>
