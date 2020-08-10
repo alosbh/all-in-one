@@ -36,7 +36,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Support_QtWindow.show()
     
     def button_handle(self):
-        logger.error("enviei chamado")
+        logger.error("setei os botoes")
         self.btn_solicitar.clicked.connect(self.enviaChamado)
     
     def enviaChamado(self):
@@ -48,6 +48,9 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.motivo = self.lista_motivos.currentText()
         self.horario = datetime.now().time()
         logger.error("enviei chamado")
-        logger.error(self.posto,self.time, self.motivo, self.horario)
+        logger.error(self.posto)
+        logger.error(self.time)
+        logger.error(self.motivo)
+        logger.error(self.horario)
         print(self.posto,self.time, self.motivo, self.horario)
     #     #lib.requestSupport(time, linha, nome, work)
