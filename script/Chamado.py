@@ -9,11 +9,11 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
     
-    def button_handle(self):
-        # self.pushButton.clicked.connect(self.enviaChamado)
+    # def button_handle(self):
+    #     # self.pushButton.clicked.connect(self.enviaChamado)
     
-    def enviaChamado(self):
-        # chamado.hide()
+    # def enviaChamado(self):
+    #     # chamado.hide()
         
-        # print(time, linha, nome, status, work)
-        #lib.requestSupport(time, linha, nome, work)
+    #     # print(time, linha, nome, status, work)
+    #     #lib.requestSupport(time, linha, nome, work)
