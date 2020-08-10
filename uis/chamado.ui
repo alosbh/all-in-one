@@ -99,7 +99,7 @@ border-color: transparent;</string>
      <rect>
       <x>30</x>
       <y>30</y>
-      <width>82</width>
+      <width>110</width>
       <height>17</height>
      </rect>
     </property>
@@ -115,7 +115,7 @@ border-color: transparent;</string>
      <rect>
       <x>30</x>
       <y>50</y>
-      <width>82</width>
+      <width>110</width>
       <height>17</height>
      </rect>
     </property>
@@ -131,7 +131,7 @@ border-color: transparent;</string>
      <rect>
       <x>30</x>
       <y>90</y>
-      <width>82</width>
+      <width>110</width>
       <height>17</height>
      </rect>
     </property>
@@ -147,7 +147,7 @@ border-color: transparent;</string>
      <rect>
       <x>30</x>
       <y>70</y>
-      <width>82</width>
+      <width>110</width>
       <height>17</height>
      </rect>
     </property>

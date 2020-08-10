@@ -188,8 +188,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         # Links the buttons to their respective methods
         self.button_handle()
         
-        self.Reset_Window = Reset_Window
-        self.Support_Window = Support_Window
+        
         
         self.web.loadFinished.connect(self.finish_loading)
         # enables the webviewer
@@ -220,7 +219,9 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.posto_id.setText(str(self.Station.Name))
         self.aio.setText(str("All in One " + GlobalParameters.AIO_Version))
         
-        
+        self.Reset_Window = Reset_Window
+        self.Support_Window = Support_Window
+        self.Support_Window.posto = self.Station
 
 
         self.thread_loading = WaitForPageLoad()

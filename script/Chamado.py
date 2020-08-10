@@ -3,9 +3,15 @@ from PyQt5.QtWidgets import QApplication,QMainWindow
 import time
 import sys
 from Ui_chamado import *
-
+from datetime import datetime
 
 class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
+
+    self.posto = ""
+    self.time = ""
+    self.motivo = ""
+    self.horario = ""
+
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.Support_QtWindow = QtWidgets.QMainWindow()
@@ -20,11 +26,16 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.Support_QtWindow.show()
     
-    # def button_handle(self):
-    #     # self.pushButton.clicked.connect(self.enviaChamado)
+    def button_handle(self):
+        self.btn_solicitar.clicked.connect(self.enviaChamado)
     
-    # def enviaChamado(self):
+    def enviaChamado(self):
     #     # chamado.hide()
-        
-    #     # print(time, linha, nome, status, work)
+        self.btn_solicitar.setVisible(False)
+        self.btn_finalizar.setVisible(True)
+        self.btn_cancelar.setVisible(True)
+
+        self.motivo = self.lista_motivos.currentText()
+        self.horario = datetime.now().time()
+        print(self.posto,self.time, self.motivo, self.horario)
     #     #lib.requestSupport(time, linha, nome, work)
