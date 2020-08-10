@@ -37,6 +37,9 @@ Logged_Screen = Logged_Screen()
 global Reset_Window
 Reset_Window = Reset_Window()
 
+global Support_Window
+Support_Window = Support_Window()
+
 
 
 def main():
@@ -50,7 +53,7 @@ def main():
         GPIO.cleanup()
    
         #Setup of the home screen UI and show it on startup
-        NonLogged_Screen.Setup(Station,Raspberry,GlobalParameters,Reset_Window)
+        NonLogged_Screen.Setup(Station,Raspberry,GlobalParameters,Reset_Window,Support_Window)
         NonLogged_Screen.Show()
 
         #Setup of the logged screen UI

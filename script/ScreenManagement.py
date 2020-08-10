@@ -2,12 +2,12 @@
 from nonloggedscr import *
 from Ui_Logged_Screen import *
 from Reset import *
-
+from Chamado import *
 from GlobalParameters import GlobalParameters
 from FI import FI
 from labels import labels
 
-import MFRC522
+# import MFRC522
 import time
 from shutil import copyfile
 import urllib.request
@@ -179,7 +179,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         
 
 
-    def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window):
+    def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window, Support_Window):
         
         
         # Setup the designer UI on the QT window Widget
@@ -189,6 +189,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.button_handle()
         
         self.Reset_Window = Reset_Window
+        self.Support_Window = Support_Window
         
         self.web.loadFinished.connect(self.finish_loading)
         # enables the webviewer
@@ -278,7 +279,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
         # Links the buttons to their respective methods
         self.FI_button.clicked.connect(self.load_fi)
-        self.BI_button.clicked.connect(self.load_bi)
+        self.BI_button.clicked.connect(self.suporte)
         self.LPA_button.clicked.connect(self.load_lpa)
         self.jiga_button.clicked.connect(self.jiga_list)
         self.custom_button.clicked.connect(self.custom_button_load)
@@ -328,6 +329,9 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         # command = 'echo b > sysrq'
         # print('Button Command: ' + command)
         # os.system(command)
+
+    def suporte(self):
+        self.Support_Window.show()
 
     def home(self):
 
@@ -694,8 +698,8 @@ class MainThread(QThread): #Thread de leitura dos crachás
             
             
             try:
-                # Read_ID = 51008294
-                Read_ID = (RFRead()) # Reads Badge ID
+                Read_ID = 51008294
+                # Read_ID = (RFRead()) # Reads Badge ID
             except Exception as e:
                 traceback.print_exc()
                 logger.error("RFID error: " + type(e).__name__)
