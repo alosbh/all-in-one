@@ -182,9 +182,9 @@ border-color: transparent;</string>
    <widget class="QLabel" name="lbl_tempo">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>150</x>
       <y>60</y>
-      <width>141</width>
+      <width>181</width>
       <height>51</height>
      </rect>
     </property>
@@ -196,7 +196,7 @@ border-color: transparent;</string>
      </font>
     </property>
     <property name="text">
-     <string>00:00</string>
+     <string>0:00:00</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>

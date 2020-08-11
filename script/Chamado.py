@@ -42,6 +42,8 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
     def button_handle(self):
         logger.error("setei os botoes")
         self.btn_solicitar.clicked.connect(self.enviaChamado)
+        self.btn_finalizar.clicked.connect(self.finaliza)
+        self.btn_cancelar.clicked.connect(self.finaliza)
     
     
     def enviaChamado(self):
@@ -70,6 +72,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_cancelar.setVisible(False)
         self.lbl_status.setText("Não solicitado")
         self.status = 0
+        self.lbl_tempo.setText("0:00:00")
 
 
 class CountSeconds(QThread):
@@ -87,7 +90,7 @@ class CountSeconds(QThread):
             self.seconds = datetime.now() - self.timeinit
             logger.error(str(datetime.now()))
             logger.error(str(self.seconds))
-            self.janelaSuporte.lbl_tempo.setText(str(self.seconds))
+            self.janelaSuporte.lbl_tempo.setText(str(self.seconds)[0:7])
             
 
             
