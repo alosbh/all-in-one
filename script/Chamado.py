@@ -29,7 +29,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.time = "Engenharia"
         self.motivo = ""
         self.horario = ""
-        self.linha = "Linha Rodando"
+        self.linha = "Rodando"
         self.status = 0
         self.thread = CountSeconds()
         postBody = {}
@@ -47,9 +47,29 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         motivos8=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Jabil Test não abre","Lentidão no Jabil Test","Micro Travado / Reiniciando","Falha no braço da balança","Camera Balança não lê","Uma caixa com peso fora do especificado","Todas caixas - peso fora do especificado","Um terminal não embala","Todos terminais não embalam","MES não abre","Caixa no BIN","Outro"]
         motivos9=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Jabil Test não abre","Micro Travado / Reiniciando","Problema no Relatorio de Pallet / BOX","Duvidas Script de liberação de Pallet","Falha Script de liberação do Pallet","Outro"]
 
-        motivos = [motivos1,motivos2,motivos3,motivos4,motivos5,motivos6,motivos7,motivos8,motivos9]
+        if(self.index==1):
+            motivos = motivos1
+        elif(self.index==2):
+            motivos=motivos2
+        elif(self.index==3):
+            motivos=motivos3
+        elif(self.index==4):
+            motivos=motivos4
+        elif(self.index==5):
+            motivos=motivos5
+        elif(self.index==6):
+            motivos=motivos6
+        elif(self.index==7):
+            motivos=motivos7
+        elif(self.index==8):
+            motivos=motivos8
+        elif(self.index==9):
+            motivos=motivos9
+        else:
+            motivos=motivos5
+        
 
-        for motivo in motivos[self.index-1]:
+        for motivo in motivos:
             self.lista_motivos.addItem(motivo)
 
         self.button_handle()
@@ -128,9 +148,9 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
     def setEngenharia(self):
         self.time = "Engenharia"
     def setLinhaRodando(self):
-        self.linha = "Linha Rodando"
+        self.linha = "Rodando"
     def setLinhaParada(self):
-        self.linha = "Linha Parada"
+        self.linha = "Parada"
         
 
 
