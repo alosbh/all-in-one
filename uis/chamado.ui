@@ -232,9 +232,9 @@ border-color: transparent;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>180</x>
       <y>180</y>
-      <width>131</width>
+      <width>151</width>
       <height>41</height>
      </rect>
     </property>
@@ -262,9 +262,9 @@ border-color: transparent;</string>
    <widget class="QPushButton" name="btn_finalizar">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>180</y>
-      <width>131</width>
+      <width>151</width>
       <height>41</height>
      </rect>
     </property>

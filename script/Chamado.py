@@ -84,19 +84,23 @@ class CountSeconds(QThread):
            
             logger.error("Status janela:"+str(self.janelaSuporte.status))
 
+            self.seconds = datetime.now() - self.timeinit
             logger.error(str(datetime.now()))
+            logger.error(str(self.seconds))
+            self.janelaSuporte.lbl_tempo.setText(str(self.seconds))
             
 
             
 
             
             
-            time.sleep(5)
+            time.sleep(1)
 
 
 
     def startThread(self,janelaSuporte):
-        self.timenow = datetime.now()
+        self.timeinit = datetime.now()
+        self.seconds = 0;
         
         self.janelaSuporte = janelaSuporte
         logger.error("startei a thread")

@@ -94,7 +94,7 @@ class Ui_MainWindow(object):
         self.lbl_status.setObjectName("lbl_status")
         self.btn_cancelar = QtWidgets.QPushButton(self.centralwidget)
         self.btn_cancelar.setEnabled(True)
-        self.btn_cancelar.setGeometry(QtCore.QRect(190, 180, 131, 41))
+        self.btn_cancelar.setGeometry(QtCore.QRect(180, 180, 151, 41))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -109,7 +109,7 @@ class Ui_MainWindow(object):
         self.btn_cancelar.setStyleSheet("background-color:rgb(230, 180, 180);")
         self.btn_cancelar.setObjectName("btn_cancelar")
         self.btn_finalizar = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_finalizar.setGeometry(QtCore.QRect(30, 180, 131, 41))
+        self.btn_finalizar.setGeometry(QtCore.QRect(20, 180, 151, 41))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -124,7 +124,6 @@ class Ui_MainWindow(object):
         self.btn_finalizar.setStyleSheet("background-color:rgb(180, 231, 180);")
         self.btn_finalizar.setObjectName("btn_finalizar")
         MainWindow.setCentralWidget(self.centralwidget)
-
         self.btn_cancelar.setVisible(False)
         self.btn_finalizar.setVisible(False)
 
