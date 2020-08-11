@@ -8,7 +8,6 @@ from datetime import datetime,timedelta
 import logging
 import requests
 import json
-import pytz
 
 global logger
 logger=logging.getLogger() 
