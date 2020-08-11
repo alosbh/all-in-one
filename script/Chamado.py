@@ -25,6 +25,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Support_QtWindow.move((1366 - 353)/2, (768 - 240)/2)
         logger.error("instanciei a classe")
         self.posto = ""
+        self.index = 0
         self.time = "Engenharia"
         self.motivo = ""
         self.horario = ""
@@ -85,6 +86,8 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         logger.error(self.time)
         logger.error(self.motivo)
         logger.error(self.horario)
+        logger.error("index eh")
+        logger.error(self.index)
         self.status = 1
         self.thread.startThread(self)
         
