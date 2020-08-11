@@ -107,7 +107,8 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.lbl_status.setText("Aguarde...")
 
         self.motivo = self.lista_motivos.currentText()
-        self.horario = str(datetime.now().time())[0:5]
+        horaagora = datetime.now() - timedelta(hours=3, minutes=0)
+        self.horario = str(horaagora.time())[0:5]
 
 
 
@@ -178,7 +179,7 @@ class CountSeconds(QThread):
     def startThread(self,janelaSuporte):
        
         
-        self.timeinit = datetime.now() - timedelta(hours=3, minutes=0)
+        self.timeinit = datetime.now() 
         self.seconds = 0;
         
         self.janelaSuporte = janelaSuporte
