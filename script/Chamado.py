@@ -90,8 +90,8 @@ class CountSeconds(QThread):
             
 
             
-            if(self.status != 1):
-                time.sleep(5)
+            
+            time.sleep(5)
 
 
 
