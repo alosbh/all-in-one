@@ -310,9 +310,9 @@ border-color: transparent;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>30</x>
       <y>170</y>
-      <width>110</width>
+      <width>141</width>
       <height>17</height>
      </rect>
     </property>

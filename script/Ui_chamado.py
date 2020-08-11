@@ -132,7 +132,7 @@ class Ui_MainWindow(object):
         self.btn_finalizar.setObjectName("btn_finalizar")
         self.rd_btn_parada = QtWidgets.QRadioButton(self.centralwidget)
         self.rd_btn_parada.setEnabled(True)
-        self.rd_btn_parada.setGeometry(QtCore.QRect(50, 170, 110, 17))
+        self.rd_btn_parada.setGeometry(QtCore.QRect(30, 170, 141, 17))
         self.rd_btn_parada.setChecked(True)
         self.rd_btn_parada.setObjectName("rd_btn_parada")
         self.status_linha = QtWidgets.QButtonGroup(MainWindow)

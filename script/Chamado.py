@@ -6,6 +6,8 @@ import sys
 from Ui_chamado import *
 from datetime import datetime
 import logging
+import requests
+
 global logger
 logger=logging.getLogger() 
 logger.setLevel(logging.DEBUG)
@@ -22,9 +24,10 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Support_QtWindow.move((1366 - 353)/2, (768 - 240)/2)
         logger.error("instanciei a classe")
         self.posto = ""
-        self.time = ""
+        self.time = "Time não selecionado"
         self.motivo = ""
         self.horario = ""
+        self.linha = ""
         self.status = 0
         self.thread = CountSeconds()
         
@@ -44,6 +47,14 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_solicitar.clicked.connect(self.enviaChamado)
         self.btn_finalizar.clicked.connect(self.finaliza)
         self.btn_cancelar.clicked.connect(self.finaliza)
+        self.rd_btn_engenharia.clicked.connect(self.setEngenharia)
+        self.rd_btn_manufatura.clicked.connect(self.setManufatura)
+        self.rd_btn_qualidade.clicked.connect(self.setQualidade)
+        self.rd_btn_ic.clicked.connect(self.setIC)
+        self.rd_btn_rodando.clicked.connect(self.setLinhaRodando)
+        self.rd_btn_parada.clicked.connect(self.setLinhaParada)
+
+        
     
     
     def enviaChamado(self):
@@ -55,7 +66,9 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.motivo = self.lista_motivos.currentText()
         self.horario = str(datetime.now().time())[0:5]
-        self.time = "Engenharia"
+        
+
+
         logger.error("enviei chamado")
         logger.error(self.posto)
         logger.error(self.time)
@@ -73,6 +86,25 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.lbl_status.setText("Não solicitado")
         self.status = 0
         self.lbl_tempo.setText("0:00:00")
+
+
+    def setEngenharia(self):
+        self.time = "Engenharia"
+    def setManufatura(self):
+        self.time = "Manufatura"
+    def setIC(self):
+        self.time = "IC"
+    def setQualidade(self):
+        self.time = "Qualidade"
+    def setEngenharia(self):
+        self.time = "Engenharia"
+    def setEngenharia(self):
+        self.time = "Engenharia"
+    def setLinhaRodando(self):
+        self.linha = "Linha Rodando"
+    def setLinhaParada(self):
+        self.linha = "Linha Parada"
+        
 
 
 class CountSeconds(QThread):
