@@ -35,8 +35,21 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         postBody = {}
         
 
-        motivos = ["Descrição de problema 1", "Descrição de problema 2", "Descrição de problema 3", "Descrição de problema 4"]
-        for motivo in motivos:
+        
+
+        motivos1 =["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Falha CNCS (API)","Micro NFS indisponivel","Porta NFS indisponivel","Reprovação de terminal","Terminais não abrem tela do Cliente","Todos terminais com falha de gravação","Troca de Etiqueta / Ribbon","Um terminal com falha de gravação","Micro Travado / Reiniciando","Outro"]
+        motivos2=motivos1
+        motivos3=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Falha Nascimento do terminal","Jabil Test não abre","Lentidão no Jabil Test","Reprovação de terminal","Terminais não abrem tela do Cliente","Todos Genisys Offline","Todos terminais com falha de gravação","Um Genisys Offline","Um terminal com falha de gravação","Micro Travado / Reiniciando","Outro"]
+        motivos4=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Falha Nascimento do terminal","Jabil Test não abre","Lentidão no Jabil Test","Reprovação de terminal","Terminais não abrem tela do Cliente","Falha no SAFF Extractor","Micro Travado / Reiniciando","Outro"]
+        motivos5=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Outro"]
+        motivos6=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Jabil Test não abre","Lentidão no Jabil Test","Troca de Etiqueta / Ribbon","Micro Travado / Reiniciando","Um terminal com falha agregação","Todos Terminais com falha de agregação","Falha Pick To Light","Falha na Rotuladora","Etiqueta não gerada - Zebra","Regerar Etiqueta","Outro"]
+        motivos7=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Jabil Test não abre","Lentidão no Jabil Test","Reprovação de terminal","Troca de Etiqueta / Ribbon","Micro Travado / Reiniciando","Falha na Rotuladora","Regerar Etiqueta","Etiqueta trocada / Ausente","Reteste camera","Falha jiga / sensor","Outro"]
+        motivos8=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Jabil Test não abre","Lentidão no Jabil Test","Micro Travado / Reiniciando","Falha no braço da balança","Camera Balança não lê","Uma caixa com peso fora do especificado","Todas caixas - peso fora do especificado","Um terminal não embala","Todos terminais não embalam","MES não abre","Caixa no BIN","Outro"]
+        motivos9=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Jabil Test não abre","Micro Travado / Reiniciando","Problema no Relatorio de Pallet / BOX","Duvidas Script de liberação de Pallet","Falha Script de liberação do Pallet","Outro"]
+
+        motivos = [motivos1,motivos2,motivos3,motivos4,motivos5,motivos6,motivos7,motivos8,motivos9]
+
+        for motivo in motivos[self.index-1]:
             self.lista_motivos.addItem(motivo)
 
         self.button_handle()
@@ -54,8 +67,8 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.rd_btn_manufatura.clicked.connect(self.setManufatura)
         self.rd_btn_qualidade.clicked.connect(self.setQualidade)
         self.rd_btn_ic.clicked.connect(self.setIC)
-        self.rd_btn_rodando.clicked.connect(self.setLinhaRodando)
-        self.rd_btn_parada.clicked.connect(self.setLinhaParada)
+        self.rd_btn_rodando.clicked.connect(self.setLinhaParada)
+        self.rd_btn_parada.clicked.connect(self.setLinhaRodando)
 
         
     
