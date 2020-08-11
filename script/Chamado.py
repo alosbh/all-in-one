@@ -19,7 +19,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.Support_QtWindow = QtWidgets.QMainWindow()
         self.setupUi(self.Support_QtWindow)
-        self.Support_QtWindow.move((1366 - 511)/2, (768 - 240)/2)
+        self.Support_QtWindow.move((1366 - 353)/2, (768 - 240)/2)
         logger.error("instanciei a classe")
         self.posto = ""
         self.time = ""
@@ -84,22 +84,11 @@ class CountSeconds(QThread):
         
         while(self.janelaSuporte.status == 1):
 
-           
-            logger.error("Status janela:"+str(self.janelaSuporte.status))
-
             self.seconds = datetime.now() - self.timeinit
-            logger.error(str(datetime.now()))
-            logger.error(str(self.seconds))
+            
             self.janelaSuporte.lbl_tempo.setText(str(self.seconds)[0:7])
-            
 
-            
-
-            
-            
             time.sleep(1)
-
-
 
     def startThread(self,janelaSuporte):
         self.timeinit = datetime.now()

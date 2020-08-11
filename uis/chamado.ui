@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>353</width>
-    <height>240</height>
+    <height>252</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -64,9 +64,9 @@ border-color: transparent;</string>
    <widget class="QPushButton" name="btn_solicitar">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>180</y>
-      <width>131</width>
+      <x>20</x>
+      <y>200</y>
+      <width>151</width>
       <height>41</height>
      </rect>
     </property>
@@ -106,10 +106,16 @@ border-color: transparent;</string>
     <property name="text">
      <string>Engenharia</string>
     </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">group_time</string>
+    </attribute>
    </widget>
    <widget class="QRadioButton" name="rd_btn_manufatura">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -122,10 +128,13 @@ border-color: transparent;</string>
     <property name="text">
      <string>Manufatura</string>
     </property>
+    <attribute name="buttonGroup">
+     <string notr="true">group_time</string>
+    </attribute>
    </widget>
    <widget class="QRadioButton" name="rd_btn_ic">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -138,10 +147,13 @@ border-color: transparent;</string>
     <property name="text">
      <string>IC</string>
     </property>
+    <attribute name="buttonGroup">
+     <string notr="true">group_time</string>
+    </attribute>
    </widget>
    <widget class="QRadioButton" name="rd_btn_qualidade">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -154,6 +166,9 @@ border-color: transparent;</string>
     <property name="text">
      <string>Qualidade</string>
     </property>
+    <attribute name="buttonGroup">
+     <string notr="true">group_time</string>
+    </attribute>
    </widget>
    <widget class="QLabel" name="lbl_motivos">
     <property name="geometry">
@@ -233,7 +248,7 @@ border-color: transparent;</string>
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>180</y>
+      <y>200</y>
       <width>151</width>
       <height>41</height>
      </rect>
@@ -263,7 +278,7 @@ border-color: transparent;</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>180</y>
+      <y>200</y>
       <width>151</width>
       <height>41</height>
      </rect>
@@ -289,8 +304,53 @@ border-color: transparent;</string>
      <string>Finalizar chamado</string>
     </property>
    </widget>
+   <widget class="QRadioButton" name="rd_btn_parada">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>170</y>
+      <width>110</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Linha funcionando</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">status_linha</string>
+    </attribute>
+   </widget>
+   <widget class="QRadioButton" name="rd_btn_rodando">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>170</y>
+      <width>110</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Linha parada</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">status_linha</string>
+    </attribute>
+   </widget>
   </widget>
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="status_linha"/>
+  <buttongroup name="group_time"/>
+ </buttongroups>
 </ui>
