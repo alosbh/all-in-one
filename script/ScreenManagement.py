@@ -223,6 +223,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.Support_Window = Support_Window
         self.Support_Window.posto = self.Station.Name
         self.Support_Window.index = self.Station.Index
+        self.Support_Window.populateMotivos()
 
 
         self.thread_loading = WaitForPageLoad()

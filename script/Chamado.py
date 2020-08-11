@@ -27,7 +27,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.posto = ""
         self.index = 0
         self.time = "Engenharia"
-        self.motivo = ""
+        self.motivos = []
         self.horario = ""
         self.linha = "Rodando"
         self.status = 0
@@ -37,40 +37,10 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
         
 
-        motivos1 =["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Falha CNCS (API)","Micro NFS indisponivel","Porta NFS indisponivel","Reprovação de terminal","Terminais não abrem tela do Cliente","Todos terminais com falha de gravação","Troca de Etiqueta / Ribbon","Um terminal com falha de gravação","Micro Travado / Reiniciando","Outro"]
-        motivos2=motivos1
-        motivos3=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Falha Nascimento do terminal","Jabil Test não abre","Lentidão no Jabil Test","Reprovação de terminal","Terminais não abrem tela do Cliente","Todos Genisys Offline","Todos terminais com falha de gravação","Um Genisys Offline","Um terminal com falha de gravação","Micro Travado / Reiniciando","Outro"]
-        motivos4=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Falha Nascimento do terminal","Jabil Test não abre","Lentidão no Jabil Test","Reprovação de terminal","Terminais não abrem tela do Cliente","Falha no SAFF Extractor","Micro Travado / Reiniciando","Outro"]
-        motivos5=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Outro"]
-        motivos6=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Jabil Test não abre","Lentidão no Jabil Test","Troca de Etiqueta / Ribbon","Micro Travado / Reiniciando","Um terminal com falha agregação","Todos Terminais com falha de agregação","Falha Pick To Light","Falha na Rotuladora","Etiqueta não gerada - Zebra","Regerar Etiqueta","Outro"]
-        motivos7=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Jabil Test não abre","Lentidão no Jabil Test","Reprovação de terminal","Troca de Etiqueta / Ribbon","Micro Travado / Reiniciando","Falha na Rotuladora","Regerar Etiqueta","Etiqueta trocada / Ausente","Reteste camera","Falha jiga / sensor","Outro"]
-        motivos8=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Jabil Test não abre","Lentidão no Jabil Test","Micro Travado / Reiniciando","Falha no braço da balança","Camera Balança não lê","Uma caixa com peso fora do especificado","Todas caixas - peso fora do especificado","Um terminal não embala","Todos terminais não embalam","MES não abre","Caixa no BIN","Outro"]
-        motivos9=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Jabil Test não abre","Micro Travado / Reiniciando","Problema no Relatorio de Pallet / BOX","Duvidas Script de liberação de Pallet","Falha Script de liberação do Pallet","Outro"]
-
-        if(self.index==1):
-            motivos = motivos1
-        elif(self.index==2):
-            motivos=motivos2
-        elif(self.index==3):
-            motivos=motivos3
-        elif(self.index==4):
-            motivos=motivos4
-        elif(self.index==5):
-            motivos=motivos5
-        elif(self.index==6):
-            motivos=motivos6
-        elif(self.index==7):
-            motivos=motivos7
-        elif(self.index==8):
-            motivos=motivos8
-        elif(self.index==9):
-            motivos=motivos9
-        else:
-            motivos=motivos5
+        
         
 
-        for motivo in motivos:
-            self.lista_motivos.addItem(motivo)
+        
 
         self.button_handle()
 
@@ -90,7 +60,43 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.rd_btn_rodando.clicked.connect(self.setLinhaParada)
         self.rd_btn_parada.clicked.connect(self.setLinhaRodando)
 
-        
+    def populateMotivos(self):
+
+        motivos1 =["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Falha CNCS (API)","Micro NFS indisponivel","Porta NFS indisponivel","Reprovação de terminal","Terminais não abrem tela do Cliente","Todos terminais com falha de gravação","Troca de Etiqueta / Ribbon","Um terminal com falha de gravação","Micro Travado / Reiniciando","Outro"]
+        motivos2=motivos1
+        motivos3=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Falha Nascimento do terminal","Jabil Test não abre","Lentidão no Jabil Test","Reprovação de terminal","Terminais não abrem tela do Cliente","Todos Genisys Offline","Todos terminais com falha de gravação","Um Genisys Offline","Um terminal com falha de gravação","Micro Travado / Reiniciando","Outro"]
+        motivos4=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Falha Nascimento do terminal","Jabil Test não abre","Lentidão no Jabil Test","Reprovação de terminal","Terminais não abrem tela do Cliente","Falha no SAFF Extractor","Micro Travado / Reiniciando","Outro"]
+        motivos5=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Outro"]
+        motivos6=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Jabil Test não abre","Lentidão no Jabil Test","Troca de Etiqueta / Ribbon","Micro Travado / Reiniciando","Um terminal com falha agregação","Todos Terminais com falha de agregação","Falha Pick To Light","Falha na Rotuladora","Etiqueta não gerada - Zebra","Regerar Etiqueta","Outro"]
+        motivos7=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Jabil Test não abre","Lentidão no Jabil Test","Reprovação de terminal","Troca de Etiqueta / Ribbon","Micro Travado / Reiniciando","Falha na Rotuladora","Regerar Etiqueta","Etiqueta trocada / Ausente","Reteste camera","Falha jiga / sensor","Outro"]
+        motivos8=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Jabil Test não abre","Lentidão no Jabil Test","Micro Travado / Reiniciando","Falha no braço da balança","Camera Balança não lê","Uma caixa com peso fora do especificado","Todas caixas - peso fora do especificado","Um terminal não embala","Todos terminais não embalam","MES não abre","Caixa no BIN","Outro"]
+        motivos9=["Escolha o Motivo","FI sem assinatura","Problemas All In One (posto ao lado)","Jabil Test não abre","Micro Travado / Reiniciando","Problema no Relatorio de Pallet / BOX","Duvidas Script de liberação de Pallet","Falha Script de liberação do Pallet","Outro"]
+
+        if(self.index==1):
+            self.motivos = motivos1
+        elif(self.index==2):
+            self.motivos=motivos2
+        elif(self.index==3):
+            self.motivos=motivos3
+        elif(self.index==4):
+            self.motivos=motivos4
+        elif(self.index==5):
+            self.motivos=motivos5
+        elif(self.index==6):
+            self.motivos=motivos6
+        elif(self.index==7):
+            self.motivos=motivos7
+        elif(self.index==8):
+            self.motivos=motivos8
+        elif(self.index==9):
+            self.motivos=motivos9
+        else:
+            self.motivos=motivos5
+
+        for motivo in self.motivos:
+            self.lista_motivos.addItem(motivo)
+
+
     
     
     def enviaChamado(self):
