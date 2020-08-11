@@ -758,7 +758,7 @@ class Ui_Logged_Screen(object):
         self.aio.setText(_translate("Logged", "All In One"))
         self.LPA_button.setText(_translate("Logged", "LPA"))
         self.FI_button.setText(_translate("Logged", "Ficha de Instrução"))
-        self.BI_button.setText(_translate("Logged", "Boas Ideias"))
+        self.BI_button.setText(_translate("Logged", "Solicitar Suporte"))
         self.jiga_button.setText(_translate("Logged", "Listar ferramentais"))
         self.custom_button.setText(_translate("Logged", "Custom Button"))
         self.yield1.setText(_translate("Logged", "80"))
