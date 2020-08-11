@@ -221,7 +221,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         
         self.Reset_Window = Reset_Window
         self.Support_Window = Support_Window
-        self.Support_Window.posto = self.Station
+        self.Support_Window.posto = self.Station.Name
 
 
         self.thread_loading = WaitForPageLoad()

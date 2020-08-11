@@ -24,6 +24,9 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.time = ""
         self.motivo = ""
         self.horario = ""
+        self.status = 0
+        self.thread = CountSeconds()
+        
 
         motivos = ["Descrição de problema 1", "Descrição de problema 2", "Descrição de problema 3", "Descrição de problema 4"]
         for motivo in motivos:
@@ -39,18 +42,62 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         logger.error("setei os botoes")
         self.btn_solicitar.clicked.connect(self.enviaChamado)
     
+    
     def enviaChamado(self):
-    #     # chamado.hide()
+   
         self.btn_solicitar.setVisible(False)
         self.btn_finalizar.setVisible(True)
         self.btn_cancelar.setVisible(True)
+        self.lbl_status.setText("Aguarde...")
 
         self.motivo = self.lista_motivos.currentText()
-        self.horario = datetime.now().time()
+        self.horario = str(datetime.now().time())[0:5]
+        self.time = "Engenharia"
         logger.error("enviei chamado")
         logger.error(self.posto)
         logger.error(self.time)
         logger.error(self.motivo)
         logger.error(self.horario)
-        print(self.posto,self.time, self.motivo, self.horario)
-    #     #lib.requestSupport(time, linha, nome, work)
+        self.status = 1
+        self.thread.startThread(self)
+        
+    
+
+    def finaliza(self):
+        self.btn_solicitar.setVisible(True)
+        self.btn_finalizar.setVisible(False)
+        self.btn_cancelar.setVisible(False)
+        self.lbl_status.setText("Não solicitado")
+        self.status = 0
+
+
+class CountSeconds(QThread):
+ 
+
+    def run(self):
+
+        contadorThread = 0
+        
+        while(self.janelaSuporte.status = 1):
+
+           
+            logger.error("Status janela:"+str(self.janelaSuporte.status))
+
+            logger.error(str(datetime.now()))
+            
+
+            
+
+            
+            if(self.status != 1):
+                time.sleep(5)
+
+
+
+    def startThread(self,janelaSuporte):
+        self.timenow = datetime.now()
+        
+        self.janelaSuporte = janelaSuporte
+        
+        self.Raspberry = Raspberry
+        self.start()
