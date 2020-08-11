@@ -99,6 +99,6 @@ class CountSeconds(QThread):
         self.timenow = datetime.now()
         
         self.janelaSuporte = janelaSuporte
-         logger.error("startei a thread")
+        logger.error("startei a thread")
         
         self.start()
