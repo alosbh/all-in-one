@@ -7,6 +7,7 @@ from Ui_chamado import *
 from datetime import datetime
 import logging
 import requests
+import json
 
 global logger
 logger=logging.getLogger() 
@@ -67,11 +68,18 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.motivo = self.lista_motivos.currentText()
         self.horario = str(datetime.now().time())[0:5]
+
+
+
+
+        headers = {'content-type': 'application/json'}
         url = 'http://BRBELRASPBUSTERDEV:3000/reloginho'
         postBody = {'workstation': self.posto,'risk': self.linha, 'calltime': self.horario, 'description':self.motivo}
-        x = requests.post(url, data = postBody)
 
-        logger.error(x.text)
+        r = requests.post(url, data=json.dumps(postBody), headers=headers)
+        
+
+        logger.error(r.text)
         logger.error("enviei chamado")
         logger.error(self.posto)
         logger.error(self.time)
