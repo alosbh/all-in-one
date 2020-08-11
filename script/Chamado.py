@@ -8,6 +8,7 @@ from datetime import datetime
 import logging
 import requests
 import json
+import pytz
 
 global logger
 logger=logging.getLogger() 
@@ -176,6 +177,10 @@ class CountSeconds(QThread):
             time.sleep(1)
 
     def startThread(self,janelaSuporte):
+        dtobj1=datetime.datetime.utcnow()
+        dtobj3=dtobj1.replace(tzinfo=pytz.UTC)
+        dtobj_hongkong=dtobj3.astimezone(pytz.timezone("America/Sao_Paulo")) #astimezone method
+        logger.error(dtobj_hongkong)
         self.timeinit = datetime.now()
         self.seconds = 0;
         
