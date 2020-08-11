@@ -78,7 +78,7 @@ class CountSeconds(QThread):
 
         contadorThread = 0
         
-        while(self.janelaSuporte.status = 1):
+        while(self.janelaSuporte.status == 1):
 
            
             logger.error("Status janela:"+str(self.janelaSuporte.status))
