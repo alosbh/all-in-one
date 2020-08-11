@@ -14,8 +14,7 @@ RUN apt-get update && apt-get install -y python3-dev \
 	&& python3 -m pip install --upgrade pip \
     #&& python3 -m pip install wheel \
 	#&& python3 -m pip install urllib3 \
-	&& python3 -m pip install pyyaml \
-	&& python3 -m pip install pytz
+	&& python3 -m pip install pyyaml
 
 # install spi lib
 COPY spi /home/app/spi

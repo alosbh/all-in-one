@@ -4,7 +4,7 @@ from PyQt5.QtCore import QThread
 import time
 import sys
 from Ui_chamado import *
-from datetime import datetime
+from datetime import datetime,timedelta
 import logging
 import requests
 import json
@@ -177,11 +177,9 @@ class CountSeconds(QThread):
             time.sleep(1)
 
     def startThread(self,janelaSuporte):
-        dtobj1=datetime.datetime.utcnow()
-        dtobj3=dtobj1.replace(tzinfo=pytz.UTC)
-        dtobj_hongkong=dtobj3.astimezone(pytz.timezone("America/Sao_Paulo")) #astimezone method
-        logger.error(dtobj_hongkong)
-        self.timeinit = datetime.now()
+       
+        
+        self.timeinit = datetime.now() - timedelta(hours=3, minutes=0)
         self.seconds = 0;
         
         self.janelaSuporte = janelaSuporte
