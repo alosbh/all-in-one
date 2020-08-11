@@ -24,12 +24,13 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Support_QtWindow.move((1366 - 353)/2, (768 - 240)/2)
         logger.error("instanciei a classe")
         self.posto = ""
-        self.time = "Time não selecionado"
+        self.time = "Engenharia"
         self.motivo = ""
         self.horario = ""
-        self.linha = ""
+        self.linha = "Linha Rodando"
         self.status = 0
         self.thread = CountSeconds()
+        postBody = {}
         
 
         motivos = ["Descrição de problema 1", "Descrição de problema 2", "Descrição de problema 3", "Descrição de problema 4"]
@@ -45,7 +46,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
     def button_handle(self):
         logger.error("setei os botoes")
         self.btn_solicitar.clicked.connect(self.enviaChamado)
-        self.btn_finalizar.clicked.connect(self.finaliza)
+        self.btn_concluir.clicked.connect(self.finaliza)
         self.btn_cancelar.clicked.connect(self.finaliza)
         self.rd_btn_engenharia.clicked.connect(self.setEngenharia)
         self.rd_btn_manufatura.clicked.connect(self.setManufatura)
@@ -60,15 +61,17 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
     def enviaChamado(self):
    
         self.btn_solicitar.setVisible(False)
-        self.btn_finalizar.setVisible(True)
+        self.btn_concluir.setVisible(True)
         self.btn_cancelar.setVisible(True)
         self.lbl_status.setText("Aguarde...")
 
         self.motivo = self.lista_motivos.currentText()
         self.horario = str(datetime.now().time())[0:5]
-        
+        url = 'http://BRBELRASPBUSTERDEV:3000/reloginho'
+        postBody = {'workstation': self.posto,'risk': self.linha, 'calltime': self.horario, 'description':self.motivo}
+        x = requests.post(url, data = postBody)
 
-
+        logger.error(x.text)
         logger.error("enviei chamado")
         logger.error(self.posto)
         logger.error(self.time)
@@ -81,7 +84,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def finaliza(self):
         self.btn_solicitar.setVisible(True)
-        self.btn_finalizar.setVisible(False)
+        self.btn_concluir.setVisible(False)
         self.btn_cancelar.setVisible(False)
         self.lbl_status.setText("Não solicitado")
         self.status = 0

@@ -115,7 +115,7 @@ border-color: transparent;</string>
    </widget>
    <widget class="QRadioButton" name="rd_btn_manufatura">
     <property name="enabled">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -134,7 +134,7 @@ border-color: transparent;</string>
    </widget>
    <widget class="QRadioButton" name="rd_btn_ic">
     <property name="enabled">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -153,7 +153,7 @@ border-color: transparent;</string>
    </widget>
    <widget class="QRadioButton" name="rd_btn_qualidade">
     <property name="enabled">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -274,7 +274,7 @@ border-color: transparent;</string>
      <string>Cancelar chamado</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_finalizar">
+   <widget class="QPushButton" name="btn_atender">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -301,7 +301,7 @@ border-color: transparent;</string>
      <string notr="true">background-color:rgb(180, 231, 180);</string>
     </property>
     <property name="text">
-     <string>Finalizar chamado</string>
+     <string>Atender chamado</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="rd_btn_parada">
@@ -344,6 +344,36 @@ border-color: transparent;</string>
     <attribute name="buttonGroup">
      <string notr="true">status_linha</string>
     </attribute>
+   </widget>
+   <widget class="QPushButton" name="btn_concluir">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>200</y>
+      <width>151</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI Semibold</family>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(180, 231, 180);</string>
+    </property>
+    <property name="text">
+     <string>Concluir chamado</string>
+    </property>
    </widget>
   </widget>
  </widget>
