@@ -115,13 +115,12 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
         headers = {'content-type': 'application/json'}
         url = 'http://10.57.38.130/rest/endpoint'
-        url1 = 'http://10.57.38.131/rest/endpoint'
+        
         postBody = {'workstation': self.posto,'risk': self.linha, 'calltime': self.horario, 'description':self.motivo}
 
         r = requests.post(url, data=json.dumps(postBody), headers=headers)
 
-        time.sleep(1)
-        x = requests.post(url1, data=json.dumps(postBody), headers=headers)
+       
 
         logger.error("enviei chamado")
 
