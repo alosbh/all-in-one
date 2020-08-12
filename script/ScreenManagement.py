@@ -7,7 +7,7 @@ from GlobalParameters import GlobalParameters
 from FI import FI
 from labels import labels
 
-# import MFRC522
+import MFRC522
 import time
 from shutil import copyfile
 import urllib.request
@@ -701,8 +701,8 @@ class MainThread(QThread): #Thread de leitura dos crachás
             
             
             try:
-                Read_ID = 51008294
-                # Read_ID = (RFRead()) # Reads Badge ID
+                # Read_ID = 51008294
+                Read_ID = (RFRead()) # Reads Badge ID
             except Exception as e:
                 traceback.print_exc()
                 logger.error("RFID error: " + type(e).__name__)
