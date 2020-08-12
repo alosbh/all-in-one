@@ -125,7 +125,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         logger.error("enviei chamado")
 
         logger.error(r.text)
-        logger.error(x.text)
+        
         
         logger.error(self.posto)
         logger.error(self.time)
