@@ -120,6 +120,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
         r = requests.post(url, data=json.dumps(postBody), headers=headers)
 
+        time.sleep(1)
         x = requests.post(url1, data=json.dumps(postBody), headers=headers)
 
         logger.error("enviei chamado")
