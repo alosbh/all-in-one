@@ -217,9 +217,9 @@ class WatchStatus(QThread):
             time.sleep(30)
 
     def startThread(self,janelaSuporte):
-       
+              
         
-       self.url = "http://brbelraspbusterdev:3000/status"
+        self.url = "http://brbelraspbusterdev:3000/status"
         
         
         self.janelaSuporte = janelaSuporte
