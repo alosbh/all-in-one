@@ -32,6 +32,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.linha = "Rodando"
         self.status = 0
         self.thread = CountSeconds()
+        self.watchthread = WatchStatus()
         postBody = {}
         
 
@@ -135,6 +136,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         logger.error(self.index)
         self.status = 1
         self.thread.startThread(self)
+        self.watchthread.startThread(self)
         
     
 
@@ -214,7 +216,7 @@ class WatchStatus(QThread):
            
 
 
-            time.sleep(30)
+            time.sleep(5)
 
     def startThread(self,janelaSuporte):
               
