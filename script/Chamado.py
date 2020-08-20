@@ -112,7 +112,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
 
-        self.go = "hey"
+        
         headers = {'content-type': 'application/json'}
         url = 'http://10.57.38.132/receberchamado'
         
