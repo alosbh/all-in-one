@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets, QtCore, QtGui
+    from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QApplication,QMainWindow
 from PyQt5.QtCore import QThread
 import time
@@ -114,9 +114,9 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
         headers = {'content-type': 'application/json'}
-        url = 'http://10.57.38.130/rest/endpoint'
+        url = 'http://10.57.38.132/receberchamado'
         
-        postBody = {'workstation': self.posto,'risk': self.linha, 'calltime': self.horario, 'description':self.motivo}
+        postBody = {'id':'4','workstation': self.posto,'risk': self.linha, 'calltime': self.horario, 'description':self.motivo}
 
         r = requests.post(url, data=json.dumps(postBody), headers=headers)
 
@@ -125,7 +125,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         logger.error("enviei chamado")
 
         logger.error(r.text)
-        logger.error(x.text)
+      
         
         logger.error(self.posto)
         logger.error(self.time)
@@ -191,3 +191,40 @@ class CountSeconds(QThread):
         logger.error("startei a thread")
         
         self.start()
+
+
+class WatchStatus(QThread):
+ 
+
+    def run(self):
+
+        
+        
+        while(self.janelaSuporte.status == 1):
+
+            getrequest = requests.get(self.url)
+            if(getrequest.text == "Confirmed"):
+                self.lbl_status.setText("Chamado confirmado")
+            elif(getrequest.text == "onGoing"):
+                self.lbl_status.setText("Chamado iniciado")
+            elif(getrequest.text == "Done"):
+                self.lbl_status.setText("Chamado Finalizado")
+
+
+           
+
+
+            time.sleep(30)
+
+    def startThread(self,janelaSuporte):
+       
+        
+       self.url = "http://brbelraspbusterdev:3000/status"
+        
+        
+        self.janelaSuporte = janelaSuporte
+        
+        
+        self.start()
+        
+
