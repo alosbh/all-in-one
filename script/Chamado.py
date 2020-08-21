@@ -29,7 +29,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.time = "Engenharia"
         self.motivos = []
         self.horario = ""
-        self.linha = "Rodando"
+        self.linha = 0
         self.status = 0
         self.thread = CountSeconds()
         self.watchthread = WatchStatus()
@@ -115,9 +115,9 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
         
         headers = {'content-type': 'application/json'}
-        url = 'http://10.57.38.132/receberchamado'
+        url = 'http://brbelm0itqa01/AioWatch/Create'
         
-        postBody = {'id':'4','workstation': self.posto,'risk': self.linha, 'calltime': self.horario, 'description':self.motivo}
+        postBody = {'workstationName': self.posto,'productionLineStatus': self.linha, 'description':self.motivo}
 
         r = requests.post(url, data=json.dumps(postBody), headers=headers)
 
@@ -162,9 +162,9 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
     def setEngenharia(self):
         self.time = "Engenharia"
     def setLinhaRodando(self):
-        self.linha = "Rodando"
+        self.linha = 1
     def setLinhaParada(self):
-        self.linha = "Parada"
+        self.linha = 0
         
 
 
