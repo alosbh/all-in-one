@@ -208,12 +208,13 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
            self.custom_button.setText(LabelsObject.data['Buttons'][4][str(Station.Area)][int(Station.Index)])
 
            try:
-           self.Custom_Label.setText(LabelsObject.data['Labels'][4][str(Station.AreaTrim)][int(Station.Index)])
-           self.custom_button.setText(LabelsObject.data['Buttons'][4][str(Station.AreaTrim)][int(Station.Index)])
-
+               self.Custom_Label.setText(LabelsObject.data['Labels'][4][str(Station.AreaTrim)][int(Station.Index)])
+               self.custom_button.setText(LabelsObject.data['Buttons'][4][str(Station.AreaTrim)][int(Station.Index)])
             except:
-            self.Custom_Label.setText(LabelsObject.data['Labels'][4]['GENERAL'])
-            self.custom_button.setText(LabelsObject.data['Buttons'][4]['GENERAL'])
+                self.Custom_Label.setText(LabelsObject.data['Labels'][4]['GENERAL'])
+                self.custom_button.setText(LabelsObject.data['Buttons'][4]['GENERAL'])
+            
+            
         except:
             pass
 
