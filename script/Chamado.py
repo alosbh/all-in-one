@@ -212,12 +212,13 @@ class WatchStatus(QThread):
         while(self.janelaSuporte.status == 1):
 
             getrequest = requests.get(self.url)
-            if(getrequest.text == "Confirmed"):
-                self.janelaSuporte.lbl_status.setText("Chamado confirmado")
-            elif(getrequest.text == "onGoing"):
-                self.janelaSuporte.lbl_status.setText("Chamado iniciado")
-            elif(getrequest.text == "Done"):
-                self.janelaSuporte.lbl_status.setText("Chamado Finalizado")
+            logger.error(getrequest.json())
+            if(getrequest.json()['additionalData']['status'] == "Accepted"):
+                self.janelaSuporte.lbl_status.setText("Aceito: " + .json()['additionalData']['userName'])
+            elif(getrequest.json()['additionalData']['status'] == "OnGoing"):
+                self.janelaSuporte.lbl_status.setText("Em andamento")
+            elif(getrequest.json()['additionalData']['status'] == "Done"):
+                self.janelaSuporte.lbl_status.setText("Finalizado")
 
 
            
@@ -227,11 +228,11 @@ class WatchStatus(QThread):
 
     def startThread(self,janelaSuporte):
               
-        
-        self.url = "http://brbelraspbusterdev:3000/status"
-        
-        
         self.janelaSuporte = janelaSuporte
+        self.url = "http://brbelm0itqa01/AioWatch/GetById?id=" + self.requestID
+        
+        
+        
         
         
         self.start()
