@@ -229,7 +229,7 @@ class WatchStatus(QThread):
     def startThread(self,janelaSuporte):
               
         self.janelaSuporte = janelaSuporte
-        self.url = "http://brbelm0itqa01/AioWatch/GetById?id=" + self.requestID
+        self.url = "http://brbelm0itqa01/AioWatch/GetById?id=" + self.janelaSuporte.requestID
         
         
         
