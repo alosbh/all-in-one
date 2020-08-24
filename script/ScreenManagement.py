@@ -193,6 +193,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.web.loadFinished.connect(self.finish_loading)
         # enables the webviewer
         self.load_url('about:blank')
+        
         self.web.setVisible(False)
         
         self.homepage.setVisible(True)
