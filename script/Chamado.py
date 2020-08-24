@@ -206,11 +206,11 @@ class WatchStatus(QThread):
 
             getrequest = requests.get(self.url)
             if(getrequest.text == "Confirmed"):
-                self.lbl_status.setText("Chamado confirmado")
+                self.janelaSuporte.lbl_status.setText("Chamado confirmado")
             elif(getrequest.text == "onGoing"):
-                self.lbl_status.setText("Chamado iniciado")
+                self.janelaSuporte.lbl_status.setText("Chamado iniciado")
             elif(getrequest.text == "Done"):
-                self.lbl_status.setText("Chamado Finalizado")
+                self.janelaSuporte.lbl_status.setText("Chamado Finalizado")
 
 
            
