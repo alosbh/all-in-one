@@ -296,7 +296,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
         # Links the buttons to their respective methods
         self.FI_button.clicked.connect(self.load_fi)
-        self.BI_button.clicked.connect(self.load_BI)
+        self.BI_button.clicked.connect(self.load_bi)
         self.LPA_button.clicked.connect(self.load_lpa)
         self.jiga_button.clicked.connect(self.jiga_list)
         self.custom_button.clicked.connect(self.custom_button_load)
