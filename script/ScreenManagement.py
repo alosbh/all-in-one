@@ -217,7 +217,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
                logger.error(LabelsObject.data['Labels'][4])
                self.Custom_Label.setText(LabelsObject.data['Labels'][4][str(Station.AreaTrim)][int(Station.Index)])
                self.custom_button.setText(LabelsObject.data['Buttons'][4][str(Station.AreaTrim)][int(Station.Index)])
-           except:
+            except:
                logger.error("****************MAS NAO DEU CERTO************")
                self.Custom_Label.setText(LabelsObject.data['Labels'][4]['GENERAL'])
                self.custom_button.setText(LabelsObject.data['Buttons'][4]['GENERAL'])
