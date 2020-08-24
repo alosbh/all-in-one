@@ -54,6 +54,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_solicitar.clicked.connect(self.enviaChamado)
         self.btn_concluir.clicked.connect(self.finaliza)
         self.btn_cancelar.clicked.connect(self.finaliza)
+        self.btn_atender.clicked.connect(self.iniciarChamado)
         self.rd_btn_engenharia.clicked.connect(self.setEngenharia)
         self.rd_btn_manufatura.clicked.connect(self.setManufatura)
         self.rd_btn_qualidade.clicked.connect(self.setQualidade)
@@ -98,21 +99,33 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
             self.lista_motivos.addItem(motivo)
 
 
-    
+    def iniciarChamado(self):
+        self.btn_atender.setVisible(False)
+        self.btn_concluir.setVisible(True)
+
+        self.lbl_status.setText("Em Andamento")
+
+        headers = {'content-type': 'application/json'}
+        url2 = 'http://brbelm0itqa01/AioWatch/Update'
+
+        postBody = {'id': self.requestID,'ticketStatus': 4}
+
+        x = requests.post(url2, data=json.dumps(postBody), headers=headers)
+
+        
+
     
     def enviaChamado(self):
    
         self.btn_solicitar.setVisible(False)
-        self.btn_concluir.setVisible(True)
-        self.btn_cancelar.setVisible(True)
+        self.btn_atender.setVisible(True)
+        self.btn_cancelar.setVisible(False)
+        self.btn_concluir.setVisible(False)
         self.lbl_status.setText("Aguarde...")
 
         self.motivo = self.lista_motivos.currentText()
         horaagora = datetime.now() - timedelta(hours=3, minutes=0)
         self.horario = str(horaagora.time())[0:5]
-
-
-
         
         headers = {'content-type': 'application/json'}
         url = 'http://brbelm0itqa01/AioWatch/Create'
@@ -121,19 +134,8 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
         r = requests.post(url, data=json.dumps(postBody), headers=headers)
 
-       
-
-        logger.error("enviei chamado")
-
-        logger.error(r.text)
+        self.requestID = str(r.json()['additionalData']['id'])
       
-        
-        logger.error(self.posto)
-        logger.error(self.time)
-        logger.error(self.motivo)
-        logger.error(self.horario)
-        logger.error("index eh")
-        logger.error(self.index)
         self.status = 1
         self.thread.startThread(self)
         self.watchthread.startThread(self)
@@ -147,6 +149,12 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.lbl_status.setText("Não solicitado")
         self.status = 0
         self.lbl_tempo.setText("0:00:00")
+        headers = {'content-type': 'application/json'}
+        url3 = 'http://brbelm0itqa01/AioWatch/Update'
+
+        postBody = {'id': self.requestID,'ticketStatus': 5}
+
+        x = requests.post(url3, data=json.dumps(postBody), headers=headers)
 
 
     def setEngenharia(self):
@@ -205,12 +213,13 @@ class WatchStatus(QThread):
         while(self.janelaSuporte.status == 1):
 
             getrequest = requests.get(self.url)
-            if(getrequest.text == "Confirmed"):
-                self.lbl_status.setText("Chamado confirmado")
-            elif(getrequest.text == "onGoing"):
-                self.lbl_status.setText("Chamado iniciado")
-            elif(getrequest.text == "Done"):
-                self.lbl_status.setText("Chamado Finalizado")
+            logger.error(getrequest.json())
+            if(getrequest.json()['additionalData']['status'] == "Accepted"):
+                self.janelaSuporte.lbl_status.setText("Aceito: " + getrequest.json()['additionalData']['userName'])
+            elif(getrequest.json()['additionalData']['status'] == "OnGoing"):
+                self.janelaSuporte.lbl_status.setText("Em andamento")
+            elif(getrequest.json()['additionalData']['status'] == "Done"):
+                self.janelaSuporte.lbl_status.setText("Finalizado")
 
 
            
@@ -220,11 +229,11 @@ class WatchStatus(QThread):
 
     def startThread(self,janelaSuporte):
               
-        
-        self.url = "http://brbelraspbusterdev:3000/status"
-        
-        
         self.janelaSuporte = janelaSuporte
+        self.url = "http://brbelm0itqa01/AioWatch/GetById?id=" + self.janelaSuporte.requestID
+        
+        
+        
         
         
         self.start()

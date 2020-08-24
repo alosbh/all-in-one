@@ -178,7 +178,7 @@ class Ui_MainWindow(object):
         self.lbl_tempo.setText(_translate("MainWindow", "0:00:00"))
         self.lbl_status.setText(_translate("MainWindow", "Não solicitado"))
         self.btn_cancelar.setText(_translate("MainWindow", "Cancelar chamado"))
-        self.btn_atender.setText(_translate("MainWindow", "Atender chamado"))
+        self.btn_atender.setText(_translate("MainWindow", "Iniciar chamado"))
         self.rd_btn_parada.setText(_translate("MainWindow", "Linha funcionando"))
         self.rd_btn_rodando.setText(_translate("MainWindow", "Linha parada"))
         self.btn_concluir.setText(_translate("MainWindow", "Concluir chamado"))
