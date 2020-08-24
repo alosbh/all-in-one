@@ -207,7 +207,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
            self.Custom_Label.setText(LabelsObject.data['Labels'][4][str(Station.Area)][int(Station.Index)])
            self.custom_button.setText(LabelsObject.data['Buttons'][4][str(Station.Area)][int(Station.Index)])
 
-           try:
+        except:
+            try:
                logger.error("****************TENTEI CARREGAR A LABEL************")
                logger.error(LabelsObject.data['Labels'][4][str(Station.AreaTrim)][int(Station.Index)])
                logger.error(LabelsObject.data['Buttons'][4][str(Station.AreaTrim)][int(Station.Index)])
@@ -221,14 +222,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
                self.Custom_Label.setText(LabelsObject.data['Labels'][4]['GENERAL'])
                self.custom_button.setText(LabelsObject.data['Buttons'][4]['GENERAL'])
             
-        
-                
-                
-            
-            
-        except:
-            pass
-
 
         self.webSettings.clearMemoryCaches()
         self.webSettings.setObjectCacheCapacities(0, 0, 0)
