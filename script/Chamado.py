@@ -54,6 +54,7 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_solicitar.clicked.connect(self.enviaChamado)
         self.btn_concluir.clicked.connect(self.finaliza)
         self.btn_cancelar.clicked.connect(self.finaliza)
+        self.btn_atender.clicked.connect(self.iniciarChamado)
         self.rd_btn_engenharia.clicked.connect(self.setEngenharia)
         self.rd_btn_manufatura.clicked.connect(self.setManufatura)
         self.rd_btn_qualidade.clicked.connect(self.setQualidade)
