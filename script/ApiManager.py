@@ -197,12 +197,18 @@ class ApiManager:
 
 
 
-    def custom_button(self,Area,Route,Index):
+    def custom_button(self,Area,AreaTrim,Route,Index):
 
         if(Area=="INGCUS" and Index==1):
             baseUrl="http://10.57.16.42/CNCSWebApiPersona/OrMonitor?hostName="
             baseUrl = baseUrl + str(Route)
             print("OR MONITOR URL: " + baseUrl)
+
+        elif(AreaTrim=="REP"):
+            baseUrl="http://brbelm0itqa01/TestPortal/pages/MesWipReport.aspx"
+            
+            print("OR MONITOR URL: " + baseUrl)
+        
         else:
             
             baseUrl = 'about:blank'

@@ -70,6 +70,7 @@ class Station:
             self.Id = ws.GetSingleValueFromJsonObject(jsonData,"Id", False);
             self.Name = ws.GetSingleValueFromJsonObject(jsonData,"Name", False);
             self.Area = self.Name[:6]
+            self.AreaTrim = self.Name[:3]
             self.RouteName = self.Name[:9]
             self.RouteId = ws.GetSingleValueFromJsonObject(jsonData,"LineId", False);
             self.Enabled = ws.GetSingleValueFromJsonObject(jsonData,"Status", False);
