@@ -214,7 +214,7 @@ class WatchStatus(QThread):
             getrequest = requests.get(self.url)
             logger.error(getrequest.json())
             if(getrequest.json()['additionalData']['status'] == "Accepted"):
-                self.janelaSuporte.lbl_status.setText("Aceito: " + .json()['additionalData']['userName'])
+                self.janelaSuporte.lbl_status.setText("Aceito: " + getrequest.json()['additionalData']['userName'])
             elif(getrequest.json()['additionalData']['status'] == "OnGoing"):
                 self.janelaSuporte.lbl_status.setText("Em andamento")
             elif(getrequest.json()['additionalData']['status'] == "Done"):
