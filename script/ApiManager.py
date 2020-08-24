@@ -207,7 +207,7 @@ class ApiManager:
         elif(AreaTrim=="REP"):
             baseUrl="http://brbelm0itqa01/TestPortal/pages/MesWipReport.aspx"
             
-            print("OR MONITOR URL: " + baseUrl)
+            logger.error("LINK TEST WIP REPARO: " + baseUrl)
         
         else:
             
