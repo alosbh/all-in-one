@@ -166,6 +166,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
         # Connects the signal sent from the thread to display the url on the webviewer
         self.thread.thread_signal.signal.connect(self.load_url)
+        self.thread.thread_signal2.signal.connect(self.Show)
 
         # Connects the signal sent from the buttons to display the url on the webviewer
         self.button_signal.signal.connect(self.load_url)
@@ -223,8 +224,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
                self.custom_button.setText(LabelsObject.data['Buttons'][4]['GENERAL'])
             
 
-        self.webSettings.clearMemoryCaches()
-        self.webSettings.setObjectCacheCapacities(0, 0, 0)
+        # self.webSettings.clearMemoryCaches()
+        # self.webSettings.setObjectCacheCapacities(0, 0, 0)
       
         #self.web.show()
 
@@ -273,9 +274,17 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
     # Method to show the window widget 
     def Show(self):
+        print("show method")
+        print("Workstation name:" + self.Station.Name)
         self.posto_id.setText(self.Station.Name)
-        print("NOME DA MINHA WORKSTTION EH:" + self.Station.Name)
-        self.Logged_QtWindow.showFullScreen()
+        
+        try:
+            self.Logged_QtWindow.showFullScreen()
+        except:
+            print("erro em cria janela")
+
+
+        
    
     
     def button_handle(self):
@@ -389,25 +398,28 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.Toggle_textosOFF()
         self.TurnOFF_Label()
         self.obj5s = self.thread.API.load5s(self.Station.Name)
-        self.contador = len(self.obj5s)-1
-        self.state5s=0
         
-        
-        if(self.contador>=0):
-            url = str(self.obj5s[self.state5s]['Path'])
-            
-            if(self.contador>0):
-                self.pagtotal.setText(str(self.contador+1))
-                self.pagtual.setText("1")
-                self.controllers5sON()
-                
+        if(self.obj5s!=None):
 
+            self.contador = len(self.obj5s)-1
+            self.state5s=0
             
-        else:
-            url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
             
-        
-        self.button_signal.signal.emit(url)
+            if(self.contador>=0):
+                url = str(self.obj5s[self.state5s]['Path'])
+                
+                if(self.contador>0):
+                    self.pagtotal.setText(str(self.contador+1))
+                    self.pagtual.setText("1")
+                    self.controllers5sON()
+                    
+
+                
+            else:
+                url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
+                
+            
+            self.button_signal.signal.emit(url)
         
         
 
@@ -466,7 +478,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
     def load_url(self, url):
         #self.web.setUrl(QUrl(url))
 
-        self.webSettings.clearMemoryCaches()
+        # self.webSettings.clearMemoryCaches()
         self.web.load(QUrl('about:blank'))
         time.sleep(1)
         self.loading_status = 0
@@ -550,8 +562,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         # Loads the LPA URL
         LpaAddr = self.thread.API.load_LPA(self.thread.DL.ID_trim,self.thread.objStation.Id, self.thread.objStation.RouteId)
         # Send the url via signal to the socket   
-        #self.button_signal.signal.emit(LpaAddr)
-        self.thread_loading.startThread(self.button_signal,LpaAddr,self)
+        self.button_signal.signal.emit(LpaAddr)
+        # self.thread_loading.startThread(self.button_signal,LpaAddr,self)
 
         
         #self.Reset_Button.setVisible(True)
@@ -662,6 +674,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 class MainThread(QThread): #Thread de leitura dos crachás
     
     thread_signal = QtSignal()
+    thread_signal2 = QtSignal()
     global API
     global NonLogged_Window
     global Logged_Window
@@ -735,7 +748,8 @@ class MainThread(QThread): #Thread de leitura dos crachás
                 cont_logout = 0
 
                 # If the read id is not null, compares it to the active user. In case its different, login the new user. 
-
+                print("Actual ID: " + str(Actual_ID))
+                print("Read ID: " + str(Read_ID))
                 if (Actual_ID != Read_ID):
                     
 
@@ -743,19 +757,22 @@ class MainThread(QThread): #Thread de leitura dos crachás
                         # Api call to login a user on OJT server
                         
                         logger.debug("Login user " + str(Read_ID) + "..........")
-                        print("Login user " + str(Read_ID) + "..........")
+                        print("Login user ID " + str(Read_ID) + "..........")
 
                         LoginResponse = self.API.Request(self.API.OJT, "LoginByWorker", {'HostName': self.host, 'Badge': Read_ID});
 
                         # catch login status
                         status = LoginResponse['Status']
+                        # status="Login realizado"
+                        print("Stats1:"+status)
 
                     except Exception as e: 
                         traceback.print_exc()
                         logger.error("Login Error: " + type(e).__name__)
                         print(type(e).__name__)
                         status = ""
-                    
+                        
+                    print("Stats2:"+status)
                     # In case of succesfull login            
                     if(status=="Login realizado"):
                         
@@ -765,9 +782,11 @@ class MainThread(QThread): #Thread de leitura dos crachás
                         self.Logged_Window.SetupUser(self.DL)
                         # The active ID is the newly logged ID               
                         Actual_ID = Read_ID
+                        print("Actual ID apos alterar: " + str(Actual_ID))
                         # Show the Logged screen and hide the initial screen
-                        self.Logged_Window.Show()
-                        self.NonLogged_Window.NonLogged_QtWindow.hide()
+                        self.thread_signal2.signal.emit('about:blank')
+                        # self.Logged_Window.Logged_QtWindow.show()
+                        # self.NonLogged_Window.NonLogged_QtWindow.hide()
 
 
             else: 

@@ -8,16 +8,16 @@
 
 from Hover import * 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWebKitWidgets import *
+# from PyQt5.QtWebKitWidgets import *
 import sip
 from PyQt5.QtCore import QUrl
-from PyQt5.QtWebKit import *
+# from PyQt5.QtWebKit import *
 from PyQt5.QtNetwork import *
-from PyQt5.QtWebKit import QWebSettings
+# from PyQt5.QtWebKit import QWebSettings
 
-#from QtWebEngine import *
-# from PyQt5.QtWebEngineWidgets import QWebEnginePage
-# from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5.QtWebEngineWidgets import *
+from PyQt5.QtWebEngineWidgets import QWebEnginePage
+from PyQt5.QtWebEngineWidgets import QWebEngineView
 
 class Ui_Logged_Screen(object):
     def setupUi(self, Logged):
@@ -133,8 +133,8 @@ class Ui_Logged_Screen(object):
         self.lat_verde.setStyleSheet("background-color: rgb(0, 166, 90);")
         self.lat_verde.setText("")
         self.lat_verde.setObjectName("lat_verde")
-        self.web = QWebView(self.centralwidget)
-        #self.web = QWebEngineView(self.centralwidget)
+        # self.web = QWebView(self.centralwidget)
+        self.web = QWebEngineView(self.centralwidget)
         self.web.setGeometry(QtCore.QRect(361, 51, 1011, 721))
         self.web.setObjectName("web")
         self.webSettings = self.web.settings()

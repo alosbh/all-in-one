@@ -6,7 +6,7 @@ class GlobalParameters:
     def __init__(self, FilePath = "GlobalParameters.yml"):
 
         # Load the yml config file
-        with open(FilePath, 'r') as ymlfile:
+        with open(FilePath, encoding="utf8") as ymlfile:
             cfg = yaml.load(ymlfile);
 
         # Set the display parameters
