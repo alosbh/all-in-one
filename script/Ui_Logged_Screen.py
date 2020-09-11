@@ -1058,7 +1058,7 @@ class Ui_Logged_Screen(object):
         self.body_web = QWebView(self.centralwidget)
         self.body_web.setGeometry(QtCore.QRect(240, 60, 1121, 661))
         self.body_web.setObjectName("body_web")
-        self.webSettings = self.BODY_web.settings()
+        self.webSettings = self.body_web.settings()
         self.sidebar.raise_()
         self.body_home.raise_()
         self.header.raise_()
