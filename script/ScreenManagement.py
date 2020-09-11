@@ -88,7 +88,8 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Matricula):
         self.Reset_Window = Reset_Window
         # Setup the designer UI on the QT window Widget
         self.setupUi(self.NonLogged_QtWindow)
-        self.Reset.clicked.connect(self.Reset_Window.Show()) #;; vai funcionar? #)) chamava o metodo aqui dentro de reset
+        self.Reset.clicked.connect(self.reset)
+        #self.Reset.clicked.connect(self.Reset_Window.Show()) #;; vai funcionar? #)) chamava o metodo aqui dentro de reset
 
         # Fill hostname, Workstation and AIO version fields
         self.nome_host.setText(str(Raspberry.Name))
@@ -116,6 +117,9 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Matricula):
 
     def Print_Workstation(self,Workstation_Id):
         self.nome_posto.setText(str(Workstation_Id))
+    
+    def reset(self):
+        self.Reset_Window.Show()
 
 #----------------------------------------------------------------------------------
 
@@ -218,11 +222,15 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         # self.previous5s.clicked.connect(self.antpage)
         # self.jabil.clicked.connect(self.home)
         self.btn_jigalist.clicked.connect(self.jiga_list) #))jiga_button
-        self.Reset_Button.clicked.connect(self.Reset_Window.Show()) #;; onde fica?
+        self.Reset.clicked.connect(self.reset)
+        #self.Reset_Button.clicked.connect(self.Reset_Window.Show()) #;; onde fica?
         self.btn_instruction_sheet.clicked.connect(self.load_fi) #))FI_button
         self.btn_goodideas.clicked.connect(self.load_bi) #))BI_button
         self.btn_lpa.clicked.connect(self.load_lpa) #))LPA_button
         #self.custom_button.clicked.connect(self.custom_button_load)
+
+    def reset(self):
+        self.Reset_Window.Show()
 
     def suporte(self):
         self.Support_Window.Show()
