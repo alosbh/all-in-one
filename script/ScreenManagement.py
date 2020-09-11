@@ -162,7 +162,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         # Links the buttons to their respective methods
         self.button_handle()
         
-        self.web_home.loadFinished.connect(self.finish_loading) #;; ???
+        self.body_web.loadFinished.connect(self.finish_loading) #;; ???
         # enables the webviewer
         self.load_url('about:blank')
         
