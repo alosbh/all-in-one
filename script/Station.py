@@ -53,7 +53,7 @@ class Station:
             raise Exception("Invalid Raspberry object.");
 
         
-
+#tries to connect to station with the Raspberry info and fill station info - 1=success 0=fail
     def GetStationInfo(self, RaspberryName):
         self.__IP = socket.gethostbyname(socket.gethostname());
         self.__MAC = "";
@@ -61,8 +61,6 @@ class Station:
         global ws        
         ws = ApiManager();
         jsonData = ws.Request(ws.AIO, 'GetEquipmentByHostname', RaspberryName);
-
-        
 
         try:
             returnStatus = ws.GetSingleValueFromJsonObject(jsonData,"Status", False);
@@ -82,33 +80,25 @@ class Station:
             
             print("Meu index é " + str(self.Index))
 
-
-
-
             return 1
 
         except Exception as e:
-
-
             if(jsonData=='ConnectionError'):
                 self.Status = 'ConnectionError'
                 self.Enabled = 0
-                
                 logger.error("Error creating Station object. Exception: " + type(e).__name__ )
+
             elif(type(e).__name__ == 'ValueError'):
                 print('Erro index: ' + type(e).__name__ )
                 self.Status = 'Success'
-            
                 self.Enabled = 1
                 return 1
                 
-
             else:
                 print('Unknow exception: ' + type(e).__name__ )
                 self.Status = type(e).__name__
                 self.Enabled = 0
                 logger.error("Error creating Station object. Exception: " + type(e).__name__ )
-
 
             return 0
 
