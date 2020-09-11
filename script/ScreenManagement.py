@@ -158,27 +158,19 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         
         # Setup the designer UI on the QT window Widget
         self.setupUi(self.Logged_QtWindow)
-        
         # Links the buttons to their respective methods
         self.button_handle()
-        
         self.body_web.loadFinished.connect(self.finish_loading) #;; ???
         # enables the webviewer
         self.load_url('about:blank')
-        
-        
         self.body_web.setVisible(False) #))web
-        
         self.body_home.setVisible(True) #)) homepage
-
         self.webSettings.clearMemoryCaches()
         self.webSettings.setObjectCacheCapacities(0, 0, 0)
-
         # Fill the workstation Name
         self.Station = Station
         self.lbl_value_workstation.setText(str(self.Station.Name)) #))posto_id
         self.lbl_value_version.setText(str(GlobalParameters.AIO_Version)) #))aio
-        
         self.Reset_Window = Reset_Window
         self.Support_Window = Support_Window
         self.Support_Window.posto = self.Station.Name
@@ -348,8 +340,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         LpaAddr = self.thread.API.load_LPA(self.thread.DL.ID_trim,self.thread.objStation.Id, self.thread.objStation.RouteId)
 
         # Send the url via signal to the socket   
-        #self.button_signal.signal.emit(LpaAddr)
-        self.thread_loading.startThread(self.button_signal,LpaAddr,self)
+        self.button_signal.signal.emit(LpaAddr)
+        #self.thread_loading.startThread(self.button_signal,LpaAddr,self)
         #self.Reset_Button.setVisible(True)
         
 
