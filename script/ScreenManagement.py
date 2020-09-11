@@ -442,8 +442,8 @@ class MainThread(QThread):
         
         while(True):
 
-            self.NonLogged_Window.mainthread_icon_off.setVisible(not(self.NonLogged_Window.mainthread_icon_off.isVisible()))
-            self.Logged_Window.mainthread_icon.setVisible(not(self.Logged_Window.mainthread_icon.isVisible()))
+            # self.NonLogged_Window.mainthread_icon_off.setVisible(not(self.NonLogged_Window.mainthread_icon_off.isVisible()))
+            # self.Logged_Window.mainthread_icon.setVisible(not(self.Logged_Window.mainthread_icon.isVisible()))
             
             try:
                 Read_ID = 51008294
