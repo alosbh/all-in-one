@@ -32,7 +32,7 @@ class ApiManager:
     
 
 
-    def __init__(self, FilePath = "Apis.yml"):
+    def __init__(self, FilePath = "C:/www/all-in-one/script/Apis.yml"):
 
         with open(FilePath, 'r') as ymlfile:
             cfg = yaml.full_load(ymlfile);

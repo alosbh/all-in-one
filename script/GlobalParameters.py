@@ -3,7 +3,7 @@ import yaml
 
 class GlobalParameters:
 
-    def __init__(self, FilePath = "GlobalParameters.yml"):
+    def __init__(self, FilePath = "C:/www/all-in-one/script/GlobalParameters.yml"):
 
         # Load the yml config file
         with open(FilePath, encoding="utf8") as ymlfile:
