@@ -212,7 +212,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         # self.next5s.clicked.connect(self.proxpage)
         # self.previous5s.clicked.connect(self.antpage)
         self.btn_homepage.clicked.connect(self.home)
-        self.btn_jigalist.clicked.connect(self.jiga_list) #))jiga_button
+        self.btn_SCTC.clicked.connect(self.jiga_list) #))jiga_button
         #self.Reset.clicked.connect(self.reset)
         #self.Reset_Button.clicked.connect(self.Reset_Window.Show()) #;; onde fica?
         self.btn_instruction_sheet.clicked.connect(self.load_fi) #))FI_button
