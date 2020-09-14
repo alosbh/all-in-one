@@ -164,48 +164,9 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.body_web.loadFinished.connect(self.finish_loading) #;; ???
         # enables the webviewer
         self.load_url('about:blank')
-<<<<<<< HEAD
-        
-        
-        self.web.setVisible(False)
-        
-        self.homepage.setVisible(True)
-        global LabelsObject        
-        LabelsObject = labels()
-
-        
-        self.labels=[self.Titulo,self.ReleaseNotes,self.LPA_Label,self.FI_Label,self.BI_Label,self.SCTC_Label,self.Custom_Label]
-        try:
-           self.Custom_Label.setText(LabelsObject.data['Labels'][4][str(Station.Area)][int(Station.Index)])
-           self.custom_button.setText(LabelsObject.data['Buttons'][4][str(Station.Area)][int(Station.Index)])
-
-        except:
-            try:
-               logger.error("****************TENTEI CARREGAR A LABEL************")
-               logger.error(LabelsObject.data['Labels'][4][str(Station.AreaTrim)][int(Station.Index)])
-               logger.error(LabelsObject.data['Buttons'][4][str(Station.AreaTrim)][int(Station.Index)])
-
-               logger.error("****************TUDO COMPLETO************")
-               logger.error(LabelsObject.data['Labels'][4])
-               self.Custom_Label.setText(LabelsObject.data['Labels'][4][str(Station.AreaTrim)][int(Station.Index)])
-               self.custom_button.setText(LabelsObject.data['Buttons'][4][str(Station.AreaTrim)][int(Station.Index)])
-            except:
-               logger.error("****************MAS NAO DEU CERTO************")
-               self.Custom_Label.setText(LabelsObject.data['Labels'][4]['GENERAL'])
-               self.custom_button.setText(LabelsObject.data['Buttons'][4]['GENERAL'])
-            
-
-        # self.webSettings.clearMemoryCaches()
-        # self.webSettings.setObjectCacheCapacities(0, 0, 0)
-      
-        #self.web.show()
-
-=======
         self.body_web.setVisible(False) #))web
         self.body_home.setVisible(True) #)) homepage
-        self.webSettings.clearMemoryCaches()
-        self.webSettings.setObjectCacheCapacities(0, 0, 0)
->>>>>>> ui
+        #self.webSettings.setObjectCacheCapacities(0, 0, 0)
         # Fill the workstation Name
         self.Station = Station
         self.lbl_value_workstation.setText(str(self.Station.Name)) #))posto_id
@@ -238,34 +199,19 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
     # Method to show the window widget 
     def Show(self):
-<<<<<<< HEAD
-        print("show method")
-        print("Workstation name:" + self.Station.Name)
-        self.posto_id.setText(self.Station.Name)
-        
-        try:
-            self.Logged_QtWindow.showFullScreen()
-        except:
-            print("erro em cria janela")
-
-
-        
-=======
         self.lbl_value_workstation.setText(self.Station.Name) #))posto_id
         print("NOME DA MINHA WORKSTTION EH:" + self.Station.Name)
         self.Logged_QtWindow.showFullScreen()
->>>>>>> ui
    
 #======================== faz tudo
     def button_handle(self):
 
         # Links the buttons to their respective methods
-#========================#;; onde fica na antiga?
         # self.botao5s.label.clicked.connect(self.show5s)
         # self.tag5s.clicked.connect(self.show5s)
         # self.next5s.clicked.connect(self.proxpage)
         # self.previous5s.clicked.connect(self.antpage)
-        # self.jabil.clicked.connect(self.home)
+        self.btn_homepage.clicked.connect(self.home)
         self.btn_jigalist.clicked.connect(self.jiga_list) #))jiga_button
         #self.Reset.clicked.connect(self.reset)
         #self.Reset_Button.clicked.connect(self.Reset_Window.Show()) #;; onde fica?
@@ -285,106 +231,69 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
         self.body_home.setVisible(True) #))homepage
         self.body_web.setVisible(False) #))web
-        self.Reset_Button.setVisible(False)
-        self.controllers5sOFF()
+        #self.Reset_Button.setVisible(False)
+        #self.controllers5sOFF()
 
-    def show5s(self):
-        self.body_home.setVisible(False) #))homepage
-        self.obj5s = self.thread.API.load5s(self.Station.Name)
-<<<<<<< HEAD
+    # def show5s(self):
+    #     self.body_home.setVisible(False) #))homepage
+    #     self.obj5s = self.thread.API.load5s(self.Station.Name)
+    #     self.contador = len(self.obj5s)-1
+    #     self.state5s=0
         
-        if(self.obj5s!=None):
+    #     if(self.contador>=0):
+    #         url = str(self.obj5s[self.state5s]['Path'])
+            
+    #         if(self.contador>0):
+    #             self.pagtotal.setText(str(self.contador+1))
+    #             self.pagtual.setText("1")
+    #             self.controllers5sON()
 
-            self.contador = len(self.obj5s)-1
-            self.state5s=0
+    #     else:
+    #         url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
             
-            
-            if(self.contador>=0):
-                url = str(self.obj5s[self.state5s]['Path'])
-                
-                if(self.contador>0):
-                    self.pagtotal.setText(str(self.contador+1))
-                    self.pagtual.setText("1")
-                    self.controllers5sON()
-                    
-
-                
-            else:
-                url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
-                
-            
-            self.button_signal.signal.emit(url)
-        
-        
-
-    def proxpage(self):
-=======
-        self.contador = len(self.obj5s)-1
-        self.state5s=0
-        
-        if(self.contador>=0):
-            url = str(self.obj5s[self.state5s]['Path'])
-            
-            if(self.contador>0):
-                self.pagtotal.setText(str(self.contador+1))
-                self.pagtual.setText("1")
-                self.controllers5sON()
-
-        else:
-            url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
-            
-        self.button_signal.signal.emit(url)
+    #     self.button_signal.signal.emit(url)
     
-    def controllers5sON(self):
-        self.pagtotal.setVisible(True)
-        self.pagtual.setVisible(True)
-        self.barra.setVisible(True)
-        self.next5s.setVisible(True)
->>>>>>> ui
+    # def controllers5sON(self):
+    #     self.pagtotal.setVisible(True)
+    #     self.pagtual.setVisible(True)
+    #     self.barra.setVisible(True)
+    #     self.next5s.setVisible(True)
 
-    def controllers5sOFF(self):
-        self.pagtotal.setVisible(False)
-        self.pagtual.setVisible(False)
-        self.barra.setVisible(False)
-        self.previous5s.setVisible(False)
-        self.next5s.setVisible(False)
+    # def controllers5sOFF(self):
+    #     self.pagtotal.setVisible(False)
+    #     self.pagtual.setVisible(False)
+    #     self.barra.setVisible(False)
+    #     self.previous5s.setVisible(False)
+    #     self.next5s.setVisible(False)
         
-    #goes foward in the 5s menu
-    def proxpage(self):
-        self.state5s = self.state5s+1
-        self.previous5s.setVisible(True)
-        self.pagtual.setText(str(self.state5s+1))
+    # #goes foward in the 5s menu
+    # def proxpage(self):
+    #     self.state5s = self.state5s+1
+    #     self.previous5s.setVisible(True)
+    #     self.pagtual.setText(str(self.state5s+1))
         
-        if(self.state5s==self.contador):
-            self.next5s.setVisible(False)
+    #     if(self.state5s==self.contador):
+    #         self.next5s.setVisible(False)
             
-        url = str(self.obj5s[self.state5s]['Path'])
-        self.button_signal.signal.emit(url)
+    #     url = str(self.obj5s[self.state5s]['Path'])
+    #     self.button_signal.signal.emit(url)
 
-    #goes backward in the 5s menu
-    def antpage(self):
-        self.state5s = self.state5s-1
-        self.next5s.setVisible(True)
-        self.pagtual.setText(str(self.state5s+1))
+    # #goes backward in the 5s menu
+    # def antpage(self):
+    #     self.state5s = self.state5s-1
+    #     self.next5s.setVisible(True)
+    #     self.pagtual.setText(str(self.state5s+1))
         
-        if(self.state5s==0):
-            self.previous5s.setVisible(False)
+    #     if(self.state5s==0):
+    #         self.previous5s.setVisible(False)
             
-        url = str(self.obj5s[self.state5s]['Path'])
-        self.button_signal.signal.emit(url)
+    #     url = str(self.obj5s[self.state5s]['Path'])
+    #     self.button_signal.signal.emit(url)
 
 
     #Method to load an url on the webviewer
     def load_url(self, url):
-        #self.web.setUrl(QUrl(url))
-<<<<<<< HEAD
-
-        # self.webSettings.clearMemoryCaches()
-        self.web.load(QUrl('about:blank'))
-=======
-        self.webSettings.clearMemoryCaches()
         self.body_web.load(QUrl('about:blank')) #))web
->>>>>>> ui
         time.sleep(1)
         self.loading_status = 0
         self.body_web.load(QUrl(url)) #))web
@@ -394,11 +303,11 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.loading_status = 1
 
     def custom_button_load(self):
-        self.Reset_Button.setVisible(False)
+        #self.Reset_Button.setVisible(False)
         self.body_web.setZoomFactor(0.8) #))web
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True) #))web
-        self.controllers5sOFF()
+        #self.controllers5sOFF()
         # Loads the tooling URL
         CustomAddr = self.thread.API.custom_button(self.Station.Area,self.Station.AreaTrim, self.Station.RouteName, self.Station.Index) 
 
@@ -406,11 +315,11 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.button_signal.signal.emit(CustomAddr)
 
     def jiga_list(self):
-        self.Reset_Button.setVisible(False)
+        #self.Reset_Button.setVisible(False)
         self.body_web.setZoomFactor(1)
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True)#))web
-        self.controllers5sOFF()
+        #self.controllers5sOFF()
 
         # Loads the tooling URL
         JigaAddr = self.thread.API.load_Jiga(self.thread.objStation.RouteId) 
@@ -422,16 +331,10 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.body_web.setZoomFactor(1)
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True)#))web
-        self.controllers5sOFF()
+        #self.controllers5sOFF()
 
         # Loads the LPA URL
         LpaAddr = self.thread.API.load_LPA(self.thread.DL.ID_trim,self.thread.objStation.Id, self.thread.objStation.RouteId)
-<<<<<<< HEAD
-        # Send the url via signal to the socket   
-        self.button_signal.signal.emit(LpaAddr)
-        # self.thread_loading.startThread(self.button_signal,LpaAddr,self)
-=======
->>>>>>> ui
 
         # Send the url via signal to the socket   
         self.button_signal.signal.emit(LpaAddr)
@@ -441,14 +344,14 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
     def load_bi(self):
         self.body_web.setZoomFactor(1)
-        self.Reset_Button.setVisible(False)
+        #self.Reset_Button.setVisible(False)
   
         # Loads the BI URL
         BIAddr = self.thread.API.load_BI(self.thread.DL.ID_trim) 
 
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True)#))web
-        self.controllers5sOFF()
+        #self.controllers5sOFF()
 
         # Send the url via signal to the socket 
         #self.thread_loading.startThread(self.button_signal,BIAddr,self)
@@ -457,14 +360,14 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
     def load_fi(self):
         self.body_web.setZoomFactor(1) #))web
-        self.Reset_Button.setVisible(False)
+        #self.Reset_Button.setVisible(False)
   
         # Loads the BI URL
         FIAddr = self.thread.API.load_FI(self.Station.Name) 
 
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True) #))web
-        self.controllers5sOFF()
+        #self.controllers5sOFF()
         # Send the url via signal to the socket 
         # self.thread_loading.startThread(self.button_signal,BIAddr,self)
         self.button_signal.signal.emit(FIAddr)
