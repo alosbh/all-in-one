@@ -7,7 +7,7 @@ services:
   # All in One appication
   AIO:
    # image: docker.corp.jabil.org/automation-bel/aio:latest
-    image: aio:latest
+    image: aionovo:latest
     volumes:
       - /run/dbus:/host/run/dbus
       - /storage/pi/:/storage/pi/
