@@ -1,27 +1,18 @@
 # -*- coding: utf-8 -*-
-
 import os
-
 import importlib
-
 import yaml
-
 #Imports das bibliotecas: Comunicação com Webservers
 import json
 import requests
 from requests.exceptions import ConnectionError
 from Raspberry import Raspberry
-
 from WebService import *
-
 import re as regex
-
 from PyQt5 import QtWidgets
-
 from PyQt5.QtCore import *
 import time
 from datetime import datetime
-
 import platform
 import logging
 global logger
@@ -30,41 +21,33 @@ logger.setLevel(logging.DEBUG)
 
 class ApiManager:
     
-
-
     def __init__(self, FilePath = "C:/www/all-in-one/script/Apis.yml"):
 
         with open(FilePath, 'r') as ymlfile:
-            cfg = yaml.full_load(ymlfile);
+            cfg = yaml.full_load(ymlfile)
 
 
         self.Raspberry = Raspberry()
 
-        self.OJT = WebService(cfg['OJT']);
-        self.AIO = WebService(cfg['AIO']);
-        self.AIO_Dashboard = WebService(cfg['AIO_Dashboard']);
-        
-
+        self.OJT = WebService(cfg['OJT'])
+        self.AIO = WebService(cfg['AIO'])
+        self.AIO_Dashboard = WebService(cfg['AIO_Dashboard'])
 
         
-        
-
-
-
-
     def Request(self, webServiceObject, functionName, parameterObject):
 
         
         if isinstance(webServiceObject, WebService):
 
             for prop in webServiceObject._WebService__yamlContents:
-
+                
                 for key in webServiceObject._WebService__yamlContents[prop]:
                     if (prop=='baseUrl'):
                         continue
 
                     if (regex.match(functionName, key, regex.I|regex.M)):   
                         endPoint = webServiceObject._WebService__baseUrl+prop+"/"+key+"/";
+                        
                         
 
                         RequestType = webServiceObject._WebService__yamlContents[prop][key]['Type']; 
@@ -85,7 +68,6 @@ class ApiManager:
                                 response = requests.get(endPoint+parameterObject)
                                 
                                 if (response.status_code==200):
-                                    
                                     
                                     return response.json()
                                 
@@ -183,7 +165,6 @@ class ApiManager:
         baseUrl = baseUrl + str(Workstation)
         logger.error(baseUrl)
         try:
-            
             response = requests.get(baseUrl)
             logger.error(response.json())
             return response.json();
@@ -191,10 +172,6 @@ class ApiManager:
             print("Erro API 5s:: " + type(e).__name__)
             logger.error("Erro API 5s:: " + type(e).__name__)
             return
-
-
-        
-
 
 
     def custom_button(self,Area,AreaTrim,Route,Index):
@@ -206,14 +183,9 @@ class ApiManager:
 
         elif(AreaTrim=="REP"):
             baseUrl="http://brbelm0itqa01/TestPortal/pages/MesWipReport.aspx"
-            
             logger.error("LINK TEST WIP REPARO: " + baseUrl)
         
         else:
-            
             baseUrl = 'about:blank'
 
-        
         return baseUrl
-
-

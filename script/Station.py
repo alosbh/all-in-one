@@ -101,11 +101,3 @@ class Station:
                 logger.error("Error creating Station object. Exception: " + type(e).__name__ )
 
             return 0
-
-
-
-
-                        
-
-
-

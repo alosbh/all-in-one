@@ -33,5 +33,5 @@ class Raspberry:
         
 
     def GetSystemInfo(self):
-        self.IP = socket.gethostbyname(socket.gethostname());
-        self.MAC = "";
+        self.IP = socket.gethostbyname(socket.gethostname())
+        self.MAC = ""

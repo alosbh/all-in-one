@@ -124,158 +124,6 @@
        <property name="spacing">
         <number>16</number>
        </property>
-       <item row="0" column="0">
-        <widget class="QWidget" name="container_productivity" native="true">
-         <property name="styleSheet">
-          <string notr="true">background-color:white;border-radius:8px;</string>
-         </property>
-         <widget class="QWidget" name="icon_productivity" native="true">
-          <property name="geometry">
-           <rect>
-            <x>60</x>
-            <y>10</y>
-            <width>30</width>
-            <height>30</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">image:url(:/Img/productivty);
-border-radius:13px;
-background-color: rgba(50,255,50,0.3);</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="lbl_productivity">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>100</y>
-            <width>147</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <family>Yu Gothic</family>
-            <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(170,170,170)</string>
-          </property>
-          <property name="text">
-           <string>Produtividade</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-         <widget class="QLabel" name="lbl_value_productivity">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>40</y>
-            <width>147</width>
-            <height>60</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <family>Yu Gothic</family>
-            <pointsize>28</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color:transparent;color:rgb(90,90,90)</string>
-          </property>
-          <property name="text">
-           <string>93.1</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QWidget" name="container_yield_metric" native="true">
-         <property name="styleSheet">
-          <string notr="true">background-color:white;border-radius:8px;</string>
-         </property>
-         <widget class="QWidget" name="icon_yield" native="true">
-          <property name="geometry">
-           <rect>
-            <x>60</x>
-            <y>10</y>
-            <width>27</width>
-            <height>27</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">image:url(:/Img/yield);
-border-radius:13px;
-background-color: rgba(100,74,180,0.3);</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="lbl_yield">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>100</y>
-            <width>147</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <family>Yu Gothic</family>
-            <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(170,170,170)</string>
-          </property>
-          <property name="text">
-           <string>Yield</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-         <widget class="QLabel" name="lbl_value_yield">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>40</y>
-            <width>147</width>
-            <height>60</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <family>Yu Gothic</family>
-            <pointsize>28</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color:transparent;color:rgb(90,90,90)</string>
-          </property>
-          <property name="text">
-           <string>98.3</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </widget>
-       </item>
        <item row="1" column="1">
         <widget class="QWidget" name="container_jabilcoins" native="true">
          <property name="styleSheet">
@@ -293,7 +141,7 @@ background-color: rgba(100,74,180,0.3);</string>
           <property name="styleSheet">
            <string notr="true">image: url(:/Img/jabilcoins);
 border-radius:13px;
-background-color: rgba(50,74,255,0.3);</string>
+background-color: #70c7aa;</string>
           </property>
          </widget>
          <widget class="QLabel" name="lbl_jabilcoins">
@@ -307,7 +155,7 @@ background-color: rgba(50,74,255,0.3);</string>
           </property>
           <property name="font">
            <font>
-            <family>Yu Gothic</family>
+            <family>Inter UI</family>
             <pointsize>10</pointsize>
             <weight>75</weight>
             <bold>true</bold>
@@ -334,10 +182,10 @@ background-color: rgba(50,74,255,0.3);</string>
           </property>
           <property name="font">
            <font>
-            <family>Yu Gothic</family>
+            <family>Inter UI</family>
             <pointsize>28</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -369,7 +217,7 @@ background-color: rgba(50,74,255,0.3);</string>
           <property name="styleSheet">
            <string notr="true">image:url(:/Img/lamp.png);
 border-radius:13px;
-background-color: rgba(215,157,80,0.3);</string>
+background-color: #fce861;</string>
           </property>
          </widget>
          <widget class="QLabel" name="lbl_goodideas">
@@ -383,7 +231,7 @@ background-color: rgba(215,157,80,0.3);</string>
           </property>
           <property name="font">
            <font>
-            <family>Yu Gothic</family>
+            <family>Inter UI</family>
             <pointsize>10</pointsize>
             <weight>75</weight>
             <bold>true</bold>
@@ -410,10 +258,10 @@ background-color: rgba(215,157,80,0.3);</string>
           </property>
           <property name="font">
            <font>
-            <family>Yu Gothic</family>
+            <family>Inter UI</family>
             <pointsize>28</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -421,6 +269,158 @@ background-color: rgba(215,157,80,0.3);</string>
           </property>
           <property name="text">
            <string>2</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QWidget" name="container_yield_metric" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;border-radius:8px;</string>
+         </property>
+         <widget class="QWidget" name="icon_yield" native="true">
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>10</y>
+            <width>27</width>
+            <height>27</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">image:url(:/Img/yield);
+border-radius:13px;
+background-color: #1bb1dd;</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lbl_yield">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>100</y>
+            <width>147</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Inter UI</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(170,170,170)</string>
+          </property>
+          <property name="text">
+           <string>Yield</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lbl_value_yield">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>40</y>
+            <width>147</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Inter UI</family>
+            <pointsize>28</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color:transparent;color:rgb(90,90,90)</string>
+          </property>
+          <property name="text">
+           <string>98.3</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QWidget" name="container_productivity" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;border-radius:8px;</string>
+         </property>
+         <widget class="QWidget" name="icon_productivity" native="true">
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>10</y>
+            <width>30</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">image:url(:/Img/productivty);
+border-radius:13px;
+background-color:#fe6a8c;</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lbl_productivity">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>100</y>
+            <width>147</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Inter UI</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(170,170,170)</string>
+          </property>
+          <property name="text">
+           <string>Produtividade</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lbl_value_productivity">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>40</y>
+            <width>147</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Inter UI</family>
+            <pointsize>28</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color:transparent;color:rgb(90,90,90)</string>
+          </property>
+          <property name="text">
+           <string>93.1</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -471,10 +471,10 @@ background-color: rgba(215,157,80,0.3);</string>
           </property>
           <property name="font">
            <font>
-            <family>Yu Gothic</family>
+            <family>Inter UI</family>
             <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -498,17 +498,17 @@ background-color: rgba(215,157,80,0.3);</string>
           </property>
           <property name="font">
            <font>
-            <family>Yu Gothic</family>
+            <family>Inter UI</family>
             <pointsize>20</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
            <string notr="true">background-color:transparent;color:rgb(90,90,90)</string>
           </property>
           <property name="text">
-           <string>PWA31910430EP</string>
+           <string>651651651</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -532,10 +532,10 @@ background-color: rgba(215,157,80,0.3);</string>
           </property>
           <property name="font">
            <font>
-            <family>Yu Gothic</family>
+            <family>Inter UI</family>
             <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -600,7 +600,7 @@ background-color: rgba(215,157,80,0.3);</string>
            <string notr="true">color:rgb(170,170,170)</string>
           </property>
           <property name="text">
-           <string>Conquistas</string>
+           <string>Em breve...</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -670,17 +670,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>8</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Submeter uma boa ideia&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Em breve...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -702,7 +702,7 @@ background-color: rgba(215,157,80,0.3);</string>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
+               <string notr="true">background-color:#5695f6;border-radius:5px;</string>
               </property>
              </widget>
              <widget class="QWidget" name="bar_achievtotal_08" native="true">
@@ -729,17 +729,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>10</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>250p</string>
+               <string>0p</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -798,17 +798,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>8</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Submeter uma boa ideia&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Em breve...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -830,7 +830,7 @@ background-color: rgba(215,157,80,0.3);</string>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
+               <string notr="true">background-color:#5695f6;border-radius:5px;</string>
               </property>
              </widget>
              <widget class="QWidget" name="bar_achievtotal_02" native="true">
@@ -857,17 +857,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>10</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>250p</string>
+               <string>0p</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -926,17 +926,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>8</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Submeter uma boa ideia&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Em breve...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -958,7 +958,7 @@ background-color: rgba(215,157,80,0.3);</string>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
+               <string notr="true">background-color:#5695f6;border-radius:5px;</string>
               </property>
              </widget>
              <widget class="QWidget" name="bar_achievtotal_04" native="true">
@@ -985,17 +985,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>10</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>250p</string>
+               <string>0p</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -1054,17 +1054,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>8</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Submeter uma boa ideia&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Em breve...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -1086,7 +1086,7 @@ background-color: rgba(215,157,80,0.3);</string>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
+               <string notr="true">background-color:#5695f6;border-radius:5px;</string>
               </property>
              </widget>
              <widget class="QWidget" name="bar_achietotal_07" native="true">
@@ -1113,17 +1113,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>10</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>250p</string>
+               <string>0p</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -1182,17 +1182,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>8</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Submeter uma boa ideia&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Em breve...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -1214,7 +1214,7 @@ background-color: rgba(215,157,80,0.3);</string>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
+               <string notr="true">background-color:#5695f6;border-radius:5px;</string>
               </property>
              </widget>
              <widget class="QWidget" name="bar_achievtotal_01" native="true">
@@ -1241,17 +1241,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>10</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>250p</string>
+               <string>0p</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -1263,10 +1263,10 @@ background-color: rgba(215,157,80,0.3);</string>
                <number>-1</number>
               </property>
              </widget>
+             <zorder>bar_achievatual_01</zorder>
              <zorder>icon_frame_01</zorder>
              <zorder>lbl_achiev_desc_01</zorder>
              <zorder>bar_achievtotal_01</zorder>
-             <zorder>bar_achievatual_01</zorder>
              <zorder>lbl_achiev_points_01</zorder>
             </widget>
            </item>
@@ -1315,17 +1315,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>8</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Submeter uma boa ideia&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Em breve...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -1347,7 +1347,7 @@ background-color: rgba(215,157,80,0.3);</string>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
+               <string notr="true">background-color:#5695f6;border-radius:5px;</string>
               </property>
              </widget>
              <widget class="QWidget" name="bar_achievtotal_03" native="true">
@@ -1374,17 +1374,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>10</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>250p</string>
+               <string>0p</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -1443,17 +1443,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>8</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Submeter uma boa ideia&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Em breve...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -1475,7 +1475,7 @@ background-color: rgba(215,157,80,0.3);</string>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
+               <string notr="true">background-color:#5695f6;border-radius:5px;</string>
               </property>
              </widget>
              <widget class="QWidget" name="bar_achievtotal_06" native="true">
@@ -1502,17 +1502,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>10</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>250p</string>
+               <string>0p</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -1571,17 +1571,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>8</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Submeter uma boa ideia&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Em breve...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -1603,7 +1603,7 @@ background-color: rgba(215,157,80,0.3);</string>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
+               <string notr="true">background-color:#5695f6;border-radius:5px;</string>
               </property>
              </widget>
              <widget class="QWidget" name="bar_achievtotal_05" native="true">
@@ -1630,17 +1630,17 @@ background-color: rgba(215,157,80,0.3);</string>
               </property>
               <property name="font">
                <font>
-                <family>PibotoLt</family>
+                <family>Inter UI</family>
                 <pointsize>10</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+               <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
               </property>
               <property name="text">
-               <string>250p</string>
+               <string>0p</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -1687,6 +1687,47 @@ background-color: rgba(215,157,80,0.3);</string>
          <property name="styleSheet">
           <string notr="true">background-color:white;border-radius:8px;</string>
          </property>
+         <widget class="QLabel" name="icon_construction_01">
+          <property name="geometry">
+           <rect>
+            <x>240</x>
+            <y>90</y>
+            <width>131</width>
+            <height>141</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="resources/resources.qrc">:/Img/dump-truck.png</pixmap>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_4">
+          <property name="geometry">
+           <rect>
+            <x>240</x>
+            <y>220</y>
+            <width>131</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Inter UI</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(170,170,170)</string>
+          </property>
+          <property name="text">
+           <string>Em construção...</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+         </widget>
         </widget>
        </item>
       </layout>
@@ -1718,9 +1759,196 @@ background-color: rgba(215,157,80,0.3);</string>
          <property name="styleSheet">
           <string notr="true">background-color:white;border-radius:8px;</string>
          </property>
+         <widget class="QLabel" name="icon_construction_02">
+          <property name="geometry">
+           <rect>
+            <x>200</x>
+            <y>90</y>
+            <width>131</width>
+            <height>141</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="resources/resources.qrc">:/Img/dump-truck.png</pixmap>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lbl_construction_02">
+          <property name="geometry">
+           <rect>
+            <x>200</x>
+            <y>220</y>
+            <width>131</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Inter UI</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
+          </property>
+          <property name="text">
+           <string>Em construção...</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+         </widget>
         </widget>
        </item>
       </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="body_5s" native="true">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>240</y>
+       <width>683</width>
+       <height>424</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
+     </property>
+     <widget class="QWidget" name="body_5s_web" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>40</y>
+        <width>683</width>
+        <height>384</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:gray;
+border-top: 1px solid black;
+margin: 2px;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_5s_previous">
+      <property name="geometry">
+       <rect>
+        <x>545</x>
+        <y>10</y>
+        <width>23</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/Img/leftarrow.png);
+border:10px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_5s_next_2">
+      <property name="geometry">
+       <rect>
+        <x>642</x>
+        <y>10</y>
+        <width>23</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/Img/rightarrow);
+border:10px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_value_5s_actual">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>7</y>
+        <width>30</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Yu Gothic</family>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="toolTipDuration">
+       <number>-4</number>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:transparent;</string>
+      </property>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_value_5s_total">
+      <property name="geometry">
+       <rect>
+        <x>615</x>
+        <y>7</y>
+        <width>30</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Yu Gothic</family>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:transparent;</string>
+      </property>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_5sbar">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>7</y>
+        <width>30</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Yu Gothic</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:transparent;</string>
+      </property>
+      <property name="text">
+       <string>/</string>
+      </property>
      </widget>
     </widget>
    </widget>
@@ -1749,33 +1977,21 @@ background-color: rgba(215,157,80,0.3);</string>
       <string notr="true">background-color:rgb(0,123,255);</string>
      </property>
      <widget class="QWidget" name="aio_logo" native="true">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>-40</y>
-        <width>211</width>
-        <height>121</height>
+        <x>0</x>
+        <y>0</y>
+        <width>235</width>
+        <height>60</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/Img/logo);background-color:transparent;</string>
+       <string notr="true">border-image: url(:/Img/untitled (2).svg)</string>
       </property>
      </widget>
-     <widget class="QWidget" name="rpi_logo" native="true">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>6</y>
-        <width>33</width>
-        <height>48</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border-image: url(:/Img/rpi.png);</string>
-      </property>
-     </widget>
-     <zorder>rpi_logo</zorder>
-     <zorder>aio_logo</zorder>
     </widget>
     <widget class="QFrame" name="usercard">
      <property name="geometry">
@@ -1820,10 +2036,10 @@ border-radius:60px;</string>
       </property>
       <property name="font">
        <font>
-        <family>PibotoLt</family>
+        <family>Inter UI</family>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -1854,45 +2070,18 @@ border-radius:60px;</string>
        <rect>
         <x>16</x>
         <y>210</y>
-        <width>80</width>
+        <width>10</width>
         <height>10</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lbl_progress">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>215</y>
-        <width>234</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>PibotoLt</family>
-        <pointsize>8</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:transparent;color: white;</string>
-      </property>
-      <property name="text">
-       <string>39% para o próximo nível</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <string notr="true">background-color:#5253ee;border-radius:5px;</string>
       </property>
      </widget>
      <widget class="QLabel" name="lbl_nivel">
       <property name="geometry">
        <rect>
-        <x>16</x>
+        <x>10</x>
         <y>180</y>
         <width>40</width>
         <height>31</height>
@@ -1900,10 +2089,10 @@ border-radius:60px;</string>
       </property>
       <property name="font">
        <font>
-        <family>PibotoLt</family>
+        <family>Inter UI</family>
         <pointsize>8</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -1919,7 +2108,7 @@ border-radius:60px;</string>
      <widget class="QLabel" name="lbl_xp">
       <property name="geometry">
        <rect>
-        <x>117</x>
+        <x>110</x>
         <y>180</y>
         <width>21</width>
         <height>31</height>
@@ -1927,10 +2116,10 @@ border-radius:60px;</string>
       </property>
       <property name="font">
        <font>
-        <family>Yu Gothic UI Semibold</family>
+        <family>Inter UI</family>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -1946,7 +2135,7 @@ border-radius:60px;</string>
      <widget class="QLabel" name="lbl_value_level">
       <property name="geometry">
        <rect>
-        <x>52</x>
+        <x>50</x>
         <y>180</y>
         <width>80</width>
         <height>31</height>
@@ -1954,17 +2143,17 @@ border-radius:60px;</string>
       </property>
       <property name="font">
        <font>
-        <family>PibotoLt</family>
+        <family>Inter UI</family>
         <pointsize>8</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color:transparent;color: white;</string>
       </property>
       <property name="text">
-       <string>Diamante</string>
+       <string>0</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1973,7 +2162,7 @@ border-radius:60px;</string>
      <widget class="QLabel" name="lbl_value_xp_atual">
       <property name="geometry">
        <rect>
-        <x>133</x>
+        <x>120</x>
         <y>180</y>
         <width>41</width>
         <height>31</height>
@@ -1981,17 +2170,17 @@ border-radius:60px;</string>
       </property>
       <property name="font">
        <font>
-        <family>Yu Gothic UI Semibold</family>
+        <family>Inter UI</family>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color:transparent;color: white;</string>
       </property>
       <property name="text">
-       <string>892</string>
+       <string>0</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -2000,7 +2189,7 @@ border-radius:60px;</string>
      <widget class="QLabel" name="lbl_barra">
       <property name="geometry">
        <rect>
-        <x>139</x>
+        <x>130</x>
         <y>180</y>
         <width>81</width>
         <height>31</height>
@@ -2008,10 +2197,10 @@ border-radius:60px;</string>
       </property>
       <property name="font">
        <font>
-        <family>PibotoLt</family>
+        <family>Inter UI</family>
         <pointsize>8</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -2027,7 +2216,7 @@ border-radius:60px;</string>
      <widget class="QLabel" name="lbl_value_xp_total">
       <property name="geometry">
        <rect>
-        <x>185</x>
+        <x>180</x>
         <y>180</y>
         <width>41</width>
         <height>31</height>
@@ -2035,10 +2224,10 @@ border-radius:60px;</string>
       </property>
       <property name="font">
        <font>
-        <family>Yu Gothic UI Semibold</family>
+        <family>Inter UI</family>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -2051,12 +2240,39 @@ border-radius:60px;</string>
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
      </widget>
+     <widget class="QLabel" name="lbl_value_percnextlvl">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>220</y>
+        <width>234</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Inter UI</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:transparent;color: white;</string>
+      </property>
+      <property name="text">
+       <string>0%</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
     </widget>
     <widget class="QFrame" name="sidebar_apps">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>309</y>
+       <y>330</y>
        <width>234</width>
        <height>461</height>
       </rect>
@@ -2081,10 +2297,10 @@ border-radius:60px;</string>
       </property>
       <property name="font">
        <font>
-        <family>Yu Gothic</family>
+        <family>Inter UI</family>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -2093,7 +2309,7 @@ color:white;text-align:left;padding-left:20px;border:none;
 }
 
 QPushButton:hover {
-color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(0,123,255,0.7)
+color:white;text-align:left;padding-left:20px;border:none;background-color:#5253ee
 }
 
 
@@ -2124,10 +2340,10 @@ color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(
       </property>
       <property name="font">
        <font>
-        <family>Yu Gothic</family>
+        <family>Inter UI</family>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -2136,7 +2352,7 @@ color:white;text-align:left;padding-left:20px;border:none;
 }
 
 QPushButton:hover {
-color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(0,123,255,0.7)
+color:white;text-align:left;padding-left:20px;border:none;background-color:#5253ee
 }
 
 
@@ -2167,10 +2383,10 @@ color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(
       </property>
       <property name="font">
        <font>
-        <family>Yu Gothic</family>
+        <family>Inter UI</family>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -2179,7 +2395,7 @@ color:white;text-align:left;padding-left:20px;border:none;
 }
 
 QPushButton:hover {
-color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(0,123,255,0.7)
+color:white;text-align:left;padding-left:20px;border:none;background-color:#5253ee
 }
 
 
@@ -2210,10 +2426,10 @@ color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(
       </property>
       <property name="font">
        <font>
-        <family>Yu Gothic</family>
+        <family>Inter UI</family>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -2222,7 +2438,7 @@ color:white;text-align:left;padding-left:20px;border:none;
 }
 
 QPushButton:hover {
-color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(0,123,255,0.7)
+color:white;text-align:left;padding-left:20px;border:none;background-color:#5253ee
 }
 
 
@@ -2253,10 +2469,10 @@ color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(
       </property>
       <property name="font">
        <font>
-        <family>Yu Gothic</family>
+        <family>Inter UI</family>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -2265,7 +2481,7 @@ color:white;text-align:left;padding-left:20px;border:none;
 }
 
 QPushButton:hover {
-color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(0,123,255,0.7)
+color:white;text-align:left;padding-left:20px;border:none;background-color:#5253ee
 }
 
 
@@ -2296,10 +2512,10 @@ color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(
       </property>
       <property name="font">
        <font>
-        <family>Yu Gothic</family>
+        <family>Inter UI</family>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -2308,7 +2524,7 @@ color:white;text-align:left;padding-left:20px;border:none;
 }
 
 QPushButton:hover {
-color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(0,123,255,0.7)
+color:white;text-align:left;padding-left:20px;border:none;background-color:#5253ee
 }
 
 
@@ -2339,10 +2555,10 @@ color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(
       </property>
       <property name="font">
        <font>
-        <family>Yu Gothic</family>
+        <family>Inter UI</family>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -2351,18 +2567,18 @@ color:white;text-align:left;padding-left:20px;border:none;
 }
 
 QPushButton:hover {
-color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(0,123,255,0.7)
+color:white;text-align:left;padding-left:20px;border:none;background-color:#5253ee
 }
 
 
 </string>
       </property>
       <property name="text">
-       <string>     Jiga List - SCTC</string>
+       <string>     Ferramentas - SCTC</string>
       </property>
       <property name="icon">
-       <iconset>
-        <normaloff>resources/chave-inglesa.png</normaloff>resources/chave-inglesa.png</iconset>
+       <iconset resource="resources/resources.qrc">
+        <normaloff>:/Img/chave-inglesa.png</normaloff>:/Img/chave-inglesa.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -2379,6 +2595,37 @@ color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(
      <zorder>btn_goodideas</zorder>
      <zorder>btn_SCTC</zorder>
     </widget>
+    <widget class="QLabel" name="lbl_progress">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>300</y>
+       <width>234</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Inter UI</family>
+       <pointsize>8</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;color: white;</string>
+     </property>
+     <property name="text">
+      <string>para o próximo nível</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <zorder>sidebar_apps</zorder>
+    <zorder>logo_container</zorder>
+    <zorder>usercard</zorder>
+    <zorder>lbl_progress</zorder>
    </widget>
    <widget class="QFrame" name="header">
     <property name="geometry">
@@ -2388,6 +2635,13 @@ color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(
       <width>1131</width>
       <height>60</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Inter UI</family>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: white;border:none;</string>
@@ -2409,10 +2663,10 @@ color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(
      </property>
      <property name="font">
       <font>
-       <family>PibotoLt</family>
+       <family>Inter UI</family>
        <pointsize>12</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -2430,13 +2684,13 @@ color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(
       <rect>
        <x>15</x>
        <y>30</y>
-       <width>171</width>
+       <width>221</width>
        <height>21</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <family>PibotoLt</family>
+       <family>Inter UI</family>
        <pointsize>9</pointsize>
        <weight>75</weight>
        <bold>true</bold>
@@ -2463,7 +2717,7 @@ color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(
      </property>
      <property name="font">
       <font>
-       <family>PibotoLt</family>
+       <family>Inter UI</family>
        <pointsize>9</pointsize>
        <weight>75</weight>
        <bold>true</bold>
@@ -2490,23 +2744,23 @@ color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(
      </property>
      <property name="font">
       <font>
-       <family>PibotoLt</family>
+       <family>Inter UI</family>
        <pointsize>12</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
       <string notr="true">color: #757475</string>
      </property>
      <property name="text">
-      <string>Ingenico Box Enterprise</string>
+      <string>651615165</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="lbl_datetime">
+    <widget class="QLabel" name="lbl_value_datetime">
      <property name="geometry">
       <rect>
        <x>860</x>
@@ -2517,10 +2771,10 @@ color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(
      </property>
      <property name="font">
       <font>
-       <family>PibotoLt</family>
+       <family>Inter UI</family>
        <pointsize>12</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -2576,10 +2830,10 @@ color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(
      </property>
      <property name="font">
       <font>
-       <family>PibotoLt</family>
+       <family>Inter UI</family>
        <pointsize>12</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -2600,10 +2854,10 @@ color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(
      </property>
      <property name="font">
       <font>
-       <family>PibotoLt</family>
+       <family>Inter UI</family>
        <pointsize>12</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">

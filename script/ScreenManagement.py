@@ -6,6 +6,7 @@ from Chamado import *
 from GlobalParameters import GlobalParameters
 from FI import FI
 from labels import labels
+import sys
 
 # import MFRC522
 import time
@@ -165,12 +166,14 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         # enables the webviewer
         self.load_url('about:blank')
         self.body_web.setVisible(False) #))web
-        self.body_home.setVisible(True) #)) homepage
+        self.body_5s.setVisible(False) #)) homepage
         #self.webSettings.setObjectCacheCapacities(0, 0, 0)
         # Fill the workstation Name
         self.Station = Station
         self.lbl_value_workstation.setText(str(self.Station.Name)) #))posto_id
         self.lbl_value_version.setText(str(GlobalParameters.AIO_Version)) #))aio
+        self.lbl_value_line.setText(str(self.Station.RouteName))
+        self.lbl_value_product.setText(str(self.Station.RouteId))
         self.Reset_Window = Reset_Window
         self.Support_Window = Support_Window
         self.Support_Window.posto = self.Station.Name
@@ -182,7 +185,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         # Starts the main thread and set its parameters
         self.thread.start()
 
-        self.thread.host = Raspberry.Name
+        #self.thread.host = Raspberry.Name #)) ???
         self.thread.objStation = Station
 
         # Serves the thread the screen objects, so it can hide, show and manage the windows when needed.
@@ -191,7 +194,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
     #Method called in the MainThread - fills labor user fields
     def SetupUser(self, DL):
-        #self.operador_id.setText(DL.Name) #))nao tem id na tela nova
+        self.lbl_value_name.setText(DL.Name)
         self.lbl_value_yield.setText(DL.Yield) #))yield1
         self.lbl_value_productivity.setText(DL.Productivity) #))produtividade
         self.lbl_value_goodideas.setText('-') #))boasideias
@@ -207,10 +210,10 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
     def button_handle(self):
 
         # Links the buttons to their respective methods
-        # self.botao5s.label.clicked.connect(self.show5s)
-        # self.tag5s.clicked.connect(self.show5s)
-        # self.next5s.clicked.connect(self.proxpage)
-        # self.previous5s.clicked.connect(self.antpage)
+        self.btn_5s.clicked.connect(self.show5s)
+        #self.tag5s.clicked.connect(self.show5s)
+        self.btn_5s_next.clicked.connect(self.proxpage)
+        self.btn_5s_previous.clicked.connect(self.antpage)
         self.btn_homepage.clicked.connect(self.home)
         self.btn_SCTC.clicked.connect(self.jiga_list) #))jiga_button
         #self.Reset.clicked.connect(self.reset)
@@ -232,63 +235,65 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.body_home.setVisible(True) #))homepage
         self.body_web.setVisible(False) #))web
         #self.Reset_Button.setVisible(False)
-        #self.controllers5sOFF()
+        self.controllers5sOFF()
 
-    # def show5s(self):
-    #     self.body_home.setVisible(False) #))homepage
-    #     self.obj5s = self.thread.API.load5s(self.Station.Name)
-    #     self.contador = len(self.obj5s)-1
-    #     self.state5s=0
+    def show5s(self):
+        self.body_5s.setVisible(False) #))homepage
+        self.obj5s = self.thread.API.load5s(self.Station.Name)
+        self.contador = len(self.obj5s)-1
+        self.state5s=0
         
-    #     if(self.contador>=0):
-    #         url = str(self.obj5s[self.state5s]['Path'])
+        if(self.contador>=0):
+            url = str(self.obj5s[self.state5s]['Path'])
             
-    #         if(self.contador>0):
-    #             self.pagtotal.setText(str(self.contador+1))
-    #             self.pagtual.setText("1")
-    #             self.controllers5sON()
+            if(self.contador>0):
+                self.lbl_value_5s_total.setText(str(self.contador+1))
+                self.lbl_value_5s_actual.setText("1")
+                self.controllers5sON()
 
-    #     else:
-    #         url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
+        else:
+            url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
             
-    #     self.button_signal.signal.emit(url)
+        self.button_signal.signal.emit(url)
     
-    # def controllers5sON(self):
-    #     self.pagtotal.setVisible(True)
-    #     self.pagtual.setVisible(True)
-    #     self.barra.setVisible(True)
-    #     self.next5s.setVisible(True)
+    def controllers5sON(self):
+        self.body_5s.setVisible(True)
+        self.lbl_value_5s_total.setVisible(True)
+        self.lbl_value_5s_actual.setVisible(True)
+        self.lbl_5sbar.setVisible(True)
+        self.btn_5s_next.setVisible(True)
 
-    # def controllers5sOFF(self):
-    #     self.pagtotal.setVisible(False)
-    #     self.pagtual.setVisible(False)
-    #     self.barra.setVisible(False)
-    #     self.previous5s.setVisible(False)
-    #     self.next5s.setVisible(False)
+    def controllers5sOFF(self):
+        self.body_5s.setVisible(False)
+        self.lbl_value_5s_total.setVisible(False)
+        self.lbl_value_5s_actual.setVisible(False)
+        self.lbl_5sbar.setVisible(False)
+        self.btn_5s_next.setVisible(False)
+        self.btn_5s_previous.setVisible(False)
         
-    # #goes foward in the 5s menu
-    # def proxpage(self):
-    #     self.state5s = self.state5s+1
-    #     self.previous5s.setVisible(True)
-    #     self.pagtual.setText(str(self.state5s+1))
+    #goes foward in the 5s menu
+    def proxpage(self):
+        self.state5s = self.state5s+1
+        self.btn_5s_previous.setVisible(True)
+        self.lbl_value_5s_actual.setText(str(self.state5s+1))
         
-    #     if(self.state5s==self.contador):
-    #         self.next5s.setVisible(False)
+        if(self.state5s==self.contador):
+            self.btn_5s_next.setVisible(False)
             
-    #     url = str(self.obj5s[self.state5s]['Path'])
-    #     self.button_signal.signal.emit(url)
+        url = str(self.obj5s[self.state5s]['Path'])
+        self.button_signal.signal.emit(url)
 
-    # #goes backward in the 5s menu
-    # def antpage(self):
-    #     self.state5s = self.state5s-1
-    #     self.next5s.setVisible(True)
-    #     self.pagtual.setText(str(self.state5s+1))
+    #goes backward in the 5s menu
+    def antpage(self):
+        self.state5s = self.state5s-1
+        self.btn_5s_next.setVisible(True)
+        self.lbl_value_5s_actual.setText(str(self.state5s+1))
         
-    #     if(self.state5s==0):
-    #         self.previous5s.setVisible(False)
+        if(self.state5s==0):
+            self.btn_5s_previous.setVisible(False)
             
-    #     url = str(self.obj5s[self.state5s]['Path'])
-    #     self.button_signal.signal.emit(url)
+        url = str(self.obj5s[self.state5s]['Path'])
+        self.button_signal.signal.emit(url)
 
 
     #Method to load an url on the webviewer
@@ -307,7 +312,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.body_web.setZoomFactor(0.8) #))web
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True) #))web
-        #self.controllers5sOFF()
+        self.controllers5sOFF()
         # Loads the tooling URL
         CustomAddr = self.thread.API.custom_button(self.Station.Area,self.Station.AreaTrim, self.Station.RouteName, self.Station.Index) 
 
@@ -319,7 +324,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.body_web.setZoomFactor(1)
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True)#))web
-        #self.controllers5sOFF()
+        self.controllers5sOFF()
 
         # Loads the tooling URL
         JigaAddr = self.thread.API.load_Jiga(self.thread.objStation.RouteId) 
@@ -331,7 +336,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.body_web.setZoomFactor(1)
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True)#))web
-        #self.controllers5sOFF()
+        self.controllers5sOFF()
 
         # Loads the LPA URL
         LpaAddr = self.thread.API.load_LPA(self.thread.DL.ID_trim,self.thread.objStation.Id, self.thread.objStation.RouteId)
@@ -351,7 +356,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True)#))web
-        #self.controllers5sOFF()
+        self.controllers5sOFF()
 
         # Send the url via signal to the socket 
         #self.thread_loading.startThread(self.button_signal,BIAddr,self)
@@ -367,7 +372,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True) #))web
-        #self.controllers5sOFF()
+        self.controllers5sOFF()
         # Send the url via signal to the socket 
         # self.thread_loading.startThread(self.button_signal,BIAddr,self)
         self.button_signal.signal.emit(FIAddr)
@@ -418,7 +423,7 @@ class MainThread(QThread):
         self.DL = DL()
 
         # Hostname and Workstation Parameters
-        self.host = "brbelrasp"
+        self.host = "BRBELRASP171"
         
         # Screen Objects
         self.NonLogged_Window = None
@@ -444,7 +449,7 @@ class MainThread(QThread):
             # self.Logged_Window.mainthread_icon.setVisible(not(self.Logged_Window.mainthread_icon.isVisible()))
             
             try:
-                Read_ID = 51008294
+                Read_ID = 51004995
                 # Read_ID = (RFRead()) # Reads Badge ID
             except Exception as e:
                 traceback.print_exc()
@@ -470,7 +475,7 @@ class MainThread(QThread):
                         logger.debug("Login user " + str(Read_ID) + "..........")
                         print("Login user ID " + str(Read_ID) + "..........")
 
-                        LoginResponse = self.API.Request(self.API.OJT, "LoginByWorker", {'HostName': self.host, 'Badge': Read_ID});
+                        LoginResponse = self.API.Request(self.API.OJT, "LoginByWorker", {'HostName': self.host, 'Badge': Read_ID}) #))???
 
                         # catch login status
                         status = LoginResponse['Status']
