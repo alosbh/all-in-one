@@ -23,6 +23,7 @@ class Ui_Matricula(object):
 "\n"
 "")
         Matricula.setTabShape(QtWidgets.QTabWidget.Rounded)
+
         self.centralwidget = QtWidgets.QWidget(Matricula)
         self.centralwidget.setStyleSheet("background: transparent;")
         self.centralwidget.setObjectName("centralwidget")
@@ -134,6 +135,13 @@ class Ui_Matricula(object):
         font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
+        self.btn_reset = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_reset.setGeometry(QtCore.QRect(1070, 0, 50, 50))
+        self.btn_reset.setStyleSheet("background-color:rgb(230, 230, 230);\n"
+" border-radius: 25px;\n"
+"\n"
+"")
+        self.btn_reset.setObjectName("btn_reset")
         self.nome_host.setFont(font)
         self.nome_host.setStyleSheet("background: transparent;\n"
 "background-color: transparent;\n"
@@ -222,19 +230,6 @@ class Ui_Matricula(object):
         self.LogIcon.setAlignment(QtCore.Qt.AlignCenter)
         self.LogIcon.setObjectName("LogIcon")
 
-        self.Reset = QtWidgets.QPushButton(self.centralwidget)
-        self.Reset.setGeometry(QtCore.QRect(1305, 10, 50, 50))
-        self.Reset.setStyleSheet("background-color:rgb(230, 230, 230);\n"
-" border-radius: 25px;\n"
-"\n"
-"")
-        self.Reset.setObjectName("Reset")
-
-        
-
-
-
-
         self.centro.raise_()
         self.aro_azul.raise_()
         self.rfid_image.raise_()
@@ -253,7 +248,7 @@ class Ui_Matricula(object):
         self.logthread_icon_off.raise_()
         self.ReadIcon.raise_()
         self.LogIcon.raise_()
-        self.Reset.raise_()
+        self.btn_reset.raise_()
         Matricula.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Matricula)
@@ -268,7 +263,7 @@ class Ui_Matricula(object):
         self.version.setText(_translate("Matricula", "V 0.22"))
         self.ReadIcon.setText(_translate("Matricula", "Read"))
         self.LogIcon.setText(_translate("Matricula", "Log"))
-        self.Reset.setText(_translate("Matricula", "Reset"))
+        self.btn_reset.setText(_translate("Matricula", "Reset"))
 
 import resources_mat_rc
 
