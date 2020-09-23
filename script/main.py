@@ -44,13 +44,13 @@ def main():
         # GPIO.setwarnings(False)
         # GPIO.cleanup()
    
-        #Setup of the home screen UI and show it on startup
+        #Setup of the home screen UI and show it on startupprint
         NonLogged_Screen.Setup(Station,Raspberry,GlobalParameters,Reset_Window)
         NonLogged_Screen.Show()
 
         #Setup of the logged screen UI
+        
         Logged_Screen.Setup(Station,Raspberry,GlobalParameters,NonLogged_Screen,Reset_Window,Support_Window)
-        # Logged_Screen.Show()
      
         #Starts the QT application that manages the screens.
         ScreenManagement.QtApplication.exec_()

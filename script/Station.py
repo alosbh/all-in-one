@@ -29,54 +29,74 @@ logger.setLevel(logging.DEBUG)
 class Station:
 
     def __init__(self, RaspberryObject ="None"):
-        self.Id = "";
-        self.Name = "";
-        self.RouteId = "";
-        self.RouteName = "";
-        self.Area = "";
-        self.NickName = "";
-        self.Enabled = "";
-        self.Status = "";
-        self.OtherControls = "";
-        self.Validated = False;        
-        self.Index = None;
+        self.Id = ""
+        self.Name = ""
+        self.RouteId = ""
+        self.RouteName = ""
+        self.Area = ""
+        self.NickName = ""
+        self.Enabled = ""
+        self.Status = ""
+        self.OtherControls = ""
+        self.ProductName = ""
+        self.ClientName = ""
+        self.Validated = False
+        self.Index = None
 
         if RaspberryObject == "None":
             logger.error("Invalid Raspberry object")
-            raise Exception("O segundo parametro é obrigatorio.");
+            raise Exception("O segundo parametro é obrigatorio.")
           
         if isinstance(RaspberryObject, Raspberry):
-            self.Enabled = self.GetStationInfo(RaspberryObject.Name);
+            self.Enabled = self.GetStationInfo(RaspberryObject.Name)
 
         elif isinstance(RaspberryObject, str):
             logger.error("Invalid Raspberry object")
-            raise Exception("Invalid Raspberry object.");
+            raise Exception("Invalid Raspberry object.")
 
         
 #tries to connect to station with the Raspberry info and fill station info - 1=success 0=fail
     def GetStationInfo(self, RaspberryName):
-        self.__IP = socket.gethostbyname(socket.gethostname());
-        self.__MAC = "";
+        self.__IP = socket.gethostbyname(socket.gethostname())
+        self.__MAC = ""
+        
 
         global ws        
-        ws = ApiManager();
-        jsonData = ws.Request(ws.AIO, 'GetEquipmentByHostname', RaspberryName);
+        ws = ApiManager()
+        jsonData = ws.Request(ws.AIO, 'GetEquipmentByHostname', RaspberryName)
+
+        request_lineInfo = ws.Request(ws.AIO_Dashboard, "GetByLine", str(jsonData["LineId"]))
+
+        # print("aqui ----------------------------------------------- Station")
+        # print(request_lineInfo['ProductionGroup'])
+        # sys.exit()
+        
+        lineName = ws.load_lineName(jsonData['Id'])
+        lineName = lineName[0]
 
         try:
-            returnStatus = ws.GetSingleValueFromJsonObject(jsonData,"Status", False);
+
+            returnStatus = ws.GetSingleValueFromJsonObject(jsonData,"Status", False)
             
-            self.Id = ws.GetSingleValueFromJsonObject(jsonData,"Id", False);
-            self.Name = ws.GetSingleValueFromJsonObject(jsonData,"Name", False);
+            self.Id = ws.GetSingleValueFromJsonObject(jsonData,"Id", False)
+            self.Name = ws.GetSingleValueFromJsonObject(jsonData,"Name", False)
             self.Area = self.Name[:6]
             self.AreaTrim = self.Name[:3]
-            self.RouteName = self.Name[:9]
-            self.RouteId = ws.GetSingleValueFromJsonObject(jsonData,"LineId", False);
-            self.Enabled = ws.GetSingleValueFromJsonObject(jsonData,"Status", False);
+            self.RouteName = lineName['Name']
+            self.RouteId = ws.GetSingleValueFromJsonObject(jsonData,"LineId", False)
+            self.Enabled = ws.GetSingleValueFromJsonObject(jsonData,"Status", False)
             self.Status = 'Success'
             logger.debug("Successfully created Station object " + str(self.Name) )
             self.Enabled = 1
 
             self.Index = int(self.Name[-2:])
+
+            if (request_lineInfo is None):
+                self.ProductName = 'No product'
+                self.ClientName = 'No client'
+            else:
+                self.ProductName = request_lineInfo['Product']
+                self.ClientName = request_lineInfo['ProductionGroup']
             
             print("Meu index é " + str(self.Index))
 

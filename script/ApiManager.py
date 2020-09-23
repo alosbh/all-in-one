@@ -13,6 +13,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtCore import *
 import time
 from datetime import datetime
+from PyQt5.QtWebEngineCore import QWebEngineHttpRequest
 import platform
 import logging
 global logger
@@ -32,6 +33,7 @@ class ApiManager:
         self.OJT = WebService(cfg['OJT'])
         self.AIO = WebService(cfg['AIO'])
         self.AIO_Dashboard = WebService(cfg['AIO_Dashboard'])
+        #self.JMD = WebService(cfg['JMD'])
 
         
     def Request(self, webServiceObject, functionName, parameterObject):
@@ -115,6 +117,7 @@ class ApiManager:
         
         return "Problem"
 
+    #pq???
     def GetSingleValueFromJsonObject(self, jsonObject, key, raiseException):
         result = jsonObject.get(key, "Not found");
         
@@ -150,14 +153,30 @@ class ApiManager:
         
         return baseUrl
 
+    def load_lineName(self,stationId):
+        baseUrl = 'http://brbelm0apps02/JMDDataServices/workstation/'
+        baseUrl = baseUrl + str(stationId) + '/productionlines'
+        response = requests.get(baseUrl)
+        return response.json()
+
     def load_FI(self,Workstation):
-        baseUrl = 'http://brbelm0apps01/FICreator/FIViewer/SlideShowRasp?workstation='
-        baseUrl = baseUrl + str(Workstation)
-        baseUrl = baseUrl + '&interval=20&start=true'
+
+        self.url = QUrl()
+        self.req = QWebEngineHttpRequest()
+
+        self.url.setScheme("http")
+        self.url.setHost("brbelm0apps01")
+        self.url.setPath("/FICreator/FIViewer/SlideShow")
+
+        self.req.setUrl(self.url)
+        self.req.setMethod(QWebEngineHttpRequest.Post)
+        self.req.setHeader(QByteArray(b'Content-Type'),QByteArray(b'application/json'))
+
+        parametros = {"workstation": Workstation, "interval": 20}
+
+        self.req.setPostData(bytes(json.dumps(parametros), 'utf-8')) 
         
-        logger.error("FI URL addres: " + baseUrl)
-        
-        return baseUrl
+        return self.req
 
     def load5s(self,Workstation):
 

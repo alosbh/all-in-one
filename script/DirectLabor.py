@@ -3,7 +3,7 @@
 
 from ApiManager import *
 from pprint import pprint
-
+import sys
 import logging
 global logger
 logger=logging.getLogger() 
@@ -12,19 +12,20 @@ logger.setLevel(logging.DEBUG)
 class DirectLabor:
 
     def __init__(self, RaspberryObject ="None"):
-        self.Name = "";
-        self.ID = "";
-        self.ID_trim = "";
-        self.RouteId = "";
-        self.Area = "";
-        self.Productivity = "";
-        self.Yield = "";
-        self.GoodIdeas = "";
-        self.JabilCoins = "";
-        self.NickName = "";
-        self.Enabled = "";
-        self.OtherControls = "";
-        self.Validated = False;
+        self.Name = ""
+        self.ID = ""
+        self.ID_trim = ""
+        self.RouteId = ""
+        self.Area = ""
+        self.Productivity = ""
+        self.Yield = ""
+        self.GoodIdeas = ""
+        self.JabilCoins = ""
+        self.NickName = ""
+        self.Enabled = ""
+        self.OtherControls = ""
+        self.productName = ""
+        self.Validated = False
         self.ws = ApiManager()
 
 

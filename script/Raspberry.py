@@ -15,13 +15,13 @@ class Raspberry:
         try:
 
             # Get Hostname
-            self.Name = platform.node();
+            self.Name = platform.node()
             #Get system Info
-            self.System = platform.system();
-            self.SystemVersion = platform.version();
-            self.SystemRelease = platform.release();    
-            self.Validated = False;
-            self.GetSystemInfo();
+            self.System = platform.system()
+            self.SystemVersion = platform.version()
+            self.SystemRelease = platform.release()  
+            self.Validated = False
+            self.GetSystemInfo()
 
             logger.debug("Successfully created Raspberry object " + self.Name )
 
@@ -29,9 +29,9 @@ class Raspberry:
 
             logger.error("Error creating Raspberry object. Exception: " + type(e).__name__ )
 
-
-        
-
     def GetSystemInfo(self):
         self.IP = socket.gethostbyname(socket.gethostname())
         self.MAC = ""
+        
+    def getRaspName(self):
+        return self.Name
