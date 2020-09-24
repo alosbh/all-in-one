@@ -15,7 +15,9 @@ import os
 from PyQt5 import QtWidgets
 
 from PyQt5.QtCore import *
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets,QtWebKitWidgets, QtNetwork
+from PyQt5.QtCore import QUrl, QByteArray
+from PyQt5.QtNetwork import QNetworkRequest, QNetworkAccessManager,QNetworkReply
 
 from ApiManager import ApiManager as ws
 from DirectLabor import DirectLabor as DL
@@ -626,20 +628,35 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         # Toggle the label on
         self.Toggle_Label(self.lbl_FI)
         # Loads the BI URL
-        FIAddr = self.thread.API.load_FI(self.Station.Name) 
-
-
-        
+        # FIAddr = self.thread.API.load_FI(self.Station.Name) 
 
         self.web.setVisible(True)
         self.web_2.setVisible(False) 
+
+        self.urlFI = QUrl()
+        self.urlFI.setScheme("http")
+        self.urlFI.setHost("brbelm0apps01")
+        self.urlFI.setPath("/FICreator/FiViewer/SlideShow")
+        self.req = QNetworkRequest()
+        self.req.setUrl(self.urlFI)
+        self.req.setHeader(QNetworkRequest.ContentTypeHeader,('application/json'))
+        self.nam  = QNetworkAccessManager()
+        self.nam.finished.connect(self.handleresponse)
+
+        params = {"workstation":"INGPTHHB3007","prodashSync":True,"time":20}
+        
+        self.byteparam = bytes(json.dumps(params),'utf-8')
+        self.web.load(self.req,QNetworkAccessManager.PostOperation,self.byteparam)
+        
+
+        
 
         self.homepage.setVisible(False)
         self.controllers5sOFF()
         self.Toggle_textosOFF()
         # Send the url via signal to the socket 
         #self.thread_loading.startThread(self.button_signal,BIAddr,self)
-        self.button_signal.signal.emit(FIAddr)
+        # self.button_signal.signal.emit(FIAddr)
 
     
 
