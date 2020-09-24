@@ -172,7 +172,7 @@ class ApiManager:
         self.req.setMethod(QWebEngineHttpRequest.Post)
         self.req.setHeader(QByteArray(b'Content-Type'),QByteArray(b'application/json'))
 
-        parametros = {"workstation": Workstation, "interval": 20}
+        parametros = {"workstation": Workstation, "prodashSync": True, "time": 5}
 
         self.req.setPostData(bytes(json.dumps(parametros), 'utf-8')) 
         
