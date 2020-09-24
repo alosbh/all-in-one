@@ -620,7 +620,11 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         
 
     def load_fi(self):
-        self.web.setZoomFactor(1)
+        self.web.setZoomFactor(0.8)
+        print("WORKSTATION************")
+        print(self.Station.Name)
+        logger.error("WORKSTATION************")
+        logger.error(self.Station.Name)
         self.Reset_Button.setVisible(False)
         self.firight.setVisible(False)
         self.fileft.setVisible(False)
