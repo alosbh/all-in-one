@@ -620,7 +620,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         
 
     def load_fi(self):
-        self.web.setZoomFactor(0.8)
+        self.web.setZoomFactor(0.95)
         print("WORKSTATION************")
         print(self.Station.Name)
         logger.error("WORKSTATION************")
@@ -647,7 +647,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.nam  = QNetworkAccessManager()
         
 
-        params = {"workstation":"INGPTHHB3007","prodashSync":True,"time":20}
+        params = {"workstation":self.Station.Name,"prodashSync":True,"time":20}
         
         self.byteparam = bytes(json.dumps(params),'utf-8')
         self.web.load(self.req,QNetworkAccessManager.PostOperation,self.byteparam)
