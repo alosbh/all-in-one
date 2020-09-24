@@ -1,4 +1,4 @@
-FROM https://docker.corp.jabil.org/repositories/raspberry-pi/xwindow
+FROM docker.corp.jabil.org/repositories/raspberry-pi/xwindow
 # install base dependencies 
 RUN apt-get update && apt-get install -y python3-dev \
 	python3-requests \
