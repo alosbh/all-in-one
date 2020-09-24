@@ -641,7 +641,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.req.setUrl(self.urlFI)
         self.req.setHeader(QNetworkRequest.ContentTypeHeader,('application/json'))
         self.nam  = QNetworkAccessManager()
-        self.nam.finished.connect(self.handleresponse)
+        
 
         params = {"workstation":"INGPTHHB3007","prodashSync":True,"time":20}
         
