@@ -647,7 +647,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.nam  = QNetworkAccessManager()
         
 
-        params = {"workstation":self.Station.Name,"prodashSync":True,"time":20}
+        params = {"workstation":self.Station.Name,"prodashSync":False,"time":20}
         
         self.byteparam = bytes(json.dumps(params),'utf-8')
         self.web.load(self.req,QNetworkAccessManager.PostOperation,self.byteparam)
