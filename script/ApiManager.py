@@ -145,9 +145,16 @@ class ApiManager:
 
         baseUrl = 'http://10.57.16.41/LPAEletronico/Lpa/Login?registration='
         
+        
 
         if (str(RouteID)=="187" or str(RouteID)=="168" or str(RouteID)=="23" or str(RouteID)=="13" or str(RouteID)=="20" or str(RouteID)=="26" or str(RouteID)=="197"):
             baseUrl = baseUrl + str(BadgeID) + '&idworkline=' + str(RouteID)
+        
+        elif(str(RouteID)=="152" or str(RouteID)=="153" or str(RouteID)=="200" or str(RouteID)=="208" or str(RouteID)=="205":
+
+            baseUrl = 'http://10.57.16.41/LPAVLS/Lpa/Login?registration='
+            baseUrl = baseUrl + str(BadgeID) + '&idworkstep=' + str(Workstep)
+
         else:
             baseUrl = baseUrl + str(BadgeID) + '&idworkstep=' + str(Workstep)
 
