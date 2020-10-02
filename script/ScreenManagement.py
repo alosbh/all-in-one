@@ -7,7 +7,7 @@ from GlobalParameters import GlobalParameters
 from FI import FI
 from labels import labels
 
-# import MFRC522
+import MFRC522
 import time
 from shutil import copyfile
 import urllib.request
@@ -665,20 +665,20 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
     
 
 
-# def RFRead(): #Função de leitura e autenticação dos crachás Jabil
+def RFRead(): #Função de leitura e autenticação dos crachás Jabil
     
-#     Read_ID = None
+    Read_ID = None
 
-#          # Instantiate the RFID reader class
-#     reader = MFRC522.MFRC522()
+         # Instantiate the RFID reader class
+    reader = MFRC522.MFRC522()
 
-#          # Get the badge id from the RFID reader
-#     Read_ID = reader.JABIL_Matricula() 
+         # Get the badge id from the RFID reader
+    Read_ID = reader.JABIL_Matricula() 
 
-#          # close the SPI slot 
-#     reader.close_SPI()
+         # close the SPI slot 
+    reader.close_SPI()
 
-#     return Read_ID
+    return Read_ID
 
 class MainThread(QThread): #Thread de leitura dos crachás
     
@@ -736,8 +736,8 @@ class MainThread(QThread): #Thread de leitura dos crachás
             
             
             try:
-                Read_ID = 51008294
-                # Read_ID = (RFRead()) # Reads Badge ID
+                # Read_ID = 51008294
+                Read_ID = (RFRead()) # Reads Badge ID
             except Exception as e:
                 traceback.print_exc()
                 logger.error("RFID error: " + type(e).__name__)
