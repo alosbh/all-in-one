@@ -22,7 +22,7 @@ logger.setLevel(logging.DEBUG)
 
 class ApiManager:
     
-    def __init__(self, FilePath = "C:/www/all-in-one/script/Apis.yml"):
+    def __init__(self, FilePath = "C:/02 - www/all-in-one/script/Apis.yml"):
 
         with open(FilePath, 'r') as ymlfile:
             cfg = yaml.full_load(ymlfile)
