@@ -497,6 +497,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.loading_status = 1
         logger.error("logger: terminou de carregar")
         print("print: terminou de carregar")
+        self.FI_button.setEnabled(True)
 
 
 
@@ -655,7 +656,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.web.setVisible(True)
         self.web_2.setVisible(False) 
 
-        
+        self.FI_button.setEnabled(False)
         logger.error("logger: comecei de carregar FI")
         print("print: comecei de carregar FI")
         self.web.load(self.req,QNetworkAccessManager.PostOperation,self.byteparam)
