@@ -250,9 +250,25 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.thread.host = Raspberry.Name
         self.thread.objStation = Station
 
+
+# TESTE FI CREATOR
+        self.urlFI = QUrl()
+        self.urlFI.setScheme("http")
+        self.urlFI.setHost("brbelm0apps01")
+        self.urlFI.setPath("/FICreator/FiViewer/SlideShow")
+        self.req = QNetworkRequest()
+        self.req.setUrl(self.urlFI)
+        self.req.setHeader(QNetworkRequest.ContentTypeHeader,('application/json'))
+        self.nam  = QNetworkAccessManager()
         
+
+        params = {"workstation":self.Station.Name,"prodashSync":True,"time":20}
         
-     
+        self.byteparam = bytes(json.dumps(params),'utf-8')
+
+# TESTE FI CREATOR       
+        
+
 
 
         # Serves the thread the screen objects, so it can hide, show and manage the windows when needed.
@@ -639,19 +655,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.web.setVisible(True)
         self.web_2.setVisible(False) 
 
-        self.urlFI = QUrl()
-        self.urlFI.setScheme("http")
-        self.urlFI.setHost("brbelm0apps01")
-        self.urlFI.setPath("/FICreator/FiViewer/SlideShow")
-        self.req = QNetworkRequest()
-        self.req.setUrl(self.urlFI)
-        self.req.setHeader(QNetworkRequest.ContentTypeHeader,('application/json'))
-        self.nam  = QNetworkAccessManager()
         
-
-        params = {"workstation":self.Station.Name,"prodashSync":True,"time":20}
-        
-        self.byteparam = bytes(json.dumps(params),'utf-8')
         logger.error("logger: comecei de carregar FI")
         print("print: comecei de carregar FI")
         self.web.load(self.req,QNetworkAccessManager.PostOperation,self.byteparam)
