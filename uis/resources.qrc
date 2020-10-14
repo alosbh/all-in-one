@@ -1,5 +1,13 @@
 <RCC>
   <qresource prefix="/Img">
+    <file>LogoJabil.png</file>
+    <file>EPIs/boots.png</file>
+    <file>EPIs/earmuffs.png</file>
+    <file>EPIs/gloves.png</file>
+    <file>EPIs/gloves-plastic.png</file>
+    <file>EPIs/goggles.png</file>
+    <file>EPIs/hairnet.png</file>
+    <file>EPIs/hardhat.png</file>
     <file>leftarrow.png</file>
     <file>rightarrow.png</file>
     <file>untitled (2).svg</file>

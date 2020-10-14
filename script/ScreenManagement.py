@@ -179,6 +179,15 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.Support_Window.index = self.Station.Index
         self.Support_Window.populateMotivos()
 
+        # adicionar EPIs - prototipo
+        # for x in range(0):
+        #     self.lbl_EPI = QtWidgets.QWidget(self.horizontalLayoutWidget)
+        #     self.lbl_EPI.setMaximumSize(QtCore.QSize(75, 16777215))
+        #     self.lbl_EPI.setStyleSheet("image:url(:/Img/EPIs/earmuffs.png)")
+        #     self.lbl_EPI.setObjectName("lbl_EPI")
+        #     self.layout_EPIs.addWidget(self.lbl_EPI)
+        #     print("-------------------------------epi add------------------------------")
+
         self.thread_loading = WaitForPageLoad()
 
         # Starts the main thread and set its parameters
@@ -232,6 +241,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         logger.error("Returning to initial screen")
 
         self.body_home.setVisible(True) #))homepage
+        self.horizontalLayout.setVisible(True)
         self.body_web.setVisible(False) #))web
         #self.Reset_Button.setVisible(False)
         #self.controllers5sOFF()
@@ -444,7 +454,7 @@ class MainThread(QThread):
         while(True):
             
             try:
-                Read_ID = 51004995
+                Read_ID = 51008294
                 # Read_ID = (RFRead()) # Reads Badge ID
             except Exception as e:
                 traceback.print_exc()
