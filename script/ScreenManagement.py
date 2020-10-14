@@ -479,6 +479,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
     def finish_loading(self):
         self.loading_status = 1
+        logger.error("logger: terminou de carregar")
+        print("print: terminou de carregar")
 
 
 
@@ -650,6 +652,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         params = {"workstation":self.Station.Name,"prodashSync":True,"time":20}
         
         self.byteparam = bytes(json.dumps(params),'utf-8')
+        logger.error("logger: comecei de carregar FI")
+        print("print: comecei de carregar FI")
         self.web.load(self.req,QNetworkAccessManager.PostOperation,self.byteparam)
         
 
