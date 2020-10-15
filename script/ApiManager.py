@@ -181,6 +181,7 @@ class ApiManager:
         baseUrl = baseUrl + '&interval=20&start=true'
         
         logger.error("FI URL addres: " + baseUrl)
+        print("FI URL addres: " + baseUrl)
         
         return baseUrl
 

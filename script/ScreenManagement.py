@@ -252,19 +252,19 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
 
 # TESTE FI CREATOR
-        self.urlFI = QUrl()
-        self.urlFI.setScheme("http")
-        self.urlFI.setHost("brbelm0apps01")
-        self.urlFI.setPath("/FICreator/FiViewer/SlideShow")
-        self.req = QNetworkRequest()
-        self.req.setUrl(self.urlFI)
-        self.req.setHeader(QNetworkRequest.ContentTypeHeader,('application/json'))
-        self.nam  = QNetworkAccessManager()
+        # self.urlFI = QUrl()
+        # self.urlFI.setScheme("http")
+        # self.urlFI.setHost("brbelm0apps01")
+        # self.urlFI.setPath("/FICreator/FiViewer/SlideShow")
+        # self.req = QNetworkRequest()
+        # self.req.setUrl(self.urlFI)
+        # self.req.setHeader(QNetworkRequest.ContentTypeHeader,('application/json'))
+        # self.nam  = QNetworkAccessManager()
         
 
-        params = {"workstation":self.Station.Name,"prodashSync":True,"time":20}
+        # params = {"workstation":self.Station.Name,"prodashSync":True,"time":20}
         
-        self.byteparam = bytes(json.dumps(params),'utf-8')
+        # self.byteparam = bytes(json.dumps(params),'utf-8')
 
 # TESTE FI CREATOR       
         
@@ -651,7 +651,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         # Toggle the label on
         self.Toggle_Label(self.lbl_FI)
         # Loads the BI URL
-        # FIAddr = self.thread.API.load_FI(self.Station.Name) 
+        FIAddr = self.thread.API.load_FI(self.Station.Name) 
 
         self.web.setVisible(True)
         self.web_2.setVisible(False) 
@@ -659,17 +659,17 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.FI_button.setEnabled(False)
         logger.error("logger: comecei de carregar FI")
         print("print: comecei de carregar FI")
-        self.web.load(self.req,QNetworkAccessManager.PostOperation,self.byteparam)
+        # self.web.load(self.req,QNetworkAccessManager.PostOperation,self.byteparam)
         
 
-        
+        print("fiz um get de Fi creator")
 
         self.homepage.setVisible(False)
         self.controllers5sOFF()
         self.Toggle_textosOFF()
         # Send the url via signal to the socket 
         #self.thread_loading.startThread(self.button_signal,BIAddr,self)
-        # self.button_signal.signal.emit(FIAddr)
+        self.button_signal.signal.emit(FIAddr)
 
     
 
