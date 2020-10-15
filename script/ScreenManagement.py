@@ -224,10 +224,13 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
     def button_handle(self):
 
         # Links the buttons to their respective methods
-        # self.btn_5s.clicked.connect(self.show5s)
+        self.btn_5s.clicked.connect(self.show5s)
         # self.tag5s.clicked.connect(self.show5s)
-        # self.btn_5s_next_2.clicked.connect(self.proxpage)
-        # self.btn_5s_previous.clicked.connect(self.antpage)
+        self.btn_5s_next.clicked.connect(self.proxpage)
+        self.btn_5s_back.clicked.connect(self.antpage)
+        self.btn_5s_back.raise_()
+        self.btn_5s_next.raise_()
+        self.controllers5sOFF()
         self.btn_homepage.clicked.connect(self.home)
         self.btn_SCTC.clicked.connect(self.jiga_list) #))jiga_button
         self.btn_reset.clicked.connect(self.reset)
@@ -248,65 +251,64 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.body_home.setVisible(True) #))homepage
         self.body_web.setVisible(False) #))web
         #self.Reset_Button.setVisible(False)
-        #self.controllers5sOFF()
+        self.controllers5sOFF()
 
-    # def show5s(self):
-    #     self.body_5s.setVisible(False) #))homepage
-    #     self.obj5s = self.thread.API.load5s(self.Station.Name)
-    #     self.contador = len(self.obj5s)-1
-    #     self.state5s=0
+    def show5s(self):
+        self.body_home.setVisible(False) #))homepage
+        self.body_web.setVisible(True)
+        self.controllers5sON()
+        self.obj5s = self.thread.API.load5s(self.Station.Name)
+        self.contador = len(self.obj5s)-1
+        self.state5s=0
         
-    #     if(self.contador>=0):
-    #         url = str(self.obj5s[self.state5s]['Path'])
+        if(self.contador>=0):
+            url = str(self.obj5s[self.state5s]['Path'])
+            if(self.contador>0):
+                #self.lbl_value_5s_total.setText(str(self.contador+1))
+                #self.lbl_value_5s_actual.setText("1")
+                self.controllers5sON()
+        else:
+            url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
             
-    #         if(self.contador>0):
-    #             self.lbl_value_5s_total.setText(str(self.contador+1))
-    #             self.lbl_value_5s_actual.setText("1")
-    #             self.controllers5sON()
-
-    #     else:
-    #         url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
-            
-    #     self.button_signal.signal.emit(url)
+        self.button_signal.signal.emit(url)
     
-    # def controllers5sON(self):
-    #     self.body_5s.setVisible(True)
-    #     self.lbl_value_5s_total.setVisible(True)
-    #     self.lbl_value_5s_actual.setVisible(True)
-    #     self.lbl_5sbar.setVisible(True)
-    #     self.btn_5s_next.setVisible(True)
+    def controllers5sON(self):
+        #self.lbl_value_5s_total.setVisible(True)
+        #self.lbl_value_5s_actual.setVisible(True)
+        #self.lbl_5sbar.setVisible(True)
+        self.btn_5s_back.setVisible(True)
+        self.btn_5s_next.setVisible(True)
 
-    # def controllers5sOFF(self):
-    #     self.body_5s.setVisible(False)
-    #     self.lbl_value_5s_total.setVisible(False)
-    #     self.lbl_value_5s_actual.setVisible(False)
-    #     self.lbl_5sbar.setVisible(False)
-    #     self.btn_5s_next.setVisible(False)
-    #     self.btn_5s_previous.setVisible(False)
+    def controllers5sOFF(self):
+        #self.lbl_value_5s_total.setVisible(False)
+        #self.lbl_value_5s_actual.setVisible(False)
+        #self.lbl_5sbar.setVisible(False)
+        self.btn_5s_next.setVisible(False)
+        self.btn_5s_back.setVisible(False)
         
-    # #goes foward in the 5s menu
-    # def proxpage(self):
-    #     self.state5s = self.state5s+1
-    #     self.btn_5s_previous.setVisible(True)
-    #     self.lbl_value_5s_actual.setText(str(self.state5s+1))
+    #goes foward in the 5s menu
+    def proxpage(self):
+        self.state5s = self.state5s+1
+        self.btn_5s_back.setVisible(True)
+        self.lbl_value_5s_actual.setText(str(self.state5s+1))
         
-    #     if(self.state5s==self.contador):
-    #         self.btn_5s_next.setVisible(False)
+        if(self.state5s==self.contador):
+            self.btn_5s_next.setVisible(False)
             
-    #     url = str(self.obj5s[self.state5s]['Path'])
-    #     self.button_signal.signal.emit(url)
+        url = str(self.obj5s[self.state5s]['Path'])
+        self.button_signal.signal.emit(url)
 
-    # #goes backward in the 5s menu
-    # def antpage(self):
-    #     self.state5s = self.state5s-1
-    #     self.btn_5s_next.setVisible(True)
-    #     self.lbl_value_5s_actual.setText(str(self.state5s+1))
+    #goes backward in the 5s menu
+    def antpage(self):
+        self.state5s = self.state5s-1
+        self.btn_5s_next.setVisible(True)
+        self.lbl_value_5s_actual.setText(str(self.state5s+1))
         
-    #     if(self.state5s==0):
-    #         self.btn_5s_previous.setVisible(False)
+        if(self.state5s==0):
+            self.btn_5s_back.setVisible(False)
             
-    #     url = str(self.obj5s[self.state5s]['Path'])
-    #     self.button_signal.signal.emit(url)
+        url = str(self.obj5s[self.state5s]['Path'])
+        self.button_signal.signal.emit(url)
 
 
     #Method to load an url on the webviewer
@@ -337,7 +339,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.body_web.setZoomFactor(1)
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True)#))web
-        # self.controllers5sOFF()
+        self.controllers5sOFF()
 
         # Loads the tooling URL
         JigaAddr = self.thread.API.load_Jiga(self.thread.objStation.RouteId) 
@@ -349,7 +351,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.body_web.setZoomFactor(1)
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True)#))web
-        # self.controllers5sOFF()
+        self.controllers5sOFF()
 
         # Loads the LPA URL
         LpaAddr = self.thread.API.load_LPA(self.thread.DL.ID_trim,self.thread.objStation.Id, self.thread.objStation.RouteId)
@@ -369,7 +371,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True)#))web
-        # self.controllers5sOFF()
+        self.controllers5sOFF()
 
         # Send the url via signal to the socket 
         #self.thread_loading.startThread(self.button_signal,BIAddr,self)
@@ -385,7 +387,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True) #))web
-        # self.controllers5sOFF()
+        self.controllers5sOFF()
         # Send the url via signal to the socket 
         self.body_web.load(FIAddr)
 
