@@ -1,4 +1,3 @@
-#from Ui_NonLogged_Screen import *
 from Ui_Matricula import *
 from Ui_Logged_Screen import *
 from Reset import *
@@ -6,24 +5,22 @@ from Chamado import *
 from GlobalParameters import GlobalParameters
 from FI import FI
 from labels import labels
-import sys
-
-# import MFRC522
-import time
-from shutil import copyfile
-import urllib.request
-import os
-from PyQt5 import QtWidgets
-
-from PyQt5.QtCore import *
-from PyQt5 import QtCore, QtGui, QtWidgets
-
 from Raspberry import Raspberry as Rasp
 from ApiManager import ApiManager as ws
 from DirectLabor import DirectLabor as DL
+
+# import MFRC522
+import time
+import sys
+import urllib.request
+import os
 import logging
 import traceback
-from WebService import *
+
+from PyQt5.QtCore import QObject, pyqtSignal, QUrl
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+
+# from PyQt5.QtWebKit import QWebSettings
 
 global logger
 logger=logging.getLogger() 
@@ -91,7 +88,6 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Matricula):
         # Setup the designer UI on the QT window Widget
         self.setupUi(self.NonLogged_QtWindow)
         self.btn_reset.clicked.connect(self.reset)
-        #self.Reset.clicked.connect(self.Reset_Window.Show()) #;; vai funcionar? #)) chamava o metodo aqui dentro de reset
 
         # Fill hostname, Workstation and AIO version fields
         self.nome_host.setText(str(Raspberry.Name))
@@ -158,6 +154,14 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         
         # Setup the designer UI on the QT window Widget
         self.setupUi(self.Logged_QtWindow)
+
+        #setting up body_web - windows/raspberry
+        # self.body_web = QWebView(self.main)
+        self.body_web = QWebEngineView(self.main)
+        self.body_web.setGeometry(QtCore.QRect(0, 0, 1121, 661))
+        self.body_web.setObjectName("body_web")
+        self.webSettings = self.body_web.settings()
+
         # Links the buttons to their respective methods
         self.button_handle()
         self.body_web.loadFinished.connect(self.finish_loading) #;; ???
@@ -178,6 +182,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.Support_Window.posto = self.Station.Name
         self.Support_Window.index = self.Station.Index
         self.Support_Window.populateMotivos()
+        
 
         # adicionar EPIs - prototipo
         # for x in range(0):
@@ -241,7 +246,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         logger.error("Returning to initial screen")
 
         self.body_home.setVisible(True) #))homepage
-        self.horizontalLayout.setVisible(True)
         self.body_web.setVisible(False) #))web
         #self.Reset_Button.setVisible(False)
         #self.controllers5sOFF()

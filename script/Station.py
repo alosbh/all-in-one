@@ -67,10 +67,6 @@ class Station:
 
         request_lineInfo = ws.Request(ws.AIO_Dashboard, "GetByLine", str(jsonData["LineId"]))
 
-        # print("aqui ----------------------------------------------- Station")
-        # print(request_lineInfo['ProductionGroup'])
-        # sys.exit()
-        
         lineName = ws.load_lineName(jsonData['Id'])
         lineName = lineName[0]
 
