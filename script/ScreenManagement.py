@@ -399,7 +399,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
             self.body_web.load(FIAddr)
 
         else:
-            from PyQt5.QtNetwork import QNetworkRequest
+            from PyQt5.QtNetwork import QNetworkRequest, QNetworkAccessManager
             self.body_home.setVisible(False) #))homepage
             self.body_web.setVisible(True) #))web
             # self.controllers5sOFF()

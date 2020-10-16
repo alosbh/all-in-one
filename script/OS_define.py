@@ -7,7 +7,7 @@ class OS_define:
             from PyQt5.QtWebEngineWidgets import QWebEngineView
             from PyQt5.QtWebEngineCore import QWebEngineHttpRequest
         else:
-            from PyQt5.QtNetwork import QNetworkRequest
+            from PyQt5.QtNetwork import QNetworkRequest, QNetworkAccessManager
             from PyQt5.QtWebKitWidgets import QWebView
             
     def get_OS_name(*args, **kwargs):
