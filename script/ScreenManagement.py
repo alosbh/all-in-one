@@ -19,9 +19,6 @@ import traceback
 
 from PyQt5.QtCore import QObject, pyqtSignal, QUrl
 
-
-from PyQt5.QtWebEngineWidgets import QWebEngineView
-
 # from PyQt5.QtWebKit import QWebSettings
 
 global logger
@@ -158,11 +155,12 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.setupUi(self.Logged_QtWindow)
 
         #1 = windows / 0 = rasp
-        self.operational_system = OS_define.get_OS_name(self)
+        self.operational_system = OS_define.get_OS_name()
 
         #setting up body_web - windows/raspberry
         if self.operational_system == 1:
             from PyQt5.QtWebEngineWidgets import QWebEngineView
+            from PyQt5.QtWebEngineCore import QWebEngineHttpRequest
             self.body_web = QWebEngineView(self.main)
         else:
             self.body_web = QWebView(self.main)
@@ -400,19 +398,18 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
             self.body_web.load(FIAddr)
 
         else:
-            def load_fi(self):
-                self.body_home.setVisible(False) #))homepage
-                self.body_web.setVisible(True) #))web
-                # self.controllers5sOFF()
+            self.body_home.setVisible(False) #))homepage
+            self.body_web.setVisible(True) #))web
+            # self.controllers5sOFF()
 
-                self.urlFI = QUrl()
-                self.urlFI.setScheme("http")
-                self.urlFI.setHost("brbelm0apps01")
-                self.urlFI.setPath("/FICreator/FiViewer/SlideShow")
-                self.req = QNetworkRequest()
-                self.req.setUrl(self.urlFI)
-                self.req.setHeader(QNetworkRequest.ContentTypeHeader,('application/json'))
-                self.nam  = QNetworkAccessManager()
+            self.urlFI = QUrl()
+            self.urlFI.setScheme("http")
+            self.urlFI.setHost("brbelm0apps01")
+            self.urlFI.setPath("/FICreator/FiViewer/SlideShow")
+            self.req = QNetworkRequest()
+            self.req.setUrl(self.urlFI)
+            self.req.setHeader(QNetworkRequest.ContentTypeHeader,('application/json'))
+            self.nam  = QNetworkAccessManager()
 
 
             params = {"workstation":self.Station.Name,"prodashSync":True,"time":20}

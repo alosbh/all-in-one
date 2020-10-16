@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
 
 from Station import Station
+from OS_define import OS_define
 from Raspberry import Raspberry
 from ScreenManagement import *
-from OS_define import OS_define
 # import RPi.GPIO as GPIO
 import os
 import datetime
 
 
+global OS_define
+OS_define = OS_define()
+
 global Raspberry
 Raspberry = Raspberry()
-
 # Instance of the Raspberry hardware itself and its parameters
 
 

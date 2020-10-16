@@ -12,14 +12,16 @@ import re as regex
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import *
 import time
+from OS_define import OS_define
 from datetime import datetime
 from pathlib import Path
-from PyQt5.QtWebEngineCore import QWebEngineHttpRequest
+import sys
 import platform
 import logging
 global logger
 logger=logging.getLogger() 
 logger.setLevel(logging.DEBUG)
+
 
 class ApiManager:
     
@@ -163,6 +165,8 @@ class ApiManager:
         return response.json()
 
     def load_FI(self,Workstation):
+
+        from PyQt5.QtWebEngineCore import QWebEngineHttpRequest
 
         self.url = QUrl()
         self.req = QWebEngineHttpRequest()
