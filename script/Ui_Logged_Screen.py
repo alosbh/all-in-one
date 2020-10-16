@@ -393,10 +393,10 @@ class Ui_Logged_Screen(object):
         font.setFamily("Yu Gothic")
         self.btn_reset.setFont(font)
         self.btn_reset.setStyleSheet("QPushButton{\n"
-"image:url(:/Img/desligar (1).png)\n"
+"image:url(:/Img/desligar2.png)\n"
 "}\n"
 "QPushButton:hover {\n"
-"image:url(:/Img/desligar2.png)\n"
+"image:url(:/Img/desligar (1).png)\n"
 "}\n"
 "")
         self.btn_reset.setText("")
@@ -1127,18 +1127,24 @@ class Ui_Logged_Screen(object):
         self.dropshadowbox.raise_()
         self.dropshadowtop.raise_()
         self.apps.raise_()
-        self.btn_5s_back = QtWidgets.QPushButton(self.main)
-        self.btn_5s_back.setGeometry(QtCore.QRect(30, 320, 75, 51))
-        self.btn_5s_back.setStyleSheet("image:url(:/Img/leftarrow.png)")
-        self.btn_5s_back.setText("")
-        self.btn_5s_back.setObjectName("btn_5s_back")
         self.btn_5s_next = QtWidgets.QPushButton(self.main)
-        self.btn_5s_next.setGeometry(QtCore.QRect(1020, 310, 75, 61))
-        self.btn_5s_next.setStyleSheet("image:url(:/Img/rightarrow.png)")
+        self.btn_5s_next.setGeometry(QtCore.QRect(1030, 270, 81, 71))
+        self.btn_5s_next.setAutoFillBackground(False)
+        self.btn_5s_next.setStyleSheet("image: url(:/Img/arrowright.png);\n"
+"border:10px;")
         self.btn_5s_next.setText("")
         self.btn_5s_next.setObjectName("btn_5s_next")
-        self.btn_5s_back.raise_()
+        self.btn_5s_back = QtWidgets.QPushButton(self.main)
+        self.btn_5s_back.setGeometry(QtCore.QRect(0, 270, 81, 71))
+        palette = QtGui.QPalette()
+        self.btn_5s_back.setPalette(palette)
+        self.btn_5s_back.setAutoFillBackground(False)
+        self.btn_5s_back.setStyleSheet("image: url(:/Img/arrowleft.png);\n"
+"border:10px;")
+        self.btn_5s_back.setText("")
+        self.btn_5s_back.setObjectName("btn_5s_back")
         self.btn_5s_next.raise_()
+        self.btn_5s_back.raise_()
         self.body_home.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 

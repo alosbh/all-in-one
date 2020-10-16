@@ -1,12 +1,20 @@
 # -*- coding: utf-8 -*-
 import yaml
+import os
+from pathlib import Path
 
 class GlobalParameters:
 
-    def __init__(self, FilePath = "C:/02 - www/all-in-one/script/GlobalParameters.yml"):
+    script_location = Path(__file__).absolute().parent
+
+    def __init__(self, FilePath = script_location / 'GlobalParameters.yml'):
+
+        cwd = os.getcwd()  # Get the current working directory (cwd)
+        files = os.listdir(cwd)  # Get all the files in that directory
+        print("Files in %r: %s" % (cwd, files))
 
         # Load the yml config file
-        with open(FilePath, encoding="utf8") as ymlfile:
+        with open(FilePath, 'r') as ymlfile:
             cfg = yaml.load(ymlfile);
 
         # Set the display parameters

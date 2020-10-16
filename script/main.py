@@ -39,7 +39,6 @@ Support_Window = Support_Window()
 
 
 def main():
-        print("PRINTANDO AQUI PRA VER SE FUNCIONA")
         #Handling of the GPIO ports, to disable their warnings and reset all used ports.        
         # GPIO.setwarnings(False)
         # GPIO.cleanup()

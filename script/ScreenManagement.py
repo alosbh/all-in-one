@@ -155,9 +155,13 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         # Setup the designer UI on the QT window Widget
         self.setupUi(self.Logged_QtWindow)
 
+
         #setting up body_web - windows/raspberry
-        # self.body_web = QWebView(self.main)
-        self.body_web = QWebEngineView(self.main)
+        if sys.platform == "win32":
+            self.body_web = QWebEngineView(self.main)
+        else:
+            self.body_web = QWebView(self.main)
+        
         self.body_web.setGeometry(QtCore.QRect(0, 0, 1121, 661))
         self.body_web.setObjectName("body_web")
         self.webSettings = self.body_web.settings()
@@ -257,20 +261,20 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True)
         self.controllers5sON()
-        self.obj5s = self.thread.API.load5s(self.Station.Name)
-        self.contador = len(self.obj5s)-1
-        self.state5s=0
+        # self.obj5s = self.thread.API.load5s(self.Station.Name)
+        # self.contador = len(self.obj5s)-1
+        # self.state5s=0
         
-        if(self.contador>=0):
-            url = str(self.obj5s[self.state5s]['Path'])
-            if(self.contador>0):
-                #self.lbl_value_5s_total.setText(str(self.contador+1))
-                #self.lbl_value_5s_actual.setText("1")
-                self.controllers5sON()
-        else:
-            url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
+        # if(self.contador>=0):
+        #     url = str(self.obj5s[self.state5s]['Path'])
+        #     if(self.contador>0):
+        #         #self.lbl_value_5s_total.setText(str(self.contador+1))
+        #         #self.lbl_value_5s_actual.setText("1")
+        #         self.controllers5sON()
+        # else:
+        #     url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
             
-        self.button_signal.signal.emit(url)
+        # self.button_signal.signal.emit(url)
     
     def controllers5sON(self):
         #self.lbl_value_5s_total.setVisible(True)

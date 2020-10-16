@@ -13,6 +13,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtCore import *
 import time
 from datetime import datetime
+from pathlib import Path
 from PyQt5.QtWebEngineCore import QWebEngineHttpRequest
 import platform
 import logging
@@ -22,7 +23,10 @@ logger.setLevel(logging.DEBUG)
 
 class ApiManager:
     
-    def __init__(self, FilePath = "C:/02 - www/all-in-one/script/Apis.yml"):
+    script_location = Path(__file__).absolute().parent
+    file_location = script_location / 'file.yaml'
+
+    def __init__(self, FilePath = script_location / 'Apis.yml'):
 
         with open(FilePath, 'r') as ymlfile:
             cfg = yaml.full_load(ymlfile)
