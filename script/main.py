@@ -3,6 +3,7 @@
 from Station import Station
 from Raspberry import Raspberry
 from ScreenManagement import *
+from OS_define import OS_define
 # import RPi.GPIO as GPIO
 import os
 import datetime
@@ -44,12 +45,12 @@ def main():
         # GPIO.cleanup()
    
         #Setup of the home screen UI and show it on startupprint
-        NonLogged_Screen.Setup(Station,Raspberry,GlobalParameters,Reset_Window)
+        NonLogged_Screen.Setup(Station,Raspberry,GlobalParameters,Reset_Window, OS_define)
         NonLogged_Screen.Show()
 
         #Setup of the logged screen UI
         
-        Logged_Screen.Setup(Station,Raspberry,GlobalParameters,NonLogged_Screen,Reset_Window,Support_Window)
+        Logged_Screen.Setup(Station,Raspberry,GlobalParameters,NonLogged_Screen,Reset_Window,Support_Window, OS_define)
      
         #Starts the QT application that manages the screens.
         ScreenManagement.QtApplication.exec_()

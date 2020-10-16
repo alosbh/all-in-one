@@ -9,10 +9,6 @@ class GlobalParameters:
 
     def __init__(self, FilePath = script_location / 'GlobalParameters.yml'):
 
-        cwd = os.getcwd()  # Get the current working directory (cwd)
-        files = os.listdir(cwd)  # Get all the files in that directory
-        print("Files in %r: %s" % (cwd, files))
-
         # Load the yml config file
         with open(FilePath, 'r') as ymlfile:
             cfg = yaml.load(ymlfile);

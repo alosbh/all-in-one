@@ -121,7 +121,6 @@ class ApiManager:
         
         return "Problem"
 
-    #pq???
     def GetSingleValueFromJsonObject(self, jsonObject, key, raiseException):
         result = jsonObject.get(key, "Not found");
         

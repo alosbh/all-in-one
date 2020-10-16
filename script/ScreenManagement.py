@@ -18,6 +18,8 @@ import logging
 import traceback
 
 from PyQt5.QtCore import QObject, pyqtSignal, QUrl
+
+
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 
 # from PyQt5.QtWebKit import QWebSettings
@@ -80,7 +82,7 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Matricula):
         self.NonLogged_QtWindow = QtWidgets.QMainWindow()
         self.app = ScreenManagement()
 
-    def Setup(self, Station, Raspberry, Params, Reset_Window):
+    def Setup(self, Station, Raspberry, Params, Reset_Window, OS_define):
 
         self.Station = Station
         self.Raspberry = Raspberry
@@ -124,7 +126,7 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Matricula):
 class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
     
     # Instance of the signal to act on button's click
-    button_signal = QtSignal()
+    load_url_signal = QtSignal()
 
     global Logged_QtWindow
 
@@ -142,7 +144,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.thread.thread_signal2.signal.connect(self.Show)
 
         # Connects the signal sent from the buttons to display the url on the webviewer
-        self.button_signal.signal.connect(self.load_url)
+        self.load_url_signal.signal.connect(self.load_url)
 
         self.loading_status = 1
 
@@ -150,14 +152,17 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         
 
 
-    def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window, Support_Window):
+    def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window, Support_Window, OS_define):
         
         # Setup the designer UI on the QT window Widget
         self.setupUi(self.Logged_QtWindow)
 
+        #1 = windows / 0 = rasp
+        self.operational_system = OS_define.get_OS_name(self)
 
         #setting up body_web - windows/raspberry
-        if sys.platform == "win32":
+        if self.operational_system == 1:
+            from PyQt5.QtWebEngineWidgets import QWebEngineView
             self.body_web = QWebEngineView(self.main)
         else:
             self.body_web = QWebView(self.main)
@@ -260,21 +265,20 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
     def show5s(self):
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True)
-        self.controllers5sON()
-        # self.obj5s = self.thread.API.load5s(self.Station.Name)
-        # self.contador = len(self.obj5s)-1
-        # self.state5s=0
+        self.obj5s = self.thread.API.load5s(self.Station.Name)
         
-        # if(self.contador>=0):
-        #     url = str(self.obj5s[self.state5s]['Path'])
-        #     if(self.contador>0):
-        #         #self.lbl_value_5s_total.setText(str(self.contador+1))
-        #         #self.lbl_value_5s_actual.setText("1")
-        #         self.controllers5sON()
-        # else:
-        #     url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
+        if(self.obj5s != None):
+            self.contador = len(self.obj5s)-1
+            self.state5s=0
+            url = str(self.obj5s[self.state5s]['Path'])
+            if(self.contador>0):
+                self.lbl_value_5s_total.setText(str(self.contador+1))
+                self.lbl_value_5s_actual.setText("1")
+                self.controllers5sON()
+        else:
+            url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
             
-        # self.button_signal.signal.emit(url)
+        self.load_url_signal.signal.emit(url)
     
     def controllers5sON(self):
         #self.lbl_value_5s_total.setVisible(True)
@@ -300,7 +304,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
             self.btn_5s_next.setVisible(False)
             
         url = str(self.obj5s[self.state5s]['Path'])
-        self.button_signal.signal.emit(url)
+        self.load_url_signal.signal.emit(url)
 
     #goes backward in the 5s menu
     def antpage(self):
@@ -312,7 +316,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
             self.btn_5s_back.setVisible(False)
             
         url = str(self.obj5s[self.state5s]['Path'])
-        self.button_signal.signal.emit(url)
+        self.load_url_signal.signal.emit(url)
 
 
     #Method to load an url on the webviewer
@@ -336,7 +340,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         CustomAddr = self.thread.API.custom_button(self.Station.Area,self.Station.AreaTrim, self.Station.RouteName, self.Station.Index) 
 
         # Send the url via signal to the socket   
-        self.button_signal.signal.emit(CustomAddr)
+        self.load_url_signal.signal.emit(CustomAddr)
 
     def jiga_list(self):
         #self.Reset_Button.setVisible(False)
@@ -349,7 +353,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         JigaAddr = self.thread.API.load_Jiga(self.thread.objStation.RouteId) 
 
         # Send the url via signal to the socket   
-        self.button_signal.signal.emit(JigaAddr)
+        self.load_url_signal.signal.emit(JigaAddr)
         
     def load_lpa(self):
         self.body_web.setZoomFactor(1)
@@ -361,8 +365,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         LpaAddr = self.thread.API.load_LPA(self.thread.DL.ID_trim,self.thread.objStation.Id, self.thread.objStation.RouteId)
 
         # Send the url via signal to the socket   
-        self.button_signal.signal.emit(LpaAddr)
-        #self.thread_loading.startThread(self.button_signal,LpaAddr,self)
+        self.load_url_signal.signal.emit(LpaAddr)
+        #self.thread_loading.startThread(self.load_url_signal,LpaAddr,self)
         #self.Reset_Button.setVisible(True)
         
 
@@ -378,22 +382,43 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.controllers5sOFF()
 
         # Send the url via signal to the socket 
-        #self.thread_loading.startThread(self.button_signal,BIAddr,self)
-        self.button_signal.signal.emit(BIAddr)
-        
+        #self.thread_loading.startThread(self.load_url_signal,BIAddr,self)
+        self.load_url_signal.signal.emit(BIAddr)
 
     def load_fi(self):
-        self.body_web.setZoomFactor(1) #))web
-        #self.Reset_Button.setVisible(False)
-  
-        # Loads the BI URL
-        FIAddr = self.thread.API.load_FI(self.Station.Name) 
+        if self.operational_system == 1:    
+            self.body_web.setZoomFactor(1) #))web
+            #self.Reset_Button.setVisible(False)
 
-        self.body_home.setVisible(False) #))homepage
-        self.body_web.setVisible(True) #))web
-        self.controllers5sOFF()
-        # Send the url via signal to the socket 
-        self.body_web.load(FIAddr)
+            # Loads the BI URL
+            FIAddr = self.thread.API.load_FI(self.Station.Name) 
+
+            self.body_home.setVisible(False) #))homepage
+            self.body_web.setVisible(True) #))web
+            self.controllers5sOFF()
+            # Send the url via signal to the socket 
+            self.body_web.load(FIAddr)
+
+        else:
+            def load_fi(self):
+                self.body_home.setVisible(False) #))homepage
+                self.body_web.setVisible(True) #))web
+                # self.controllers5sOFF()
+
+                self.urlFI = QUrl()
+                self.urlFI.setScheme("http")
+                self.urlFI.setHost("brbelm0apps01")
+                self.urlFI.setPath("/FICreator/FiViewer/SlideShow")
+                self.req = QNetworkRequest()
+                self.req.setUrl(self.urlFI)
+                self.req.setHeader(QNetworkRequest.ContentTypeHeader,('application/json'))
+                self.nam  = QNetworkAccessManager()
+
+
+            params = {"workstation":self.Station.Name,"prodashSync":True,"time":20}
+
+            self.byteparam = bytes(json.dumps(params),'utf-8')
+            self.body_web.load(self.req,QNetworkAccessManager.PostOperation,self.byteparam)
 
     
 
