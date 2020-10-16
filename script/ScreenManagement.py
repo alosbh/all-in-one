@@ -264,15 +264,16 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
     def show5s(self):
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True)
-        self.obj5s = self.thread.API.load5s(self.Station.Name)
-        
+        self.obj5s = self.thread.API.load5s('orig')
+
         if(self.obj5s != None):
             self.contador = len(self.obj5s)-1
             self.state5s=0
             url = str(self.obj5s[self.state5s]['Path'])
+            #url = self.obj5s[self.state5s]
             if(self.contador>0):
-                self.lbl_value_5s_total.setText(str(self.contador+1))
-                self.lbl_value_5s_actual.setText("1")
+                # self.lbl_value_5s_total.setText(str(self.contador+1))
+                # self.lbl_value_5s_actual.setText("1")
                 self.controllers5sON()
         else:
             url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'

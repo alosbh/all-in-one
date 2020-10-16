@@ -1133,8 +1133,8 @@ class Ui_Logged_Screen(object):
         self.btn_5s_next.setGeometry(QtCore.QRect(1030, 270, 81, 71))
         self.btn_5s_next.setAutoFillBackground(False)
         self.btn_5s_next.setStyleSheet("image: url(:/Img/arrowright.png);\n"
-"border:10px;")
-        self.btn_5s_next.setText("")
+"border:10px;color:white")
+        self.btn_5s_next.setText(">")
         self.btn_5s_next.setObjectName("btn_5s_next")
         self.btn_5s_back = QtWidgets.QPushButton(self.main)
         self.btn_5s_back.setGeometry(QtCore.QRect(0, 270, 81, 71))
@@ -1142,8 +1142,8 @@ class Ui_Logged_Screen(object):
         self.btn_5s_back.setPalette(palette)
         self.btn_5s_back.setAutoFillBackground(False)
         self.btn_5s_back.setStyleSheet("image: url(:/Img/arrowleft.png);\n"
-"border:10px;")
-        self.btn_5s_back.setText("")
+"border:10px;color:white")
+        self.btn_5s_back.setText("<")
         self.btn_5s_back.setObjectName("btn_5s_back")
         self.btn_5s_next.raise_()
         self.btn_5s_back.raise_()
