@@ -163,6 +163,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
             from PyQt5.QtWebEngineCore import QWebEngineHttpRequest
             self.body_web = QWebEngineView(self.main)
         else:
+            from PyQt5.QtWebKitWidgets import QWebView
             self.body_web = QWebView(self.main)
         
         self.body_web.setGeometry(QtCore.QRect(0, 0, 1121, 661))
@@ -398,7 +399,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
             self.body_web.load(FIAddr)
 
         else:
-            from PyQt5.QtWebKitWidgets import QWebView
             from PyQt5.QtNetwork import QNetworkRequest
             self.body_home.setVisible(False) #))homepage
             self.body_web.setVisible(True) #))web
