@@ -19,7 +19,6 @@ Raspberry = Raspberry()
 
 # Instance of the Workstation related to the Raspberry
 global Station
-
 Station = Station(Raspberry)
 
 # Starts the screen management class
@@ -47,12 +46,12 @@ def main():
         # GPIO.cleanup()
    
         #Setup of the home screen UI and show it on startupprint
-        NonLogged_Screen.Setup(Station,Raspberry,GlobalParameters,Reset_Window, OS_define)
+        NonLogged_Screen.Setup(Station,Raspberry,GlobalParameters,Reset_Window)
         NonLogged_Screen.Show()
 
         #Setup of the logged screen UI
         
-        Logged_Screen.Setup(Station,Raspberry,GlobalParameters,NonLogged_Screen,Reset_Window,Support_Window, OS_define)
+        Logged_Screen.Setup(Station,Raspberry,GlobalParameters,NonLogged_Screen,Reset_Window,Support_Window)
      
         #Starts the QT application that manages the screens.
         ScreenManagement.QtApplication.exec_()

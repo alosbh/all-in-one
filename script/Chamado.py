@@ -36,13 +36,6 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         postBody = {}
         
 
-        
-
-        
-        
-
-        
-
         self.button_handle()
 
     def Show(self):

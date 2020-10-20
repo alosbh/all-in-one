@@ -8,6 +8,7 @@ from labels import labels
 from Raspberry import Raspberry as Rasp
 from ApiManager import ApiManager as ws
 from DirectLabor import DirectLabor as DL
+from OS_define import OS_define
 
 # import MFRC522
 import time
@@ -79,7 +80,7 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Matricula):
         self.NonLogged_QtWindow = QtWidgets.QMainWindow()
         self.app = ScreenManagement()
 
-    def Setup(self, Station, Raspberry, Params, Reset_Window, OS_define):
+    def Setup(self, Station, Raspberry, Params, Reset_Window):
 
         self.Station = Station
         self.Raspberry = Raspberry
@@ -149,7 +150,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         
 
 
-    def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window, Support_Window, OS_define):
+    def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window, Support_Window):
         
         # Setup the designer UI on the QT window Widget
         self.setupUi(self.Logged_QtWindow)
@@ -232,13 +233,14 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
     def button_handle(self):
 
         # Links the buttons to their respective methods
-        self.btn_5s.clicked.connect(self.show5s)
-        # self.tag5s.clicked.connect(self.show5s)
-        self.btn_5s_next.clicked.connect(self.proxpage)
-        self.btn_5s_back.clicked.connect(self.antpage)
-        self.btn_5s_back.raise_()
-        self.btn_5s_next.raise_()
-        self.controllers5sOFF()
+        # self.btn_5s.clicked.connect(self.show5s)
+        # # self.tag5s.clicked.connect(self.show5s)
+        # self.btn_5s_next.clicked.connect(self.proxpage)
+        # self.btn_5s_back.clicked.connect(self.antpage)
+        # self.btn_5s_back.raise_()
+        # self.btn_5s_next.raise_()
+        # self.controllers5sOFF()
+        self.btn_support.clicked.connect(self.suporte)
         self.btn_homepage.clicked.connect(self.home)
         self.btn_SCTC.clicked.connect(self.jiga_list) #))jiga_button
         self.btn_reset.clicked.connect(self.reset)
@@ -261,62 +263,62 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         #self.Reset_Button.setVisible(False)
         self.controllers5sOFF()
 
-    def show5s(self):
-        self.body_home.setVisible(False) #))homepage
-        self.body_web.setVisible(True)
-        self.obj5s = self.thread.API.load5s('orig')
+    # def show5s(self):
+    #     self.body_home.setVisible(False) #))homepage
+    #     self.body_web.setVisible(True)
+    #     self.obj5s = self.thread.API.load5s('orig')
 
-        if(self.obj5s != None):
-            self.contador = len(self.obj5s)-1
-            self.state5s=0
-            url = str(self.obj5s[self.state5s]['Path'])
-            #url = self.obj5s[self.state5s]
-            if(self.contador>0):
-                # self.lbl_value_5s_total.setText(str(self.contador+1))
-                # self.lbl_value_5s_actual.setText("1")
-                self.controllers5sON()
-        else:
-            url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
+    #     if(self.obj5s != None):
+    #         self.contador = len(self.obj5s)-1
+    #         self.state5s=0
+    #         url = str(self.obj5s[self.state5s]['Path'])
+    #         #url = self.obj5s[self.state5s]
+    #         if(self.contador>0):
+    #             # self.lbl_value_5s_total.setText(str(self.contador+1))
+    #             # self.lbl_value_5s_actual.setText("1")
+    #             self.controllers5sON()
+    #     else:
+    #         url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
             
-        self.load_url_signal.signal.emit(url)
+    #     self.load_url_signal.signal.emit(url)
     
-    def controllers5sON(self):
-        #self.lbl_value_5s_total.setVisible(True)
-        #self.lbl_value_5s_actual.setVisible(True)
-        #self.lbl_5sbar.setVisible(True)
-        self.btn_5s_back.setVisible(True)
-        self.btn_5s_next.setVisible(True)
+    # def controllers5sON(self):
+    #     #self.lbl_value_5s_total.setVisible(True)
+    #     #self.lbl_value_5s_actual.setVisible(True)
+    #     #self.lbl_5sbar.setVisible(True)
+    #     self.btn_5s_back.setVisible(True)
+    #     self.btn_5s_next.setVisible(True)
 
-    def controllers5sOFF(self):
-        #self.lbl_value_5s_total.setVisible(False)
-        #self.lbl_value_5s_actual.setVisible(False)
-        #self.lbl_5sbar.setVisible(False)
-        self.btn_5s_next.setVisible(False)
-        self.btn_5s_back.setVisible(False)
+    # def controllers5sOFF(self):
+    #     #self.lbl_value_5s_total.setVisible(False)
+    #     #self.lbl_value_5s_actual.setVisible(False)
+    #     #self.lbl_5sbar.setVisible(False)
+    #     self.btn_5s_next.setVisible(False)
+    #     self.btn_5s_back.setVisible(False)
         
-    #goes foward in the 5s menu
-    def proxpage(self):
-        self.state5s = self.state5s+1
-        self.btn_5s_back.setVisible(True)
-        self.lbl_value_5s_actual.setText(str(self.state5s+1))
+    # #goes foward in the 5s menu
+    # def proxpage(self):
+    #     self.state5s = self.state5s+1
+    #     self.btn_5s_back.setVisible(True)
+    #     self.lbl_value_5s_actual.setText(str(self.state5s+1))
         
-        if(self.state5s==self.contador):
-            self.btn_5s_next.setVisible(False)
+    #     if(self.state5s==self.contador):
+    #         self.btn_5s_next.setVisible(False)
             
-        url = str(self.obj5s[self.state5s]['Path'])
-        self.load_url_signal.signal.emit(url)
+    #     url = str(self.obj5s[self.state5s]['Path'])
+    #     self.load_url_signal.signal.emit(url)
 
-    #goes backward in the 5s menu
-    def antpage(self):
-        self.state5s = self.state5s-1
-        self.btn_5s_next.setVisible(True)
-        self.lbl_value_5s_actual.setText(str(self.state5s+1))
+    # #goes backward in the 5s menu
+    # def antpage(self):
+    #     self.state5s = self.state5s-1
+    #     self.btn_5s_next.setVisible(True)
+    #     self.lbl_value_5s_actual.setText(str(self.state5s+1))
         
-        if(self.state5s==0):
-            self.btn_5s_back.setVisible(False)
+    #     if(self.state5s==0):
+    #         self.btn_5s_back.setVisible(False)
             
-        url = str(self.obj5s[self.state5s]['Path'])
-        self.load_url_signal.signal.emit(url)
+    #     url = str(self.obj5s[self.state5s]['Path'])
+    #     self.load_url_signal.signal.emit(url)
 
 
     #Method to load an url on the webviewer
