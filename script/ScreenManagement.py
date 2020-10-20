@@ -9,6 +9,7 @@ from Raspberry import Raspberry as Rasp
 from ApiManager import ApiManager as ws
 from DirectLabor import DirectLabor as DL
 from OS_define import OS_define
+from functions_5s import functions_5
 
 import MFRC522
 import time
@@ -229,17 +230,17 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         print("NOME DA MINHA WORKSTTION EH:" + self.Station.Name)
         self.Logged_QtWindow.showFullScreen()
    
-#======================== faz tudo
     def button_handle(self):
 
         # Links the buttons to their respective methods
+        self.functions_5s = functions_5()
         # self.btn_5s.clicked.connect(self.show5s)
-        # # self.tag5s.clicked.connect(self.show5s)
+        # self.tag5s.clicked.connect(self.show5s)
         # self.btn_5s_next.clicked.connect(self.proxpage)
         # self.btn_5s_back.clicked.connect(self.antpage)
         # self.btn_5s_back.raise_()
         # self.btn_5s_next.raise_()
-        # self.controllers5sOFF()
+        self.functions_5s.controllers5sOFF()
         self.btn_support.clicked.connect(self.suporte)
         self.btn_homepage.clicked.connect(self.home)
         self.btn_SCTC.clicked.connect(self.jiga_list) #))jiga_button
@@ -507,8 +508,7 @@ class MainThread(QThread):
                 cont_logout = 0
 
                 # If the read id is not null, compares it to the active user. In case its different, login the new user. 
-                print("Actual ID: " + str(Actual_ID))
-                print("Read ID: " + str(Read_ID))
+                
                 if (Actual_ID != Read_ID):
                     
 
