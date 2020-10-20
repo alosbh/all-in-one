@@ -9,7 +9,7 @@ from Raspberry import Raspberry as Rasp
 from ApiManager import ApiManager as ws
 from DirectLabor import DirectLabor as DL
 from OS_define import OS_define
-from functions_5s import functions_5
+# from functions_5s import functions_5
 
 import MFRC522
 import time
@@ -233,14 +233,14 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
     def button_handle(self):
 
         # Links the buttons to their respective methods
-        self.functions_5s = functions_5()
+        # self.functions_5s = functions_5()
         # self.btn_5s.clicked.connect(self.show5s)
         # self.tag5s.clicked.connect(self.show5s)
         # self.btn_5s_next.clicked.connect(self.proxpage)
         # self.btn_5s_back.clicked.connect(self.antpage)
         # self.btn_5s_back.raise_()
         # self.btn_5s_next.raise_()
-        self.functions_5s.controllers5sOFF()
+        # self.functions_5s.controllers5sOFF()
         self.btn_support.clicked.connect(self.suporte)
         self.btn_homepage.clicked.connect(self.home)
         self.btn_SCTC.clicked.connect(self.jiga_list) #))jiga_button
@@ -262,7 +262,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.body_home.setVisible(True) #))homepage
         self.body_web.setVisible(False) #))web
         #self.Reset_Button.setVisible(False)
-        self.controllers5sOFF()
+        #self.controllers5sOFF()
 
     # def show5s(self):
     #     self.body_home.setVisible(False) #))homepage
@@ -350,7 +350,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.body_web.setZoomFactor(1)
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True)#))web
-        self.controllers5sOFF()
+        #self.controllers5sOFF()
 
         # Loads the tooling URL
         JigaAddr = self.thread.API.load_Jiga(self.thread.objStation.RouteId) 
@@ -362,7 +362,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         self.body_web.setZoomFactor(1)
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True)#))web
-        self.controllers5sOFF()
+        #self.controllers5sOFF()
 
         # Loads the LPA URL
         LpaAddr = self.thread.API.load_LPA(self.thread.DL.ID_trim,self.thread.objStation.Id, self.thread.objStation.RouteId)
@@ -382,7 +382,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
         self.body_home.setVisible(False) #))homepage
         self.body_web.setVisible(True)#))web
-        self.controllers5sOFF()
+        #self.controllers5sOFF()
 
         # Send the url via signal to the socket 
         #self.thread_loading.startThread(self.load_url_signal,BIAddr,self)
@@ -398,7 +398,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
             self.body_home.setVisible(False) #))homepage
             self.body_web.setVisible(True) #))web
-            self.controllers5sOFF()
+            # self.controllers5sOFF()
             # Send the url via signal to the socket 
             self.body_web.load(FIAddr)
 
