@@ -11,7 +11,7 @@ from DirectLabor import DirectLabor as DL
 from OS_define import OS_define
 from functions_5s import functions_5s
 
-import MFRC522
+# import MFRC522
 import time
 import sys
 import urllib.request
@@ -349,20 +349,20 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
             self.body_web.load(self.req,QNetworkAccessManager.PostOperation,self.byteparam)
 
 
-def RFRead(): #Função de leitura e autenticação dos crachás Jabil
+# def RFRead(): #Função de leitura e autenticação dos crachás Jabil
     
-    Read_ID = None
+#     Read_ID = None
 
-         # Instantiate the RFID reader class
-    reader = MFRC522.MFRC522()
+#          # Instantiate the RFID reader class
+#     reader = MFRC522.MFRC522()
 
-         # Get the badge id from the RFID reader
-    Read_ID = reader.JABIL_Matricula() 
+#          # Get the badge id from the RFID reader
+#     Read_ID = reader.JABIL_Matricula() 
 
-         # close the SPI slot 
-    reader.close_SPI()
+#          # close the SPI slot 
+#     reader.close_SPI()
 
-    return Read_ID
+#     return Read_ID
 
 #----------------------------------------------------------------------------------------
 #Thread for badge reading
@@ -415,8 +415,8 @@ class MainThread(QThread):
         while(True):
             
             try:
-                # Read_ID = 51008294
-                Read_ID = (RFRead()) # Reads Badge ID
+                Read_ID = 51008294
+                # Read_ID = (RFRead()) # Reads Badge ID
             except Exception as e:
                 traceback.print_exc()
                 logger.error("RFID error: " + type(e).__name__)

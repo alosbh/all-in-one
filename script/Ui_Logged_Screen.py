@@ -442,7 +442,7 @@ class Ui_Logged_Screen(object):
         self.lbl_value_version.setObjectName("lbl_value_version")
         self.main = QtWidgets.QFrame(self.centralwidget)
         self.main.setGeometry(QtCore.QRect(235, 60, 1131, 661))
-        self.main.setStyleSheet("")
+        self.main.setStyleSheet("border:none;")
         self.main.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.main.setFrameShadow(QtWidgets.QFrame.Raised)
         self.main.setObjectName("main")
