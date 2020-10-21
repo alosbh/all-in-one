@@ -7,8 +7,7 @@ class functions_5s():
 
     def generate_5s(self, workstation_name):
         self.dots_list = []
-        # self.workstation_name = workstation_name
-        self.workstation_name = "INGSCR001"
+        self.workstation_name = workstation_name
         self.create_dots_5s()
         self.btn_5s_back.raise_()
         self.btn_5s_next.raise_()
@@ -18,6 +17,7 @@ class functions_5s():
         self.hide5s()
 
     def hide5s(self):
+        self.body_web_resize()
         self.horizontalWidget_3.setVisible(False)
         self.btn_5s_next.setVisible(False)
         self.btn_5s_back.setVisible(False)
@@ -25,12 +25,13 @@ class functions_5s():
     def show5s(self):
         self.body_home.setVisible(False)
         self.body_web.setVisible(True)
+        self.body_web_resize(52, 0, 1017, 615)
         self.load_5s_page()
 
     def load_5s_page(self):
         self.obj5s = self.thread.API.load_5s(self.workstation_name)
 
-        if(self.obj5s != None):
+        if(self.obj5s != []):
             self.contador = len(self.obj5s)-1
             self.state5s=0
             self.dots_list[0].setStyleSheet("background-color:rgba(82,82,238,1);\n""border-radius:10px;\n""\n""")
@@ -39,7 +40,7 @@ class functions_5s():
                 self.horizontalWidget_3.setVisible(True)
                 self.btn_5s_next.setVisible(True)
         else:
-            url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
+            url = 'http://brbelm0itqa01/AIOServiceSTG/Images5S/NaoEncontrado.png'
 
         self.load_url_signal.signal.emit(url)
 
@@ -59,6 +60,10 @@ class functions_5s():
             self.lbl_5s_dot.setObjectName("lbl_5s_dot1")
             self.dots_list.append(self.lbl_5s_dot)
             self.layout_5s_dots.addWidget(self.dots_list[x])
+    
+    
+    def body_web_resize(self, x=0, y=0, width=1131, height=661):
+        self.body_web.setGeometry(QtCore.QRect(x, y, width, height))
         
     #goes foward in the 5s menu
     def proxpage(self):

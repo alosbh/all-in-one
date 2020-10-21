@@ -11,7 +11,7 @@ from DirectLabor import DirectLabor as DL
 from OS_define import OS_define
 from functions_5s import functions_5s
 
-# import MFRC522
+import MFRC522
 import time
 import sys
 import urllib.request
@@ -270,7 +270,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         #     self.lbl_EPI.setObjectName("lbl_EPI")
         #     self.layout_EPIs.addWidget(self.lbl_EPI)
 
-
     def jiga_list(self):
         #self.Reset_Button.setVisible(False)
         self.body_web.setZoomFactor(1)
@@ -349,23 +348,21 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
             self.byteparam = bytes(json.dumps(params),'utf-8')
             self.body_web.load(self.req,QNetworkAccessManager.PostOperation,self.byteparam)
 
+
+def RFRead(): #Função de leitura e autenticação dos crachás Jabil
     
+    Read_ID = None
 
+         # Instantiate the RFID reader class
+    reader = MFRC522.MFRC522()
 
-# def RFRead(): #Função de leitura e autenticação dos crachás Jabil
-    
-#     Read_ID = None
+         # Get the badge id from the RFID reader
+    Read_ID = reader.JABIL_Matricula() 
 
-#          # Instantiate the RFID reader class
-#     reader = MFRC522.MFRC522()
+         # close the SPI slot 
+    reader.close_SPI()
 
-#          # Get the badge id from the RFID reader
-#     Read_ID = reader.JABIL_Matricula() 
-
-#          # close the SPI slot 
-#     reader.close_SPI()
-
-#     return Read_ID
+    return Read_ID
 
 #----------------------------------------------------------------------------------------
 #Thread for badge reading
