@@ -4,6 +4,7 @@ from Station import Station
 from OS_define import OS_define
 from Raspberry import Raspberry
 from ScreenManagement import *
+from functions_5s import functions_5s
 # import RPi.GPIO as GPIO
 import os
 import datetime
@@ -37,6 +38,9 @@ Reset_Window = Reset_Window()
 
 global Support_Window
 Support_Window = Support_Window()
+
+global functions_5s
+functions_5s = functions_5s()
 
 
 

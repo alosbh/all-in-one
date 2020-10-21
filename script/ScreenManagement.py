@@ -9,9 +9,9 @@ from Raspberry import Raspberry as Rasp
 from ApiManager import ApiManager as ws
 from DirectLabor import DirectLabor as DL
 from OS_define import OS_define
-# from functions_5s import functions_5
+from functions_5s import functions_5s
 
-import MFRC522
+# import MFRC522
 import time
 import sys
 import urllib.request
@@ -42,6 +42,7 @@ class ScreenManagement():
 
 #----------------------------------------------------------------------------------
 
+# Inherits the qt Ui_ResetWindow (reset confirmation window) design and manages its setup
 class Reset_Window(QtWidgets.QMainWindow, Ui_ResetWindow):
 
     Reset_Signal = QtSignal()
@@ -66,7 +67,7 @@ class Reset_Window(QtWidgets.QMainWindow, Ui_ResetWindow):
         
 #----------------------------------------------------------------------------------
 
-#Class that inherits the qt UI design and manages its setup
+# Inherits the qt Ui_Matricula (login screen) design and manages its setup
 class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Matricula):
     
     global NonLogged_QtWindow
@@ -122,7 +123,8 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Matricula):
 
 #----------------------------------------------------------------------------------
 
-class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
+# Inherits the qt Ui_Logged_Screen (main screen) design and manages its setup
+class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
     
     # Instance of the signal to act on button's click
     load_url_signal = QtSignal()
@@ -152,14 +154,39 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
 
     def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window, Support_Window):
-        
-        # Setup the designer UI on the QT window Widget
         self.setupUi(self.Logged_QtWindow)
+        self.build_body_web()
+        self.Station = Station
+        self.button_handle()
+        self.generate_5s(self.Station.Name)
+        # Fills values with workstation values
+        self.lbl_value_workstation.setText(str(self.Station.Name)) 
+        self.lbl_value_version.setText(str(GlobalParameters.AIO_Version)) 
+        self.lbl_value_line.setText(str(self.Station.RouteName))
+        self.lbl_value_product.setText(str(self.Station.ProductName))
+        self.lbl_value_client.setText(str(self.Station.ClientName))
+        # Setting up support window
+        self.Support_Window = Support_Window
+        self.Support_Window.posto = self.Station.Name
+        self.Support_Window.index = self.Station.Index
+        self.Support_Window.populateMotivos()
+        # Setting up reset window
+        self.Reset_Window = Reset_Window
 
+        self.thread_loading = WaitForPageLoad()
+
+        # Starts the main thread and set its parameters
+        self.thread.start()
+        self.thread.host = Raspberry.Name
+        self.thread.objStation = Station
+        # Serves the thread the screen objects, so it can hide, show and manage the windows when needed.
+        self.thread.NonLogged_Window = NonLogged_Window
+        self.thread.Logged_Window = self
+
+    def build_body_web(self):
+        #setting up body_web - windows/raspberry
         #1 = windows / 0 = rasp
         self.operational_system = OS_define.get_OS_name()
-
-        #setting up body_web - windows/raspberry
         if self.operational_system == 1:
             from PyQt5.QtWebEngineWidgets import QWebEngineView
             from PyQt5.QtWebEngineCore import QWebEngineHttpRequest
@@ -167,87 +194,35 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         else:
             from PyQt5.QtWebKitWidgets import QWebView
             self.body_web = QWebView(self.main)
-        
         self.body_web.setGeometry(QtCore.QRect(0, 0, 1121, 661))
         self.body_web.setObjectName("body_web")
         self.webSettings = self.body_web.settings()
-
-        # Links the buttons to their respective methods
-        self.button_handle()
-        self.body_web.loadFinished.connect(self.finish_loading) #;; ???
-        # enables the webviewer
-        self.load_url('about:blank')
-        self.body_web.setVisible(False) #))web
-        # self.body_5s.setVisible(False) #)) homepage
-        # self.webSettings.setObjectCacheCapacities(0, 0, 0)
-        # Fill the workstation Name
-        self.Station = Station
-        self.lbl_value_workstation.setText(str(self.Station.Name)) #))posto_id
-        self.lbl_value_version.setText(str(GlobalParameters.AIO_Version)) #))aio
-        self.lbl_value_line.setText(str(self.Station.RouteName))
-        self.lbl_value_product.setText(str(self.Station.ProductName))
-        self.lbl_value_client.setText(str(self.Station.ClientName))
-        self.Reset_Window = Reset_Window
-        self.Support_Window = Support_Window
-        self.Support_Window.posto = self.Station.Name
-        self.Support_Window.index = self.Station.Index
-        self.Support_Window.populateMotivos()
-        
-
-        # adicionar EPIs - prototipo
-        # for x in range(0):
-        #     self.lbl_EPI = QtWidgets.QWidget(self.horizontalLayoutWidget)
-        #     self.lbl_EPI.setMaximumSize(QtCore.QSize(75, 16777215))
-        #     self.lbl_EPI.setStyleSheet("image:url(:/Img/EPIs/earmuffs.png)")
-        #     self.lbl_EPI.setObjectName("lbl_EPI")
-        #     self.layout_EPIs.addWidget(self.lbl_EPI)
-        #     print("-------------------------------epi add------------------------------")
-
-        self.thread_loading = WaitForPageLoad()
-
-        # Starts the main thread and set its parameters
-        self.thread.start()
-
-
-        self.thread.host = Raspberry.Name
-        self.thread.objStation = Station
-
-        # Serves the thread the screen objects, so it can hide, show and manage the windows when needed.
-        self.thread.NonLogged_Window = NonLogged_Window
-        self.thread.Logged_Window = self
+        self.body_web.setVisible(False) 
 
     #Method called in the MainThread - fills labor user fields
     def SetupUser(self, DL):
         self.lbl_value_name.setText(DL.Name)
-        self.lbl_value_yield.setText(DL.Yield) #))yield1
-        self.lbl_value_productivity.setText(DL.Productivity) #))produtividade
-        self.lbl_value_goodideas.setText('-') #))boasideias
-        self.lbl_value_jabilcoins.setText('-') #))jabilcoins
+        self.lbl_value_yield.setText(DL.Yield)
+        self.lbl_value_productivity.setText(DL.Productivity)
+        self.lbl_value_goodideas.setText('-')
+        self.lbl_value_jabilcoins.setText('-')
 
     # Method to show the window widget 
     def Show(self):
-        self.lbl_value_workstation.setText(self.Station.Name) #))posto_id
+        self.lbl_value_workstation.setText(self.Station.Name)
         print("NOME DA MINHA WORKSTTION EH:" + self.Station.Name)
         self.Logged_QtWindow.showFullScreen()
    
+    # Links the buttons to their respective methods
     def button_handle(self):
-
-        # Links the buttons to their respective methods
-        # self.functions_5s = functions_5()
-        # self.btn_5s.clicked.connect(self.show5s)
-        # self.tag5s.clicked.connect(self.show5s)
-        # self.btn_5s_next.clicked.connect(self.proxpage)
-        # self.btn_5s_back.clicked.connect(self.antpage)
-        # self.btn_5s_back.raise_()
-        # self.btn_5s_next.raise_()
-        # self.functions_5s.controllers5sOFF()
+        self.btn_5s.clicked.connect(self.show5s)
         self.btn_support.clicked.connect(self.suporte)
         self.btn_homepage.clicked.connect(self.home)
-        self.btn_SCTC.clicked.connect(self.jiga_list) #))jiga_button
+        self.btn_SCTC.clicked.connect(self.jiga_list)
         self.btn_reset.clicked.connect(self.reset)
-        self.btn_instruction_sheet.clicked.connect(self.load_fi) #))FI_button
-        self.btn_goodideas.clicked.connect(self.load_bi) #))BI_button
-        self.btn_lpa.clicked.connect(self.load_lpa) #))LPA_button
+        self.btn_instruction_sheet.clicked.connect(self.load_fi)
+        self.btn_goodideas.clicked.connect(self.load_bi)
+        self.btn_lpa.clicked.connect(self.load_lpa)
         #self.custom_button.clicked.connect(self.custom_button_load)
 
     def reset(self):
@@ -259,98 +234,49 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
     def home(self):
         logger.error("Returning to initial screen")
 
-        self.body_home.setVisible(True) #))homepage
-        self.body_web.setVisible(False) #))web
+        self.body_home.setVisible(True)
+        self.body_web.setVisible(False)
         #self.Reset_Button.setVisible(False)
-        #self.controllers5sOFF()
-
-    # def show5s(self):
-    #     self.body_home.setVisible(False) #))homepage
-    #     self.body_web.setVisible(True)
-    #     self.obj5s = self.thread.API.load5s('orig')
-
-    #     if(self.obj5s != None):
-    #         self.contador = len(self.obj5s)-1
-    #         self.state5s=0
-    #         url = str(self.obj5s[self.state5s]['Path'])
-    #         #url = self.obj5s[self.state5s]
-    #         if(self.contador>0):
-    #             # self.lbl_value_5s_total.setText(str(self.contador+1))
-    #             # self.lbl_value_5s_actual.setText("1")
-    #             self.controllers5sON()
-    #     else:
-    #         url = 'http://brbelm0itqa01/AIOService/Images5S/NaoEncontrado.png'
-            
-    #     self.load_url_signal.signal.emit(url)
-    
-    # def controllers5sON(self):
-    #     #self.lbl_value_5s_total.setVisible(True)
-    #     #self.lbl_value_5s_actual.setVisible(True)
-    #     #self.lbl_5sbar.setVisible(True)
-    #     self.btn_5s_back.setVisible(True)
-    #     self.btn_5s_next.setVisible(True)
-
-    # def controllers5sOFF(self):
-    #     #self.lbl_value_5s_total.setVisible(False)
-    #     #self.lbl_value_5s_actual.setVisible(False)
-    #     #self.lbl_5sbar.setVisible(False)
-    #     self.btn_5s_next.setVisible(False)
-    #     self.btn_5s_back.setVisible(False)
-        
-    # #goes foward in the 5s menu
-    # def proxpage(self):
-    #     self.state5s = self.state5s+1
-    #     self.btn_5s_back.setVisible(True)
-    #     self.lbl_value_5s_actual.setText(str(self.state5s+1))
-        
-    #     if(self.state5s==self.contador):
-    #         self.btn_5s_next.setVisible(False)
-            
-    #     url = str(self.obj5s[self.state5s]['Path'])
-    #     self.load_url_signal.signal.emit(url)
-
-    # #goes backward in the 5s menu
-    # def antpage(self):
-    #     self.state5s = self.state5s-1
-    #     self.btn_5s_next.setVisible(True)
-    #     self.lbl_value_5s_actual.setText(str(self.state5s+1))
-        
-    #     if(self.state5s==0):
-    #         self.btn_5s_back.setVisible(False)
-            
-    #     url = str(self.obj5s[self.state5s]['Path'])
-    #     self.load_url_signal.signal.emit(url)
-
+        self.hide5s()
 
     #Method to load an url on the webviewer
     def load_url(self, url):
-        self.body_web.load(QUrl('about:blank')) #))web
+        self.body_web.load(QUrl('about:blank'))
         time.sleep(1)
         self.loading_status = 0
-        self.body_web.load(QUrl(url)) #))web
-        self.body_web.show() #))web
+        self.body_web.load(QUrl(url))
+        self.body_web.show()
 
     def finish_loading(self):
         self.loading_status = 1
 
-    def custom_button_load(self):
-        #self.Reset_Button.setVisible(False)
-        self.body_web.setZoomFactor(0.8) #))web
-        self.body_home.setVisible(False) #))homepage
-        self.body_web.setVisible(True) #))web
-        # self.controllers5sOFF()
-        # Loads the tooling URL
-        CustomAddr = self.thread.API.custom_button(self.Station.Area,self.Station.AreaTrim, self.Station.RouteName, self.Station.Index) 
+    # def custom_button_load(self):
+    #     #self.Reset_Button.setVisible(False)
+    #     self.body_web.setZoomFactor(0.8) 
+    #     self.body_home.setVisible(False) 
+    #     self.body_web.setVisible(True) 
+    #     # Loads the tooling URL
+    #     CustomAddr = self.thread.API.custom_button(self.Station.Area,self.Station.AreaTrim, self.Station.RouteName, self.Station.Index) 
 
-        # Send the url via signal to the socket   
-        self.load_url_signal.signal.emit(CustomAddr)
+    #     # Send the url via signal to the socket   
+    #     self.load_url_signal.signal.emit(CustomAddr)
+
+    # def create_EPI_icons():
+        # adicionar EPIs - prototipo
+        # for x in range(0):
+        #     self.lbl_EPI = QtWidgets.QWidget(self.horizontalLayoutWidget)
+        #     self.lbl_EPI.setMaximumSize(QtCore.QSize(75, 16777215))
+        #     self.lbl_EPI.setStyleSheet("image:url(:/Img/EPIs/earmuffs.png)")
+        #     self.lbl_EPI.setObjectName("lbl_EPI")
+        #     self.layout_EPIs.addWidget(self.lbl_EPI)
+
 
     def jiga_list(self):
         #self.Reset_Button.setVisible(False)
         self.body_web.setZoomFactor(1)
-        self.body_home.setVisible(False) #))homepage
-        self.body_web.setVisible(True)#))web
-        #self.controllers5sOFF()
+        self.body_home.setVisible(False) 
+        self.body_web.setVisible(True)
+        self.hide5s()
 
         # Loads the tooling URL
         JigaAddr = self.thread.API.load_Jiga(self.thread.objStation.RouteId) 
@@ -360,9 +286,9 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         
     def load_lpa(self):
         self.body_web.setZoomFactor(1)
-        self.body_home.setVisible(False) #))homepage
-        self.body_web.setVisible(True)#))web
-        #self.controllers5sOFF()
+        self.body_home.setVisible(False) 
+        self.body_web.setVisible(True)
+        self.hide5s()
 
         # Loads the LPA URL
         LpaAddr = self.thread.API.load_LPA(self.thread.DL.ID_trim,self.thread.objStation.Id, self.thread.objStation.RouteId)
@@ -380,9 +306,9 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
         # Loads the BI URL
         BIAddr = self.thread.API.load_BI(self.thread.DL.ID_trim) 
 
-        self.body_home.setVisible(False) #))homepage
-        self.body_web.setVisible(True)#))web
-        #self.controllers5sOFF()
+        self.body_home.setVisible(False) 
+        self.body_web.setVisible(True)
+        self.hide5s()
 
         # Send the url via signal to the socket 
         #self.thread_loading.startThread(self.load_url_signal,BIAddr,self)
@@ -390,23 +316,23 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
 
     def load_fi(self):
         if self.operational_system == 1:    
-            self.body_web.setZoomFactor(1) #))web
+            self.body_web.setZoomFactor(1) 
             #self.Reset_Button.setVisible(False)
 
             # Loads the BI URL
             FIAddr = self.thread.API.load_FI(self.Station.Name) 
 
-            self.body_home.setVisible(False) #))homepage
-            self.body_web.setVisible(True) #))web
-            # self.controllers5sOFF()
+            self.body_home.setVisible(False) 
+            self.body_web.setVisible(True) 
+            self.hide5s()
             # Send the url via signal to the socket 
             self.body_web.load(FIAddr)
 
         else:
             from PyQt5.QtNetwork import QNetworkRequest, QNetworkAccessManager
-            self.body_home.setVisible(False) #))homepage
-            self.body_web.setVisible(True) #))web
-            # self.controllers5sOFF()
+            self.body_home.setVisible(False) 
+            self.body_web.setVisible(True) 
+            self.hide5s()
 
             self.urlFI = QUrl()
             self.urlFI.setScheme("http")
@@ -426,20 +352,20 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen):
     
 
 
-def RFRead(): #Função de leitura e autenticação dos crachás Jabil
+# def RFRead(): #Função de leitura e autenticação dos crachás Jabil
     
-    Read_ID = None
+#     Read_ID = None
 
-         # Instantiate the RFID reader class
-    reader = MFRC522.MFRC522()
+#          # Instantiate the RFID reader class
+#     reader = MFRC522.MFRC522()
 
-         # Get the badge id from the RFID reader
-    Read_ID = reader.JABIL_Matricula() 
+#          # Get the badge id from the RFID reader
+#     Read_ID = reader.JABIL_Matricula() 
 
-         # close the SPI slot 
-    reader.close_SPI()
+#          # close the SPI slot 
+#     reader.close_SPI()
 
-    return Read_ID
+#     return Read_ID
 
 #----------------------------------------------------------------------------------------
 #Thread for badge reading
@@ -630,7 +556,7 @@ class WaitForPageLoad(QThread):
         while(self.Screen.loading_status != 1):
             
             print("Recarregando ........Status:" + str(self.Screen.loading_status))
-            self.Screen.body_web.reload() #))web
+            self.Screen.body_web.reload() 
             
             while((timer_load < load_limit ) and (self.Screen.loading_status != 1)):
                 time.sleep(1)

@@ -185,7 +185,7 @@ class ApiManager:
         
         return self.req
 
-    def load5s(self,Workstation):
+    def load_5s(self,Workstation):
 
         baseUrl = 'http://brbelm0itqa01/AIOServiceSTG/Images5S/GetAll?query='
         baseUrl = baseUrl + str(Workstation)
