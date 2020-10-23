@@ -26,7 +26,6 @@ logger.setLevel(logging.DEBUG)
 class ApiManager:
     
     script_location = Path(__file__).absolute().parent
-    file_location = script_location / 'file.yaml'
 
     def __init__(self, FilePath = script_location / 'Apis.yml'):
 

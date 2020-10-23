@@ -1,32 +1,3 @@
----
-    Labels:
-        Product: "LINK2500"
-
-        0:
-          Pages: 1
-          Doc: "LINK2500-PREP"
-        1:
-          Pages: 1
-          Doc: "LINK2500-1"
-        2:
-          Pages: 2
-          Doc: "LINK2500-2" 
-        3:
-          Pages: 1
-          Doc: "LINK2500-3"          
-        4:
-          GENERAL: "Botão customizado por Área. Não disponível ainda"
-          INGCUS:
-                 1: "Link para OR MONITOR no CNCS"
-          REP:
-                 1: "Link para TEST WIP"
-                 2: "Link para TEST WIP"
-                 3: "Link para TEST WIP"
-                 4: "Link para TEST WIP"
-                 5: "Link para TEST WIP"
-                 6: "Link para TEST WIP"
-                 7: "Link para TEST WIP"
-                 8: "Link para TEST WIP"
     Buttons:
         Product: "LINK2500"
 
@@ -45,13 +16,13 @@
         4:
           GENERAL: "Em construção"
           INGCUS:
-                 1: "OR MONITOR"
-          REP:
-                 1: "TEST WIP"
-                 2: "TEST WIP"
-                 3: "TEST WIP"
-                 4: "TEST WIP"
-                 5: "TEST WIP"
-                 6: "TEST WIP"
-                 7: "TEST WIP"
-                 8: "TEST WIP"    
+                 1: "   OR Monitor"
+          # REP:
+          #        1: "   TEST WIP"
+          #        2: "   TEST WIP"
+          #        3: "   TEST WIP"
+          #        4: "   TEST WIP"
+          #        5: "   TEST WIP"
+          #        6: "   TEST WIP"
+          #        7: "   TEST WIP"
+          #        8: "   TEST WIP"    

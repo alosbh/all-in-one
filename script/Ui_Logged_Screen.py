@@ -142,7 +142,7 @@ class Ui_Logged_Screen(object):
         self.lbl_user_avatar.setGeometry(QtCore.QRect(50, 20, 131, 131))
         self.lbl_user_avatar.setStyleSheet("image: url(:/Img/LogoJabil.png);\n"
 "background-color:white;\n"
-"border-radius:65px;")
+"border-radius:60px;")
         self.lbl_user_avatar.setText("")
         self.lbl_user_avatar.setObjectName("lbl_user_avatar")
         self.sidebar_apps = QtWidgets.QFrame(self.sidebar)
@@ -312,6 +312,29 @@ class Ui_Logged_Screen(object):
         self.btn_SCTC.setIcon(icon6)
         self.btn_SCTC.setIconSize(QtCore.QSize(22, 22))
         self.btn_SCTC.setObjectName("btn_SCTC")
+        self.btn_custom = QtWidgets.QPushButton(self.sidebar_apps)
+        self.btn_custom.setGeometry(QtCore.QRect(0, 292, 234, 41))
+        font = QtGui.QFont()
+        font.setFamily("Inter UI")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setWeight(50)
+        self.btn_custom.setFont(font)
+        self.btn_custom.setStyleSheet("QPushButton {\n"
+"color:white;text-align:left;padding-left:20px;border:none;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"color:white;text-align:left;padding-left:20px;border:none;background-color:#5253ee\n"
+"}\n"
+"\n"
+"\n"
+"")
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(":/Img/edit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_custom.setIcon(icon7)
+        self.btn_custom.setIconSize(QtCore.QSize(22, 22))
+        self.btn_custom.setObjectName("btn_custom")
         self.btn_homepage.raise_()
         self.btn_instruction_sheet.raise_()
         self.btn_5s.raise_()
@@ -319,6 +342,7 @@ class Ui_Logged_Screen(object):
         self.btn_support.raise_()
         self.btn_goodideas.raise_()
         self.btn_SCTC.raise_()
+        self.btn_custom.raise_()
         self.lbl_progress = QtWidgets.QLabel(self.sidebar)
         self.lbl_progress.setGeometry(QtCore.QRect(0, 300, 234, 31))
         font = QtGui.QFont()
@@ -394,6 +418,7 @@ class Ui_Logged_Screen(object):
         font = QtGui.QFont()
         font.setFamily("Yu Gothic")
         self.btn_reset.setFont(font)
+        self.btn_reset.setToolTip("")
         self.btn_reset.setStyleSheet("QPushButton{\n"
 "image:url(:/Img/desligar2.png)\n"
 "}\n"
@@ -1207,8 +1232,9 @@ class Ui_Logged_Screen(object):
         self.btn_instruction_sheet.setText(_translate("MainWindow", "   Ficha de Instrução"))
         self.btn_goodideas.setText(_translate("MainWindow", "   Boas Ideias"))
         self.btn_support.setText(_translate("MainWindow", "   Suporte (Breve...)"))
-        self.btn_5s.setText(_translate("MainWindow", "   Posto Ideal 5S"))
+        self.btn_5s.setText(_translate("MainWindow", "   Posto Ideal 5s"))
         self.btn_SCTC.setText(_translate("MainWindow", "     Ferramentas - SCTC"))
+        self.btn_custom.setText(_translate("MainWindow", "   Custom"))
         self.lbl_progress.setText(_translate("MainWindow", "para o próximo nível"))
         self.lbl_value_workstation.setText(_translate("MainWindow", "INGBOXENT001"))
         self.lbl_workstation.setText(_translate("MainWindow", "Posto"))

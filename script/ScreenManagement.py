@@ -11,7 +11,7 @@ from DirectLabor import DirectLabor as DL
 from OS_define import OS_define
 from functions_5s import functions_5s
 
-import MFRC522
+# import MFRC522
 import time
 import sys
 import os
@@ -157,6 +157,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         self.build_body_web()
         self.Station = Station
         self.DL = DL()
+        self.build_custom_button()
         self.button_handle()
         self.generate_5s(self.Station.Name)
 
@@ -188,8 +189,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         self.thread.NonLogged_Window = NonLogged_Window
         self.thread.Logged_Window = self
 
-
-
     def build_body_web(self):
         #setting up body_web - windows/raspberry
         #1 = windows / 0 = rasp
@@ -219,8 +218,22 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
     # Method to show the window widget 
     def Show(self):
         self.lbl_value_workstation.setText(self.Station.Name)
-        print("NOME DA MINHA WORKSTTION EH:" + self.Station.Name)
         self.Logged_QtWindow.showFullScreen()
+
+    # Builds the custom button if it is enabled at the workstation
+    def build_custom_button(self):
+        global LabelsObject 
+        LabelsObject = labels()
+
+        try:
+            self.btn_custom.setText(LabelsObject.data['Buttons'][4][str(self.Station.Area)][int(self.Station.Index)])
+
+        except:
+            try:
+                self.btn_custom.setText(LabelsObject.data['Buttons'][4][str(self.Station.AreaTrim)][int(self.Station.Index)])
+
+            except:
+                self.btn_custom.setVisible(False)
    
     # Links the buttons to their respective methods
     def button_handle(self):
@@ -232,7 +245,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         self.btn_instruction_sheet.clicked.connect(self.load_fi)
         self.btn_goodideas.clicked.connect(self.load_bi)
         self.btn_lpa.clicked.connect(self.load_lpa)
-        #self.custom_button.clicked.connect(self.custom_button_load)
+        self.btn_custom.clicked.connect(self.custom_button_load)
 
     def reset(self):
         self.Reset_Window.Show()
@@ -245,7 +258,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
 
         self.body_home.setVisible(True)
         self.body_web.setVisible(False)
-        #self.Reset_Button.setVisible(False)
         self.hide5s()
 
     #Method to load an url on the webviewer
@@ -259,25 +271,11 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
     def finish_loading(self):
         self.loading_status = 1
 
-    # def custom_button_load(self):
-    #     #self.Reset_Button.setVisible(False)
-    #     self.body_web.setZoomFactor(0.8) 
-    #     self.body_home.setVisible(False) 
-    #     self.body_web.setVisible(True) 
-    #     # Loads the tooling URL
-    #     CustomAddr = self.thread.API.custom_button(self.Station.Area,self.Station.AreaTrim, self.Station.RouteName, self.Station.Index) 
-
-    #     # Send the url via signal to the socket   
-    #     self.load_url_signal.signal.emit(CustomAddr)
-
-    # def create_EPI_icons():
-        # adicionar EPIs - prototipo
-        # for x in range(0):
-        #     self.lbl_EPI = QtWidgets.QWidget(self.horizontalLayoutWidget)
-        #     self.lbl_EPI.setMaximumSize(QtCore.QSize(75, 16777215))
-        #     self.lbl_EPI.setStyleSheet("image:url(:/Img/EPIs/earmuffs.png)")
-        #     self.lbl_EPI.setObjectName("lbl_EPI")
-        #     self.layout_EPIs.addWidget(self.lbl_EPI)
+    def custom_button_load(self):
+        CustomAddr = self.thread.API.custom_button(self.Station.Area,self.Station.AreaTrim, self.Station.RouteName, self.Station.Index)
+        self.body_home.setVisible(False) 
+        self.body_web.setVisible(True) 
+        self.load_url_signal.signal.emit(CustomAddr)
 
     def jiga_list(self):
         #self.Reset_Button.setVisible(False)
@@ -286,10 +284,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         self.body_web.setVisible(True)
         self.hide5s()
 
-        # Loads the tooling URL
         JigaAddr = self.thread.API.load_Jiga(self.thread.objStation.RouteId) 
-
-        # Send the url via signal to the socket   
         self.load_url_signal.signal.emit(JigaAddr)
         
     def load_lpa(self):
@@ -298,10 +293,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         self.body_web.setVisible(True)
         self.hide5s()
 
-        # Loads the LPA URL
         LpaAddr = self.thread.API.load_LPA(self.thread.DL.ID_trim,self.thread.objStation.Id, self.thread.objStation.RouteId)
-
-        # Send the url via signal to the socket   
         self.load_url_signal.signal.emit(LpaAddr)
         #self.thread_loading.startThread(self.load_url_signal,LpaAddr,self)
         #self.Reset_Button.setVisible(True)
@@ -309,31 +301,22 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
 
     def load_bi(self):
         self.body_web.setZoomFactor(1)
-        #self.Reset_Button.setVisible(False)
-  
-        # Loads the BI URL
         BIAddr = self.thread.API.load_BI(self.thread.DL.ID_trim) 
-
         self.body_home.setVisible(False) 
         self.body_web.setVisible(True)
         self.hide5s()
 
-        # Send the url via signal to the socket 
         #self.thread_loading.startThread(self.load_url_signal,BIAddr,self)
         self.load_url_signal.signal.emit(BIAddr)
 
     def load_fi(self):
         if self.operational_system == 1:    
             self.body_web.setZoomFactor(1) 
-            #self.Reset_Button.setVisible(False)
-
-            # Loads the BI URL
             FIAddr = self.thread.API.load_FI(self.Station.Name) 
 
             self.body_home.setVisible(False) 
             self.body_web.setVisible(True) 
             self.hide5s()
-            # Send the url via signal to the socket 
             self.body_web.load(FIAddr)
 
         else:
@@ -357,21 +340,30 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
             self.byteparam = bytes(json.dumps(params),'utf-8')
             self.body_web.load(self.req,QNetworkAccessManager.PostOperation,self.byteparam)
 
-# Badge reading function
-def RFRead():
+# # Badge reading function
+# def RFRead():
     
-    Read_ID = None
+#     Read_ID = None
 
-         # Instantiate the RFID reader class
-    reader = MFRC522.MFRC522()
+#          # Instantiate the RFID reader class
+#     reader = MFRC522.MFRC522()
 
-         # Get the badge id from the RFID reader
-    Read_ID = reader.JABIL_Matricula() 
+#          # Get the badge id from the RFID reader
+#     Read_ID = reader.JABIL_Matricula() 
 
-         # close the SPI slot 
-    reader.close_SPI()
+#          # close the SPI slot 
+#     reader.close_SPI()
 
-    return Read_ID
+#     return Read_ID
+
+# def create_EPI_icons():
+        # adicionar EPIs - prototipo
+        # for x in range(0):
+        #     self.lbl_EPI = QtWidgets.QWidget(self.horizontalLayoutWidget)
+        #     self.lbl_EPI.setMaximumSize(QtCore.QSize(75, 16777215))
+        #     self.lbl_EPI.setStyleSheet("image:url(:/Img/EPIs/earmuffs.png)")
+        #     self.lbl_EPI.setObjectName("lbl_EPI")
+        #     self.layout_EPIs.addWidget(self.lbl_EPI)
 
 #----------------------------------------------------------------------------------------
 #Thread for badge reading
@@ -424,8 +416,8 @@ class MainThread(QThread):
         while(True):
             
             try:
-                # Read_ID = 51008294
-                Read_ID = (RFRead()) # Reads Badge ID
+                Read_ID = 51008294
+                # Read_ID = (RFRead()) # Reads Badge ID
             except Exception as e:
                 traceback.print_exc()
                 logger.error("RFID error: " + type(e).__name__)
