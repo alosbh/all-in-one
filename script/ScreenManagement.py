@@ -272,7 +272,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         self.loading_status = 1
 
     def custom_button_load(self):
-        CustomAddr = self.thread.API.custom_button(self.Station.Area,self.Station.AreaTrim, self.Station.RouteName, self.Station.Index)
+        CustomAddr = self.thread.API.custom_button(self.Station.Area,self.Station.AreaTrim, self.Station.RouteMin, self.Station.Index)
         self.body_home.setVisible(False) 
         self.body_web.setVisible(True) 
         self.load_url_signal.signal.emit(CustomAddr)

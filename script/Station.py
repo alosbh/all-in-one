@@ -33,6 +33,7 @@ class Station:
         self.Name = ""
         self.RouteId = ""
         self.RouteName = ""
+        self.RouteMin = ""
         self.Area = ""
         self.NickName = ""
         self.Enabled = ""
@@ -78,6 +79,7 @@ class Station:
             self.Name = ws.GetSingleValueFromJsonObject(jsonData,"Name", False)
             self.Area = self.Name[:6]
             self.AreaTrim = self.Name[:3]
+            self.RouteMin = self.Name[:9]
             self.RouteName = lineName['Name']
             self.RouteId = ws.GetSingleValueFromJsonObject(jsonData,"LineId", False)
             self.Enabled = ws.GetSingleValueFromJsonObject(jsonData,"Status", False)
