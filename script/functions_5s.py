@@ -8,6 +8,7 @@ class functions_5s():
     def generate_5s(self, workstation_name):
         self.dots_list = []
         self.workstation_name = workstation_name
+        # self.workstation_name = "INGSCR001"
         self.create_dots_5s()
         self.btn_5s_back.raise_()
         self.btn_5s_next.raise_()

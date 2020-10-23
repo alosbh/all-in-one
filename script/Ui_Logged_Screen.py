@@ -42,12 +42,6 @@ class Ui_Logged_Screen(object):
         self.usercard.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.usercard.setFrameShadow(QtWidgets.QFrame.Raised)
         self.usercard.setObjectName("usercard")
-        self.avatar = QtWidgets.QWidget(self.usercard)
-        self.avatar.setGeometry(QtCore.QRect(57, 25, 120, 120))
-        self.avatar.setStyleSheet("image: url(:/Img/LogoJabil.png);\n"
-"background-color:white;\n"
-"border-radius:60px;")
-        self.avatar.setObjectName("avatar")
         self.lbl_value_name = QtWidgets.QLabel(self.usercard)
         self.lbl_value_name.setGeometry(QtCore.QRect(0, 150, 234, 31))
         font = QtGui.QFont()
@@ -144,6 +138,13 @@ class Ui_Logged_Screen(object):
         self.lbl_value_percnextlvl.setStyleSheet("background-color:transparent;color: white;")
         self.lbl_value_percnextlvl.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_value_percnextlvl.setObjectName("lbl_value_percnextlvl")
+        self.lbl_user_avatar = QtWidgets.QLabel(self.usercard)
+        self.lbl_user_avatar.setGeometry(QtCore.QRect(50, 20, 131, 131))
+        self.lbl_user_avatar.setStyleSheet("image: url(:/Img/LogoJabil.png);\n"
+"background-color:white;\n"
+"border-radius:65px;")
+        self.lbl_user_avatar.setText("")
+        self.lbl_user_avatar.setObjectName("lbl_user_avatar")
         self.sidebar_apps = QtWidgets.QFrame(self.sidebar)
         self.sidebar_apps.setGeometry(QtCore.QRect(0, 330, 234, 461))
         self.sidebar_apps.setStyleSheet("border:none;")
@@ -1206,7 +1207,7 @@ class Ui_Logged_Screen(object):
         self.btn_instruction_sheet.setText(_translate("MainWindow", "   Ficha de Instrução"))
         self.btn_goodideas.setText(_translate("MainWindow", "   Boas Ideias"))
         self.btn_support.setText(_translate("MainWindow", "   Suporte (Breve...)"))
-        self.btn_5s.setText(_translate("MainWindow", "   5S (Breve...)"))
+        self.btn_5s.setText(_translate("MainWindow", "   Posto Ideal 5S"))
         self.btn_SCTC.setText(_translate("MainWindow", "     Ferramentas - SCTC"))
         self.lbl_progress.setText(_translate("MainWindow", "para o próximo nível"))
         self.lbl_value_workstation.setText(_translate("MainWindow", "INGBOXENT001"))

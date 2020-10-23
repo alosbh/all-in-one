@@ -14,13 +14,12 @@ from functions_5s import functions_5s
 import MFRC522
 import time
 import sys
-import urllib.request
 import os
 import logging
 import traceback
 
 from PyQt5.QtCore import QObject, pyqtSignal, QUrl
-
+from PyQt5.QtGui import QPixmap
 # from PyQt5.QtWebKit import QWebSettings
 
 global logger
@@ -157,19 +156,25 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         self.setupUi(self.Logged_QtWindow)
         self.build_body_web()
         self.Station = Station
+        self.DL = DL()
         self.button_handle()
         self.generate_5s(self.Station.Name)
-        # Fills values with workstation values
+
+        # Fills labels with workstation values
         self.lbl_value_workstation.setText(str(self.Station.Name)) 
         self.lbl_value_version.setText(str(GlobalParameters.AIO_Version)) 
         self.lbl_value_line.setText(str(self.Station.RouteName))
         self.lbl_value_product.setText(str(self.Station.ProductName))
         self.lbl_value_client.setText(str(self.Station.ClientName))
+
+        
+
         # Setting up support window
         self.Support_Window = Support_Window
         self.Support_Window.posto = self.Station.Name
         self.Support_Window.index = self.Station.Index
         self.Support_Window.populateMotivos()
+        
         # Setting up reset window
         self.Reset_Window = Reset_Window
 
@@ -182,6 +187,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         # Serves the thread the screen objects, so it can hide, show and manage the windows when needed.
         self.thread.NonLogged_Window = NonLogged_Window
         self.thread.Logged_Window = self
+
+
 
     def build_body_web(self):
         #setting up body_web - windows/raspberry
@@ -206,6 +213,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         self.lbl_value_productivity.setText(DL.Productivity)
         self.lbl_value_goodideas.setText('-')
         self.lbl_value_jabilcoins.setText('-')
+        self.lbl_user_avatar.setPixmap(DL.picture)
+        
 
     # Method to show the window widget 
     def Show(self):
@@ -216,7 +225,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
     # Links the buttons to their respective methods
     def button_handle(self):
         self.btn_5s.clicked.connect(self.show5s)
-        self.btn_support.clicked.connect(self.suporte)
+        # self.btn_support.clicked.connect(self.suporte)
         self.btn_homepage.clicked.connect(self.home)
         self.btn_SCTC.clicked.connect(self.jiga_list)
         self.btn_reset.clicked.connect(self.reset)
@@ -348,8 +357,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
             self.byteparam = bytes(json.dumps(params),'utf-8')
             self.body_web.load(self.req,QNetworkAccessManager.PostOperation,self.byteparam)
 
-
-def RFRead(): #Função de leitura e autenticação dos crachás Jabil
+# Badge reading function
+def RFRead():
     
     Read_ID = None
 
@@ -458,6 +467,7 @@ class MainThread(QThread):
                     if(status=="Login realizado"):
                         # Setup the Direct Labor object with actual worker data
                         self.DL.Setup(LoginResponse, self.host)
+                        self.DL.load_avatar()
                         # Setup the user fields on the logged screen
                         self.Logged_Window.SetupUser(self.DL)
                         # The active ID is the newly logged ID               
