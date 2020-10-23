@@ -205,6 +205,7 @@ class ApiManager:
             baseUrl="http://10.57.16.42/CNCSWebApiPersona/OrMonitor?hostName="
             baseUrl = baseUrl + str(Route)
             print("OR MONITOR URL: " + baseUrl)
+            logger.error("OR MONITOR URL: " + baseUrl)
 
         elif(AreaTrim=="REP"):
             baseUrl="http://brbelm0itqa01/TestPortal/pages/MesWipReport.aspx"
