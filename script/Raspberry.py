@@ -4,6 +4,8 @@ import platform
 import socket
 import logging
 import socket
+import os
+import sys
 
 global logger
 logger=logging.getLogger() 
@@ -16,10 +18,12 @@ class Raspberry:
         try:
             # Get Hostname
             self.Name = platform.node()
-            print("------------------")
+            print("---------raspberry---------")
             print(socket.gethostname())
+            teste = platform.uname()
+            print(teste[1])
             print(self.Name)
-            print("------------------")
+            print("---------raspberry---------")
             #Get system Info
             self.System = platform.system()
             self.SystemVersion = platform.version()
