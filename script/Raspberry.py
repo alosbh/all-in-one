@@ -3,6 +3,7 @@
 import platform
 import socket
 import logging
+import socket
 
 global logger
 logger=logging.getLogger() 
@@ -13,11 +14,11 @@ class Raspberry:
     def __init__(self):
 
         try:
-
             # Get Hostname
             self.Name = platform.node()
             print("------------------")
-            print(platform.node())
+            print(socket.gethostname())
+            print(self.Name)
             print("------------------")
             #Get system Info
             self.System = platform.system()
