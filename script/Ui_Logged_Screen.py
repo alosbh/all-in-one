@@ -142,7 +142,7 @@ class Ui_Logged_Screen(object):
         self.lbl_user_avatar.setGeometry(QtCore.QRect(50, 20, 131, 131))
         self.lbl_user_avatar.setStyleSheet("image: url(:/Img/LogoJabil.png);\n"
 "background-color:white;\n"
-"border-radius:60px;")
+"border-radius:65px;")
         self.lbl_user_avatar.setText("")
         self.lbl_user_avatar.setObjectName("lbl_user_avatar")
         self.sidebar_apps = QtWidgets.QFrame(self.sidebar)
