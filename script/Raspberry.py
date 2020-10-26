@@ -17,12 +17,7 @@ class Raspberry:
             # Get Hostname
             self.Name = platform.node()
             print("------------------")
-            print(self.Name)
-            print(self.Name)
-            print(self.Name)
-            print(self.Name)
-            print(self.Name)
-            print(self.Name)
+            print(platform.node())
             print("------------------")
             #Get system Info
             self.System = platform.system()
