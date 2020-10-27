@@ -45,7 +45,6 @@ class Raspberry:
             
             ip = os.environ.get('SYSCON_IP')
             print(ip)
-            sys.exit()
             url = "http://" + ip + ":3000/api/v1.0/system/info"
 
             # request = requests.get(url, headers={'Authorization': 'Bearer '})
