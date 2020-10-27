@@ -6,6 +6,7 @@ import logging
 import requests
 import sys
 import json
+import os
 from time import sleep
 
 global logger
@@ -42,7 +43,10 @@ class Raspberry:
 
             # sleep(1)
             
-            url = "http://10.57.39.13:3000/api/v1.0/system/info"
+            ip = os.environ.get('SYSCON_IP')
+            print(ip)
+            sys.exit()
+            url = "http://" + ip + ":3000/api/v1.0/system/info"
 
             # request = requests.get(url, headers={'Authorization': 'Bearer '})
             request = requests.get(url)
