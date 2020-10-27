@@ -32,9 +32,9 @@ class Raspberry:
             url = "https://pi-login.docker.corp.jabil.org/api/v1.0/auth/ip?value=10.57.39.13"
             body={}
             headers={}
-            # headers={"username": "100059527",
-            #         "password": "Sdesenha2017*",
-            #         "Content-Type": "application/json"}
+            headers={"username": "",
+                    "password": "",
+                    "Content-Type": "application/json"}
             request = requests.post(url, data=body, headers=headers, verify = False)
             response = json.loads(request.content)
             print(response)
