@@ -29,26 +29,25 @@ class Raspberry:
 
             # Get Hostname by request
             print('--------------')
-            # url = "https://pi-login.docker.corp.jabil.org/api/v1.0/auth/ip?value=10.57.39.13"
-            # body={}
-            # headers={}
-            # headers={"username": "",
-            #         "password": "",
-            #         "Content-Type": "application/json"}
-            # request = requests.post(url, data=body, headers=headers, verify = False)
-            # response = json.loads(request.content)
-            # print(response)
-            # token = response['token']
+            url = "https://pi-login.docker.corp.jabil.org/api/v1.0/auth/ip?value=10.57.39.13"
+            body={}
+            headers={"username": "123",
+                    "password": "123",
+                    "Content-Type": "application/json"}
+            print('1')
+            request = requests.post(url, data=body, headers=headers, verify = False)
+            print('2')
+            print(request)
+            response = json.loads(request.content)
+            print('3')
+            print(response)
+            token = response['token']
 
-            # sleep(1)
+            sleep(1)
             
             url = "http://10.57.39.13:3000/api/v1.0/system/info"
 
-            request = requests.get(url, headers={'Authorization': 'Bearer '})
-            print('1')
-            # request = requests.get(url)
-            print('2')
-            print(request)
+            request = requests.get(url, headers={'Authorization': 'Bearer ' + token})
             response = json.loads(request.content)
             self.Name = response['hostname']
             print('--------------')
