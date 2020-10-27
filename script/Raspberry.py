@@ -36,8 +36,11 @@ class Raspberry:
             #         "password": "",
             #         "Content-Type": "application/json"}
             # request = requests.post(url, data=body, headers=headers, verify = False)
+            print('1')
             request = request.get(url)
+            print('2')
             response = json.loads(request.content)
+            print('3')
             print(response)
             token = response['token']
 
