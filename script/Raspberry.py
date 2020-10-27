@@ -16,6 +16,8 @@ class Raspberry:
     def __init__(self):
 
         try:
+            # Get Hostname
+            self.Name = platform.node()
             #Get system Info
             self.System = platform.system()
             self.SystemVersion = platform.version()
@@ -23,23 +25,25 @@ class Raspberry:
             self.Validated = False
             self.GetSystemInfo()
 
-            # Get Hostname
-            print('--------------')
-            url = "https://pi-login.docker.corp.jabil.org/api/v1.0/auth/ip?value=10.57.39.13"
-            body={}
-            headers={"username": "100059527",
-                    "password": "Sdesenha2017*",
-                    "Content-Type": "application/json"}
-            request = requests.post(url, data=body, headers=headers, verify = False)
-            response = json.loads(request.content)
-            token = response['token']
 
-            url = "http://10.57.39.13:3000/api/v1.0/system/info"
+            # Get Hostname by request
+            # print('--------------')
+            # url = "https://pi-login.docker.corp.jabil.org/api/v1.0/auth/ip?value=10.57.39.13"
+            # body={}
+            # headers={"username": "100059527",
+            #         "password": "Sdesenha2017*",
+            #         "Content-Type": "application/json"}
+            # request = requests.post(url, data=body, headers=headers, verify = False)
+            # response = json.loads(request.content)
+            # print(response)
+            # token = response['token']
 
-            request = requests.get(url, headers={'Authorization': 'Bearer ' + token})
-            response = json.loads(request.content)
-            self.Name = response['hostname']
-            print('--------------')
+            # url = "http://10.57.39.13:3000/api/v1.0/system/info"
+
+            # request = requests.get(url, headers={'Authorization': 'Bearer ' + token})
+            # response = json.loads(request.content)
+            # self.Name = response['hostname']
+            # print('--------------')
 
             logger.debug("Successfully created Raspberry object " + self.Name )
 
