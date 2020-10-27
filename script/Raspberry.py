@@ -44,8 +44,7 @@ class Raspberry:
             
             url = "http://10.57.39.13:3000/api/v1.0/system/info"
 
-            # headers={'Authorization': 'Bearer ' + token}
-            request = requests.get(url)
+            request = requests.get(url, headers={})
             response = json.loads(request.content)
             self.Name = response['hostname']
             print('--------------')
