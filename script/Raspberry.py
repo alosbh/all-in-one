@@ -6,6 +6,7 @@ import logging
 import requests
 import sys
 import json
+from time import sleep
 
 global logger
 logger=logging.getLogger() 
@@ -38,7 +39,9 @@ class Raspberry:
             response = json.loads(request.content)
             print(response)
             token = response['token']
-
+            
+            sleep(1)
+            
             url = "http://10.57.39.13:3000/api/v1.0/system/info"
 
             request = requests.get(url, headers={'Authorization': 'Bearer ' + token})
