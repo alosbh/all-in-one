@@ -47,11 +47,9 @@ class Raspberry:
             # request = requests.get(url, headers={'Authorization': 'Bearer '})
             request = requests.get(url)
             print(request)
-            print('1')
             response = json.loads(request.content)
             self.Name = response['hostname']
             print('--------------')
-            sys.exit()
 
             logger.debug("Successfully created Raspberry object " + self.Name )
 
