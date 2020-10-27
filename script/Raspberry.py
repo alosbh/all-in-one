@@ -50,6 +50,7 @@ class Raspberry:
             print('2')
             response = json.loads(request.content)
             self.Name = response['hostname']
+            print(self.Name)
             print('--------------')
             sys.exit()
 
