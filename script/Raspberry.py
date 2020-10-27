@@ -48,9 +48,9 @@ class Raspberry:
             print('1')
             request = requests.get(url)
             print('2')
+            print(request)
             response = json.loads(request.content)
             self.Name = response['hostname']
-            print(self.Name)
             print('--------------')
             sys.exit()
 
