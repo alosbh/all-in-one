@@ -26,7 +26,7 @@ class Raspberry:
             self.GetSystemInfo()
 
 
-            Get Hostname by request
+            # Get Hostname by request
             print('--------------')
             url = "https://pi-login.docker.corp.jabil.org/api/v1.0/auth/ip?value=10.57.39.13"
             body={}
