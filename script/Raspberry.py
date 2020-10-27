@@ -39,7 +39,7 @@ class Raspberry:
             response = json.loads(request.content)
             print(response)
             token = response['token']
-            
+
             sleep(1)
             
             url = "http://10.57.39.13:3000/api/v1.0/system/info"
@@ -48,6 +48,7 @@ class Raspberry:
             response = json.loads(request.content)
             self.Name = response['hostname']
             print('--------------')
+            sys.exit()
 
             logger.debug("Successfully created Raspberry object " + self.Name )
 
