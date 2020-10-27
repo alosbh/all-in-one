@@ -17,10 +17,6 @@ import sys
 import os
 import logging
 import traceback
-import platform
-import socket
-import os
-import sys
 
 from PyQt5.QtCore import QObject, pyqtSignal, QUrl
 from PyQt5.QtGui import QPixmap
@@ -157,15 +153,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
 
 
     def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window, Support_Window):
-        
-        Name = platform.node()
-        print("---------screen---------")
-        print(socket.gethostname())
-        teste = platform.uname()
-        print(teste[1])
-        print(Name)
-        print("---------screen---------")
-
         self.setupUi(self.Logged_QtWindow)
         self.build_body_web()
         self.Station = Station
