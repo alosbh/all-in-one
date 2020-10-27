@@ -43,14 +43,11 @@ class Raspberry:
 
             # sleep(1)
             
-            ip = os.environ.get('SYSCON_IP')
-            print(ip)
-            url = "http://" + ip + ":3000/api/v1.0/system/info"
+            # request = requests.get(url, headers={'Authorization': 'Bearer ' + token})
 
-            # request = requests.get(url, headers={'Authorization': 'Bearer '})
+            ip = os.environ.get('SYSCON_IP')
+            url = "http://" + ip + ":3000/api/v1.0/system/info"
             request = requests.get(url)
-            print(request)
-            print('1')
             response = json.loads(request.content)
             self.Name = response['hostname']
             print('--------------')
