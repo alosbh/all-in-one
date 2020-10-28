@@ -53,10 +53,12 @@ class Raspberry:
             print("requst url: " + url)
             request = requests.get(url)
             response = json.loads(request.content)
-            
-            print("RESPONSE:")
             print(request)
             print(response)
+            hostname = response['hostname']
+            print("hostname:" + hostname)
+            self.Name = hostname
+            
             
            
             
