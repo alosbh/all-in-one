@@ -56,26 +56,9 @@ class Raspberry:
             
             print("RESPONSE:")
             print(request)
+            print(response)
             
-            print('--------------')
-            print('--------------**********************')
-            url = "https://" + ip + "/api/v1.0/system/info"
-            print("requst url: " + url)
-            request = requests.get(url)
-            response = json.loads(request.content)
-            
-            print("RESPONSE:")
-            print(request)
-            
-            print('--------------')
-            print('--------------**********************')
-            url = "https://" + ip + ":3000/api/v1.0/system/info"
-            print("requst url: " + url)
-            request = requests.get(url)
-            response = json.loads(request.content)
-            
-            print("RESPONSE:")
-            print(request)
+           
             
             print('--------------')
 
