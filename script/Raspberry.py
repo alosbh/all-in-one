@@ -47,9 +47,42 @@ class Raspberry:
 
             ip = os.environ.get('SYSCON_IP')
             url = "http://" + ip + ":3000/api/v1.0/system/info"
+            print("requst url: " + url)
             request = requests.get(url)
             response = json.loads(request.content)
             self.Name = response['hostname']
+            print("RESPONSE:")
+            print(request)
+            print("hostname: " + )
+            print('--------------**********************')
+            url = "http://" + ip + "/api/v1.0/system/info"
+            print("requst url: " + url)
+            request = requests.get(url)
+            response = json.loads(request.content)
+            self.Name = response['hostname']
+            print("RESPONSE:")
+            print(request)
+            print("hostname: " + )
+            print('--------------')
+            print('--------------**********************')
+            url = "https://" + ip + "/api/v1.0/system/info"
+            print("requst url: " + url)
+            request = requests.get(url)
+            response = json.loads(request.content)
+            self.Name = response['hostname']
+            print("RESPONSE:")
+            print(request)
+            print("hostname: " + )
+            print('--------------')
+            print('--------------**********************')
+            url = "https://" + ip + ":3000/api/v1.0/system/info"
+            print("requst url: " + url)
+            request = requests.get(url)
+            response = json.loads(request.content)
+            self.Name = response['hostname']
+            print("RESPONSE:")
+            print(request)
+            print("hostname: " + )
             print('--------------')
 
             logger.debug("Successfully created Raspberry object " + self.Name )
