@@ -32,7 +32,6 @@ class Raspberry:
             # Get Hostname by request
             if OS == 1:
                 self.Name = 'BRBELRASP145'
-                print('passei---------------')
 
             else:
                 ip = os.environ.get('SYSCON_IP')
@@ -43,11 +42,10 @@ class Raspberry:
                     response = json.loads(request.content)
                     hostname = response['hostname']
                     self.Name = hostname
-                    print('passei---------------')
                 else:
-                    print('deu errado---------------')
                     self.__init__()
             
+            print(self.Name)
             logger.debug("Successfully created Raspberry object " + self.Name )
 
         except Exception as e:
