@@ -6,7 +6,6 @@ import yaml
 import json
 import requests
 from requests.exceptions import ConnectionError
-from Raspberry import Raspberry
 from WebService import *
 import re as regex
 from PyQt5 import QtWidgets
@@ -31,9 +30,6 @@ class ApiManager:
 
         with open(FilePath, 'r') as ymlfile:
             cfg = yaml.full_load(ymlfile)
-
-
-        self.Raspberry = Raspberry()
 
         self.OJT = WebService(cfg['OJT'])
         self.AIO = WebService(cfg['AIO'])

@@ -7,7 +7,7 @@ import requests
 import sys
 import json
 import os
-from time import sleep
+from OS_define import *
 
 global logger
 logger=logging.getLogger() 
@@ -19,7 +19,6 @@ class Raspberry:
 
         try:
             # Get Hostname
-            # self.Name = platform.node()
             #Get system Info
             self.System = platform.system()
             self.SystemVersion = platform.version()
@@ -27,50 +26,31 @@ class Raspberry:
             self.Validated = False
             self.GetSystemInfo()
 
+            self.OS_define = OS_define()
+            OS = self.OS_define.get_OS_name()
 
             # Get Hostname by request
-            print('--------------')
-            # url = "https://pi-login.docker.corp.jabil.org/api/v1.0/auth/ip?value=10.57.39.13"
-            # body={}
-            # headers={}
-            # headers={"username": "",
-            #         "password": "",
-            #         "Content-Type": "application/json"}
-            # request = requests.post(url, data=body, headers=headers, verify = False)
-            # response = json.loads(request.content)
-            # print(response)
-            # token = response['token']
+            if OS == 1:
+                self.Name = 'BRBELRASP145'
+                print('passei---------------')
 
-            # sleep(1)
+            else:
+                ip = os.environ.get('SYSCON_IP')
+                url = "http://" + ip + "/api/v1.0/system/info"
+                request = requests.get(url)
+                if request == 'Response [200]':
+                    response = json.loads(request.content)
+                    hostname = response['hostname']
+                    self.Name = hostname
+                    print('passei---------------')
+                else:
+                    print('deu errado---------------')
+                    self.__init__()
             
-            # request = requests.get(url, headers={'Authorization': 'Bearer ' + token})
-
-            ip = os.environ.get('SYSCON_IP')
-            
-            
-            print('--------------**********************')
-            url = "http://" + ip + "/api/v1.0/system/info"
-            print("requst url: " + url)
-            request = requests.get(url)
-            response = json.loads(request.content)
-            print(request)
-            print(response)
-            hostname = response['hostname']
-            print("hostname:" + hostname)
-            self.Name = hostname
-            
-            
-           
-            
-            print('--------------')
-
             logger.debug("Successfully created Raspberry object " + self.Name )
 
         except Exception as e:
-
             logger.error("Error creating Raspberry object. Exception: " + type(e).__name__ )
-            print("deu errado")
-            sys.exit()
 
     def GetSystemInfo(self):
         self.IP = socket.gethostbyname(socket.gethostname())
