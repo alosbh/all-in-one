@@ -38,6 +38,7 @@ class Raspberry:
                 ip = os.environ.get('SYSCON_IP')
                 url = "http://" + ip + "/api/v1.0/system/info"
                 request = requests.get(url)
+                print(request)
                 if request == 'Response [200]':
                     response = json.loads(request.content)
                     hostname = response['hostname']
