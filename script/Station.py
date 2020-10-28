@@ -13,8 +13,6 @@ from Raspberry import Raspberry
 
 import traceback
 import sys
-# print ('4')
-# print (sys.modules)
 #GlobalPath Class
 
 from ApiManager import ApiManager
@@ -94,8 +92,6 @@ class Station:
             else:
                 self.ProductName = request_lineInfo['Product']
                 self.ClientName = request_lineInfo['ProductionGroup']
-            
-            print("Meu index é " + str(self.Index))
 
             return 1
 

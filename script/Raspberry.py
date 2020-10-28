@@ -35,7 +35,6 @@ class Raspberry:
             else:
                 self.request_rasp_hostname()
             
-            print(self.Name)
             logger.debug("Successfully created Raspberry object " + self.Name )
 
         except Exception as e:

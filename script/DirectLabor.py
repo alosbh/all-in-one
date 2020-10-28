@@ -2,7 +2,6 @@
 
 
 from ApiManager import *
-from pprint import pprint
 import sys
 import logging
 from PyQt5 import QtCore, QtGui, QtWidgets

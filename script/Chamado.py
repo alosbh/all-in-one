@@ -23,7 +23,6 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Support_QtWindow = QtWidgets.QMainWindow()
         self.setupUi(self.Support_QtWindow)
         self.Support_QtWindow.move((1366 - 353)/2, (768 - 240)/2)
-        logger.error("instanciei a classe")
         self.posto = ""
         self.index = 0
         self.time = "Engenharia"
@@ -43,7 +42,6 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Support_QtWindow.show()
     
     def button_handle(self):
-        logger.error("setei os botoes")
         self.btn_solicitar.clicked.connect(self.enviaChamado)
         self.btn_concluir.clicked.connect(self.finaliza)
         self.btn_cancelar.clicked.connect(self.finaliza)
