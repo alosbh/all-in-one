@@ -32,18 +32,8 @@ class Raspberry:
             # Get Hostname by request
             if OS == 1:
                 self.Name = 'BRBELRASP145'
-
             else:
-                ip = os.environ.get('SYSCON_IP')
-                url = "http://" + ip + "/api/v1.0/system/info"
-                request = requests.get(url)
-                print(request)
-                if request.status_code == 200:
-                    response = json.loads(request.content)
-                    hostname = response['hostname']
-                    self.Name = hostname
-                else:
-                    self.__init__()
+                self.request_rasp_hostname()
             
             print(self.Name)
             logger.debug("Successfully created Raspberry object " + self.Name )
@@ -51,6 +41,19 @@ class Raspberry:
         except Exception as e:
             logger.error("Error creating Raspberry object. Exception: " + type(e).__name__ )
 
+    def request_rasp_hostname(self):
+        ip = os.environ.get('SYSCON_IP')
+        url = "http://" + ip + "/api/v1.0/system/info"
+        request = requests.get(url)
+        
+        if request.status_code == 200:
+            response = json.loads(request.content)
+            hostname = response['hostname']
+            self.Name = hostname
+            print(self.Name)
+        else:
+            self.request_rasp_hostname()
+        
     def GetSystemInfo(self):
         self.IP = socket.gethostbyname(socket.gethostname())
         self.MAC = ""
