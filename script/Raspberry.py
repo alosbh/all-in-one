@@ -72,7 +72,7 @@ class Raspberry:
             
             print("RESPONSE:")
             print(request)
-            print("hostname: " + )
+            
             print('--------------')
             print('--------------**********************')
             url = "https://" + ip + ":3000/api/v1.0/system/info"
@@ -82,7 +82,7 @@ class Raspberry:
             
             print("RESPONSE:")
             print(request)
-            print("hostname: " + )
+            
             print('--------------')
 
             logger.debug("Successfully created Raspberry object " + self.Name )
