@@ -53,7 +53,7 @@ class Raspberry:
             
             print("RESPONSE:")
             print(request)
-            print("hostname: " + )
+            
             print('--------------**********************')
             url = "http://" + ip + "/api/v1.0/system/info"
             print("requst url: " + url)
@@ -62,7 +62,7 @@ class Raspberry:
             
             print("RESPONSE:")
             print(request)
-            print("hostname: " + )
+            
             print('--------------')
             print('--------------**********************')
             url = "https://" + ip + "/api/v1.0/system/info"
