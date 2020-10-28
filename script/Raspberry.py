@@ -50,7 +50,7 @@ class Raspberry:
             print("requst url: " + url)
             request = requests.get(url)
             response = json.loads(request.content)
-            self.Name = response['hostname']
+            
             print("RESPONSE:")
             print(request)
             print("hostname: " + )
@@ -59,7 +59,7 @@ class Raspberry:
             print("requst url: " + url)
             request = requests.get(url)
             response = json.loads(request.content)
-            self.Name = response['hostname']
+            
             print("RESPONSE:")
             print(request)
             print("hostname: " + )
@@ -69,7 +69,7 @@ class Raspberry:
             print("requst url: " + url)
             request = requests.get(url)
             response = json.loads(request.content)
-            self.Name = response['hostname']
+            
             print("RESPONSE:")
             print(request)
             print("hostname: " + )
@@ -79,7 +79,7 @@ class Raspberry:
             print("requst url: " + url)
             request = requests.get(url)
             response = json.loads(request.content)
-            self.Name = response['hostname']
+            
             print("RESPONSE:")
             print(request)
             print("hostname: " + )
