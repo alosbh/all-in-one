@@ -39,7 +39,7 @@ class Raspberry:
                 url = "http://" + ip + "/api/v1.0/system/info"
                 request = requests.get(url)
                 print(request)
-                if request == 'Response [200]':
+                if request.status_code == 200:
                     response = json.loads(request.content)
                     hostname = response['hostname']
                     self.Name = hostname
