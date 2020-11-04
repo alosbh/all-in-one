@@ -117,13 +117,9 @@ class MFRC522:
     try:
       # spi.openSPI(device=dev,speed=spd)
       self.dev_dictionary = spi.openSPI(device=dev, speed=spd)
-      print("------------------------------------------- li o cracha sem problemas1 -------------------------------------------")
       GPIO.setmode(GPIO.BOARD)
-      print("------------------------------------------- li o cracha sem problemas2 -------------------------------------------")
       GPIO.setup(self.NRSTPD, GPIO.OUT)
-      print("------------------------------------------- li o cracha sem problemas3 -------------------------------------------")
       GPIO.output(self.NRSTPD, 1)
-      print("------------------------------------------- li o cracha sem problemas4 -------------------------------------------")
       self.MFRC522_Init()
     except:
       print("Leitor de crachá não identificado, verifique se o cabo verde está ligado corretamente no raspberry e reinicie o dispositivo manualmente.")
