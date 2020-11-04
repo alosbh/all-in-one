@@ -11,7 +11,7 @@ from DirectLabor import DirectLabor as DL
 from OS_define import OS_define
 from functions_5s import functions_5s
 
-import MFRC522
+# import MFRC522
 import time
 import sys
 import os
@@ -238,7 +238,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
     # Links the buttons to their respective methods
     def button_handle(self):
         self.btn_5s.clicked.connect(self.show5s)
-        # self.btn_support.clicked.connect(self.suporte)
+        self.btn_support.clicked.connect(self.suporte)
         self.btn_homepage.clicked.connect(self.home)
         self.btn_SCTC.clicked.connect(self.jiga_list)
         self.btn_reset.clicked.connect(self.reset)
@@ -341,18 +341,18 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
             self.body_web.load(self.req,QNetworkAccessManager.PostOperation,self.byteparam)
 
 # Badge reading function
-def RFRead():
+# def RFRead():
     
-    Read_ID = None
+#     Read_ID = None
 
-         # Instantiate the RFID reader class
-    reader = MFRC522.MFRC522()
+#          # Instantiate the RFID reader class
+#     reader = MFRC522.MFRC522()
 
-         # Get the badge id from the RFID reader
-    Read_ID = reader.JABIL_Matricula() 
+#          # Get the badge id from the RFID reader
+#     Read_ID = reader.JABIL_Matricula() 
 
-         # close the SPI slot 
-    reader.close_SPI()
+#          # close the SPI slot 
+#     reader.close_SPI()
 
     return Read_ID
 
@@ -416,8 +416,8 @@ class MainThread(QThread):
         while(True):
             
             try:
-                # Read_ID = 51008294
-                Read_ID = (RFRead()) # Reads Badge ID
+                Read_ID = 51008294
+                # Read_ID = (RFRead()) # Reads Badge ID
             except Exception as e:
                 traceback.print_exc()
                 logger.error("RFID error: " + type(e).__name__)
