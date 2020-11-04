@@ -389,9 +389,11 @@ class MFRC522:
     while (matricula == None and errorsMat <= 3):
       # Scan for cards
       status = self.MI_ERR
+      logger.error("status0: " + str(status))
       errorsRead = 0
       while (status == self.MI_ERR and errorsRead <= 3):
         (status,TagType) = self.MFRC522_Request(self.PICC_REQIDL)
+        logger.error("status1: " + str(status))
         if (status == self.MI_ERR):
           time.sleep(0.1)
         errorsRead = errorsRead + 1
@@ -413,7 +415,7 @@ class MFRC522:
 
         # Authenticate
         status = self.MFRC522_Auth(self.PICC_AUTHENT1A, 1, key, uid)
-        logger.error("status: " + str(status))
+        logger.error("status2: " + str(status))
         # Check if authenticated
         if status == self.MI_OK:
           #Bloco de memoria que possui a matricula
