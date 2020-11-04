@@ -111,12 +111,11 @@ class MFRC522:
   Reserved34      = 0x3F
     
   serNum = []
-
   
-print(os.listdir('/dev'))
-onlyfiles = [f for f in listdir("/dev") if isfile (join('/dev', f))]
-print(onlyfiles)
-
+  print(os.listdir('/dev'))
+  onlyfiles = [f for f in listdir("/dev") if isfile (join('/dev', f))]
+  print(onlyfiles)
+  
   def __init__(self, dev='/dev/spidev0.0', spd=1000000):
     try:
       # spi.openSPI(device=dev,speed=spd)
