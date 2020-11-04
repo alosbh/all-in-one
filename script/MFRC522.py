@@ -124,9 +124,6 @@ class MFRC522:
       GPIO.setup(self.NRSTPD, GPIO.OUT)
       GPIO.output(self.NRSTPD, 1)
       self.MFRC522_Init()
-      print("-----")
-      GPIO.input()
-      print("-----")
 
     except:
       print("Leitor de crachá não identificado, verifique se o cabo verde está ligado corretamente no raspberry e reinicie o dispositivo manualmente.")
