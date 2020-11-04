@@ -354,7 +354,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
 #          # close the SPI slot 
 #     reader.close_SPI()
 
-    return Read_ID
+    # return Read_ID
 
 # def create_EPI_icons():
         # adicionar EPIs - prototipo
