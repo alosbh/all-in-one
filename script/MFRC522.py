@@ -119,7 +119,7 @@ class MFRC522:
   def __init__(self, dev='/dev/spidev0.0', spd=1000000):
     global logger
     logger=logging.getLogger() 
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.ERROR)
     try:
       # spi.openSPI(device=dev,speed=spd)
       self.dev_dictionary = spi.openSPI(device=dev, speed=spd)
@@ -413,7 +413,7 @@ class MFRC522:
 
         # Authenticate
         status = self.MFRC522_Auth(self.PICC_AUTHENT1A, 1, key, uid)
-
+        logger.error("status: " + str(status))
         # Check if authenticated
         if status == self.MI_OK:
           #Bloco de memoria que possui a matricula
