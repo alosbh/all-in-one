@@ -110,10 +110,6 @@ class MFRC522:
     
   serNum = []
   def __init__(self, dev='/dev/spidev0.0', spd=1000000):
-
-    print(os.listdir('/dev'))
-    onlyfiles = [f for f in listdir("/dev") if isfile(join('/dev', f))]
-    print(onlyfiles)
     try:
       # spi.openSPI(device=dev,speed=spd)
       self.dev_dictionary = spi.openSPI(device=dev, speed=spd)
