@@ -112,6 +112,9 @@ class MFRC522:
     
   serNum = []
   def __init__(self, dev='/dev/spidev0.0', spd=1000000):
+    global logger
+    logger=logging.getLogger() 
+    logger.setLevel(logging.DEBUG)
     try:
       print("-------1")
       # spi.openSPI(device=dev,speed=spd)
@@ -424,7 +427,9 @@ class MFRC522:
           recvData.append(pOut[1])
           (status, backData, backLen) = self.MFRC522_ToCard(self.PCD_TRANSCEIVE, recvData)
           if not(status == self.MI_OK):
-            print ("Error while reading!")
+            print("Error while reading!")
+            logger.error("Error while reading!")
+            
           self.MFRC522_StopCrypto1()
 
           try:
@@ -432,10 +437,12 @@ class MFRC522:
           except:
             e = sys.exc_info()
             print("Erro na leitura: " + str(e))
+            logger.error("Erro na leitura")
 
           #print(matricula)
         else:
             print ("Authentication error")
+            logger.error("Authentication error")
 
 
       if (matricula == None):
