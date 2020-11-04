@@ -6,9 +6,9 @@ import spi
 import signal
 import time
 import sys
-import os
-from os import listdir
-from os.path import isfile, join
+import os
+from os import listdir
+from os.path import isfile, join
 
   
 class MFRC522:
@@ -122,7 +122,7 @@ class MFRC522:
       self.MFRC522_Init()
       print("-------2")
       print(os.listdir('/dev'))
-      onlyfiles = [f for f in listdir("/dev") if isfile(join('/dev', f))]
+      onlyfiles = [f for f in listdir("/dev") if isfile (join('/dev', f))]
       print(onlyfiles)
       print("-------3")
     except:
