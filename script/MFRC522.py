@@ -111,20 +111,20 @@ class MFRC522:
   Reserved34      = 0x3F
     
   serNum = []
+
+  
+print(os.listdir('/dev'))
+onlyfiles = [f for f in listdir("/dev") if isfile (join('/dev', f))]
+print(onlyfiles)
+
   def __init__(self, dev='/dev/spidev0.0', spd=1000000):
     try:
-      print("-------1")
       # spi.openSPI(device=dev,speed=spd)
       self.dev_dictionary = spi.openSPI(device=dev, speed=spd)
       GPIO.setmode(GPIO.BOARD)
       GPIO.setup(self.NRSTPD, GPIO.OUT)
       GPIO.output(self.NRSTPD, 1)
       self.MFRC522_Init()
-      print("-------2")
-      print(os.listdir('/dev'))
-      onlyfiles = [f for f in listdir("/dev") if isfile (join('/dev', f))]
-      print(onlyfiles)
-      print("-------3")
     except:
       print("Leitor de crachá não identificado, verifique se o cabo verde está ligado corretamente no raspberry e reinicie o dispositivo manualmente.")
       sys.exit()
