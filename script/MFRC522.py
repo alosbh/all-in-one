@@ -10,7 +10,7 @@ import os
 from os import listdir
 from os.path import isfile, join
 
-  
+
 class MFRC522:
   NRSTPD = 22
   
@@ -115,7 +115,7 @@ class MFRC522:
   print(os.listdir('/dev'))
   onlyfiles = [f for f in listdir("/dev") if isfile (join('/dev', f))]
   print(onlyfiles)
-  
+
   def __init__(self, dev='/dev/spidev0.0', spd=1000000):
     try:
       # spi.openSPI(device=dev,speed=spd)
@@ -124,6 +124,10 @@ class MFRC522:
       GPIO.setup(self.NRSTPD, GPIO.OUT)
       GPIO.output(self.NRSTPD, 1)
       self.MFRC522_Init()
+      print("-----")
+      GPIO.input()
+      print("-----")
+
     except:
       print("Leitor de crachá não identificado, verifique se o cabo verde está ligado corretamente no raspberry e reinicie o dispositivo manualmente.")
       sys.exit()
