@@ -119,9 +119,6 @@ class MFRC522:
       GPIO.output(self.NRSTPD, 1)
       self.MFRC522_Init()
       print("-------2")
-      print(os.listdir('/dev'))
-      onlyfiles = [f for f in listdir("/dev") if isfile(join('/dev', f))]
-      print(onlyfiles)
       print("-------3")
     except:
       print("Leitor de crachá não identificado, verifique se o cabo verde está ligado corretamente no raspberry e reinicie o dispositivo manualmente.")
