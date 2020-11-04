@@ -6,6 +6,7 @@ import spi
 import signal
 import time
 import sys
+import os
 
   
 class MFRC522:
