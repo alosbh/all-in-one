@@ -109,12 +109,15 @@ class MFRC522:
     
   serNum = []
   def __init__(self, dev='/dev/spidev0.0', spd=1000000):
-    # spi.openSPI(device=dev,speed=spd)
-    self.dev_dictionary = spi.openSPI(device=dev, speed=spd)
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(self.NRSTPD, GPIO.OUT)
-    GPIO.output(self.NRSTPD, 1)
-    self.MFRC522_Init()
+    try:
+      # spi.openSPI(device=dev,speed=spd)
+      self.dev_dictionary = spi.openSPI(device=dev, speed=spd)
+      GPIO.setmode(GPIO.BOARD)
+      GPIO.setup(self.NRSTPD, GPIO.OUT)
+      GPIO.output(self.NRSTPD, 1)
+      self.MFRC522_Init()
+    except:
+      print("Leitor de crachá não identificado, verifique se o cabo verde está ligado corretamente no raspberry.")
 
 
   def close_SPI(self):

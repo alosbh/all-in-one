@@ -31,7 +31,7 @@ class Raspberry:
 
             # Get Hostname by request
             if OS == 1:
-                self.Name = 'BRBELRASP145'
+                self.Name = 'BRBELME024'
             else:
                 self.request_rasp_hostname()
             

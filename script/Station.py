@@ -58,7 +58,7 @@ class Station:
         self.__IP = socket.gethostbyname(socket.gethostname())
         self.__MAC = ""
         
-
+        
         global ws        
         ws = ApiManager()
         jsonData = ws.Request(ws.AIO, 'GetEquipmentByHostname', RaspberryName)
