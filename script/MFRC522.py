@@ -41,7 +41,7 @@ class MFRC522:
   MI_OK       = 0
   MI_NOTAGERR = 1
   MI_ERR      = 2
-  
+  MI_NONE     = 3
   Reserved00     = 0x00
   CommandReg     = 0x01
   CommIEnReg     = 0x02
@@ -388,7 +388,7 @@ class MFRC522:
     errorsMat = 0
     while (matricula == None and errorsMat <= 3):
       # Scan for cards
-      status = self.MI_ERR
+      status = self.MI_NONE
       logger.error("status0: " + str(status))
       errorsRead = 0
       while (status == self.MI_ERR and errorsRead <= 3):
