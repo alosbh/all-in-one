@@ -42,8 +42,6 @@ class jit_support_controller():
         url_create = 'http://brbelm0itqa01/AioWatch/Create'
         postBody_create = {'workstationName': 'brbelme024', 'productionLineStatus': self.line_situation, 'description':self.cbx_sympton_create.currentText()}
         request_create = requests.post(url_create, data=json.dumps(postBody_create), headers=headers_create)
-        print(postBody_create)
-        print(request_create)
         self.requestID = str(request_create.json()['additionalData']['id'])
 
         self.thread_ticket_status = 1
