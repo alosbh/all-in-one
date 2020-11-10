@@ -276,7 +276,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         LpaAddr = self.thread.API.load_LPA(self.thread.DL.ID_trim,self.thread.objStation.Id, self.thread.objStation.RouteId)
         self.load_url_signal.signal.emit(LpaAddr)
         
-
     def load_bi(self):
         self.hide5s()
         BIAddr = self.thread.API.load_BI(self.thread.DL.ID_trim) 
@@ -355,15 +354,9 @@ class MainThread(QThread):
         self.thread_time = GlobalParameters.BadgeReader_ThreadTime/1000 
         self.logout_limit = GlobalParameters.BadgeReader_MininumGoodReads
 
-        # Starts the API manager
         self.API = ws()
-
-        # Starts the Direct Labor class management
         self.DL = DL()
-
-        # Hostname and Workstation Parameters
         
-        # Screen Objects
         self.NonLogged_Window = None
         self.Logged_Window = None
         
