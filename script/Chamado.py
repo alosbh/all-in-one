@@ -1,6 +1,5 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QApplication,QMainWindow
-from PyQt5.QtCore import QThread
 import time
 import sys
 from Ui_chamado import *
@@ -196,11 +195,8 @@ class CountSeconds(QThread):
 
 class WatchStatus(QThread):
  
-
     def run(self):
 
-        
-        
         while(self.janelaSuporte.status == 1):
 
             getrequest = requests.get(self.url)
@@ -212,10 +208,6 @@ class WatchStatus(QThread):
             elif(getrequest.json()['additionalData']['status'] == "Done"):
                 self.janelaSuporte.lbl_status.setText("Finalizado")
 
-
-           
-
-
             time.sleep(5)
 
     def startThread(self,janelaSuporte):
@@ -223,10 +215,4 @@ class WatchStatus(QThread):
         self.janelaSuporte = janelaSuporte
         self.url = "http://brbelm0itqa01/AioWatch/GetById?id=" + self.janelaSuporte.requestID
         
-        
-        
-        
-        
         self.start()
-        
-

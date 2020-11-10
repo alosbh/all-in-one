@@ -2,9 +2,6 @@ from PyQt5 import QtWidgets, QtCore
 from Station import Station
 
 class functions_5s():
-
-
-
     def generate_5s(self, workstation_name):
         self.dots_list = []
         self.workstation_name = workstation_name
@@ -70,7 +67,6 @@ class functions_5s():
     def proxpage(self):
         self.state5s = self.state5s+1
         self.btn_5s_back.setVisible(True)
-        
         
         self.dots_list[self.state5s].setStyleSheet("background-color:rgba(82,82,238,1);\n""border-radius:10px;\n""\n""")
         self.dots_list[self.state5s-1].setStyleSheet("background-color:rgba(82,82,238,0.15);\n""border-radius:10px;\n""\n""")
