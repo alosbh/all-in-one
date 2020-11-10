@@ -1,7 +1,7 @@
 from Ui_Matricula import *
 from Ui_Logged_Screen import *
 from Reset import *
-from Chamado import *
+from jit_support_controller import *
 from GlobalParameters import GlobalParameters
 from FI import FI
 from labels import labels
@@ -18,7 +18,7 @@ import os
 import logging
 import traceback
 
-from PyQt5.QtCore import QObject, pyqtSignal, QUrl
+from PyQt5.QtCore import QObject, pyqtSignal, QUrl, QThread
 from PyQt5.QtGui import QPixmap
 # from PyQt5.QtWebKit import QWebSettings
 
@@ -123,7 +123,7 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Matricula):
 #----------------------------------------------------------------------------------
 
 # Inherits the qt Ui_Logged_Screen (main screen) design and manages its setup
-class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
+class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_support_controller):
     
     # Instance of the signal to act on button's click
     load_url_signal = QtSignal()
@@ -149,10 +149,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         self.loading_status = 1
 
         self.ActualFIPage = 1
-        
 
-
-    def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window, Support_Window):
+    def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window):
         self.setupUi(self.Logged_QtWindow)
         self.build_body_web()
         self.Station = Station
@@ -160,6 +158,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         self.build_custom_button()
         self.button_handle()
         self.generate_5s(self.Station.Name)
+        self.support_screen_functions()
 
         # Fills labels with workstation values
         self.lbl_value_workstation.setText(str(self.Station.Name)) 
@@ -167,19 +166,9 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         self.lbl_value_line.setText(str(self.Station.RouteName))
         self.lbl_value_product.setText(str(self.Station.ProductName))
         self.lbl_value_client.setText(str(self.Station.ClientName))
-
-        
-
-        # Setting up support window
-        self.Support_Window = Support_Window
-        self.Support_Window.posto = self.Station.Name
-        self.Support_Window.index = self.Station.Index
-        self.Support_Window.populateMotivos()
         
         # Setting up reset window
         self.Reset_Window = Reset_Window
-
-        self.thread_loading = WaitForPageLoad()
 
         # Starts the main thread and set its parameters
         self.thread.start()
@@ -205,7 +194,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         self.webSettings = self.body_web.settings()
         self.body_web.setVisible(False) 
 
-    #Method called in the MainThread - fills labor user fields
+    # Method called in the MainThread - fills labor user fields
     def SetupUser(self, DL):
         self.lbl_value_name.setText(DL.Name)
         self.lbl_value_yield.setText(DL.Yield)
@@ -214,7 +203,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         self.lbl_value_jabilcoins.setText('-')
         self.lbl_user_avatar.setPixmap(DL.picture)
         
-
     # Method to show the window widget 
     def Show(self):
         self.lbl_value_workstation.setText(self.Station.Name)
@@ -227,18 +215,16 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
 
         try:
             self.btn_custom.setText(LabelsObject.data['Buttons'][4][str(self.Station.Area)][int(self.Station.Index)])
-
         except:
             try:
                 self.btn_custom.setText(LabelsObject.data['Buttons'][4][str(self.Station.AreaTrim)][int(self.Station.Index)])
-
             except:
                 self.btn_custom.setVisible(False)
    
     # Links the buttons to their respective methods
     def button_handle(self):
         self.btn_5s.clicked.connect(self.show5s)
-        # self.btn_support.clicked.connect(self.suporte)
+        self.btn_support.clicked.connect(self.suporte)
         self.btn_homepage.clicked.connect(self.home)
         self.btn_SCTC.clicked.connect(self.jiga_list)
         self.btn_reset.clicked.connect(self.reset)
@@ -251,13 +237,15 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         self.Reset_Window.Show()
 
     def suporte(self):
-        self.Support_Window.Show()
+        self.body_home.setVisible(False)
+        self.body_web.setVisible(False)
+        self.body_support.setVisible(True)
+        self.hide5s()
 
     def home(self):
-        logger.error("Returning to initial screen")
-
         self.body_home.setVisible(True)
         self.body_web.setVisible(False)
+        self.body_support.setVisible(False)
         self.hide5s()
 
     #Method to load an url on the webviewer
@@ -266,6 +254,9 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
         time.sleep(1)
         self.loading_status = 0
         self.body_web.load(QUrl(url))
+        self.body_home.setVisible(False) 
+        self.body_web.setVisible(True)
+        self.body_support.setVisible(False)
         self.body_web.show()
 
     def finish_loading(self):
@@ -273,57 +264,31 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
 
     def custom_button_load(self):
         CustomAddr = self.thread.API.custom_button(self.Station.Area,self.Station.AreaTrim, self.Station.RouteMin, self.Station.Index)
-        self.body_home.setVisible(False) 
-        self.body_web.setVisible(True) 
         self.load_url_signal.signal.emit(CustomAddr)
 
     def jiga_list(self):
-        #self.Reset_Button.setVisible(False)
-        self.body_web.setZoomFactor(1)
-        self.body_home.setVisible(False) 
-        self.body_web.setVisible(True)
         self.hide5s()
-
         JigaAddr = self.thread.API.load_Jiga(self.thread.objStation.RouteId) 
         self.load_url_signal.signal.emit(JigaAddr)
         
     def load_lpa(self):
-        self.body_web.setZoomFactor(1)
-        self.body_home.setVisible(False) 
-        self.body_web.setVisible(True)
         self.hide5s()
-
         LpaAddr = self.thread.API.load_LPA(self.thread.DL.ID_trim,self.thread.objStation.Id, self.thread.objStation.RouteId)
         self.load_url_signal.signal.emit(LpaAddr)
-        #self.thread_loading.startThread(self.load_url_signal,LpaAddr,self)
-        #self.Reset_Button.setVisible(True)
         
-
     def load_bi(self):
-        self.body_web.setZoomFactor(1)
-        BIAddr = self.thread.API.load_BI(self.thread.DL.ID_trim) 
-        self.body_home.setVisible(False) 
-        self.body_web.setVisible(True)
         self.hide5s()
-
-        #self.thread_loading.startThread(self.load_url_signal,BIAddr,self)
+        BIAddr = self.thread.API.load_BI(self.thread.DL.ID_trim) 
         self.load_url_signal.signal.emit(BIAddr)
 
     def load_fi(self):
         if self.operational_system == 1:    
             self.body_web.setZoomFactor(1) 
             FIAddr = self.thread.API.load_FI(self.Station.Name) 
-
-            self.body_home.setVisible(False) 
-            self.body_web.setVisible(True) 
-            self.hide5s()
             self.body_web.load(FIAddr)
 
         else:
             from PyQt5.QtNetwork import QNetworkRequest, QNetworkAccessManager
-            self.body_home.setVisible(False) 
-            self.body_web.setVisible(True) 
-            self.hide5s()
 
             self.urlFI = QUrl()
             self.urlFI.setScheme("http")
@@ -334,11 +299,14 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s):
             self.req.setHeader(QNetworkRequest.ContentTypeHeader,('application/json'))
             self.nam  = QNetworkAccessManager()
 
-
             params = {"workstation":self.Station.Name,"prodashSync":True,"time":20}
-
             self.byteparam = bytes(json.dumps(params),'utf-8')
             self.body_web.load(self.req,QNetworkAccessManager.PostOperation,self.byteparam)
+        
+        self.body_home.setVisible(False) 
+        self.body_web.setVisible(True) 
+        self.body_support.setVisible(False) 
+        self.hide5s()
 
 # # Badge reading function
 # def RFRead():
@@ -377,15 +345,9 @@ class MainThread(QThread):
         self.thread_time = GlobalParameters.BadgeReader_ThreadTime/1000 
         self.logout_limit = GlobalParameters.BadgeReader_MininumGoodReads
 
-        # Starts the API manager
         self.API = ws()
-
-        # Starts the Direct Labor class management
         self.DL = DL()
-
-        # Hostname and Workstation Parameters
         
-        # Screen Objects
         self.NonLogged_Window = None
         self.Logged_Window = None
         
@@ -521,47 +483,4 @@ class GetWorkstationInfo(QThread):
         self.Screen = Screen
         self.Station = Station
         self.Raspberry = Raspberry
-        self.start()
-
-#----------------------------------------------------------------------------------------
-#Thread -
-#----------------------------------------------------------------------------------------
-class WaitForPageLoad(QThread):
-    def run(self):
-        self.Screen.loading_status = 0
-        print('Loading URL:' + self.url)
-        self.signal.signal.emit(self.url)
-        
-        timer_load = 0
-        load_limit = 5
-
-        while((timer_load < load_limit)  and (self.Screen.loading_status != 1)):
-            time.sleep(1)
-            timer_load = timer_load + 1 
-            
-        timer_load = 0
-
-        self.Screen.Reset_Button.setVisible(True)
-
-        while(self.Screen.loading_status != 1):
-            
-            print("Recarregando ........Status:" + str(self.Screen.loading_status))
-            self.Screen.body_web.reload() 
-            
-            while((timer_load < load_limit ) and (self.Screen.loading_status != 1)):
-                time.sleep(1)
-                timer_load = timer_load + 1 
-
-                print(str(timer_load) + '...........')
-
-            timer_load = 0
-            
-        timer_load = 0
-
-        print("Loading complete. Status:" + str(self.Screen.loading_status))
-
-    def startThread(self,signal,url,Screen):
-        self.signal = signal
-        self.url = url
-        self.Screen = Screen
         self.start()

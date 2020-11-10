@@ -36,9 +36,6 @@ Logged_Screen = Logged_Screen()
 global Reset_Window
 Reset_Window = Reset_Window()
 
-global Support_Window
-Support_Window = Support_Window()
-
 global functions_5s
 functions_5s = functions_5s()
 
@@ -55,7 +52,7 @@ def main():
 
         #Setup of the logged screen UI
         
-        Logged_Screen.Setup(Station,Raspberry,GlobalParameters,NonLogged_Screen,Reset_Window,Support_Window)
+        Logged_Screen.Setup(Station,Raspberry,GlobalParameters,NonLogged_Screen,Reset_Window)
      
         #Starts the QT application that manages the screens.
         ScreenManagement.QtApplication.exec_()
