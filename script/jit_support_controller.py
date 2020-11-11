@@ -6,10 +6,10 @@ import time
 
 class jit_support_controller():
 
-    def support_screen_functions(self):
+    def support_screen_functions(self, workstation_name):
         # 0 = received // 1 = sent // 2 = accepted // 3 = declined // 4 = ongoing // 5 = done
         self.cbx_team_create.currentIndexChanged.connect(self.sympstons_by_team)
-        self.btn_createticket_create.clicked.connect(self.create_ticket)
+        self.btn_createticket_create.clicked.connect(lambda: self.create_ticket(workstation_name))
         self.btn_cancelticket_waiting.clicked.connect(lambda: self.update_ticket_status(5))
         self.btn_cancelticket_pending.clicked.connect(lambda: self.update_ticket_status(5))
         self.btn_cancelticket_inprogress.clicked.connect(lambda: self.update_ticket_status(5))
@@ -19,7 +19,7 @@ class jit_support_controller():
         self.watchthread = WatchStatus()
 
         self.dict_team_symptons = {
-        "Engenharia" : {"blablabla", "teste", "testeteste", "fupa"},
+        "Engenharia" : {"I like", "to", "move it", "move it"},
         "IC" : {"123456", "asdfghjkl", "godofwar"}
         }
         for team in self.dict_team_symptons:
@@ -32,7 +32,7 @@ class jit_support_controller():
             self.cbx_sympton_create.addItem(sympton)
     
 # Watch server functions 
-    def create_ticket(self):
+    def create_ticket(self, workstation_name):
         if self.rbtn_going_create.isChecked():
             self.line_situation = '1' # ok line
         else:
@@ -40,7 +40,7 @@ class jit_support_controller():
 
         headers_create = {'content-type': 'application/json'}
         url_create = 'http://brbelm0itqa01/AioWatch/Create'
-        postBody_create = {'workstationName': 'brbelme024', 'productionLineStatus': self.line_situation, 'description':self.cbx_sympton_create.currentText()}
+        postBody_create = {'workstationName': workstation_name, 'productionLineStatus': self.line_situation, 'description':self.cbx_sympton_create.currentText()}
         request_create = requests.post(url_create, data=json.dumps(postBody_create), headers=headers_create)
         self.requestID = str(request_create.json()['additionalData']['id'])
 

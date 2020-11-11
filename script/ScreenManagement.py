@@ -10,6 +10,7 @@ from ApiManager import ApiManager as ws
 from DirectLabor import DirectLabor as DL
 from OS_define import OS_define
 from functions_5s import functions_5s
+from LPAactions_controller import *
 
 # import MFRC522
 import time
@@ -123,7 +124,7 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Matricula):
 #----------------------------------------------------------------------------------
 
 # Inherits the qt Ui_Logged_Screen (main screen) design and manages its setup
-class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_support_controller):
+class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_support_controller, LPAactions_controller):
     
     # Instance of the signal to act on button's click
     load_url_signal = QtSignal()
@@ -158,7 +159,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.build_custom_button()
         self.button_handle()
         self.generate_5s(self.Station.Name)
-        self.support_screen_functions()
+        # self.support_screen_functions(self.Station.Name)
+        self.LPAactions_functions(self.Station.Name)
 
         # Fills labels with workstation values
         self.lbl_value_workstation.setText(str(self.Station.Name)) 
@@ -224,7 +226,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
     # Links the buttons to their respective methods
     def button_handle(self):
         self.btn_5s.clicked.connect(self.show5s)
-        self.btn_support.clicked.connect(self.suporte)
+        # self.btn_support.clicked.connect(self.suporte)
         self.btn_homepage.clicked.connect(self.home)
         self.btn_SCTC.clicked.connect(self.jiga_list)
         self.btn_reset.clicked.connect(self.reset)
