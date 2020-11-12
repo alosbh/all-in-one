@@ -1,4 +1,4 @@
-from Ui_Matricula import *
+from Ui_Login_Screen import *
 from Ui_Logged_Screen import *
 from Reset import *
 from jit_support_controller import *
@@ -67,8 +67,8 @@ class Reset_Window(QtWidgets.QMainWindow, Ui_ResetWindow):
         
 #----------------------------------------------------------------------------------
 
-# Inherits the qt Ui_Matricula (login screen) design and manages its setup
-class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Matricula):
+# Inherits the qt Ui_Login_Screen (login screen) design and manages its setup
+class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
     
     global NonLogged_QtWindow
 
@@ -92,31 +92,31 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Matricula):
         self.btn_reset.clicked.connect(self.reset)
 
         # Fill hostname, Workstation and AIO version fields
-        self.nome_host.setText(str(Raspberry.Name))
-        self.version.setText(str(Params.AIO_Version))
+        self.lbl_value_hostname.setText(str(Raspberry.Name))
+        self.lbl_value_version.setText(str(Params.AIO_Version))
 
         #Checks if the station was stablished - tries again if isn't
         if(Station.Enabled != 1):
             
             if(Station.Status == 'ConnectionError'):
                 
-                self.nome_posto.setText(str('No WiFi'))
+                self.lbl_value_workstation.setText(str('No WiFi'))
                 
             else:
-                 self.nome_posto.setText(str('Error: ' + Station.Status))
+                 self.lbl_value_workstation.setText(str('Error: ' + Station.Status))
 
 
             self.thread_workstation = GetWorkstationInfo()
             self.thread_workstation.startThread(self,Station,Raspberry)
         
         else:
-            self.nome_posto.setText(str(Station.Name))
+            self.lbl_value_workstation.setText(str(Station.Name))
 
     def Show(self):
         self.NonLogged_QtWindow.showFullScreen()
 
     def Print_Workstation(self,Workstation_Id):
-        self.nome_posto.setText(str(Workstation_Id))
+        self.lbl_value_workstation.setText(str(Workstation_Id))
     
     def reset(self):
         self.Reset_Window.Show()
@@ -159,7 +159,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.build_custom_button()
         self.button_handle()
         self.generate_5s(self.Station.Name)
-        # self.support_screen_functions(self.Station.Name)
+        self.support_screen_functions(self.Station.Name)
         self.LPAactions_functions(self.Station.Name)
 
         # Fills labels with workstation values
