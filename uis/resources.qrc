@@ -1,19 +1,24 @@
 <RCC>
   <qresource prefix="/Img">
+    <file>JabilMasterBrand_White.png</file>
+    <file>logo_vert-01.svg</file>
+    <file>insert_badge.png</file>
+    <file>BIG_logo.PNG</file>
+    <file>desligar branco.png</file>
+    <file>logoteste.png</file>
+    <file>arrows.svg</file>
+    <file>hourglass.svg</file>
+    <file>man.svg</file>
+    <file>logo_hor-01.svg</file>
+    <file>edit.png</file>
+    <file>chevron-left.png</file>
+    <file>chevron-right.png</file>
+    <file>desligar (1).png</file>
+    <file>desligar.png</file>
+    <file>desligar2.png</file>
     <file>LogoJabil.png</file>
-    <file>EPIs/boots.png</file>
-    <file>EPIs/earmuffs.png</file>
-    <file>EPIs/gloves.png</file>
-    <file>EPIs/gloves-plastic.png</file>
-    <file>EPIs/goggles.png</file>
-    <file>EPIs/hairnet.png</file>
-    <file>EPIs/hardhat.png</file>
-    <file>leftarrow.png</file>
-    <file>rightarrow.png</file>
     <file>untitled (2).svg</file>
     <file>dump-truck.png</file>
-    <file>logo_hor-04.svg</file>
-    <file>logoteste.png</file>
     <file>chave-inglesa.png</file>
     <file>LogoJabil.png</file>
     <file>estrategia.png</file>
