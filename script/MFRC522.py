@@ -11,6 +11,9 @@ from os import listdir
 from os.path import isfile, join
 import logging
 
+logger=logging.getLogger() 
+logger.setLevel(logging.DEBUG)
+
 class MFRC522:
   NRSTPD = 22
   
