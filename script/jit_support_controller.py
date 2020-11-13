@@ -19,10 +19,9 @@ class jit_support_controller():
 
         self.watchthread = WatchStatus()
 
-        request_teamid = requests.get(url = 'http://brbelm0itqa01/AIORequestsAPI/Team/GetAllActive')
-        print(request_teamid)
+        request_teamid = requests.get(url = 'http://brbelm0itqa01/JITAPI/Team/GetAllActive', verify=False)
         response_teamid = request_teamid.json()
-        print(response_teamid)
+        print(response_teamid[id])
         sys.exit()
 
         self.dict_team_symptons = {
