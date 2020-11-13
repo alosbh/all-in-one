@@ -36,7 +36,7 @@ class Ui_Login_Screen(object):
         self.lbl_iconcracha.setText("")
         self.lbl_iconcracha.setObjectName("lbl_iconcracha")
         self.lbl_insertbadge = QtWidgets.QLabel(self.main_loginscreen)
-        self.lbl_insertbadge.setGeometry(QtCore.QRect(1010, 660, 121, 21))
+        self.lbl_insertbadge.setGeometry(QtCore.QRect(1010, 660, 130, 21))
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
         font.setPointSize(10)
