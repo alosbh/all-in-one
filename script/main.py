@@ -1,26 +1,25 @@
 # -*- coding: utf-8 -*-
 
 from Station import Station
+from OS_define import OS_define
 from Raspberry import Raspberry
 from ScreenManagement import *
-import RPi.GPIO as GPIO
+from functions_5s import functions_5s
+# import RPi.GPIO as GPIO
 import os
 import datetime
 
 
+global OS_define
+OS_define = OS_define()
+
 global Raspberry
 Raspberry = Raspberry()
-
-
-
-
-
 # Instance of the Raspberry hardware itself and its parameters
 
 
 # Instance of the Workstation related to the Raspberry
 global Station
-
 Station = Station(Raspberry)
 
 # Starts the screen management class
@@ -37,28 +36,24 @@ Logged_Screen = Logged_Screen()
 global Reset_Window
 Reset_Window = Reset_Window()
 
-global Support_Window
-Support_Window = Support_Window()
+global functions_5s
+functions_5s = functions_5s()
 
 
 
 def main():
-
-
-
-  
-        print("PRINTANDO AQUI PRA VER SE FUNCIONA")
         #Handling of the GPIO ports, to disable their warnings and reset all used ports.        
-        GPIO.setwarnings(False)
-        GPIO.cleanup()
+        # GPIO.setwarnings(False)
+        # GPIO.cleanup()
    
-        #Setup of the home screen UI and show it on startup
+        #Setup of the home screen UI and show it on startupprint
         NonLogged_Screen.Setup(Station,Raspberry,GlobalParameters,Reset_Window)
         NonLogged_Screen.Show()
 
         #Setup of the logged screen UI
-        Logged_Screen.Setup(Station,Raspberry,GlobalParameters,NonLogged_Screen,Reset_Window,Support_Window)
-        # Logged_Screen.Show()
+        
+        Logged_Screen.Setup(Station,Raspberry,GlobalParameters,NonLogged_Screen,Reset_Window)
+     
         #Starts the QT application that manages the screens.
         ScreenManagement.QtApplication.exec_()
 

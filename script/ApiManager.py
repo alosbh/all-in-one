@@ -1,70 +1,56 @@
 # -*- coding: utf-8 -*-
-
 import os
-
 import importlib
-
 import yaml
-
 #Imports das bibliotecas: Comunicação com Webservers
 import json
 import requests
 from requests.exceptions import ConnectionError
-from Raspberry import Raspberry
-
 from WebService import *
-
 import re as regex
-
 from PyQt5 import QtWidgets
-
 from PyQt5.QtCore import *
 import time
+from OS_define import OS_define
 from datetime import datetime
-
+from pathlib import Path
+import sys
 import platform
 import logging
 global logger
 logger=logging.getLogger() 
 logger.setLevel(logging.DEBUG)
 
+
 class ApiManager:
     
+    script_location = Path(__file__).absolute().parent
 
-
-    def __init__(self, FilePath = "Apis.yml"):
+    def __init__(self, FilePath = script_location / 'Apis.yml'):
 
         with open(FilePath, 'r') as ymlfile:
-            cfg = yaml.full_load(ymlfile);
+            cfg = yaml.full_load(ymlfile)
 
-
-        self.Raspberry = Raspberry()
-
-        self.OJT = WebService(cfg['OJT']);
-        self.AIO = WebService(cfg['AIO']);
-        self.AIO_Dashboard = WebService(cfg['AIO_Dashboard']);
-        
-
+        self.OJT = WebService(cfg['OJT'])
+        self.AIO = WebService(cfg['AIO'])
+        self.AIO_Dashboard = WebService(cfg['AIO_Dashboard'])
+        #self.JMD = WebService(cfg['JMD'])
 
         
-        
-
-
-
-
     def Request(self, webServiceObject, functionName, parameterObject):
 
         
         if isinstance(webServiceObject, WebService):
 
             for prop in webServiceObject._WebService__yamlContents:
-
+                
                 for key in webServiceObject._WebService__yamlContents[prop]:
                     if (prop=='baseUrl'):
                         continue
 
                     if (regex.match(functionName, key, regex.I|regex.M)):   
                         endPoint = webServiceObject._WebService__baseUrl+prop+"/"+key+"/";
+                        
                         
 
                         RequestType = webServiceObject._WebService__yamlContents[prop][key]['Type']; 
@@ -85,7 +71,6 @@ class ApiManager:
                                 response = requests.get(endPoint+parameterObject)
                                 
                                 if (response.status_code==200):
-                                    
                                     
                                     return response.json()
                                 
@@ -175,23 +160,39 @@ class ApiManager:
         
         return baseUrl
 
+    def load_lineName(self,stationId):
+        baseUrl = 'http://brbelm0apps02/JMDDataServices/workstation/'
+        baseUrl = baseUrl + str(stationId) + '/productionlines'
+        response = requests.get(baseUrl)
+        return response.json()
+
     def load_FI(self,Workstation):
-        baseUrl = 'http://brbelm0apps01/FICreator/FIViewer/SlideShowRasp?workstation='
-        baseUrl = baseUrl + str(Workstation)
-        baseUrl = baseUrl + '&interval=20&start=true'
-        
-        logger.error("FI URL addres: " + baseUrl)
-        print("FI URL addres: " + baseUrl)
-        
-        return baseUrl
 
-    def load5s(self,Workstation):
+        from PyQt5.QtWebEngineCore import QWebEngineHttpRequest
 
-        baseUrl = 'http://brbelm0itqa01/AIOService/Images5S/GetAll?query='
+        self.url = QUrl()
+        self.req = QWebEngineHttpRequest()
+
+        self.url.setScheme("http")
+        self.url.setHost("brbelm0apps01")
+        self.url.setPath("/FICreator/FIViewer/SlideShow")
+
+        self.req.setUrl(self.url)
+        self.req.setMethod(QWebEngineHttpRequest.Post)
+        self.req.setHeader(QByteArray(b'Content-Type'),QByteArray(b'application/json'))
+
+        parametros = {"workstation": Workstation, "prodashSync": True, "time": 5}
+
+        self.req.setPostData(bytes(json.dumps(parametros), 'utf-8')) 
+        
+        return self.req
+
+    def load_5s(self,Workstation):
+
+        baseUrl = 'http://brbelm0itqa01/AIOServiceSTG/Images5S/GetAll?query='
         baseUrl = baseUrl + str(Workstation)
         logger.error(baseUrl)
         try:
-            
             response = requests.get(baseUrl)
             logger.error(response.json())
             return response.json();
@@ -201,27 +202,19 @@ class ApiManager:
             return
 
 
-        
-
-
-
     def custom_button(self,Area,AreaTrim,Route,Index):
 
         if(Area=="INGCUS" and Index==1):
             baseUrl="http://10.57.16.42/CNCSWebApiPersona/OrMonitor?hostName="
             baseUrl = baseUrl + str(Route)
             print("OR MONITOR URL: " + baseUrl)
+            logger.error("OR MONITOR URL: " + baseUrl)
 
         elif(AreaTrim=="REP"):
             baseUrl="http://brbelm0itqa01/TestPortal/pages/MesWipReport.aspx"
-            
             logger.error("LINK TEST WIP REPARO: " + baseUrl)
         
         else:
-            
             baseUrl = 'about:blank'
 
-        
         return baseUrl
-
-

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1360</width>
+    <height>773</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
+  </property>
+  <widget class="QWidget" name="main_loginscreen">
+   <widget class="QPushButton" name="btn_reset">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>5</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/Img/desligar branco.png);
+background-color: rgb(58, 77, 215);
+border: 10px</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_BIGlogo">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>767</width>
+      <height>773</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/Img/BIG_logo.PNG);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_iconcracha">
+    <property name="geometry">
+     <rect>
+      <x>1030</x>
+      <y>590</y>
+      <width>61</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/Img/insert_badge.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_insertbadge">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>660</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Shell Dlg 2</family>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(45, 34, 94)</string>
+    </property>
+    <property name="text">
+     <string>Insira seu crachá</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_verticallogo">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>-250</y>
+      <width>1251</width>
+      <height>871</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/Img/logo_vert-01.svg);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_value_version">
+    <property name="geometry">
+     <rect>
+      <x>1163</x>
+      <y>250</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Inter UI</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(45, 34, 94)</string>
+    </property>
+    <property name="text">
+     <string>V1.00</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_value_workstation">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>370</y>
+      <width>291</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Shell Dlg 2</family>
+      <pointsize>24</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(45, 34, 94)</string>
+    </property>
+    <property name="text">
+     <string>INGCUSMIN002</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_workstation">
+    <property name="geometry">
+     <rect>
+      <x>1035</x>
+      <y>405</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Inter UI</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(116, 111, 138)</string>
+    </property>
+    <property name="text">
+     <string>POSTO</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_jabilogo">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>740</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">IMAGE: url(:/Img/JabilMasterBrand_White.png);
+background-color:rgb(72, 75, 218)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_value_hostname">
+    <property name="geometry">
+     <rect>
+      <x>980</x>
+      <y>465</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Shell Dlg 2</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(45, 34, 94)</string>
+    </property>
+    <property name="text">
+     <string>BRBELRASP333</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_hostname">
+    <property name="geometry">
+     <rect>
+      <x>1025</x>
+      <y>500</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Inter UI</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(116, 111, 138)</string>
+    </property>
+    <property name="text">
+     <string>HOSTNAME</string>
+    </property>
+   </widget>
+   <zorder>lbl_verticallogo</zorder>
+   <zorder>lbl_BIGlogo</zorder>
+   <zorder>btn_reset</zorder>
+   <zorder>lbl_iconcracha</zorder>
+   <zorder>lbl_insertbadge</zorder>
+   <zorder>lbl_value_version</zorder>
+   <zorder>lbl_value_workstation</zorder>
+   <zorder>lbl_workstation</zorder>
+   <zorder>lbl_jabilogo</zorder>
+   <zorder>lbl_value_hostname</zorder>
+   <zorder>lbl_hostname</zorder>
+  </widget>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
