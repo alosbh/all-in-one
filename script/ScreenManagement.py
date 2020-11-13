@@ -394,7 +394,6 @@ class MainThread(QThread):
                     try:
                         # Api call to login a user on OJT server
                         logger.debug("Login user " + str(Read_ID) + "..........")
-                        print("Login user ID " + str(Read_ID) + "..........")
 
                         LoginResponse = self.API.Request(self.API.OJT, "LoginByWorker", {'HostName': self.host, 'Badge': Read_ID}) 
 

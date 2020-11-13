@@ -444,7 +444,6 @@ class Ui_Logged_Screen(object):
         self.lbl_value_number_actionsLPA.setStyleSheet("background-color: rgb(255, 0, 0);\n"
 "border-radius:10px;\n"
 "color: rgb(255, 255, 255);")
-        self.lbl_value_number_actionsLPA.setText("")
         self.lbl_value_number_actionsLPA.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_value_number_actionsLPA.setObjectName("lbl_value_number_actionsLPA")
         self.footer = QtWidgets.QFrame(self.centralwidget)
@@ -1438,12 +1437,6 @@ class Ui_Logged_Screen(object):
 "color: rgb(255, 255, 255);\n"
 "background-color: rgb(86, 149, 246);")
         self.btn_initiate_inprogress.setObjectName("btn_initiate_inprogress")
-        self.lbl_aiologo_support = QtWidgets.QLabel(self.body_support)
-        self.lbl_aiologo_support.setGeometry(QtCore.QRect(700, -140, 591, 361))
-        self.lbl_aiologo_support.setStyleSheet("image: url(:/Img/logo_hor-01.svg);")
-        self.lbl_aiologo_support.setText("")
-        self.lbl_aiologo_support.setObjectName("lbl_aiologo_support")
-        self.lbl_aiologo_support.raise_()
         self.lbl_JIT.raise_()
         self.lbl_blueline.raise_()
         self.subbody_waiting_2.raise_()
@@ -1484,6 +1477,7 @@ class Ui_Logged_Screen(object):
         self.lbl_workstation.setText(_translate("MainWindow", "Posto"))
         self.lbl_line.setText(_translate("MainWindow", "Linha"))
         self.lbl_value_line.setText(_translate("MainWindow", "651615165"))
+        self.lbl_value_number_actionsLPA.setText(_translate("MainWindow", "5"))
         self.lbl_automation.setText(_translate("MainWindow", "BEL Automation, 2020"))
         self.lbl_value_version.setText(_translate("MainWindow", "v1.0"))
         self.lbl_productivity.setText(_translate("MainWindow", "Produtividade"))

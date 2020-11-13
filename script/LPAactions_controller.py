@@ -5,7 +5,7 @@ import json
 
 class LPAactions_controller():
     def LPAactions_functions(self, workstation_name):
-        url_LPAactions = 'http://brbelm0itqa01/AIOServiceSTG/Lpa/GetOpenActionsByPost/?parameters=GENSMTARI001'# + workstation_name
+        url_LPAactions = 'http://brbelm0itqa01/AIOServiceSTG/Lpa/GetOpenActionsByPost/?parameters=' + workstation_name
         request_LPAactions = requests.get(url_LPAactions)
         response_LPAactions = request_LPAactions.json()
 
@@ -18,6 +18,6 @@ class LPAactions_controller():
 
 
     def redirect_LPAactions(self, workstation_name):
-        url_LPAactions = 'http://brbelm0itqa01/LPASTG/Lpa/GetOpenActionsByPost/GENSMTARI001'# + workstation_name
+        url_LPAactions = 'http://brbelm0itqa01/LPASTG/Lpa/GetOpenActionsByPost/' + workstation_name
         self.body_web.load(QUrl(url_LPAactions))
         self.body_web.setVisible(True)
