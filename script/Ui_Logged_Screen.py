@@ -446,6 +446,7 @@ class Ui_Logged_Screen(object):
 "color: rgb(255, 255, 255);")
         self.lbl_value_number_actionsLPA.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_value_number_actionsLPA.setObjectName("lbl_value_number_actionsLPA")
+        self.lbl_value_number_actionsLPA.setVisible(False)
         self.footer = QtWidgets.QFrame(self.centralwidget)
         self.footer.setGeometry(QtCore.QRect(235, 722, 1131, 51))
         self.footer.setStyleSheet("background-color:white;border:none;")
