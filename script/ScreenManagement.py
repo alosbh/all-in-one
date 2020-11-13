@@ -373,6 +373,8 @@ class MainThread(QThread):
             try:
                 # Read_ID = 51008294
                 Read_ID = (RFRead()) # Reads Badge ID
+                logger.error("ID lida:")
+                logger.error(Read_ID)
             except Exception as e:
                 traceback.print_exc()
                 logger.error("RFID error: " + type(e).__name__)
