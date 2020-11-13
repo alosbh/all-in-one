@@ -421,8 +421,7 @@ class MainThread(QThread):
                         print("Actual ID apos alterar: " + str(Actual_ID))
                         # Show the Logged screen and hide the initial screen
                         self.thread_signal2.signal.emit('about:blank')
-                        # self.Logged_Window.Logged_QtWindow.show()
-                        # self.NonLogged_Window.NonLogged_QtWindow.hide()
+                        # AQUI
 
 
             else: 

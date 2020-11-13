@@ -3,6 +3,7 @@ from PyQt5.QtCore import QThread
 import requests
 import json
 import time
+import sys
 
 class jit_support_controller():
 
@@ -17,6 +18,12 @@ class jit_support_controller():
         self.btn_initiate_inprogress.clicked.connect(lambda: self.update_ticket_status(5))
 
         self.watchthread = WatchStatus()
+
+        request_teamid = requests.get(url = 'http://brbelm0itqa01/AIORequestsAPI/Team/GetAllActive')
+        print(request_teamid)
+        response_teamid = request_teamid.json()
+        print(response_teamid)
+        sys.exit()
 
         self.dict_team_symptons = {
         "Engenharia" : {"I like", "to", "move it", "move it"},
