@@ -160,7 +160,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.button_handle()
         self.generate_5s(self.Station.Name)
         self.support_screen_functions(self.Station.Name)
-        self.LPAactions_functions(self.Station.Name)
+        # self.LPAactions_functions(self.Station.Name)
 
         # Fills labels with workstation values
         self.lbl_value_workstation.setText(str(self.Station.Name)) 
