@@ -6,14 +6,8 @@ import spi
 import signal
 import time
 import sys
-import os
-from os import listdir
-from os.path import isfile, join
-import logging
 
-logger=logging.getLogger() 
-logger.setLevel(logging.DEBUG)
-
+  
 class MFRC522:
   NRSTPD = 22
   
@@ -44,7 +38,7 @@ class MFRC522:
   MI_OK       = 0
   MI_NOTAGERR = 1
   MI_ERR      = 2
-  MI_NONE     = 3
+  
   Reserved00     = 0x00
   CommandReg     = 0x01
   CommIEnReg     = 0x02
@@ -114,21 +108,13 @@ class MFRC522:
   Reserved34      = 0x3F
     
   serNum = []
-  
-  print(os.listdir('/dev'))
-  onlyfiles = [f for f in listdir("/dev") if isfile (join('/dev', f))]
-  print(onlyfiles)
-
   def __init__(self, dev='/dev/spidev0.0', spd=1000000):
-    
-      
-      # spi.openSPI(device=dev,speed=spd)
+    # spi.openSPI(device=dev,speed=spd)
     self.dev_dictionary = spi.openSPI(device=dev, speed=spd)
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(self.NRSTPD, GPIO.OUT)
     GPIO.output(self.NRSTPD, 1)
     self.MFRC522_Init()
-      
 
 
   def close_SPI(self):
@@ -386,7 +372,7 @@ class MFRC522:
     errorsMat = 0
     while (matricula == None and errorsMat <= 3):
       # Scan for cards
-      status = self.MI_NONE
+      status = self.MI_ERR
       errorsRead = 0
       while (status == self.MI_ERR and errorsRead <= 3):
         (status,TagType) = self.MFRC522_Request(self.PICC_REQIDL)
@@ -411,6 +397,7 @@ class MFRC522:
 
         # Authenticate
         status = self.MFRC522_Auth(self.PICC_AUTHENT1A, 1, key, uid)
+
         # Check if authenticated
         if status == self.MI_OK:
           #Bloco de memoria que possui a matricula
@@ -424,9 +411,7 @@ class MFRC522:
           recvData.append(pOut[1])
           (status, backData, backLen) = self.MFRC522_ToCard(self.PCD_TRANSCEIVE, recvData)
           if not(status == self.MI_OK):
-            print("Error while reading!")
-            logger.error("Error while reading!")
-            
+            print ("Error while reading!")
           self.MFRC522_StopCrypto1()
 
           try:
@@ -434,12 +419,10 @@ class MFRC522:
           except:
             e = sys.exc_info()
             print("Erro na leitura: " + str(e))
-            logger.error("Erro na leitura")
 
           #print(matricula)
         else:
             print ("Authentication error")
-            logger.error("Authentication error")
 
 
       if (matricula == None):

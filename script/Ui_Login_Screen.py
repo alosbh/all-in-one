@@ -31,7 +31,7 @@ class Ui_Login_Screen(object):
         self.lbl_BIGlogo.setText("")
         self.lbl_BIGlogo.setObjectName("lbl_BIGlogo")
         self.lbl_iconcracha = QtWidgets.QLabel(self.main_loginscreen)
-        self.lbl_iconcracha.setGeometry(QtCore.QRect(1030, 590, 61, 61))
+        self.lbl_iconcracha.setGeometry(QtCore.QRect(1040, 590, 61, 61))
         self.lbl_iconcracha.setStyleSheet("image: url(:/Img/insert_badge.png);")
         self.lbl_iconcracha.setText("")
         self.lbl_iconcracha.setObjectName("lbl_iconcracha")
