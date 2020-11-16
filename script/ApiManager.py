@@ -29,7 +29,7 @@ class ApiManager:
     def __init__(self, FilePath = script_location / 'Apis.yml'):
 
         with open(FilePath, 'r') as ymlfile:
-            cfg = yaml.full_load(ymlfile)
+            cfg = yaml.load(ymlfile)
 
         self.OJT = WebService(cfg['OJT'])
         self.AIO = WebService(cfg['AIO'])
@@ -184,7 +184,7 @@ class ApiManager:
 
         baseUrl = 'http://brbelm0itqa01/AIOServiceSTG/Images5S/GetAll?query='
         baseUrl = baseUrl + str(Workstation)
-        logger.error(baseUrl)
+        
         try:
             response = requests.get(baseUrl)
             logger.error(response.json())

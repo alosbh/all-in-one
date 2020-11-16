@@ -4,12 +4,13 @@ import requests
 import json
 import time
 import sys
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 class jit_support_controller():
 
     def support_screen_functions(self, workstation_name):
         # 0 = received // 1 = sent // 2 = accepted // 3 = declined // 4 = ongoing // 5 = done
-        self.cbx_team_create.currentIndexChanged.connect(self.sympstons_by_team)
         self.btn_createticket_create.clicked.connect(lambda: self.create_ticket(workstation_name))
         self.btn_cancelticket_waiting.clicked.connect(lambda: self.update_ticket_status(5))
         self.btn_cancelticket_pending.clicked.connect(lambda: self.update_ticket_status(5))
@@ -19,23 +20,32 @@ class jit_support_controller():
 
         self.watchthread = WatchStatus()
 
+        # creates and fills arrays with teams and symptons, adds itens to the 'teams' combobox
+        team_name_array = []
+        self.sympstons_dict = {}
+
         request_teamid = requests.get(url = 'http://brbelm0itqa01/JITAPI/Team/GetAllActive', verify=False)
         response_teamid = request_teamid.json()
-        print(response_teamid[id])
-        sys.exit()
-
-        self.dict_team_symptons = {
-        "Engenharia" : {"I like", "to", "move it", "move it"},
-        "IC" : {"123456", "asdfghjkl", "godofwar"}
-        }
-        for team in self.dict_team_symptons:
-            self.cbx_team_create.addItem(team)
+        for x in response_teamid:
+            self.cbx_team_create.addItem(x['name'])
+            request_symptons_byteam = requests.get(url = 'http://brbelm0itqa01/JITAPI/Symptom/GetActiveByTeam/' + str(x['id']), verify=False)
+            response_symptons_byteam = request_symptons_byteam.json()
+            for y in response_symptons_byteam:
+                if x['name'] in self.sympstons_dict:
+                    self.sympstons_dict[x['name']].append(y['description'])
+                else:
+                    self.sympstons_dict[x['name']] = [y['description']]
+        
+        self.cbx_team_create.currentIndexChanged.connect(self.sympstons_by_team)
 
     def sympstons_by_team(self):
         self.cbx_sympton_create.clear()
-        self.selected_team = self.cbx_team_create.currentText()
-        for sympton in self.dict_team_symptons[self.selected_team]:
-            self.cbx_sympton_create.addItem(sympton)
+        selected_team = self.cbx_team_create.currentText()
+        try:
+            for sympton in self.sympstons_dict[selected_team]:
+                self.cbx_sympton_create.addItem(sympton)
+        except:
+            pass
     
 # Watch server functions 
     def create_ticket(self, workstation_name):

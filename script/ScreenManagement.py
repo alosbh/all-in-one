@@ -226,7 +226,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
     # Links the buttons to their respective methods
     def button_handle(self):
         self.btn_5s.clicked.connect(self.show5s)
-        # self.btn_support.clicked.connect(self.suporte)
+        self.btn_support.clicked.connect(self.suporte)
         self.btn_homepage.clicked.connect(self.home)
         self.btn_SCTC.clicked.connect(self.jiga_list)
         self.btn_reset.clicked.connect(self.reset)
@@ -242,6 +242,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.body_home.setVisible(False)
         self.body_web.setVisible(False)
         self.body_support.setVisible(True)
+        self.cbx_sympton_create.setEnabled(True)
+        self.cbx_team_create.setEnabled(True)
         self.hide5s()
 
     def home(self):
