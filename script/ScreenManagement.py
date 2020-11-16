@@ -374,8 +374,10 @@ class MainThread(QThread):
         while(True):
             
             try:
-                Read_ID = 51008294
-                # Read_ID = (RFRead()) # Reads Badge ID
+                # Read_ID = 51008294
+                Read_ID = (RFRead()) # Reads Badge ID
+                # logger.error("ID lida:")
+                # logger.error(Read_ID)
             except Exception as e:
                 traceback.print_exc()
                 logger.error("RFID error: " + type(e).__name__)
@@ -414,6 +416,7 @@ class MainThread(QThread):
                     print("Stats2:"+status)
                     # In case of succesfull login            
                     if(status=="Login realizado"):
+                        self.Logged_Window.home()
                         # Setup the Direct Labor object with actual worker data
                         self.DL.Setup(LoginResponse, self.host)
                         self.DL.load_avatar()
