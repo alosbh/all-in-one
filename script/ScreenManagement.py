@@ -12,7 +12,7 @@ from OS_define import OS_define
 from functions_5s import functions_5s
 from LPAactions_controller import *
 
-import MFRC522
+# import MFRC522
 import time
 import sys
 import os
@@ -160,7 +160,10 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.button_handle()
         self.generate_5s(self.Station.Name)
         self.support_screen_functions(self.Station.Name)
+
         # self.LPAactions_functions(self.Station.Name)
+        self.btn_actionsLPA.hide()
+        self.lbl_value_number_actionsLPA.hide()
 
         # Fills labels with workstation values
         self.lbl_value_workstation.setText(str(self.Station.Name)) 
@@ -310,21 +313,21 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.body_support.setVisible(False) 
         self.hide5s()
 
-# Badge reading function
-def RFRead():
+# # Badge reading function
+# def RFRead():
     
-    Read_ID = None
+#     Read_ID = None
 
-         # Instantiate the RFID reader class
-    reader = MFRC522.MFRC522()
+#          # Instantiate the RFID reader class
+#     reader = MFRC522.MFRC522()
 
-         # Get the badge id from the RFID reader
-    Read_ID = reader.JABIL_Matricula() 
+#          # Get the badge id from the RFID reader
+#     Read_ID = reader.JABIL_Matricula() 
 
-         # close the SPI slot 
-    reader.close_SPI()
+#          # close the SPI slot 
+#     reader.close_SPI()
 
-    return Read_ID
+#     return Read_ID
 
 #----------------------------------------------------------------------------------------
 #Thread for badge reading
@@ -371,8 +374,8 @@ class MainThread(QThread):
         while(True):
             
             try:
-                # Read_ID = 51008294
-                Read_ID = (RFRead()) # Reads Badge ID
+                Read_ID = 51008294
+                # Read_ID = (RFRead()) # Reads Badge ID
             except Exception as e:
                 traceback.print_exc()
                 logger.error("RFID error: " + type(e).__name__)
