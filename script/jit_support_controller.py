@@ -17,11 +17,11 @@ class jit_support_controller():
         self.btn_cancelticket_inprogress.clicked.connect(lambda: self.update_ticket_status(5))
         self.btn_initiate_pending.clicked.connect(lambda: self.update_ticket_status(4))
         self.btn_initiate_inprogress.clicked.connect(lambda: self.update_ticket_status(5))
-
         self.watchthread = WatchStatus()
-
-        # creates and fills arrays with teams and symptons, adds itens to the 'teams' combobox
-        team_name_array = []
+        self.fill_cbx_teamssymptons()
+    
+    def fill_cbx_teamssymptons(self):
+        # creates and fills dictionary teams and symptons, adds itens to the 'teams' combobox
         self.sympstons_dict = {}
 
         request_teamid = requests.get(url = 'http://brbelm0itqa01/JITAPI/Team/GetAllActive', verify=False)

@@ -242,8 +242,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.body_home.setVisible(False)
         self.body_web.setVisible(False)
         self.body_support.setVisible(True)
-        self.cbx_sympton_create.setEnabled(True)
-        self.cbx_team_create.setEnabled(True)
         self.hide5s()
 
     def home(self):
