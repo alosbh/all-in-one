@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Logged_Screen(object):
+class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1363, 773)
@@ -446,7 +446,6 @@ class Ui_Logged_Screen(object):
 "color: rgb(255, 255, 255);")
         self.lbl_value_number_actionsLPA.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_value_number_actionsLPA.setObjectName("lbl_value_number_actionsLPA")
-        self.lbl_value_number_actionsLPA.setVisible(False)
         self.footer = QtWidgets.QFrame(self.centralwidget)
         self.footer.setGeometry(QtCore.QRect(235, 722, 1131, 51))
         self.footer.setStyleSheet("background-color:white;border:none;")
@@ -1122,10 +1121,24 @@ class Ui_Logged_Screen(object):
         self.frame_performance.setContentsMargins(16, 8, 8, 16)
         self.frame_performance.setObjectName("frame_performance")
         self.linechart_container = QtWidgets.QWidget(self.gridLayoutWidget_4)
-        self.linechart_container.setStyleSheet("background-color:white;\n"
-"image: url(:/Img/MicrosoftTeams-image.png);\n"
-"border-radius:8px;")
+        self.linechart_container.setStyleSheet("background-color:white;border-radius:8px;")
         self.linechart_container.setObjectName("linechart_container")
+        self.icon_construction_01 = QtWidgets.QLabel(self.linechart_container)
+        self.icon_construction_01.setGeometry(QtCore.QRect(255, 140, 81, 81))
+        self.icon_construction_01.setStyleSheet("border-image:url(:/Img/dump-truck.png)")
+        self.icon_construction_01.setText("")
+        self.icon_construction_01.setObjectName("icon_construction_01")
+        self.label_4 = QtWidgets.QLabel(self.linechart_container)
+        self.label_4.setGeometry(QtCore.QRect(240, 220, 131, 31))
+        font = QtGui.QFont()
+        font.setFamily("Inter UI")
+        font.setPointSize(11)
+        self.label_4.setFont(font)
+        self.label_4.setStyleSheet("color:rgb(170,170,170)")
+        self.label_4.setTextFormat(QtCore.Qt.PlainText)
+        self.label_4.setObjectName("label_4")
+        self.label_4.raise_()
+        self.icon_construction_01.raise_()
         self.frame_performance.addWidget(self.linechart_container, 0, 0, 1, 1)
         self.gridLayoutWidget_5 = QtWidgets.QWidget(self.apps)
         self.gridLayoutWidget_5.setGeometry(QtCore.QRect(639, 299, 491, 361))
@@ -1134,14 +1147,14 @@ class Ui_Logged_Screen(object):
         self.frame_areas.setContentsMargins(8, 8, 16, 16)
         self.frame_areas.setObjectName("frame_areas")
         self.barchart_container = QtWidgets.QWidget(self.gridLayoutWidget_5)
-        self.barchart_container.setStyleSheet("background-color:white;border-radius:8px;border-image:url(:/Temp/jabilcoins.png)")
+        self.barchart_container.setStyleSheet("background-color:white;border-radius:8px;\n"
+"border-image:url(:/Temp/jabilcoins.png)")
         self.barchart_container.setObjectName("barchart_container")
         self.icon_construction_02 = QtWidgets.QLabel(self.barchart_container)
         self.icon_construction_02.setGeometry(QtCore.QRect(210, 140, 81, 81))
         self.icon_construction_02.setStyleSheet("border-image:url(:/Img/dump-truck.png)")
         self.icon_construction_02.setText("")
         self.icon_construction_02.setObjectName("icon_construction_02")
-        self.icon_construction_02.setVisible(False)
         self.lbl_construction_02 = QtWidgets.QLabel(self.barchart_container)
         self.lbl_construction_02.setGeometry(QtCore.QRect(200, 220, 131, 31))
         font = QtGui.QFont()
@@ -1151,7 +1164,6 @@ class Ui_Logged_Screen(object):
         self.lbl_construction_02.setStyleSheet("color:rgb(170,170,170);border:none;background:transparent;")
         self.lbl_construction_02.setTextFormat(QtCore.Qt.PlainText)
         self.lbl_construction_02.setObjectName("lbl_construction_02")
-        self.lbl_construction_02.setVisible(False)
         self.frame_areas.addWidget(self.barchart_container, 0, 0, 1, 1)
         self.dropshadowbox.raise_()
         self.dropshadowtop.raise_()
@@ -1426,6 +1438,12 @@ class Ui_Logged_Screen(object):
 "color: rgb(255, 255, 255);\n"
 "background-color: rgb(86, 149, 246);")
         self.btn_initiate_inprogress.setObjectName("btn_initiate_inprogress")
+        self.lbl_aiologo_support = QtWidgets.QLabel(self.body_support)
+        self.lbl_aiologo_support.setGeometry(QtCore.QRect(700, -140, 591, 361))
+        self.lbl_aiologo_support.setStyleSheet("image: url(:/Img/logo_hor-01.svg);")
+        self.lbl_aiologo_support.setText("")
+        self.lbl_aiologo_support.setObjectName("lbl_aiologo_support")
+        self.lbl_aiologo_support.raise_()
         self.lbl_JIT.raise_()
         self.lbl_blueline.raise_()
         self.subbody_waiting_2.raise_()
@@ -1498,6 +1516,7 @@ class Ui_Logged_Screen(object):
         self.lbl_achiev_points_01.setText(_translate("MainWindow", "0p"))
         self.lbl_achiev_desc_06.setText(_translate("MainWindow", "<html><head/><body><p>Em breve...</p></body></html>"))
         self.lbl_achiev_points_06.setText(_translate("MainWindow", "0p"))
+        self.label_4.setText(_translate("MainWindow", "Em construção..."))
         self.lbl_construction_02.setText(_translate("MainWindow", "Em construção..."))
         self.lbl_JIT.setText(_translate("MainWindow", "Just in Time Support"))
         self.btn_createticket_create.setText(_translate("MainWindow", "Solicitar suporte"))
@@ -1519,8 +1538,8 @@ class Ui_Logged_Screen(object):
         self.lbl_pending_inprogress.setText(_translate("MainWindow", "Chamado em andamento"))
         self.lbl_waiting_inprogress.setText(_translate("MainWindow", "Chamado em andamento, aguarde a conclusão."))
         self.btn_initiate_inprogress.setText(_translate("MainWindow", "Finalizar atendimento"))
+import img_temp_rc
 import resources_rc
-import img_temp
 
 
 if __name__ == "__main__":
