@@ -8,15 +8,16 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 class jit_support_controller():
+    # 0 = received // 1 = sent // 2 = accepted // 3 = declined // 4 = ongoing // 5 = done
 
     def support_screen_functions(self, workstation_name):
-        # 0 = received // 1 = sent // 2 = accepted // 3 = declined // 4 = ongoing // 5 = done
         self.btn_createticket_create.clicked.connect(lambda: self.create_ticket(workstation_name))
         self.btn_cancelticket_waiting.clicked.connect(lambda: self.update_ticket_status(5))
         self.btn_cancelticket_pending.clicked.connect(lambda: self.update_ticket_status(5))
         self.btn_cancelticket_inprogress.clicked.connect(lambda: self.update_ticket_status(5))
         self.btn_initiate_pending.clicked.connect(lambda: self.update_ticket_status(4))
         self.btn_initiate_inprogress.clicked.connect(lambda: self.update_ticket_status(5))
+        self.cbx_team_create.currentIndexChanged.connect(self.sympstons_by_team)
         self.watchthread = WatchStatus()
         self.fill_cbx_teamssymptons()
     
@@ -35,8 +36,6 @@ class jit_support_controller():
                     self.sympstons_dict[x['name']].append(y['description'])
                 else:
                     self.sympstons_dict[x['name']] = [y['description']]
-        
-        self.cbx_team_create.currentIndexChanged.connect(self.sympstons_by_team)
 
     def sympstons_by_team(self):
         self.cbx_sympton_create.clear()
