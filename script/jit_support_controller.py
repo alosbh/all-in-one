@@ -23,25 +23,29 @@ class jit_support_controller():
     
     def fill_cbx_teamssymptons(self):
         # creates and fills dictionary teams and symptons, adds itens to the 'teams' combobox
-        self.sympstons_dict = {}
+        self.general_dict = {}
+        team_array = []
 
         request_teamid = requests.get(url = 'http://brbelm0itqa01/JITAPI/Team/GetAllActive', verify=False)
         response_teamid = request_teamid.json()
         for x in response_teamid:
             self.cbx_team_create.addItem(x['name'])
+
             request_symptons_byteam = requests.get(url = 'http://brbelm0itqa01/JITAPI/Symptom/GetActiveByTeam/' + str(x['id']), verify=False)
             response_symptons_byteam = request_symptons_byteam.json()
+
             for y in response_symptons_byteam:
-                if x['name'] in self.sympstons_dict:
-                    self.sympstons_dict[x['name']].append(y['description'])
+                if x['name'] in self.general_dict:
+                    self.general_dict[x['name'], x['id']].append([y['description'], y['id']])
                 else:
-                    self.sympstons_dict[x['name']] = [y['description']]
+                    self.general_dict[x['name'], x['id']] = [y['description'], y['id']]
+        print(self.general_dict)
 
     def sympstons_by_team(self):
         self.cbx_sympton_create.clear()
         selected_team = self.cbx_team_create.currentText()
         try:
-            for sympton in self.sympstons_dict[selected_team]:
+            for sympton in self.general_dict[selected_team]:
                 self.cbx_sympton_create.addItem(sympton)
         except:
             pass
