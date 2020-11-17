@@ -8,41 +8,43 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 class jit_support_controller():
+    # 0 = received // 1 = sent // 2 = accepted // 3 = declined // 4 = ongoing // 5 = done
 
     def support_screen_functions(self, workstation_name):
-        # 0 = received // 1 = sent // 2 = accepted // 3 = declined // 4 = ongoing // 5 = done
         self.btn_createticket_create.clicked.connect(lambda: self.create_ticket(workstation_name))
         self.btn_cancelticket_waiting.clicked.connect(lambda: self.update_ticket_status(5))
         self.btn_cancelticket_pending.clicked.connect(lambda: self.update_ticket_status(5))
         self.btn_cancelticket_inprogress.clicked.connect(lambda: self.update_ticket_status(5))
         self.btn_initiate_pending.clicked.connect(lambda: self.update_ticket_status(4))
         self.btn_initiate_inprogress.clicked.connect(lambda: self.update_ticket_status(5))
+        self.cbx_team_create.currentIndexChanged.connect(self.sympstons_by_team)
         self.watchthread = WatchStatus()
         self.fill_cbx_teamssymptons()
     
     def fill_cbx_teamssymptons(self):
         # creates and fills dictionary teams and symptons, adds itens to the 'teams' combobox
-        self.sympstons_dict = {}
+        self.general_dict = {}
+        team_array = []
 
         request_teamid = requests.get(url = 'http://brbelm0itqa01/JITAPI/Team/GetAllActive', verify=False)
         response_teamid = request_teamid.json()
         for x in response_teamid:
             self.cbx_team_create.addItem(x['name'])
+
             request_symptons_byteam = requests.get(url = 'http://brbelm0itqa01/JITAPI/Symptom/GetActiveByTeam/' + str(x['id']), verify=False)
             response_symptons_byteam = request_symptons_byteam.json()
+
             for y in response_symptons_byteam:
-                if x['name'] in self.sympstons_dict:
-                    self.sympstons_dict[x['name']].append(y['description'])
+                if x['name'] in self.general_dict:
+                    self.general_dict[x['name'], x['id']].append([y['description'], y['id']])
                 else:
-                    self.sympstons_dict[x['name']] = [y['description']]
-        
-        self.cbx_team_create.currentIndexChanged.connect(self.sympstons_by_team)
+                    self.general_dict[x['name'], x['id']] = [y['description'], y['id']]
 
     def sympstons_by_team(self):
         self.cbx_sympton_create.clear()
         selected_team = self.cbx_team_create.currentText()
         try:
-            for sympton in self.sympstons_dict[selected_team]:
+            for sympton in self.general_dict[selected_team]:
                 self.cbx_sympton_create.addItem(sympton)
         except:
             pass

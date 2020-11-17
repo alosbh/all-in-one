@@ -239,9 +239,9 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.Reset_Window.Show()
 
     def suporte(self):
+        self.body_support.setVisible(True)
         self.body_home.setVisible(False)
         self.body_web.setVisible(False)
-        self.body_support.setVisible(True)
         self.hide5s()
 
     def home(self):
