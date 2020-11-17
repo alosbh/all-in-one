@@ -39,7 +39,6 @@ class jit_support_controller():
                     self.general_dict[x['name'], x['id']].append([y['description'], y['id']])
                 else:
                     self.general_dict[x['name'], x['id']] = [y['description'], y['id']]
-        print(self.general_dict)
 
     def sympstons_by_team(self):
         self.cbx_sympton_create.clear()
