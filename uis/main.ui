@@ -2757,51 +2757,10 @@ background-color: #fce861;</string>
         <item row="0" column="0">
          <widget class="QWidget" name="linechart_container" native="true">
           <property name="styleSheet">
-           <string notr="true">background-color:white;border-radius:8px;</string>
+           <string notr="true">background-color:white;
+image: url(:/Img/MicrosoftTeams-image.png);
+border-radius:8px;</string>
           </property>
-          <widget class="QLabel" name="icon_construction_01">
-           <property name="geometry">
-            <rect>
-             <x>255</x>
-             <y>140</y>
-             <width>81</width>
-             <height>81</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border-image:url(:/Img/dump-truck.png)</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_4">
-           <property name="geometry">
-            <rect>
-             <x>240</x>
-             <y>220</y>
-             <width>131</width>
-             <height>31</height>
-            </rect>
-           </property>
-           <property name="font">
-            <font>
-             <family>Inter UI</family>
-             <pointsize>11</pointsize>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color:rgb(170,170,170)</string>
-           </property>
-           <property name="text">
-            <string>Em construção...</string>
-           </property>
-           <property name="textFormat">
-            <enum>Qt::PlainText</enum>
-           </property>
-          </widget>
-          <zorder>label_4</zorder>
-          <zorder>icon_construction_01</zorder>
          </widget>
         </item>
        </layout>
@@ -3614,23 +3573,6 @@ background-color: rgb(86, 149, 246);</string>
        </property>
       </widget>
      </widget>
-     <widget class="QLabel" name="lbl_aiologo_support">
-      <property name="geometry">
-       <rect>
-        <x>700</x>
-        <y>-140</y>
-        <width>591</width>
-        <height>361</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image: url(:/Img/logo_hor-01.svg);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <zorder>lbl_aiologo_support</zorder>
      <zorder>lbl_JIT</zorder>
      <zorder>lbl_blueline</zorder>
      <zorder>subbody_waiting_2</zorder>

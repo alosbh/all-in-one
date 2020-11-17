@@ -91,22 +91,6 @@ border: 10px</string>
      <string>Insira seu crachá</string>
     </property>
    </widget>
-   <widget class="QLabel" name="lbl_verticallogo">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>-250</y>
-      <width>1251</width>
-      <height>871</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/Img/logo_vert-01.svg);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QLabel" name="lbl_value_version">
     <property name="geometry">
      <rect>
@@ -238,7 +222,22 @@ background-color:rgb(72, 75, 218)</string>
      <string>HOSTNAME</string>
     </property>
    </widget>
-   <zorder>lbl_verticallogo</zorder>
+   <widget class="QLabel" name="lbl_verticallogo">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>70</y>
+      <width>351</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/Img/logovertical.PNG);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>lbl_BIGlogo</zorder>
    <zorder>btn_reset</zorder>
    <zorder>lbl_iconcracha</zorder>
@@ -249,6 +248,7 @@ background-color:rgb(72, 75, 218)</string>
    <zorder>lbl_jabilogo</zorder>
    <zorder>lbl_value_hostname</zorder>
    <zorder>lbl_hostname</zorder>
+   <zorder>lbl_verticallogo</zorder>
   </widget>
  </widget>
  <resources>
