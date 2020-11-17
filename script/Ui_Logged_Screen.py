@@ -1121,24 +1121,10 @@ class Ui_Logged_Screen(object):
         self.frame_performance.setContentsMargins(16, 8, 8, 16)
         self.frame_performance.setObjectName("frame_performance")
         self.linechart_container = QtWidgets.QWidget(self.gridLayoutWidget_4)
-        self.linechart_container.setStyleSheet("background-color:white;border-radius:8px;")
+        self.linechart_container.setStyleSheet("background-color:white;\n"
+"image: url(:/Img/MicrosoftTeams-image.png);\n"
+"border-radius:8px;")
         self.linechart_container.setObjectName("linechart_container")
-        self.icon_construction_01 = QtWidgets.QLabel(self.linechart_container)
-        self.icon_construction_01.setGeometry(QtCore.QRect(255, 140, 81, 81))
-        self.icon_construction_01.setStyleSheet("border-image:url(:/Img/dump-truck.png)")
-        self.icon_construction_01.setText("")
-        self.icon_construction_01.setObjectName("icon_construction_01")
-        self.label_4 = QtWidgets.QLabel(self.linechart_container)
-        self.label_4.setGeometry(QtCore.QRect(240, 220, 131, 31))
-        font = QtGui.QFont()
-        font.setFamily("Inter UI")
-        font.setPointSize(11)
-        self.label_4.setFont(font)
-        self.label_4.setStyleSheet("color:rgb(170,170,170)")
-        self.label_4.setTextFormat(QtCore.Qt.PlainText)
-        self.label_4.setObjectName("label_4")
-        self.label_4.raise_()
-        self.icon_construction_01.raise_()
         self.frame_performance.addWidget(self.linechart_container, 0, 0, 1, 1)
         self.gridLayoutWidget_5 = QtWidgets.QWidget(self.apps)
         self.gridLayoutWidget_5.setGeometry(QtCore.QRect(639, 299, 491, 361))
@@ -1437,6 +1423,33 @@ class Ui_Logged_Screen(object):
 "color: rgb(255, 255, 255);\n"
 "background-color: rgb(86, 149, 246);")
         self.btn_initiate_inprogress.setObjectName("btn_initiate_inprogress")
+        self.lbl_support_error = QtWidgets.QWidget(self.body_support)
+        self.lbl_support_error.setGeometry(QtCore.QRect(430, 450, 291, 131))
+        self.lbl_support_error.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-radius: 8px;\n"
+"border: 2px  solid rgb(0,0,0);")
+        self.lbl_support_error.setObjectName("lbl_support_error")
+        self.lbl_text_error = QtWidgets.QLabel(self.lbl_support_error)
+        self.lbl_text_error.setGeometry(QtCore.QRect(60, 30, 221, 71))
+        self.lbl_text_error.setStyleSheet("border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.lbl_text_error.setWordWrap(True)
+        self.lbl_text_error.setObjectName("lbl_text_error")
+        self.lbl_yellowerror = QtWidgets.QLabel(self.lbl_support_error)
+        self.lbl_yellowerror.setGeometry(QtCore.QRect(10, 40, 41, 31))
+        self.lbl_yellowerror.setStyleSheet("image: url(:/Img/yellowerror.png);\n"
+"border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.lbl_yellowerror.setText("")
+        self.lbl_yellowerror.setObjectName("lbl_yellowerror")
+        self.btn_close_error = QtWidgets.QPushButton(self.lbl_support_error)
+        self.btn_close_error.setGeometry(QtCore.QRect(265, 6, 21, 21))
+        self.btn_close_error.setStyleSheet("image: url(:/Img/redX.png);\n"
+"border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.btn_close_error.setText("")
+        self.btn_close_error.setObjectName("pushButton")
+        self.lbl_support_error.raise_()
         self.lbl_JIT.raise_()
         self.lbl_blueline.raise_()
         self.subbody_waiting_2.raise_()
@@ -1509,7 +1522,6 @@ class Ui_Logged_Screen(object):
         self.lbl_achiev_points_01.setText(_translate("MainWindow", "0p"))
         self.lbl_achiev_desc_06.setText(_translate("MainWindow", "<html><head/><body><p>Em breve...</p></body></html>"))
         self.lbl_achiev_points_06.setText(_translate("MainWindow", "0p"))
-        self.label_4.setText(_translate("MainWindow", "Em construção..."))
         self.lbl_construction_02.setText(_translate("MainWindow", "Em construção..."))
         self.lbl_JIT.setText(_translate("MainWindow", "Just in Time Support"))
         self.btn_createticket_create.setText(_translate("MainWindow", "Solicitar suporte"))
@@ -1531,6 +1543,7 @@ class Ui_Logged_Screen(object):
         self.lbl_pending_inprogress.setText(_translate("MainWindow", "Chamado em andamento"))
         self.lbl_waiting_inprogress.setText(_translate("MainWindow", "Chamado em andamento, aguarde a conclusão."))
         self.btn_initiate_inprogress.setText(_translate("MainWindow", "Finalizar atendimento"))
+        self.lbl_text_error.setText(_translate("MainWindow", "Ops! Algo deu errado. Verifique se todos os campos estão preenchidos corretamente e tente novamente.                                              Se o erro persistir contate Andre no ramal: 123456"))
 import resources_rc
 
 
