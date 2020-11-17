@@ -49,6 +49,7 @@ class Raspberry:
             response = json.loads(request.content)
             hostname = response['hostname']
             self.Name = hostname
+            self.Name = "brbelraspbusterdev3"
         else:
             self.request_rasp_hostname()
         
