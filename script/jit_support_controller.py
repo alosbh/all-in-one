@@ -4,6 +4,7 @@ import requests
 import json
 import time
 import sys
+from ast import literal_eval
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
@@ -21,10 +22,10 @@ class jit_support_controller():
         self.cbx_team_create.currentIndexChanged.connect(self.symptons_by_team)
         self.cbx_sympton_create.activated.connect(self.get_symptonid)
         self.watchthread = WatchStatus()
-        self.fill_cbx_teamssymptons()
+        self.fill_cbx_teamssymptons(workstation_name)
     
 # creates and fills dictionaries with teams, symptons and it's ids - adds itens to the array that is used to fill comboboxes
-    def fill_cbx_teamssymptons(self):
+    def fill_cbx_teamssymptons(self, workstation_name):
         self.team_teamid_dict = {}
         self.symptons_symptonid_dict = {}
         self.fill_cbx_dict = {}
@@ -33,23 +34,28 @@ class jit_support_controller():
         response_teamid = request_teamid.json()
 
         for x in response_teamid:
-            self.cbx_team_create.addItem(x['name'])
             self.team_teamid_dict.setdefault(x['name'],[]).append(x['id'])
 
             request_symptons_byteam = requests.get(url = 'http://brbelm0itqa01/JITAPI/Symptom/GetActiveByTeam/' + str(x['id']), verify=False)
             response_symptons_byteam = request_symptons_byteam.json()
 
             for y in response_symptons_byteam:
-                self.symptons_symptonid_dict.setdefault(y['description'],[]).append(y['id'])
-                self.fill_cbx_dict.setdefault(x['name'],[]).append(y['description'])
-                
+                # a API retorna um array em formato de string (???)
+                return_workstation = literal_eval(y['workstation'])
+                for z in return_workstation:
+                    if z['text'] == workstation_name:
+                        self.symptons_symptonid_dict.setdefault(y['description'],[]).append(y['id'])
+                        self.fill_cbx_dict.setdefault(x['name'],[]).append(y['description'])
+        
+        for team in self.fill_cbx_dict:
+            self.cbx_team_create.addItem(team)
+                        
 # fills comboboxes with symptons and teams
     def symptons_by_team(self):
         self.cbx_sympton_create.clear()
         selected_team = self.cbx_team_create.currentText()
 
         try:
-            self.team_id = self.team_teamid_dict[selected_team]
             for sympton in self.fill_cbx_dict[selected_team]:
                 self.cbx_sympton_create.addItem(sympton)
         except:
@@ -74,6 +80,7 @@ class jit_support_controller():
         url_create = 'http://brbelm0itqa01/JITAPI/Ticket/Create'
         
         try:
+            self.team_id = self.team_teamid_dict[self.cbx_team_create.currentText()]
             postBody_create = {'productionLineStatus': self.line_situation,
             'workstationName': workstation_name,
             'teamId': self.team_id.pop(),
@@ -81,10 +88,10 @@ class jit_support_controller():
             'description': self.cbx_sympton_create.currentText()
             }
             request_create = requests.post(url_create, data=json.dumps(postBody_create), headers=headers_create)
-            self.requestID = str(request_create.json()['id'])
-            print(self.requestID)
 
             if request_create.status_code == 201:
+                self.requestID = str(request_create.json()['id'])
+                print(self.requestID)
                 self.thread_ticket_status = 1
                 self.watchthread.startThread(self)
                 self.subbody_waiting_2.raise_()
@@ -96,8 +103,8 @@ class jit_support_controller():
 # request updates the ticket status on the server side
     def update_ticket_status(self, status):
         headers_update = {'content-type': 'application/json'}
-        url_update = 'http://brbelm0itqa01/JITAPI/Ticket​/Update'
-        postBody_update = {'id': self.requestID,'ticketStatus': status}
+        url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Update'
+        postBody_update = {'ticketStatus': status, 'ticketId': int(self.requestID)}
         request_update = requests.post(url_update, data=json.dumps(postBody_update), headers=headers_update)
 
     def raise_error_window(self):
@@ -110,16 +117,20 @@ class WatchStatus(QThread):
     def run(self):
         while(self.body_support.thread_ticket_status == 1):
             ticket_info_request = requests.get(self.url_thread)
+            ticket_info_request = ticket_info_request.json()
             
-            if(ticket_info_request.json()['status'] == "Accepted"):
+            if(ticket_info_request['status'] == "Accepted"):
                 self.body_support.subbody_pending_3.raise_()
-                self.body_support.lbl_value_support_name_pending.setText(ticket_info_request.json()['additionalData']['userName'])
-            elif(ticket_info_request.json()['status'] == "OnGoing"):
+                url_get_username = requests.get(url = "http://brbelm0apps02/AIOService/Jmd/GetUserDetailsByRegistration/" + str(ticket_info_request['user']), verify=False)
+                return_username = url_get_username.json()
+                self.body_support.lbl_value_support_name_pending.setText(return_username['sName'])
+
+            elif(ticket_info_request['status'] == "OnGoing"):
                 self.body_support.subbody_inprogress_4.raise_()
-            elif(ticket_info_request.json()['status'] == "Done"):
+            elif(ticket_info_request['status'] == "Done"):
                 self.body_support.subbody_createticket_1.raise_()
 
-            time.sleep(4)
+            time.sleep(2)
 
     def startThread(self, body_support):
         self.body_support = body_support

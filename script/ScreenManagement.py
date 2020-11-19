@@ -253,16 +253,12 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
     #Method to load an url on the webviewer
     def load_url(self, url):
         self.body_web.load(QUrl('about:blank'))
-        time.sleep(1)
         self.loading_status = 0
         self.body_web.load(QUrl(url))
         self.body_home.setVisible(False) 
         self.body_web.setVisible(True)
         self.body_support.setVisible(False)
         self.body_web.show()
-
-    def finish_loading(self):
-        self.loading_status = 1
 
     def custom_button_load(self):
         CustomAddr = self.thread.API.custom_button(self.Station.Area,self.Station.AreaTrim, self.Station.RouteMin, self.Station.Index)
