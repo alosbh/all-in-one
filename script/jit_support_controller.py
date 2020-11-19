@@ -20,7 +20,6 @@ class jit_support_controller():
         self.btn_initiate_pending.clicked.connect(lambda: self.update_ticket_status(4))
         self.btn_initiate_inprogress.clicked.connect(lambda: self.update_ticket_status(5))
         self.cbx_team_create.currentIndexChanged.connect(self.symptons_by_team)
-        self.cbx_sympton_create.activated.connect(self.get_symptonid)
         self.watchthread = WatchStatus()
         self.fill_cbx_teamssymptons(workstation_name)
     
@@ -34,7 +33,8 @@ class jit_support_controller():
         response_teamid = request_teamid.json()
 
         for x in response_teamid:
-            self.team_teamid_dict.setdefault(x['name'],[]).append(x['id'])
+            print(x)
+            self.team_teamid_dict.setdefault(x['name'], x['id'])
 
             request_symptons_byteam = requests.get(url = 'http://brbelm0itqa01/JITAPI/Symptom/GetActiveByTeam/' + str(x['id']), verify=False)
             response_symptons_byteam = request_symptons_byteam.json()
@@ -44,7 +44,7 @@ class jit_support_controller():
                 return_workstation = literal_eval(y['workstation'])
                 for z in return_workstation:
                     if z['text'] == workstation_name:
-                        self.symptons_symptonid_dict.setdefault(y['description'],[]).append(y['id'])
+                        self.symptons_symptonid_dict.setdefault(y['description'],y['id'])
                         self.fill_cbx_dict.setdefault(x['name'],[]).append(y['description'])
         
         for team in self.fill_cbx_dict:
@@ -61,14 +61,6 @@ class jit_support_controller():
         except:
             pass
 
-# gets sympton id from the symptons combobox
-    def get_symptonid(self):
-        try:
-            self.selected_sympton = self.cbx_sympton_create.currentText()
-            self.symptom_id = self.symptons_symptonid_dict[self.selected_sympton]
-        except:
-            pass
-
 # Watch server functions 
     def create_ticket(self, workstation_name):
         if self.rbtn_going_create.isChecked():
@@ -79,14 +71,18 @@ class jit_support_controller():
         headers_create = {'content-type': 'application/json'}
         url_create = 'http://brbelm0itqa01/JITAPI/Ticket/Create'
         
+        self.team_id = self.team_teamid_dict.get(self.cbx_team_create.currentText())
+        self.selected_sympton = self.cbx_sympton_create.currentText()
+        self.symptom_id = self.symptons_symptonid_dict.get(self.selected_sympton)
+
         try:
-            self.team_id = self.team_teamid_dict[self.cbx_team_create.currentText()]
             postBody_create = {'productionLineStatus': self.line_situation,
             'workstationName': workstation_name,
-            'teamId': self.team_id.pop(),
-            'symptomId': self.symptom_id.pop(),
+            'teamId': self.team_id,
+            'symptomId': self.symptom_id,
             'description': self.cbx_sympton_create.currentText()
             }
+            print(postBody_create)
             request_create = requests.post(url_create, data=json.dumps(postBody_create), headers=headers_create)
 
             if request_create.status_code == 201:
