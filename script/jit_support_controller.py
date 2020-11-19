@@ -120,10 +120,8 @@ class WatchStatus(QThread):
             ticket_info_request = ticket_info_request.json()
             
             if(ticket_info_request['status'] == "Accepted"):
+                self.body_support.lbl_value_support_name_pending.setText(ticket_info_request['userName'])
                 self.body_support.subbody_pending_3.raise_()
-                url_get_username = requests.get(url = "http://brbelm0apps02/AIOService/Jmd/GetUserDetailsByRegistration/" + str(ticket_info_request['user']), verify=False)
-                return_username = url_get_username.json()
-                self.body_support.lbl_value_support_name_pending.setText(return_username['sName'])
 
             elif(ticket_info_request['status'] == "OnGoing"):
                 self.body_support.subbody_inprogress_4.raise_()

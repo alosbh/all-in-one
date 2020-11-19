@@ -255,10 +255,9 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.body_web.load(QUrl('about:blank'))
         self.loading_status = 0
         self.body_web.load(QUrl(url))
-        self.body_home.setVisible(False) 
+        self.body_home.setVisible(False)
         self.body_web.setVisible(True)
         self.body_support.setVisible(False)
-        self.body_web.show()
 
     def custom_button_load(self):
         CustomAddr = self.thread.API.custom_button(self.Station.Area,self.Station.AreaTrim, self.Station.RouteMin, self.Station.Index)
@@ -280,8 +279,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.load_url_signal.signal.emit(BIAddr)
 
     def load_fi(self):
-        if self.operational_system == 1:    
-            self.body_web.setZoomFactor(1) 
+        if self.operational_system == 1:
             FIAddr = self.thread.API.load_FI(self.Station.Name) 
             self.body_web.load(FIAddr)
 
