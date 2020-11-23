@@ -33,7 +33,6 @@ class jit_support_controller():
         response_teamid = request_teamid.json()
 
         for x in response_teamid:
-            print(x)
             self.team_teamid_dict.setdefault(x['name'], x['id'])
 
             request_symptons_byteam = requests.get(url = 'http://brbelm0itqa01/JITAPI/Symptom/GetActiveByTeam/' + str(x['id']), verify=False)
@@ -82,7 +81,6 @@ class jit_support_controller():
             'symptomId': self.symptom_id,
             'description': self.cbx_sympton_create.currentText()
             }
-            print(postBody_create)
             request_create = requests.post(url_create, data=json.dumps(postBody_create), headers=headers_create)
 
             if request_create.status_code == 201:
@@ -114,6 +112,7 @@ class WatchStatus(QThread):
         while(self.body_support.thread_ticket_status == 1):
             ticket_info_request = requests.get(self.url_thread)
             ticket_info_request = ticket_info_request.json()
+            print(ticket_info_request)
             
             if(ticket_info_request['status'] == "Accepted"):
                 self.body_support.lbl_value_support_name_pending.setText(ticket_info_request['userName'])
@@ -123,6 +122,7 @@ class WatchStatus(QThread):
                 self.body_support.subbody_inprogress_4.raise_()
             elif(ticket_info_request['status'] == "Done"):
                 self.body_support.subbody_createticket_1.raise_()
+                return
 
             time.sleep(2)
 
