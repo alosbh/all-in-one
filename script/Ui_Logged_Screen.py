@@ -446,7 +446,6 @@ class Ui_Logged_Screen(object):
 "color: rgb(255, 255, 255);")
         self.lbl_value_number_actionsLPA.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_value_number_actionsLPA.setObjectName("lbl_value_number_actionsLPA")
-        self.lbl_value_number_actionsLPA.setVisible(False)
         self.footer = QtWidgets.QFrame(self.centralwidget)
         self.footer.setGeometry(QtCore.QRect(235, 722, 1131, 51))
         self.footer.setStyleSheet("background-color:white;border:none;")
@@ -1123,7 +1122,6 @@ class Ui_Logged_Screen(object):
         self.frame_performance.setObjectName("frame_performance")
         self.linechart_container = QtWidgets.QWidget(self.gridLayoutWidget_4)
         self.linechart_container.setStyleSheet("background-color:white;\n"
-"image: url(:/Img/MicrosoftTeams-image.png);\n"
 "border-radius:8px;")
         self.linechart_container.setObjectName("linechart_container")
         self.frame_performance.addWidget(self.linechart_container, 0, 0, 1, 1)
@@ -1134,24 +1132,8 @@ class Ui_Logged_Screen(object):
         self.frame_areas.setContentsMargins(8, 8, 16, 16)
         self.frame_areas.setObjectName("frame_areas")
         self.barchart_container = QtWidgets.QWidget(self.gridLayoutWidget_5)
-        self.barchart_container.setStyleSheet("background-color:white;border-radius:8px;border-image:url(:/Temp/jabilcoins.png)")
+        self.barchart_container.setStyleSheet("background-color:white;border-radius:8px;")
         self.barchart_container.setObjectName("barchart_container")
-        self.icon_construction_02 = QtWidgets.QLabel(self.barchart_container)
-        self.icon_construction_02.setGeometry(QtCore.QRect(210, 140, 81, 81))
-        self.icon_construction_02.setStyleSheet("border-image:url(:/Img/dump-truck.png)")
-        self.icon_construction_02.setText("")
-        self.icon_construction_02.setObjectName("icon_construction_02")
-        self.icon_construction_02.setVisible(False)
-        self.lbl_construction_02 = QtWidgets.QLabel(self.barchart_container)
-        self.lbl_construction_02.setGeometry(QtCore.QRect(200, 220, 131, 31))
-        font = QtGui.QFont()
-        font.setFamily("Inter UI")
-        font.setPointSize(11)
-        self.lbl_construction_02.setFont(font)
-        self.lbl_construction_02.setStyleSheet("color:rgb(170,170,170);border:none;background:transparent;")
-        self.lbl_construction_02.setTextFormat(QtCore.Qt.PlainText)
-        self.lbl_construction_02.setObjectName("lbl_construction_02")
-        self.lbl_construction_02.setVisible(False)
         self.frame_areas.addWidget(self.barchart_container, 0, 0, 1, 1)
         self.dropshadowbox.raise_()
         self.dropshadowtop.raise_()
@@ -1426,6 +1408,33 @@ class Ui_Logged_Screen(object):
 "color: rgb(255, 255, 255);\n"
 "background-color: rgb(86, 149, 246);")
         self.btn_initiate_inprogress.setObjectName("btn_initiate_inprogress")
+        self.lbl_support_error = QtWidgets.QWidget(self.body_support)
+        self.lbl_support_error.setGeometry(QtCore.QRect(430, 450, 291, 131))
+        self.lbl_support_error.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-radius: 8px;\n"
+"border: 2px  solid rgb(0,0,0);")
+        self.lbl_support_error.setObjectName("lbl_support_error")
+        self.lbl_text_error = QtWidgets.QLabel(self.lbl_support_error)
+        self.lbl_text_error.setGeometry(QtCore.QRect(60, 30, 221, 71))
+        self.lbl_text_error.setStyleSheet("border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.lbl_text_error.setWordWrap(True)
+        self.lbl_text_error.setObjectName("lbl_text_error")
+        self.lbl_yellowerror = QtWidgets.QLabel(self.lbl_support_error)
+        self.lbl_yellowerror.setGeometry(QtCore.QRect(10, 40, 41, 31))
+        self.lbl_yellowerror.setStyleSheet("image: url(:/Img/yellowerror.png);\n"
+"border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.lbl_yellowerror.setText("")
+        self.lbl_yellowerror.setObjectName("lbl_yellowerror")
+        self.pushButton = QtWidgets.QPushButton(self.lbl_support_error)
+        self.pushButton.setGeometry(QtCore.QRect(265, 6, 21, 21))
+        self.pushButton.setStyleSheet("image: url(:/Img/redX.png);\n"
+"border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.pushButton.setText("")
+        self.pushButton.setObjectName("pushButton")
+        self.lbl_support_error.raise_()
         self.lbl_JIT.raise_()
         self.lbl_blueline.raise_()
         self.subbody_waiting_2.raise_()
@@ -1498,7 +1507,6 @@ class Ui_Logged_Screen(object):
         self.lbl_achiev_points_01.setText(_translate("MainWindow", "0p"))
         self.lbl_achiev_desc_06.setText(_translate("MainWindow", "<html><head/><body><p>Em breve...</p></body></html>"))
         self.lbl_achiev_points_06.setText(_translate("MainWindow", "0p"))
-        self.lbl_construction_02.setText(_translate("MainWindow", "Em construção..."))
         self.lbl_JIT.setText(_translate("MainWindow", "Just in Time Support"))
         self.btn_createticket_create.setText(_translate("MainWindow", "Solicitar suporte"))
         self.lbl_sympton_create.setText(_translate("MainWindow", "Sintoma"))
@@ -1519,8 +1527,8 @@ class Ui_Logged_Screen(object):
         self.lbl_pending_inprogress.setText(_translate("MainWindow", "Chamado em andamento"))
         self.lbl_waiting_inprogress.setText(_translate("MainWindow", "Chamado em andamento, aguarde a conclusão."))
         self.btn_initiate_inprogress.setText(_translate("MainWindow", "Finalizar atendimento"))
+        self.lbl_text_error.setText(_translate("MainWindow", "Ops! Algo deu errado. Verifique se todos os campos estão preenchidos corretamente e tente novamente.                                              Se o erro persistir contate Andre no ramal: 123456"))
 import resources_rc
-import img_temp
 
 
 if __name__ == "__main__":
