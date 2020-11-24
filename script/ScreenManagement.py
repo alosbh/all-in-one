@@ -11,7 +11,7 @@ from DirectLabor import DirectLabor as DL
 from OS_define import OS_define
 from functions_5s import functions_5s
 from LPAactions_controller import *
-
+from Announcements import *
 # import MFRC522
 import time
 import sys
