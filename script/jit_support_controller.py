@@ -85,7 +85,6 @@ class jit_support_controller():
 
             if request_create.status_code == 201:
                 self.requestID = str(request_create.json()['id'])
-                print(self.requestID)
                 self.thread_ticket_status = 1
                 self.watchthread.startThread(self)
                 self.subbody_waiting_2.raise_()
@@ -112,7 +111,6 @@ class WatchStatus(QThread):
         while(self.body_support.thread_ticket_status == 1):
             ticket_info_request = requests.get(self.url_thread)
             ticket_info_request = ticket_info_request.json()
-            print(ticket_info_request)
             
             if(ticket_info_request['status'] == "Accepted"):
                 self.body_support.lbl_value_support_name_pending.setText(ticket_info_request['userName'])

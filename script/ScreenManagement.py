@@ -18,9 +18,10 @@ import sys
 import os
 import logging
 import traceback
+import urllib.request
 
 from PyQt5.QtCore import QObject, pyqtSignal, QUrl, QThread
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap, QIcon
 # from PyQt5.QtWebKit import QWebSettings
 
 global logger
