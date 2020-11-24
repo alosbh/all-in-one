@@ -1427,13 +1427,13 @@ class Ui_Logged_Screen(object):
 "border: 0px  solid rgb(0,0,0);")
         self.lbl_yellowerror.setText("")
         self.lbl_yellowerror.setObjectName("lbl_yellowerror")
-        self.pushButton = QtWidgets.QPushButton(self.lbl_support_error)
-        self.pushButton.setGeometry(QtCore.QRect(265, 6, 21, 21))
-        self.pushButton.setStyleSheet("image: url(:/Img/redX.png);\n"
+        self.btn_close_error = QtWidgets.QPushButton(self.lbl_support_error)
+        self.btn_close_error.setGeometry(QtCore.QRect(265, 6, 21, 21))
+        self.btn_close_error.setStyleSheet("image: url(:/Img/redX.png);\n"
 "border-radius: 0px;\n"
 "border: 0px  solid rgb(0,0,0);")
-        self.pushButton.setText("")
-        self.pushButton.setObjectName("pushButton")
+        self.btn_close_error.setText("")
+        self.btn_close_error.setObjectName("btn_close_error")
         self.lbl_support_error.raise_()
         self.lbl_JIT.raise_()
         self.lbl_blueline.raise_()
