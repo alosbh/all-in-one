@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="/Img">
+    <file>yellowerror.png</file>
+    <file>redX.png</file>
     <file>EPIs/botaV.png</file>
     <file>EPIs/capaceteV.png</file>
     <file>EPIs/coleteV.png</file>
@@ -35,7 +37,7 @@
     <file>posto-de-trabalho.png</file>
     <file>bxs-watch-alt.png</file>
     <file>painel-de-controle.png</file>
-    <file>escrito allinone.png</file>
+    <file alias="logo">escrito allinone.png</file>
     <file>rpi.png</file>
     <file>Avatar.png</file>
     <file>bxs-watch-alt.svg</file>
@@ -45,9 +47,9 @@
     <file>lista.svg</file>
     <file>painel-de-controle.svg</file>
     <file>posto-de-trabalho.svg</file>
-    <file>bx-trending-up.png</file>
-    <file>bar.png</file>
-    <file>dollar.png</file>
+    <file alias="yield">bx-trending-up.png</file>
+    <file alias="productivty">bar.png</file>
+    <file alias="jabilcoins">dollar.png</file>
     <file>lamp.png</file>
   </qresource>
 </RCC>
