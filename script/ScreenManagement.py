@@ -12,6 +12,7 @@ from OS_define import OS_define
 from functions_5s import functions_5s
 from LPAactions_controller import *
 from Announcements import *
+
 # import MFRC522
 import time
 import sys
@@ -125,7 +126,7 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
 #----------------------------------------------------------------------------------
 
 # Inherits the qt Ui_Logged_Screen (main screen) design and manages its setup
-class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_support_controller, LPAactions_controller):
+class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_support_controller, LPAactions_controller, Announcements):
     
     # Instance of the signal to act on button's click
     load_url_signal = QtSignal()
@@ -208,6 +209,9 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.lbl_value_goodideas.setText('-')
         self.lbl_value_jabilcoins.setText('-')
         self.lbl_user_avatar.setPixmap(DL.picture)
+
+        # teste = self.load_announcements_label()
+        # self.lbl_user_avatar.setPixmap(teste)
         
     # Method to show the window widget 
     def Show(self):
