@@ -5,9 +5,9 @@ import urllib.request
 class Announcements:
     def load_announcements_label(self):
         # get_urls = 'http://brbelm0itqa01/AIOServiceSTG/Images5S/GetAll?query='
-        url1_pixmap = self.get_pixmap('https://www.hollyhedge.com/wp-content/uploads/2020/03/COVID19_Info-1180x520-661x331.jpg')
+        url1_pixmap = self.get_pixmap('https://img.discogs.com/LTslyHzBFWribOAsmxQyeG90z60=/fit-in/591x311/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-8521471-1463302696-2891.jpeg.jpg')
         self.lbl_value_announcement_01.setPixmap(url1_pixmap)
-        url2_pixmap = self.get_pixmap('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjG1dKKvgTCV1DATkPJx2a_JWhl_rEIsLCqQ&usqp=CAU')
+        url2_pixmap = self.get_pixmap('https://i.imgur.com/jrhKjKb.jpg')
         self.lbl_value_announcement_02.setPixmap(url2_pixmap)
     
     def get_pixmap(self, url):
