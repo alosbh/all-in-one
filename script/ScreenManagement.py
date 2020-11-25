@@ -13,7 +13,7 @@ from functions_5s import functions_5s
 from LPAactions_controller import *
 from Announcements import *
 
-import MFRC522
+# import MFRC522
 import time
 import sys
 import os
@@ -203,13 +203,13 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
 
     # Method called in the MainThread - fills labor user fields
     def SetupUser(self, DL):
+        self.load_announcements_label()
         self.lbl_value_name.setText(DL.Name)
         self.lbl_value_yield.setText(DL.Yield)
         self.lbl_value_productivity.setText(DL.Productivity)
         self.lbl_value_goodideas.setText('-')
         self.lbl_value_jabilcoins.setText('-')
         self.lbl_user_avatar.setPixmap(DL.picture)
-        self.load_announcements_label()
         
     # Method to show the window widget 
     def Show(self):
@@ -316,21 +316,21 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.body_support.setVisible(False) 
         self.hide5s()
 
-# Badge reading function
-def RFRead():
+# # Badge reading function
+# def RFRead():
     
-    Read_ID = None
+#     Read_ID = None
 
-         # Instantiate the RFID reader class
-    reader = MFRC522.MFRC522()
+#          # Instantiate the RFID reader class
+#     reader = MFRC522.MFRC522()
 
-         # Get the badge id from the RFID reader
-    Read_ID = reader.JABIL_Matricula() 
+#          # Get the badge id from the RFID reader
+#     Read_ID = reader.JABIL_Matricula() 
 
-         # close the SPI slot 
-    reader.close_SPI()
+#          # close the SPI slot 
+#     reader.close_SPI()
 
-    return Read_ID
+#     return Read_ID
 
 #----------------------------------------------------------------------------------------
 #Thread for badge reading
@@ -377,8 +377,8 @@ class MainThread(QThread):
         while(True):
             
             try:
-                # Read_ID = 51008294
-                Read_ID = (RFRead()) # Reads Badge ID
+                Read_ID = 51008294
+                # Read_ID = (RFRead()) # Reads Badge ID
                 # logger.error("ID lida:")
                 # logger.error(Read_ID)
             except Exception as e:
