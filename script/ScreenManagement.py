@@ -378,7 +378,7 @@ class MainThread(QThread):
             
             try:
                 # Read_ID = 51008294
-                # Read_ID = (RFRead()) # Reads Badge ID
+                Read_ID = (RFRead()) # Reads Badge ID
                 # logger.error("ID lida:")
                 # logger.error(Read_ID)
             except Exception as e:
