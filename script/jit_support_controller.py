@@ -92,6 +92,7 @@ class jit_support_controller():
                 self.raise_error_window()
         except:
             self.raise_error_window()
+        print(self.requestID)
     
 # request updates the ticket status on the server side
     def update_ticket_status(self, status):
@@ -113,7 +114,13 @@ class WatchStatus(QThread):
             ticket_info_request = ticket_info_request.json()
             
             if(ticket_info_request['status'] == "Accepted"):
-                self.body_support.lbl_value_support_name_pending.setText(ticket_info_request['userName'])
+                # a API retorna um array em formato de string (???)
+                ticket_info_request = literal_eval(ticket_info_request['user'])
+                ticket_info_request = ticket_info_request.pop()
+                ticket_info_request = ticket_info_request['text']
+                ticket_info_request = ticket_info_request.split(' ', 1)
+                
+                self.body_support.lbl_value_support_name_pending.setText(ticket_info_request[0])
                 self.body_support.subbody_pending_3.raise_()
 
             elif(ticket_info_request['status'] == "OnGoing"):
