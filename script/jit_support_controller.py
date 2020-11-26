@@ -62,6 +62,8 @@ class jit_support_controller():
 
 # Watch server functions 
     def create_ticket(self, workstation_name):
+        self.btn_initiate_pending.setEnabled(True)
+        self.btn_createticket_create.setEnabled(False)
         if self.rbtn_going_create.isChecked():
             self.line_situation = '1' # ok line
         else:
@@ -93,9 +95,13 @@ class jit_support_controller():
         except:
             self.raise_error_window()
         print(self.requestID)
+        time.sleep(2)
+        self.btn_createticket_create.setEnabled(True)
     
 # request updates the ticket status on the server side
     def update_ticket_status(self, status):
+        if status == 4:
+            self.btn_initiate_pending.setEnabled(False)
         headers_update = {'content-type': 'application/json'}
         url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Update'
         postBody_update = {'ticketStatus': status, 'ticketId': int(self.requestID)}
@@ -119,7 +125,7 @@ class WatchStatus(QThread):
                 ticket_info_request = ticket_info_request.pop()
                 ticket_info_request = ticket_info_request['text']
                 ticket_info_request = ticket_info_request.split(' ', 1)
-                
+
                 self.body_support.lbl_value_support_name_pending.setText(ticket_info_request[0])
                 self.body_support.subbody_pending_3.raise_()
 
