@@ -1,7 +1,18 @@
 <RCC>
   <qresource prefix="/Img">
+    <file>yellowerror.png</file>
+    <file>redX.png</file>
+    <file>EPIs/botaV.png</file>
+    <file>EPIs/capaceteV.png</file>
+    <file>EPIs/coleteV.png</file>
+    <file>EPIs/luvaborrachaV.png</file>
+    <file>EPIs/macacaoV.png</file>
+    <file>EPIs/oculosV.png</file>
+    <file>EPIs/orelhaV.png</file>
+    <file>EPIs/toucaV.png</file>
+    <file>MicrosoftTeams-image.png</file>
+    <file>logovertical.PNG</file>
     <file>JabilMasterBrand_White.png</file>
-    <file>logo_vert-01.svg</file>
     <file>insert_badge.png</file>
     <file>BIG_logo.PNG</file>
     <file>desligar branco.png</file>
@@ -9,7 +20,6 @@
     <file>arrows.svg</file>
     <file>hourglass.svg</file>
     <file>man.svg</file>
-    <file>logo_hor-01.svg</file>
     <file>edit.png</file>
     <file>chevron-left.png</file>
     <file>chevron-right.png</file>

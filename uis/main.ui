@@ -2757,51 +2757,9 @@ background-color: #fce861;</string>
         <item row="0" column="0">
          <widget class="QWidget" name="linechart_container" native="true">
           <property name="styleSheet">
-           <string notr="true">background-color:white;border-radius:8px;</string>
+           <string notr="true">background-color:white;
+border-radius:8px;</string>
           </property>
-          <widget class="QLabel" name="icon_construction_01">
-           <property name="geometry">
-            <rect>
-             <x>255</x>
-             <y>140</y>
-             <width>81</width>
-             <height>81</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border-image:url(:/Img/dump-truck.png)</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_4">
-           <property name="geometry">
-            <rect>
-             <x>240</x>
-             <y>220</y>
-             <width>131</width>
-             <height>31</height>
-            </rect>
-           </property>
-           <property name="font">
-            <font>
-             <family>Inter UI</family>
-             <pointsize>11</pointsize>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color:rgb(170,170,170)</string>
-           </property>
-           <property name="text">
-            <string>Em construção...</string>
-           </property>
-           <property name="textFormat">
-            <enum>Qt::PlainText</enum>
-           </property>
-          </widget>
-          <zorder>label_4</zorder>
-          <zorder>icon_construction_01</zorder>
          </widget>
         </item>
        </layout>
@@ -2833,47 +2791,6 @@ background-color: #fce861;</string>
           <property name="styleSheet">
            <string notr="true">background-color:white;border-radius:8px;</string>
           </property>
-          <widget class="QLabel" name="icon_construction_02">
-           <property name="geometry">
-            <rect>
-             <x>210</x>
-             <y>140</y>
-             <width>81</width>
-             <height>81</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border-image:url(:/Img/dump-truck.png)</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-          <widget class="QLabel" name="lbl_construction_02">
-           <property name="geometry">
-            <rect>
-             <x>200</x>
-             <y>220</y>
-             <width>131</width>
-             <height>31</height>
-            </rect>
-           </property>
-           <property name="font">
-            <font>
-             <family>Inter UI</family>
-             <pointsize>11</pointsize>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color:rgb(170,170,170);border:none;background:transparent;</string>
-           </property>
-           <property name="text">
-            <string>Em construção...</string>
-           </property>
-           <property name="textFormat">
-            <enum>Qt::PlainText</enum>
-           </property>
-          </widget>
          </widget>
         </item>
        </layout>
@@ -3614,23 +3531,78 @@ background-color: rgb(86, 149, 246);</string>
        </property>
       </widget>
      </widget>
-     <widget class="QLabel" name="lbl_aiologo_support">
+     <widget class="QWidget" name="lbl_support_error" native="true">
       <property name="geometry">
        <rect>
-        <x>700</x>
-        <y>-140</y>
-        <width>591</width>
-        <height>361</height>
+        <x>430</x>
+        <y>450</y>
+        <width>291</width>
+        <height>131</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/Img/logo_hor-01.svg);</string>
+       <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 8px;
+border: 2px  solid rgb(0,0,0);</string>
       </property>
-      <property name="text">
-       <string/>
-      </property>
+      <widget class="QLabel" name="lbl_text_error">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>30</y>
+         <width>221</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 0px;
+border: 0px  solid rgb(0,0,0);</string>
+       </property>
+       <property name="text">
+        <string>Ops! Algo deu errado. Verifique se todos os campos estão preenchidos corretamente e tente novamente.                                              Se o erro persistir contate Andre no ramal: 123456</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lbl_yellowerror">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/Img/yellowerror.png);
+border-radius: 0px;
+border: 0px  solid rgb(0,0,0);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_close_error">
+       <property name="geometry">
+        <rect>
+         <x>265</x>
+         <y>6</y>
+         <width>21</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/Img/redX.png);
+border-radius: 0px;
+border: 0px  solid rgb(0,0,0);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
-     <zorder>lbl_aiologo_support</zorder>
+     <zorder>lbl_support_error</zorder>
      <zorder>lbl_JIT</zorder>
      <zorder>lbl_blueline</zorder>
      <zorder>subbody_waiting_2</zorder>

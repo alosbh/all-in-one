@@ -61,15 +61,16 @@ class Station:
         
         global ws        
         ws = ApiManager()
-        jsonData = ws.Request(ws.AIO, 'GetEquipmentByHostname', RaspberryName)
-
-        request_lineInfo = ws.Request(ws.AIO_Dashboard, "GetByLine", str(jsonData["LineId"]))
-
-        lineName = ws.load_lineName(jsonData['Id'])
-        lineName = lineName[0]
+        
 
         try:
+            jsonData = ws.Request(ws.AIO, 'GetEquipmentByHostname', RaspberryName)
 
+            request_lineInfo = ws.Request(ws.AIO_Dashboard, "GetByLine", str(jsonData["LineId"]))
+
+            lineName = ws.load_lineName(jsonData['Id'])
+            lineName = lineName[0]
+            
             returnStatus = ws.GetSingleValueFromJsonObject(jsonData,"Status", False)
             
             self.Id = ws.GetSingleValueFromJsonObject(jsonData,"Id", False)

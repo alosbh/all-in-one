@@ -1,7 +1,6 @@
 from Ui_Login_Screen import *
 from Ui_Logged_Screen import *
 from Reset import *
-from jit_support_controller import *
 from GlobalParameters import GlobalParameters
 from FI import FI
 from labels import labels
@@ -11,6 +10,8 @@ from DirectLabor import DirectLabor as DL
 from OS_define import OS_define
 from functions_5s import functions_5s
 from LPAactions_controller import *
+from Announcements_controller import *
+from jit_support_controller import *
 
 import MFRC522
 import time
@@ -18,9 +19,10 @@ import sys
 import os
 import logging
 import traceback
+import urllib.request
 
 from PyQt5.QtCore import QObject, pyqtSignal, QUrl, QThread
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap, QIcon
 # from PyQt5.QtWebKit import QWebSettings
 
 global logger
@@ -124,7 +126,7 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
 #----------------------------------------------------------------------------------
 
 # Inherits the qt Ui_Logged_Screen (main screen) design and manages its setup
-class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_support_controller, LPAactions_controller):
+class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_support_controller, LPAactions_controller, Announcements):
     
     # Instance of the signal to act on button's click
     load_url_signal = QtSignal()
@@ -160,7 +162,10 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.button_handle()
         self.generate_5s(self.Station.Name)
         self.support_screen_functions(self.Station.Name)
+
         # self.LPAactions_functions(self.Station.Name)
+        self.btn_actionsLPA.hide()
+        self.lbl_value_number_actionsLPA.hide()
 
         # Fills labels with workstation values
         self.lbl_value_workstation.setText(str(self.Station.Name)) 
@@ -198,6 +203,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
 
     # Method called in the MainThread - fills labor user fields
     def SetupUser(self, DL):
+        self.load_announcements_label()
         self.lbl_value_name.setText(DL.Name)
         self.lbl_value_yield.setText(DL.Yield)
         self.lbl_value_productivity.setText(DL.Productivity)
@@ -226,7 +232,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
     # Links the buttons to their respective methods
     def button_handle(self):
         self.btn_5s.clicked.connect(self.show5s)
-        # self.btn_support.clicked.connect(self.suporte)
+        self.btn_support.clicked.connect(self.suporte)
         self.btn_homepage.clicked.connect(self.home)
         self.btn_SCTC.clicked.connect(self.jiga_list)
         self.btn_reset.clicked.connect(self.reset)
@@ -414,6 +420,7 @@ class MainThread(QThread):
                     print("Stats2:"+status)
                     # In case of succesfull login            
                     if(status=="Login realizado"):
+                        self.Logged_Window.home()
                         # Setup the Direct Labor object with actual worker data
                         self.DL.Setup(LoginResponse, self.host)
                         self.DL.load_avatar()

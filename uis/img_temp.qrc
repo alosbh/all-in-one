@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="Temp">
+    <file>jabilcoins.png</file>
+  </qresource>
+</RCC>
