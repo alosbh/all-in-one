@@ -13,7 +13,7 @@ class Announcements:
             self.lbl_value_announcement_01.setVisible(False)
 
         try:
-            self.lbl_value_announcement_01.setVisible(True)
+            self.lbl_value_announcement_02.setVisible(True)
             url2_pixmap = self.get_pixmap('http://brbelm0itqa01/AIOServiceSTG/Images5S/Frame2.png')
             # url2_pixmap = url2_pixmap.scaled(441, 311, QtCore.Qt.KeepAspectRatio)
             self.lbl_value_announcement_02.setPixmap(url2_pixmap)
