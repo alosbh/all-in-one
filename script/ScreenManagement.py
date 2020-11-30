@@ -323,7 +323,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.hide5s()
 
 # Badge reading function
-def RFRead(self):
+def RFRead():
     
     Read_ID = None
 
