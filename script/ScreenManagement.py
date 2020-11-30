@@ -14,7 +14,7 @@ from Announcements_controller import *
 from jit_support_controller import *
 from FPL_controller import *
 
-import MFRC522
+# import MFRC522
 import time
 import sys
 import os
@@ -204,7 +204,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
 
     # Method called in the MainThread - fills labor user fields
     def SetupUser(self, DL):
-        self.logout_activated = True
+        self.logout_activated = 1
         self.load_announcements_label()
         self.lbl_value_name.setText(DL.Name)
         self.lbl_value_yield.setText(DL.Yield)
@@ -322,21 +322,21 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.body_support.setVisible(False) 
         self.hide5s()
 
-# Badge reading function
-def RFRead():
+# # Badge reading function
+# def RFRead():
     
-    Read_ID = None
+#     Read_ID = None
 
-         # Instantiate the RFID reader class
-    reader = MFRC522.MFRC522()
+#          # Instantiate the RFID reader class
+#     reader = MFRC522.MFRC522()
 
-         # Get the badge id from the RFID reader
-    Read_ID = reader.JABIL_Matricula() 
+#          # Get the badge id from the RFID reader
+#     Read_ID = reader.JABIL_Matricula() 
 
-         # close the SPI slot 
-    reader.close_SPI()
+#          # close the SPI slot 
+#     reader.close_SPI()
 
-    return Read_ID
+#     return Read_ID
 
 #----------------------------------------------------------------------------------------
 #Thread for badge reading
@@ -383,8 +383,8 @@ class MainThread(QThread):
         while(True):
             
             try:
-                # Read_ID = 51008294
-                Read_ID = (RFRead()) # Reads Badge ID
+                Read_ID = 51008294
+                # Read_ID = (RFRead()) # Reads Badge ID
             except Exception as e:
                 traceback.print_exc()
                 logger.error("RFID error: " + type(e).__name__)
@@ -444,7 +444,7 @@ class MainThread(QThread):
                 #if the null reads has reached the limit and there is someone logged
                 if (cont_logout >= self.logout_limit):
                     cont_logout = self.logout_limit
-                    if (Actual_ID != None and self.logout_activated == True):
+                    if (Actual_ID != None and self.logout_activated == 1):
                         
                         try:
                             # API Call to logout the user
