@@ -367,8 +367,8 @@ class MainThread(QThread):
         while(True):
             
             try:
-                self.Read_ID = 51008294
-                # self.Read_ID = self.badge_reader # Reads Badge ID
+                # self.Read_ID = 51008294
+                self.Read_ID = self.badge_reader # Reads Badge ID
             except Exception as e:
                 traceback.print_exc()
                 logger.error("RFID error: " + type(e).__name__)
