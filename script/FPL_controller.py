@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from RFRead_controller import RFRead_controller
 import requests
-import MFRC522
 import json
 import time
 
@@ -64,28 +64,16 @@ class FPL_controller():
 #         # request e exibição do body_web com o documento OJT
     
 #     def show_validate_window(self):
-    def RFRead(self):
-
-        Read_ID = None
-
-             # Instantiate the RFID reader class
-        reader = MFRC522.MFRC522()
-
-             # Get the badge id from the RFID reader
-        Read_ID = reader.JABIL_Matricula() 
-
-             # close the SPI slot 
-        reader.close_SPI()
-
-        return Read_ID
 
     def validate_training(self):
+        self.badge_reader = RFRead_controller.RFRead()
+
         self.logout_activated == 0
 
         for attempts in range(20):
-            self.lbl_testeteste.setText(self.RFRead())
+            self.lbl_testeteste.setText(self.badge_reader)
             print(attempts)
-            print(self.RFRead())
+            print(self.badge_reader)
             time.sleep(0.5)
 
         self.logout_activated == 1

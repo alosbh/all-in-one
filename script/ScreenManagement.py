@@ -13,8 +13,8 @@ from LPAactions_controller import *
 from Announcements_controller import *
 from jit_support_controller import *
 from FPL_controller import *
+from RFRead_controller import RFRead_controller
 
-import MFRC522
 import time
 import sys
 import os
@@ -322,22 +322,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.body_support.setVisible(False) 
         self.hide5s()
 
-# Badge reading function
-def RFRead():
-    
-    Read_ID = None
-
-         # Instantiate the RFID reader class
-    reader = MFRC522.MFRC522()
-
-         # Get the badge id from the RFID reader
-    Read_ID = reader.JABIL_Matricula() 
-
-         # close the SPI slot 
-    reader.close_SPI()
-
-    return Read_ID
-
 #----------------------------------------------------------------------------------------
 #Thread for badge reading
 #----------------------------------------------------------------------------------------
@@ -358,7 +342,7 @@ class MainThread(QThread):
         # Loads thread sleep time and logout counter on null RF reads.
         self.thread_time = GlobalParameters.BadgeReader_ThreadTime/1000 
         self.logout_limit = GlobalParameters.BadgeReader_MininumGoodReads
-
+        self.badge_reader = RFRead_controller.RFRead()
         self.API = ws()
         self.DL = DL()
         
@@ -368,10 +352,10 @@ class MainThread(QThread):
         
     def run(self):
         # Logged Badge ID
-        global Actual_ID
-        Actual_ID = None
+        # global self.Actual_ID
+        self.Actual_ID = None
         # New Badge ID read from the RF module
-        global Read_ID
+        # global self.Read_ID
         #Starts logount counter, so the user will be disconnected after reaching the limit of NULL readings
 
         cont_logout = 0
@@ -383,31 +367,31 @@ class MainThread(QThread):
         while(True):
             
             try:
-                # Read_ID = 51008294
-                Read_ID = (RFRead()) # Reads Badge ID
+                self.Read_ID = 51008294
+                # self.Read_ID = self.badge_reader # Reads Badge ID
             except Exception as e:
                 traceback.print_exc()
                 logger.error("RFID error: " + type(e).__name__)
                 print(type(e).__name__)
-                Read_ID = None
+                self.Read_ID = None
                 self.NonLogged_Window.nome_posto.setText(str('Erro leitura RFID'))
 
 
-            if (Read_ID != None and self.NonLogged_Window.Station.Enabled == 1 ): 
+            if (self.Read_ID != None and self.NonLogged_Window.Station.Enabled == 1 ): 
 
                 
                 cont_logout = 0
 
                 # If the read id is not null, compares it to the active user. In case its different, login the new user. 
                 
-                if (Actual_ID != Read_ID):
+                if (self.Actual_ID != self.Read_ID):
                     
 
                     try:
                         # Api call to login a user on OJT server
-                        logger.debug("Login user " + str(Read_ID) + "..........")
+                        logger.debug("Login user " + str(self.Read_ID) + "..........")
 
-                        LoginResponse = self.API.Request(self.API.OJT, "LoginByWorker", {'HostName': self.host, 'Badge': Read_ID}) 
+                        LoginResponse = self.API.Request(self.API.OJT, "LoginByWorker", {'HostName': self.host, 'Badge': self.Read_ID}) 
 
                         # catch login status
                         status = LoginResponse['Status']
@@ -430,8 +414,8 @@ class MainThread(QThread):
                         # Setup the user fields on the logged screen
                         self.Logged_Window.SetupUser(self.DL)
                         # The active ID is the newly logged ID               
-                        Actual_ID = Read_ID
-                        print("Actual ID apos alterar: " + str(Actual_ID))
+                        self.Actual_ID = self.Read_ID
+                        print("Actual ID apos alterar: " + str(self.Actual_ID))
                         # Show the Logged screen and hide the initial screen
                         self.thread_signal2.signal.emit('about:blank')
                         # self.Logged_Window.Logged_QtWindow.show()
@@ -444,13 +428,13 @@ class MainThread(QThread):
                 #if the null reads has reached the limit and there is someone logged
                 if (cont_logout >= self.logout_limit):
                     cont_logout = self.logout_limit
-                    if (Actual_ID != None and self.logout_activated == 1):
+                    if (self.Actual_ID != None and self.logout_activated == 1):
                         
                         try:
                             # API Call to logout the user
-                            print("Logout user " + Actual_ID + ".........")
-                            logger.debug("Logout user " + Actual_ID + ".........")
-                            LogoutResponse = self.API.Request(self.API.OJT, "Logout", {'HostName': self.host, 'Badge': Actual_ID});
+                            print("Logout user " + self.Actual_ID + ".........")
+                            logger.debug("Logout user " + self.Actual_ID + ".........")
+                            LogoutResponse = self.API.Request(self.API.OJT, "Logout", {'HostName': self.host, 'Badge': self.Actual_ID});
                             status = LogoutResponse['Status']
 
                             if((status=="Logout realizado")or (status=="Não encontrado")):
@@ -458,7 +442,7 @@ class MainThread(QThread):
                                 self.NonLogged_Window.Show() 
                                 #Hide the logged screen
                                 self.Logged_Window.Logged_QtWindow.hide()
-                                Actual_ID = None
+                                self.Actual_ID = None
                                 self.Logged_Window.home()
                             
                         except Exception as e:
