@@ -365,7 +365,8 @@ class MainThread(QThread):
         logger.setLevel(logging.DEBUG)
         
         while(True):
-            
+            print('----')
+            print(self.badge_reader)
             try:
                 # self.Read_ID = 51008294
                 self.Read_ID = self.badge_reader # Reads Badge ID
