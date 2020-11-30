@@ -85,6 +85,7 @@ class FPL_controller():
         for attempts in range(20):
             self.lbl_testeteste.setText(self.RFRead())
             print(attempts)
+            print(self.RFRead())
             time.sleep(0.5)
 
         self.logout_activated == 1
