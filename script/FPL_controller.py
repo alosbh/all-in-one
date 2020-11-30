@@ -64,20 +64,20 @@ class FPL_controller():
 #         # request e exibição do body_web com o documento OJT
     
 #     def show_validate_window(self):
-    def RFRead():
+    # def RFRead(self):
 
-        Read_ID = None
+    #     Read_ID = None
 
-             # Instantiate the RFID reader class
-        reader = MFRC522.MFRC522()
+    #          # Instantiate the RFID reader class
+    #     reader = MFRC522.MFRC522()
 
-             # Get the badge id from the RFID reader
-        Read_ID = reader.JABIL_Matricula() 
+    #          # Get the badge id from the RFID reader
+    #     Read_ID = reader.JABIL_Matricula() 
 
-             # close the SPI slot 
-        reader.close_SPI()
+    #          # close the SPI slot 
+    #     reader.close_SPI()
 
-        return Read_ID
+    #     return Read_ID
 
     def validate_training(self):
         #self.logout_activated == 0
