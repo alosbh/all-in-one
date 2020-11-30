@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
 import urllib.request
 
-class Announcements:
+class Announcements_controller:
     def load_announcements_label(self):
         try:
             self.lbl_value_announcement_01.setVisible(True)

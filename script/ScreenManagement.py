@@ -12,6 +12,7 @@ from functions_5s import functions_5s
 from LPAactions_controller import *
 from Announcements_controller import *
 from jit_support_controller import *
+from FPL_controller import *
 
 import MFRC522
 import time
@@ -126,7 +127,7 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
 #----------------------------------------------------------------------------------
 
 # Inherits the qt Ui_Logged_Screen (main screen) design and manages its setup
-class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_support_controller, LPAactions_controller, Announcements):
+class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_support_controller, LPAactions_controller, Announcements_controller, FPL_controller):
     
     # Instance of the signal to act on button's click
     load_url_signal = QtSignal()
@@ -203,6 +204,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
 
     # Method called in the MainThread - fills labor user fields
     def SetupUser(self, DL):
+        self.logout_activated = True
         self.load_announcements_label()
         self.lbl_value_name.setText(DL.Name)
         self.lbl_value_yield.setText(DL.Yield)
@@ -240,6 +242,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.btn_goodideas.clicked.connect(self.load_bi)
         self.btn_lpa.clicked.connect(self.load_lpa)
         self.btn_custom.clicked.connect(self.custom_button_load)
+        self.btn_testeteste.clicked.connect(self.validate_training)
 
     def reset(self):
         self.Reset_Window.Show()
@@ -319,8 +322,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.body_support.setVisible(False) 
         self.hide5s()
 
-# # Badge reading function
-# def RFRead():
+# Badge reading function
+def RFRead():
     
     Read_ID = None
 
@@ -441,7 +444,7 @@ class MainThread(QThread):
                 #if the null reads has reached the limit and there is someone logged
                 if (cont_logout >= self.logout_limit):
                     cont_logout = self.logout_limit
-                    if (Actual_ID != None):
+                    if (Actual_ID != None and self.logout_activated == True):
                         
                         try:
                             # API Call to logout the user
