@@ -65,13 +65,13 @@ class FPL_controller():
 #     def show_validate_window(self):
 
     def validate_training(self):
-        self.logout_activated == 0
+        #self.logout_activated == 0
         for attempts in range(10):
             self.lbl_testeteste.setText(self.RFRead())
             print(attempts)
             time.sleep(0.5)
 
-        self.logout_activated == 1
+        #self.logout_activated == 1
         #testetesteid = self.RFRead()
         # self.logout_activated == 1
         #self.lbl_testeteste.setText('Terminou')
