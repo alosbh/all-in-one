@@ -423,14 +423,14 @@ class Ui_Logged_Screen(object):
 "image:url(:/Img/desligar2.png)\n"
 "}\n"
 "QPushButton:hover {\n"
-"image:url(:/Img/desligar (1).png)\n"
+"image:url(:/Img/desligar (1).png);\n"
 "}\n"
 "")
         self.btn_reset.setText("")
         self.btn_reset.setObjectName("btn_reset")
         self.btn_actionsLPA = QtWidgets.QPushButton(self.header)
         self.btn_actionsLPA.setGeometry(QtCore.QRect(1010, 8, 41, 41))
-        self.btn_actionsLPA.setStyleSheet("image: url(:/Img/lista.svg);")
+        self.btn_actionsLPA.setStyleSheet("image: url(:/Img/lista.png);")
         self.btn_actionsLPA.setText("")
         self.btn_actionsLPA.setObjectName("btn_actionsLPA")
         self.lbl_value_number_actionsLPA = QtWidgets.QLabel(self.header)
