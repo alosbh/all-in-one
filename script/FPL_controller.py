@@ -1,10 +1,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from RFRead_controller import RFRead_controller
+#from RFRead_controller import RFRead_controller
+from Login_controller import Login_controller
 import requests
 import json
 import time
 
-class FPL_controller():
+Login_controller = Login_controller()
+
+class Fpl_controller():
 # pega info dos documentos
 #     def get_all_documents(self):
 #         # request
@@ -66,23 +69,26 @@ class FPL_controller():
 #     def show_validate_window(self):
 
     def validate_training(self):
-        self.badge_reader = RFRead_controller.RFRead()
-
+        # self.badge_reader = RFRead_controller.RFRead()
         self.logout_activated == 0
 
-        for attempts in range(20):
-            self.lbl_testeteste.setText(self.badge_reader)
+        for attempts in range(10):
             print(attempts)
-            print(self.badge_reader)
+            read = self.badge_reader
+
+            if attempts == 0:
+                first_read = read
+            if read != first_read:
+                self.responsible_id = read
+                break
+
+
             time.sleep(0.5)
-
+        
+        self.lbl_testeteste.setText(responsible_id)
         self.logout_activated == 1
-        #testetesteid = self.RFRead()
-        # self.logout_activated == 1
-        #self.lbl_testeteste.setText('Terminou')
-        #self.lbl_testeteste.setText(testetesteid)
 
-
+    def validation_request(self):
 
         # verifica todos os checkbox
         # monta body
