@@ -162,10 +162,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.button_handle()
         self.generate_5s(self.Station.Name)
         self.support_screen_functions(self.Station.Name)
-
-        # self.LPAactions_functions(self.Station.Name)
-        self.btn_actionsLPA.hide()
-        self.lbl_value_number_actionsLPA.hide()
+        self.LPAactions_functions(self.Station.Name)
 
         # Fills labels with workstation values
         self.lbl_value_workstation.setText(str(self.Station.Name)) 
@@ -319,8 +316,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.body_support.setVisible(False) 
         self.hide5s()
 
-# # Badge reading function
-# def RFRead():
+# Badge reading function
+def RFRead():
     
     Read_ID = None
 

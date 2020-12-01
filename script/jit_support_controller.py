@@ -94,7 +94,7 @@ class jit_support_controller():
                 self.raise_error_window()
         except:
             self.raise_error_window()
-        print(self.requestID)
+            
         time.sleep(2)
         self.btn_createticket_create.setEnabled(True)
     

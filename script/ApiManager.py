@@ -128,7 +128,7 @@ class ApiManager:
 
     def load_LPA(self,BadgeID,Workstep,RouteID):
 
-        baseUrl = 'http://10.57.16.41/LPAEletronico/Lpa/Login?registration='
+        baseUrl = 'http://brbelm0apps01/LPAEletronico/Lpa/Login?registration='
         
         
 
