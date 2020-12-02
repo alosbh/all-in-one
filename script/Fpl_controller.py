@@ -103,16 +103,20 @@ class thread_vt(QThread):
         read_badge = RFRead_controller.RFRead()
 
         for attempts in range(20):
+            print(read)
             read = read_badge
 
             if attempts == 0:
                 first_read = read
+                print(first_read)
 
             if read != first_read:
                 if self.whatdo == 1:
+                    print('-------------------------SUCESS-------------------------')
                     self.vt.emit(str(read), 'success')
                     break
                 if self.whatdo == 2:
+                    print('-------------------------LOGOUT-------------------------')
                     self.vt.emit(str(read), 'logout')
                     break
 
