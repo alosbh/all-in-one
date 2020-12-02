@@ -92,8 +92,10 @@ class Fpl_controller():
             print('-------------------------MOSTRANDO JANELA SUCCESSSSSSSSS-------------------------')
             self.lbl_successvalidation_FPL_03.setVisible(True)
             self.lbl_successvalidation_FPL_03.raise_()
+            print('blz to aqui')
         elif window == 'logout':
             print('-------------------------MOSTRANDO JANELA LOGOUUUUT-------------------------')
+            print('ue to aqui pq?')
             self.logout_activated == 1
             self.lbl_ok_FPL_00.setVisible(True)
             self.lbl_ok_FPL_00.raise_()
