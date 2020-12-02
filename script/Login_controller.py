@@ -76,7 +76,7 @@ class Login_controller(QThread):
 
                 # If the read id is not null, compares it to the active user. In case its different, login the new user. 
                 
-                if (self.Actual_ID != self.Read_ID):
+                if (self.Actual_ID != self.Read_ID and self.logout_activated == 1):
                     
 
                     try:
