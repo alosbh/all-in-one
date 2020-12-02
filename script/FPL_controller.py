@@ -1,13 +1,24 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-#from RFRead_controller import RFRead_controller
-from Login_controller import Login_controller
+from PyQt5.QtCore import QObject, pyqtSignal, QUrl, QThread
+from RFRead_controller import RFRead_controller
 import requests
 import json
 import time
 
-Login_controller = Login_controller()
-
 class Fpl_controller():
+
+    def fpl_btn_functions(self):
+        self.btn_close_FPL.clicked.connect(lambda: self.body_FPL.setVisible(False))
+        self.btn_close_startvalidation.clicked.connect(lambda: self.lbl_startvalidation_FPL_02.setVisible(False))
+        self.btn_validate_training.clicked.connect(self.show_validate_window)
+        self.btn_proceed_startvalidation.clicked.connect(self.validate_training)
+        self.btn_ok_successvalidation.clicked.connect(self.turnon_login)
+
+    def show_validate_window(self):
+        self.lbl_startvalidation_FPL_02.setVisible(True)
+        self.lbl_startvalidation_FPL_02.raise_()
+        
+
 # pega info dos documentos
 #     def get_all_documents(self):
 #         # request
@@ -65,34 +76,49 @@ class Fpl_controller():
 
 #     def load_OJT(self, url):
 #         # request e exibição do body_web com o documento OJT
-    
-#     def show_validate_window(self):
 
     def validate_training(self):
-        # self.badge_reader = RFRead_controller.RFRead()
         self.logout_activated == 0
+        self.thread_vt = thread_vt()
+        self.thread_vt.vt.connect(self.update_window)
+        self.thread_vt.start_thread(1)
+    
+    def turnon_login(self):
+        self.thread_vt.start_thread(2)
 
-        for attempts in range(10):
-            print(attempts)
-            read = self.badge_reader
+    def update_window(self, rfid, window):
+        self.lbl_testeteste.setText(rfid)
+        if window == 'success':
+            self.lbl_successvalidation_FPL_03.setVisible(True)
+            self.lbl_successvalidation_FPL_03.raise_()
+        elif window == 'logout':
+            self.logout_activated == 1
+            self.lbl_ok_FPL_00.setVisible(True)
+            self.lbl_ok_FPL_00.raise_()
+
+class thread_vt(QThread):
+    vt = QtCore.pyqtSignal(str, str)
+    
+    def run(self):
+        read_badge = RFRead_controller.RFRead()
+
+        for attempts in range(20):
+            read = read_badge
 
             if attempts == 0:
                 first_read = read
+
             if read != first_read:
-                self.responsible_id = read
-                break
+                if self.whatdo == 1:
+                    self.vt.emit(str(read), 'success')
+                    break
+                if self.whatdo == 2:
+                    self.vt.emit(str(read), 'logout')
+                    break
 
-
+            
             time.sleep(0.5)
         
-        self.lbl_testeteste.setText(responsible_id)
-        self.logout_activated == 1
-
-    def validation_request(self):
-
-        # verifica todos os checkbox
-        # monta body
-        # request validacao
-        # if ok
-        # self.lbl_successvalidation_FPL._raise()
-        # else
+    def start_thread(self, whatdo):
+        self.whatdo = whatdo
+        self.start()

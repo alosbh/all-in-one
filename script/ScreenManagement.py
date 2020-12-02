@@ -163,6 +163,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.button_handle()
         self.generate_5s(self.Station.Name)
         self.support_screen_functions(self.Station.Name)
+        self.fpl_btn_functions()
 
         # self.LPAactions_functions(self.Station.Name)
         self.btn_actionsLPA.hide()
@@ -242,7 +243,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.btn_goodideas.clicked.connect(self.load_bi)
         self.btn_lpa.clicked.connect(self.load_lpa)
         self.btn_custom.clicked.connect(self.custom_button_load)
-        self.btn_testeteste.clicked.connect(self.validate_training)
 
     def reset(self):
         self.Reset_Window.Show()
