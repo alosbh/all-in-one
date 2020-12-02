@@ -81,7 +81,6 @@ class Fpl_controller():
 #         # request e exibição do body_web com o documento OJT
 
     def validate_training(self):
-        # self.logout_activated == 0
         self.Login_controller.logout_off()
         self.thread_vt = thread_vt()
         self.thread_vt.vt.connect(self.update_window)
