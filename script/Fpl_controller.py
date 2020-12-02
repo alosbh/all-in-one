@@ -112,7 +112,7 @@ class thread_vt(QThread):
                 first_read = read
                 print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' + first_read)
 
-            if read != first_read:
+            if read != first_read and read != None:
                 print('entrei============================')
                 if self.whatdo == 1:
                     print('-------------------------SUCESS-------------------------')
