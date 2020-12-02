@@ -84,8 +84,10 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.NonLogged_QtWindow = QtWidgets.QMainWindow()
         self.app = ScreenManagement()
+        self.threadlogin = Login_controller()
 
     def Setup(self, Station, Raspberry, Params, Reset_Window):
+        self.threadlogin.logout_on()
 
         self.Station = Station
         self.Raspberry = Raspberry
