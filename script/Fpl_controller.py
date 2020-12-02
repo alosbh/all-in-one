@@ -1,6 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QObject, pyqtSignal, QUrl, QThread
 from RFRead_controller import RFRead_controller
+from Login_controller import Login_controller
+
 import requests
 import json
 import time
@@ -13,6 +15,7 @@ class Fpl_controller():
         self.btn_validate_training.clicked.connect(self.show_validate_window)
         self.btn_proceed_startvalidation.clicked.connect(self.validate_training)
         self.btn_ok_successvalidation.clicked.connect(self.turnon_login)
+        self.Login_controller = Login_controller()
 
     def show_validate_window(self):
         self.lbl_startvalidation_FPL_02.setVisible(True)
@@ -78,7 +81,8 @@ class Fpl_controller():
 #         # request e exibição do body_web com o documento OJT
 
     def validate_training(self):
-        self.logout_activated == 0
+        # self.logout_activated == 0
+        self.Login_controller.logout_off()
         self.thread_vt = thread_vt()
         self.thread_vt.vt.connect(self.update_window)
         self.thread_vt.start_thread(1)
@@ -96,7 +100,7 @@ class Fpl_controller():
         elif window == 'logout':
             print('-------------------------MOSTRANDO JANELA LOGOUUUUT-------------------------')
             print('ue to aqui pq?')
-            self.logout_activated == 1
+            self.Login_controller.logout_on()
             self.lbl_ok_FPL_00.setVisible(True)
             self.lbl_ok_FPL_00.raise_()
 

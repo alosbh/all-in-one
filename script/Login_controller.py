@@ -36,7 +36,13 @@ class Login_controller(QThread):
         
         self.NonLogged_Window = None
         self.Logged_Window = None
-        
+    
+    def logout_off(self):
+        self.logout_activated = 0
+    
+    def logout_on(self):
+        self.logout_activated = 1
+
     def run(self):
         # Logged Badge ID
         # global self.Actual_ID
