@@ -104,7 +104,7 @@ class thread_vt(QThread):
     def run(self):
         for attempts in range(20):
             read = RFRead_controller.RFRead()
-            print(')))))))))))))))))))))))))))))))))))))))))' + read)
+            print(')))))))))))))))))))))))))))))))))))))))))' + str(read))
 
             if attempts == 0:
                 first_read = read
