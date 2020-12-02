@@ -106,13 +106,14 @@ class thread_vt(QThread):
 
         for attempts in range(20):
             read = read_badge
-            print(read)
+            print(')))))))))))))))))))))))))))))))))))))))))' + read)
 
             if attempts == 0:
                 first_read = read
-                print(first_read)
+                print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' + first_read)
 
             if read != first_read:
+                print('entrei============================')
                 if self.whatdo == 1:
                     print('-------------------------SUCESS-------------------------')
                     self.vt.emit(str(read), 'success')
