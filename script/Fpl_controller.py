@@ -105,8 +105,8 @@ class thread_vt(QThread):
         read_badge = RFRead_controller.RFRead()
 
         for attempts in range(20):
-            print(read)
             read = read_badge
+            print(read)
 
             if attempts == 0:
                 first_read = read
