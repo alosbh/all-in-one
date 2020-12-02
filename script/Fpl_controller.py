@@ -89,9 +89,11 @@ class Fpl_controller():
     def update_window(self, rfid, window):
         self.lbl_testeteste.setText(rfid)
         if window == 'success':
+            print('-------------------------MOSTRANDO JANELA SUCCESSSSSSSSS-------------------------')
             self.lbl_successvalidation_FPL_03.setVisible(True)
             self.lbl_successvalidation_FPL_03.raise_()
         elif window == 'logout':
+            print('-------------------------MOSTRANDO JANELA LOGOUUUUT-------------------------')
             self.logout_activated == 1
             self.lbl_ok_FPL_00.setVisible(True)
             self.lbl_ok_FPL_00.raise_()
