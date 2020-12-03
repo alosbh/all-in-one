@@ -33,21 +33,21 @@ class Login_controller(QThread):
         # self.badge_reader = RFRead_controller.RFRead()
         self.API = ws()
         self.DL = DL()
-        self.logout_activated = None
         self.logout_on()
         
         self.NonLogged_Window = None
         self.Logged_Window = None
     
     def logout_off(self):
-        self.logout_activated = 0
-        print('desliguei logoutlogin !!!!!!!!!!!!!!!!!! ' + str(self.logout_activated))
+        self.return_logout(0)
+        print('desliguei logoutlogin !!!!!!!!!!!!!!!!!! ')
     
     def logout_on(self):
-        self.logout_activated = 1
-        print('LIGUEI logoutlogin ------------------------------ ' + str(self.logout_activated))
+        self.return_logout(1)
+        print('LIGUEI logoutlogin ------------------------------ ')
 
-    def return_logout(self):
+    def return_logout(self, onoff):
+        self.logout_activated = onoff
         return self.logout_activated
 
     def run(self):
