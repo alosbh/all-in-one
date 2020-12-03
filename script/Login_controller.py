@@ -46,6 +46,9 @@ class Login_controller(QThread):
         self.logout_activated = 1
         print('LIGUEI logoutlogin ------------------------------ ' + str(self.logout_activated))
 
+    def return_logout(self):
+        return self.logout_activated
+
     def run(self):
         # Logged Badge ID
         # global self.Actual_ID
@@ -72,9 +75,9 @@ class Login_controller(QThread):
                 self.NonLogged_Window.nome_posto.setText(str('Erro leitura RFID'))
 
             
-            print('POSSO ENTRAR NA THREAD????????????????????????????????????? ' + str(self.logout_activated))
-            if (self.logout_activated == 1):
-                print('ENTREI NA THREAD QUERO NEM SABER ################################## ' + str(self.logout_activated))
+            print('POSSO ENTRAR NA THREAD????????????????????????????????????? ' + str(self.return_logout()))
+            if (self.return_logout() == 1):
+                print('ENTREI NA THREAD QUERO NEM SABER ################################## ' + str(self.return_logout()))
                 if (self.Read_ID != None and self.NonLogged_Window.Station.Enabled == 1 ): 
                 
                     
