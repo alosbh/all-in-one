@@ -120,11 +120,11 @@ class thread_vt(QThread):
                 if self.whatdo == 1:
                     print('-------------------------SUCESS-------------------------')
                     self.vt.emit(str(read), 'success')
-                    break
+                    return
                 if self.whatdo == 2:
                     print('-------------------------LOGOUT-------------------------')
                     self.vt.emit(str(read), 'logout')
-                    break
+                    return
 
             
             time.sleep(0.5)
