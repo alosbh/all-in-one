@@ -70,82 +70,82 @@ class Login_controller(QThread):
                 self.NonLogged_Window.nome_posto.setText(str('Erro leitura RFID'))
 
 
-            if (self.Read_ID != None and self.NonLogged_Window.Station.Enabled == 1 ): 
-
+            if (self.logout_activated == 1):
+                if (self.Read_ID != None and self.NonLogged_Window.Station.Enabled == 1 ): 
                 
-                cont_logout = 0
-
-                # If the read id is not null, compares it to the active user. In case its different, login the new user. 
-                
-                if (self.Actual_ID != self.Read_ID and self.logout_activated == 1):
                     
-
-                    try:
-                        # Api call to login a user on OJT server
-                        logger.debug("Login user " + str(self.Read_ID) + "..........")
-
-                        LoginResponse = self.API.Request(self.API.OJT, "LoginByWorker", {'HostName': self.host, 'Badge': self.Read_ID}) 
-
-                        # catch login status
-                        status = LoginResponse['Status']
-                        # status="Login realizado"
-                        print("Stats1:"+status)
-
-                    except Exception as e: 
-                        traceback.print_exc()
-                        logger.error("Login Error: " + type(e).__name__)
-                        print(type(e).__name__)
-                        status = ""
+                    cont_logout = 0
+    
+                    # If the read id is not null, compares it to the active user. In case its different, login the new user. 
+                    if (self.Actual_ID != self.Read_ID):
                         
-                    print("Stats2:"+status)
-                    # In case of succesfull login            
-                    if(status=="Login realizado"):
-                        self.Logged_Window.home()
-                        # Setup the Direct Labor object with actual worker data
-                        self.DL.Setup(LoginResponse, self.host)
-                        self.DL.load_avatar()
-                        # Setup the user fields on the logged screen
-                        self.Logged_Window.SetupUser(self.DL)
-                        # The active ID is the newly logged ID               
-                        self.Actual_ID = self.Read_ID
-                        print("Actual ID apos alterar: " + str(self.Actual_ID))
-                        # Show the Logged screen and hide the initial screen
-                        self.thread_signal2.signal.emit('about:blank')
-                        # self.Logged_Window.Logged_QtWindow.show()
-                        # self.NonLogged_Window.NonLogged_QtWindow.hide()
-
-
-            else: 
-                cont_logout += 1 
-                
-                #if the null reads has reached the limit and there is someone logged
-                if (cont_logout >= self.logout_limit):
-                    cont_logout = self.logout_limit
-                    if (self.Actual_ID != None and self.logout_activated == 1):
-                        
+                    
                         try:
-                            # API Call to logout the user
-                            print("Logout user " + self.Actual_ID + ".........")
-                            logger.debug("Logout user " + self.Actual_ID + ".........")
-                            LogoutResponse = self.API.Request(self.API.OJT, "Logout", {'HostName': self.host, 'Badge': self.Actual_ID});
-                            status = LogoutResponse['Status']
-
-                            if((status=="Logout realizado")or (status=="Não encontrado")):
-                                # Show home screen
-                                self.NonLogged_Window.Show() 
-                                #Hide the logged screen
-                                self.Logged_Window.Logged_QtWindow.hide()
-                                self.Actual_ID = None
-                                self.Logged_Window.home()
+                            # Api call to login a user on OJT server
+                            logger.debug("Login user " + str(self.Read_ID) + "..........")
+    
+                            LoginResponse = self.API.Request(self.API.OJT, "LoginByWorker", {'HostName': self.host, 'Badge': self.Read_ID}) 
+    
+                            # catch login status
+                            status = LoginResponse['Status']
+                            # status="Login realizado"
+                            print("Stats1:"+status)
+    
+                        except Exception as e: 
+                            traceback.print_exc()
+                            logger.error("Login Error: " + type(e).__name__)
+                            print(type(e).__name__)
+                            status = ""
                             
-                        except Exception as e:
-                            print("Couldnt do logout. Error: " + type(e).__name__)
-                            logger.error("Couldnt do logout. Error: " + type(e).__name__)    
-
-
-                        # Clear the webviewer on the logged screen
-                        self.thread_signal.signal.emit('about:blank')
-                        time.sleep(1)
+                        print("Stats2:"+status)
+                        # In case of succesfull login            
+                        if(status=="Login realizado"):
+                            self.Logged_Window.home()
+                            # Setup the Direct Labor object with actual worker data
+                            self.DL.Setup(LoginResponse, self.host)
+                            self.DL.load_avatar()
+                            # Setup the user fields on the logged screen
+                            self.Logged_Window.SetupUser(self.DL)
+                            # The active ID is the newly logged ID               
+                            self.Actual_ID = self.Read_ID
+                            print("Actual ID apos alterar: " + str(self.Actual_ID))
+                            # Show the Logged screen and hide the initial screen
+                            self.thread_signal2.signal.emit('about:blank')
+                            # self.Logged_Window.Logged_QtWindow.show()
+                            # self.NonLogged_Window.NonLogged_QtWindow.hide()
+    
+    
+                else: 
+                    cont_logout += 1 
+                    
+                    #if the null reads has reached the limit and there is someone logged
+                    if (cont_logout >= self.logout_limit):
+                        cont_logout = self.logout_limit
+                        if (self.Actual_ID != None):
+                            
+                            try:
+                                # API Call to logout the user
+                                print("Logout user " + self.Actual_ID + ".........")
+                                logger.debug("Logout user " + self.Actual_ID + ".........")
+                                LogoutResponse = self.API.Request(self.API.OJT, "Logout", {'HostName': self.host, 'Badge': self.Actual_ID});
+                                status = LogoutResponse['Status']
+    
+                                if((status=="Logout realizado")or (status=="Não encontrado")):
+                                    # Show home screen
+                                    self.NonLogged_Window.Show() 
+                                    #Hide the logged screen
+                                    self.Logged_Window.Logged_QtWindow.hide()
+                                    self.Actual_ID = None
+                                    self.Logged_Window.home()
+                                
+                            except Exception as e:
+                                print("Couldnt do logout. Error: " + type(e).__name__)
+                                logger.error("Couldnt do logout. Error: " + type(e).__name__)    
+    
+    
+                            # Clear the webviewer on the logged screen
+                            self.thread_signal.signal.emit('about:blank')
+                            time.sleep(1)
   
             # Wait for next thread iteration           
             time.sleep(self.thread_time) 

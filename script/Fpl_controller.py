@@ -113,7 +113,7 @@ class thread_vt(QThread):
 
             if attempts == 0:
                 first_read = read
-                print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' + first_read)
+                print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<' + first_read)
 
             if read != first_read and read != None:
                 print('entrei============================')
