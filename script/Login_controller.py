@@ -33,6 +33,7 @@ class Login_controller(QThread):
         # self.badge_reader = RFRead_controller.RFRead()
         self.API = ws()
         self.DL = DL()
+        self.logout_on()
         
         self.NonLogged_Window = None
         self.Logged_Window = None
@@ -47,7 +48,6 @@ class Login_controller(QThread):
         # Logged Badge ID
         # global self.Actual_ID
         self.Actual_ID = None
-        self.logout_on()
         # New Badge ID read from the RF module
         # global self.Read_ID
         #Starts logount counter, so the user will be disconnected after reaching the limit of NULL readings
