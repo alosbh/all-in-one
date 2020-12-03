@@ -22,6 +22,7 @@ class Login_controller(QThread):
     global Logged_Window
     global thread_time
     global logout_limit
+    global logout_activated
     global DL
     
     def __init__(self, *args, **kwargs):
@@ -33,21 +34,18 @@ class Login_controller(QThread):
         # self.badge_reader = RFRead_controller.RFRead()
         self.API = ws()
         self.DL = DL()
-        self.logout_on()
-        
         self.NonLogged_Window = None
         self.Logged_Window = None
     
     def logout_off(self):
-        self.return_logout(0)
-        print('desliguei logoutlogin !!!!!!!!!!!!!!!!!! ')
+        self.logout_activated = False
+        print('desliguei logoutlogin !!!!!!!!!!!!!!!!!! ' + str(self.logout_activated))
     
     def logout_on(self):
-        self.return_logout(1)
-        print('LIGUEI logoutlogin ------------------------------ ')
+        self.logout_activated = True
+        print('LIGUEI logoutlogin ------------------------------ ' + str(self.logout_activated))
 
-    def return_logout(self, onoff):
-        self.logout_activated = onoff
+    def return_logout(self):
         return self.logout_activated
 
     def run(self):
@@ -57,6 +55,9 @@ class Login_controller(QThread):
         # New Badge ID read from the RF module
         # global self.Read_ID
         #Starts logount counter, so the user will be disconnected after reaching the limit of NULL readings
+        
+        self.logout_activated = None
+        self.logout_on()
 
         cont_logout = 0
         status_workstation = self.NonLogged_Window.Station.Enabled
@@ -77,7 +78,7 @@ class Login_controller(QThread):
 
             
             print('POSSO ENTRAR NA THREAD????????????????????????????????????? ' + str(self.return_logout()))
-            if (self.return_logout() == 1):
+            if (self.return_logout() == True):
                 print('ENTREI NA THREAD QUERO NEM SABER ################################## ' + str(self.return_logout()))
                 if (self.Read_ID != None and self.NonLogged_Window.Station.Enabled == 1 ): 
                 
