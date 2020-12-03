@@ -107,7 +107,7 @@ class thread_vt(QThread):
     vt = QtCore.pyqtSignal(str, str)
     
     def run(self):
-        for attempts in range(20):
+        for attempts in range(40):
             read = RFRead_controller.RFRead()
             print(')))))))))))))))))))))))))))))))))))))))))' + str(read))
 
