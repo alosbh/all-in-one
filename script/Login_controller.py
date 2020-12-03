@@ -33,6 +33,7 @@ class Login_controller(QThread):
         # self.badge_reader = RFRead_controller.RFRead()
         self.API = ws()
         self.DL = DL()
+        self.logout_activated = None
         self.logout_on()
         
         self.NonLogged_Window = None
