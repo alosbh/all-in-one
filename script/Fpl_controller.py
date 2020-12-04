@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QObject, pyqtSignal, QUrl, QThread
-from RFRead_controller import RFRead_controller
+#from RFRead_controller import RFRead_controller
 from Login_controller import Login_controller
 
 import requests
@@ -81,7 +81,7 @@ class Fpl_controller():
 #         # request e exibição do body_web com o documento OJT
 
     def validate_training(self):
-        self.Login_controller.logout_off()
+        self.Login_controller.switch_logoutlogin(False)
         self.thread_vt = thread_vt()
         self.thread_vt.vt.connect(self.update_window)
         self.thread_vt.start_thread(1)
@@ -99,7 +99,7 @@ class Fpl_controller():
         elif window == 'logout':
             print('-------------------------MOSTRANDO JANELA LOGOUUUUT-------------------------')
             print('ue to aqui pq?')
-            self.Login_controller.logout_on()
+            self.Login_controller.switch_logoutlogin(True)
             self.lbl_ok_FPL_00.setVisible(True)
             self.lbl_ok_FPL_00.raise_()
 
@@ -108,7 +108,8 @@ class thread_vt(QThread):
     
     def run(self):
         for attempts in range(40):
-            read = RFRead_controller.RFRead()
+            # read = RFRead_controller.RFRead()
+            read = 'asd'
             print(')))))))))))))))))))))))))))))))))))))))))' + str(read))
 
             if attempts == 0:

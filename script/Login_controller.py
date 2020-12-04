@@ -34,18 +34,19 @@ class Login_controller(QThread):
         # self.badge_reader = RFRead_controller.RFRead()
         self.API = ws()
         self.DL = DL()
+        self.switch_logoutlogin(True)
         self.NonLogged_Window = None
         self.Logged_Window = None
-    
-    def logout_off(self):
-        self.logout_activated = False
-        print('desliguei logoutlogin !!!!!!!!!!!!!!!!!! ' + str(self.logout_activated))
-    
-    def logout_on(self):
-        self.logout_activated = True
-        print('LIGUEI logoutlogin ------------------------------ ' + str(self.logout_activated))
 
-    def return_logout(self):
+    def switch_logoutlogin(self, onoff):
+        if onoff == True:
+            self.logout_activated = True
+            print('LIGUEI logoutlogin ------------------------------ ' + str(self.logout_activated))
+        else:
+            self.logout_activated = False
+            print('desliguei logoutlogin !!!!!!!!!!!!!!!!!! ' + str(self.logout_activated))
+
+    def return_logoutlogin(self):
         return self.logout_activated
 
     def run(self):
@@ -55,9 +56,6 @@ class Login_controller(QThread):
         # New Badge ID read from the RF module
         # global self.Read_ID
         #Starts logount counter, so the user will be disconnected after reaching the limit of NULL readings
-        
-        self.logout_activated = None
-        self.logout_on()
 
         cont_logout = 0
         status_workstation = self.NonLogged_Window.Station.Enabled
@@ -76,9 +74,10 @@ class Login_controller(QThread):
                 self.Read_ID = None
                 self.NonLogged_Window.nome_posto.setText(str('Erro leitura RFID'))
 
-            
+            switch = self.return_logout()
+
             print('POSSO ENTRAR NA THREAD????????????????????????????????????? ' + str(self.return_logout()))
-            if (self.return_logout() == True):
+            if (switch == True):
                 print('ENTREI NA THREAD QUERO NEM SABER ################################## ' + str(self.return_logout()))
                 if (self.Read_ID != None and self.NonLogged_Window.Station.Enabled == 1 ): 
                 
