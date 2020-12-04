@@ -74,7 +74,7 @@ class Login_controller(QThread):
                 self.Read_ID = None
                 self.NonLogged_Window.nome_posto.setText(str('Erro leitura RFID'))
 
-            switch = self.return_logout()
+            switch = self.return_logoutlogin()
 
             print('POSSO ENTRAR NA THREAD????????????????????????????????????? ' + str(self.return_logout()))
             if (switch == True):
