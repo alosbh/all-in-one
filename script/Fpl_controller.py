@@ -87,6 +87,7 @@ class Fpl_controller():
         self.thread_vt.start_thread(2)
 
     def update_window(self, rfid, window):
+        self.Login_controller = Login_controller()
         self.lbl_testeteste.setText(rfid)
         if window == 'success':
             print('-------------------------MOSTRANDO JANELA SUCCESSSSSSSSS-------------------------')
@@ -96,7 +97,7 @@ class Fpl_controller():
         elif window == 'logout':
             print('-------------------------MOSTRANDO JANELA LOGOUUUUT-------------------------')
             print('ue to aqui pq?')
-            Login_controller.start()
+            self.Login_controller.start()
             self.lbl_ok_FPL_00.setVisible(True)
             self.lbl_ok_FPL_00.raise_()
 
