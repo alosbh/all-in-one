@@ -96,7 +96,7 @@ class Fpl_controller():
         elif window == 'logout':
             print('-------------------------MOSTRANDO JANELA LOGOUUUUT-------------------------')
             print('ue to aqui pq?')
-            Login_controller.start()
+            Login_controller.set_flag(True)
             self.lbl_ok_FPL_00.setVisible(True)
             self.lbl_ok_FPL_00.raise_()
 
