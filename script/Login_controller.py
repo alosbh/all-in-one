@@ -59,8 +59,8 @@ class Login_controller(QThread):
         Login_controller.set_flag(True)
 
         while True:
-            print('on')
             if flag == True:
+                print('on')
                 try:
                     # self.Read_ID = 51008294
                     self.Read_ID = RFRead_controller.RFRead() # Reads Badge ID
@@ -147,4 +147,5 @@ class Login_controller(QThread):
                 # Wait for next thread iteration           
                 time.sleep(self.thread_time) 
             else:
+                print('off')
                 pass
