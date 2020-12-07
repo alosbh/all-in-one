@@ -78,7 +78,6 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
     Workstation_Signal = QtSignal()
     
     def __init__(self, *args, **kwargs):
-        
         self.Workstation_Signal.signal.connect(self.Print_Workstation)
         # Creates the Qt Widget that holds the UI 
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
@@ -126,7 +125,7 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
 #----------------------------------------------------------------------------------
 
 # Inherits the qt Ui_Logged_Screen (main screen) design and manages its setup
-class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_support_controller, LPAactions_controller, Announcements_controller, Login_controller, Fpl_controller):
+class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_support_controller, LPAactions_controller, Announcements_controller, Fpl_controller):
     
     # Instance of the signal to act on button's click
     load_url_signal = QtSignal()
@@ -204,7 +203,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
 
     # Method called in the MainThread - fills labor user fields
     def SetupUser(self, DL):
-        self.thread.switch_logoutlogin(True)
         self.load_announcements_label()
         self.lbl_value_name.setText(DL.Name)
         self.lbl_value_yield.setText(DL.Yield)
