@@ -117,7 +117,7 @@ class Fpl_controller():
         return docarray
 
 # decide qual janela vai subir
-    def update_window(self, rfid, window):
+    def update_window(self, window):
         if window == 'success':
             self.lbl_successvalidation_FPL_03.setVisible(True)
             self.lbl_successvalidation_FPL_03.raise_()
@@ -131,7 +131,7 @@ class thread_vt(QThread):
     vt = QtCore.pyqtSignal(str, str)
     
     def run(self):
-        for attempts in range(10):
+        for attempts in range(20):
             read = RFRead_controller.RFRead()
 
             if attempts == 0:
@@ -151,7 +151,7 @@ class thread_vt(QThread):
                         request_validatedocs = requests.post(url_validatedocs, data=json.dumps(body_validate), headers=headers_validate)
 
                         if request_validatedocs.status_code == 201:
-                            self.vt.emit(str(read), 'success')
+                            self.vt.emit('success')
                         else:
                             print('deu ruim')
 
@@ -159,7 +159,7 @@ class thread_vt(QThread):
                     except:
                         print('ixi')
                 elif self.whatdo == 2:
-                    self.vt.emit(str(read), 'logout')
+                    self.vt.emit('logout')
                     return
             time.sleep(0.5)
         
