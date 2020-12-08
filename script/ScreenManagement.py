@@ -161,7 +161,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.button_handle()
         self.generate_5s(self.Station.Name)
         self.support_screen_functions(self.Station.Name)
-        self.fpl_btn_functions()
 
         # self.LPAactions_functions(self.Station.Name)
         self.btn_actionsLPA.hide()
@@ -210,6 +209,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.lbl_value_goodideas.setText('-')
         self.lbl_value_jabilcoins.setText('-')
         self.lbl_user_avatar.setPixmap(DL.picture)
+        self.setup_fpl(DL.Name, DL.ID_trim)
         
     # Method to show the window widget 
     def Show(self):

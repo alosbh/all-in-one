@@ -446,14 +446,25 @@ class Ui_Logged_Screen(object):
 "color: rgb(255, 255, 255);")
         self.lbl_value_number_actionsLPA.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_value_number_actionsLPA.setObjectName("lbl_value_number_actionsLPA")
-        self.lbl_testeteste = QtWidgets.QLabel(self.header)
-        self.lbl_testeteste.setGeometry(QtCore.QRect(386, 20, 101, 20))
-        self.lbl_testeteste.setObjectName("lbl_testeteste")
-        self.btn_testeteste = QtWidgets.QPushButton(self.header)
-        self.btn_testeteste.setGeometry(QtCore.QRect(570, 20, 41, 23))
-        self.btn_testeteste.setStyleSheet("image: url(:/Img/Avatar.png);")
-        self.btn_testeteste.setText("")
-        self.btn_testeteste.setObjectName("btn_testeteste")
+        self.btn_FPL = QtWidgets.QPushButton(self.header)
+        self.btn_FPL.setGeometry(QtCore.QRect(950, 10, 41, 41))
+        self.btn_FPL.setAutoFillBackground(False)
+        self.btn_FPL.setStyleSheet("image: url(:/Img/presentation.png);")
+        self.btn_FPL.setText("")
+        self.btn_FPL.setObjectName("btn_FPL")
+        self.lbl_value_number_invalidFPL = QtWidgets.QLabel(self.header)
+        self.lbl_value_number_invalidFPL.setGeometry(QtCore.QRect(980, 33, 20, 20))
+        font = QtGui.QFont()
+        font.setFamily("Inter UI")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setWeight(50)
+        self.lbl_value_number_invalidFPL.setFont(font)
+        self.lbl_value_number_invalidFPL.setStyleSheet("background-color: rgb(255, 0, 0);\n"
+"border-radius:10px;\n"
+"color: rgb(255, 255, 255);")
+        self.lbl_value_number_invalidFPL.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbl_value_number_invalidFPL.setObjectName("lbl_value_number_invalidFPL")
         self.footer = QtWidgets.QFrame(self.centralwidget)
         self.footer.setGeometry(QtCore.QRect(235, 722, 1131, 51))
         self.footer.setStyleSheet("background-color:white;border:none;")
@@ -1462,9 +1473,11 @@ class Ui_Logged_Screen(object):
         self.subbody_createticket_1.raise_()
         self.body_FPL = QtWidgets.QWidget(self.main)
         self.body_FPL.setGeometry(QtCore.QRect(410, 20, 361, 551))
-        self.body_FPL.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+        self.body_FPL.setStyleSheet("QWidget{\n"
+"background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;\n"
-"border: 2px  solid rgb(0,0,0);")
+"border: 2px  solid rgb(0,0,0);\n"
+"}")
         self.body_FPL.setObjectName("body_FPL")
         self.btn_close_FPL = QtWidgets.QPushButton(self.body_FPL)
         self.btn_close_FPL.setGeometry(QtCore.QRect(330, 10, 21, 21))
@@ -1473,28 +1486,6 @@ class Ui_Logged_Screen(object):
 "border: 0px  solid rgb(0,0,0);")
         self.btn_close_FPL.setText("")
         self.btn_close_FPL.setObjectName("btn_close_FPL")
-        self.verticalLayoutWidget = QtWidgets.QWidget(self.body_FPL)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(50, 40, 181, 371))
-        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
-        self.layout_OJT_docnames = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
-        self.layout_OJT_docnames.setContentsMargins(0, 0, 0, 0)
-        self.layout_OJT_docnames.setObjectName("layout_OJT_docnames")
-        self.checkBox = QtWidgets.QCheckBox(self.verticalLayoutWidget)
-        self.checkBox.setObjectName("checkBox")
-        self.layout_OJT_docnames.addWidget(self.checkBox)
-        self.label_2 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_2.setObjectName("label_2")
-        self.layout_OJT_docnames.addWidget(self.label_2)
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.layout_OJT_docnames.addItem(spacerItem)
-        self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.body_FPL)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(260, 40, 72, 371))
-        self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
-        self.layout_OJT_redirectbtns = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
-        self.layout_OJT_redirectbtns.setContentsMargins(0, 0, 0, 0)
-        self.layout_OJT_redirectbtns.setObjectName("layout_OJT_redirectbtns")
-        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.layout_OJT_redirectbtns.addItem(spacerItem1)
         self.lbl_startvalidation_FPL_02 = QtWidgets.QWidget(self.body_FPL)
         self.lbl_startvalidation_FPL_02.setGeometry(QtCore.QRect(35, 410, 291, 131))
         self.lbl_startvalidation_FPL_02.setStyleSheet("background-color: rgb(255, 255, 255);\n"
@@ -1658,14 +1649,247 @@ class Ui_Logged_Screen(object):
 "border: 0px  solid rgb(0,0,0);")
         self.btn_close_failvalidation.setText("")
         self.btn_close_failvalidation.setObjectName("btn_close_failvalidation")
+        self.widget_FPL1 = QtWidgets.QWidget(self.body_FPL)
+        self.widget_FPL1.setGeometry(QtCore.QRect(60, 40, 161, 371))
+        self.widget_FPL1.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.widget_FPL1.setObjectName("widget_FPL1")
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.widget_FPL1)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 0, 181, 371))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.layout_OJT_docnames = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.layout_OJT_docnames.setContentsMargins(0, 0, 0, 0)
+        self.layout_OJT_docnames.setObjectName("layout_OJT_docnames")
+        self.ckb_FPL_0 = QtWidgets.QCheckBox(self.verticalLayoutWidget)
+        self.ckb_FPL_0.setStyleSheet("color: rgb(255, 0, 0);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.ckb_FPL_0.setObjectName("ckb_FPL_0")
+        self.layout_OJT_docnames.addWidget(self.ckb_FPL_0)
+        self.ckb_FPL_1 = QtWidgets.QCheckBox(self.verticalLayoutWidget)
+        self.ckb_FPL_1.setStyleSheet("color: rgb(255, 0, 0);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.ckb_FPL_1.setObjectName("ckb_FPL_1")
+        self.layout_OJT_docnames.addWidget(self.ckb_FPL_1)
+        self.ckb_FPL_2 = QtWidgets.QCheckBox(self.verticalLayoutWidget)
+        self.ckb_FPL_2.setStyleSheet("color: rgb(255, 0, 0);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.ckb_FPL_2.setObjectName("ckb_FPL_2")
+        self.layout_OJT_docnames.addWidget(self.ckb_FPL_2)
+        self.ckb_FPL_3 = QtWidgets.QCheckBox(self.verticalLayoutWidget)
+        self.ckb_FPL_3.setStyleSheet("color: rgb(255, 0, 0);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.ckb_FPL_3.setObjectName("ckb_FPL_3")
+        self.layout_OJT_docnames.addWidget(self.ckb_FPL_3)
+        self.ckb_FPL_4 = QtWidgets.QCheckBox(self.verticalLayoutWidget)
+        self.ckb_FPL_4.setStyleSheet("color: rgb(255, 0, 0);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.ckb_FPL_4.setObjectName("ckb_FPL_4")
+        self.layout_OJT_docnames.addWidget(self.ckb_FPL_4)
+        self.ckb_FPL_5 = QtWidgets.QCheckBox(self.verticalLayoutWidget)
+        self.ckb_FPL_5.setStyleSheet("color: rgb(255, 0, 0);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.ckb_FPL_5.setObjectName("ckb_FPL_5")
+        self.layout_OJT_docnames.addWidget(self.ckb_FPL_5)
+        self.ckb_FPL_6 = QtWidgets.QCheckBox(self.verticalLayoutWidget)
+        self.ckb_FPL_6.setStyleSheet("color: rgb(255, 0, 0);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.ckb_FPL_6.setObjectName("ckb_FPL_6")
+        self.layout_OJT_docnames.addWidget(self.ckb_FPL_6)
+        self.ckb_FPL_7 = QtWidgets.QCheckBox(self.verticalLayoutWidget)
+        self.ckb_FPL_7.setStyleSheet("color: rgb(255, 0, 0);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.ckb_FPL_7.setObjectName("ckb_FPL_7")
+        self.layout_OJT_docnames.addWidget(self.ckb_FPL_7)
+        self.lbl_FPL_0 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_FPL_0.setStyleSheet("\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.lbl_FPL_0.setObjectName("lbl_FPL_0")
+        self.layout_OJT_docnames.addWidget(self.lbl_FPL_0)
+        self.lbl_FPL_1 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_FPL_1.setStyleSheet("\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.lbl_FPL_1.setObjectName("lbl_FPL_1")
+        self.layout_OJT_docnames.addWidget(self.lbl_FPL_1)
+        self.lbl_FPL_2 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_FPL_2.setStyleSheet("\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.lbl_FPL_2.setObjectName("lbl_FPL_2")
+        self.layout_OJT_docnames.addWidget(self.lbl_FPL_2)
+        self.lbl_FPL_3 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_FPL_3.setStyleSheet("\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.lbl_FPL_3.setObjectName("lbl_FPL_3")
+        self.layout_OJT_docnames.addWidget(self.lbl_FPL_3)
+        self.lbl_FPL_4 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_FPL_4.setStyleSheet("\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.lbl_FPL_4.setObjectName("lbl_FPL_4")
+        self.layout_OJT_docnames.addWidget(self.lbl_FPL_4)
+        self.lbl_FPL_5 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_FPL_5.setStyleSheet("\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.lbl_FPL_5.setObjectName("lbl_FPL_5")
+        self.layout_OJT_docnames.addWidget(self.lbl_FPL_5)
+        self.lbl_FPL_6 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_FPL_6.setStyleSheet("\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.lbl_FPL_6.setObjectName("lbl_FPL_6")
+        self.layout_OJT_docnames.addWidget(self.lbl_FPL_6)
+        self.lbl_FPL_7 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_FPL_7.setStyleSheet("\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.lbl_FPL_7.setObjectName("lbl_FPL_7")
+        self.layout_OJT_docnames.addWidget(self.lbl_FPL_7)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.layout_OJT_docnames.addItem(spacerItem)
+        self.widget_FPL_2 = QtWidgets.QWidget(self.body_FPL)
+        self.widget_FPL_2.setGeometry(QtCore.QRect(250, 40, 31, 371))
+        self.widget_FPL_2.setStyleSheet("background-color: rgb(255, 255, 255);border-color: white")
+        self.widget_FPL_2.setObjectName("widget_FPL_2")
+        self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.widget_FPL_2)
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 31, 371))
+        self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
+        self.layout_OJT_redirectbtns = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
+        self.layout_OJT_redirectbtns.setContentsMargins(0, 0, 0, 0)
+        self.layout_OJT_redirectbtns.setObjectName("layout_OJT_redirectbtns")
+        self.btn_ckb_FPL_0 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_ckb_FPL_0.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_ckb_FPL_0.setText("")
+        self.btn_ckb_FPL_0.setObjectName("btn_ckb_FPL_0")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_ckb_FPL_0)
+        self.btn_ckb_FPL_1 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_ckb_FPL_1.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_ckb_FPL_1.setText("")
+        self.btn_ckb_FPL_1.setObjectName("btn_ckb_FPL_1")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_ckb_FPL_1)
+        self.btn_ckb_FPL_2 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_ckb_FPL_2.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_ckb_FPL_2.setText("")
+        self.btn_ckb_FPL_2.setObjectName("btn_ckb_FPL_2")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_ckb_FPL_2)
+        self.btn_ckb_FPL_3 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_ckb_FPL_3.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_ckb_FPL_3.setText("")
+        self.btn_ckb_FPL_3.setObjectName("btn_ckb_FPL_3")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_ckb_FPL_3)
+        self.btn_ckb_FPL_4 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_ckb_FPL_4.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_ckb_FPL_4.setText("")
+        self.btn_ckb_FPL_4.setObjectName("btn_ckb_FPL_4")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_ckb_FPL_4)
+        self.btn_ckb_FPL_5 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_ckb_FPL_5.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_ckb_FPL_5.setText("")
+        self.btn_ckb_FPL_5.setObjectName("btn_ckb_FPL_5")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_ckb_FPL_5)
+        self.btn_ckb_FPL_6 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_ckb_FPL_6.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_ckb_FPL_6.setText("")
+        self.btn_ckb_FPL_6.setObjectName("btn_ckb_FPL_6")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_ckb_FPL_6)
+        self.btn_ckb_FPL_7 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_ckb_FPL_7.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_ckb_FPL_7.setText("")
+        self.btn_ckb_FPL_7.setObjectName("btn_ckb_FPL_7")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_ckb_FPL_7)
+        self.btn_lbl_FPL_0 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_lbl_FPL_0.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_lbl_FPL_0.setText("")
+        self.btn_lbl_FPL_0.setObjectName("btn_lbl_FPL_0")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_lbl_FPL_0)
+        self.btn_lbl_FPL_1 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_lbl_FPL_1.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_lbl_FPL_1.setText("")
+        self.btn_lbl_FPL_1.setObjectName("btn_lbl_FPL_1")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_lbl_FPL_1)
+        self.btn_lbl_FPL_2 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_lbl_FPL_2.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_lbl_FPL_2.setText("")
+        self.btn_lbl_FPL_2.setObjectName("btn_lbl_FPL_2")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_lbl_FPL_2)
+        self.btn_lbl_FPL_3 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_lbl_FPL_3.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_lbl_FPL_3.setText("")
+        self.btn_lbl_FPL_3.setObjectName("btn_lbl_FPL_3")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_lbl_FPL_3)
+        self.btn_lbl_FPL_4 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_lbl_FPL_4.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_lbl_FPL_4.setText("")
+        self.btn_lbl_FPL_4.setObjectName("btn_lbl_FPL_4")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_lbl_FPL_4)
+        self.btn_lbl_FPL_5 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_lbl_FPL_5.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_lbl_FPL_5.setText("")
+        self.btn_lbl_FPL_5.setObjectName("btn_lbl_FPL_5")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_lbl_FPL_5)
+        self.btn_lbl_FPL_6 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_lbl_FPL_6.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_lbl_FPL_6.setText("")
+        self.btn_lbl_FPL_6.setObjectName("btn_lbl_FPL_6")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_lbl_FPL_6)
+        self.btn_lbl_FPL_7 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.btn_lbl_FPL_7.setStyleSheet("image: url(:/Img/copy.png);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-color: white")
+        self.btn_lbl_FPL_7.setText("")
+        self.btn_lbl_FPL_7.setObjectName("btn_lbl_FPL_7")
+        self.layout_OJT_redirectbtns.addWidget(self.btn_lbl_FPL_7)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.layout_OJT_redirectbtns.addItem(spacerItem1)
         self.btn_close_FPL.raise_()
-        self.verticalLayoutWidget.raise_()
-        self.verticalLayoutWidget_2.raise_()
         self.lbl_successvalidation_FPL_03.raise_()
         self.lbl_startvalidation_FPL_02.raise_()
         self.lbl_failvalidation_FPL_03.raise_()
         self.lbl_ok_FPL_00.raise_()
         self.lbl_nok_FPL_01.raise_()
+        self.widget_FPL1.raise_()
+        self.widget_FPL_2.raise_()
         self.horizontalWidget_3.raise_()
         self.btn_5s_back.raise_()
         self.btn_5s_next.raise_()
@@ -1702,7 +1926,7 @@ class Ui_Logged_Screen(object):
         self.lbl_line.setText(_translate("MainWindow", "Linha"))
         self.lbl_value_line.setText(_translate("MainWindow", "651615165"))
         self.lbl_value_number_actionsLPA.setText(_translate("MainWindow", "5"))
-        self.lbl_testeteste.setText(_translate("MainWindow", "TextLabel"))
+        self.lbl_value_number_invalidFPL.setText(_translate("MainWindow", "5"))
         self.lbl_automation.setText(_translate("MainWindow", "BEL Automation, 2020"))
         self.lbl_value_version.setText(_translate("MainWindow", "v1.0"))
         self.lbl_productivity.setText(_translate("MainWindow", "Produtividade"))
@@ -1755,8 +1979,6 @@ class Ui_Logged_Screen(object):
         self.lbl_waiting_inprogress.setText(_translate("MainWindow", "Chamado em andamento, aguarde a conclusão."))
         self.btn_initiate_inprogress.setText(_translate("MainWindow", "Finalizar atendimento"))
         self.lbl_text_error.setText(_translate("MainWindow", "Ops! Algo deu errado. Verifique se todos os campos estão preenchidos corretamente e tente novamente.                                              Se o erro persistir contate Andre no ramal: 123456"))
-        self.checkBox.setText(_translate("MainWindow", "CheckBox"))
-        self.label_2.setText(_translate("MainWindow", "TextLabel"))
         self.lbl_instructions_startvalidation.setText(_translate("MainWindow", "Clicando em prosseguir: retire o crachá do operador do leitor, insira o do responsável e aguarde a janela de confirmação aparecer. Você terá 10 segundos para realizar esse processo."))
         self.btn_proceed_startvalidation.setText(_translate("MainWindow", "Prosseguir"))
         self.lbl_text_successvalidation.setText(_translate("MainWindow", "Sucesso, treinamentos validados!            Insira novamente o crachá do operador e clique em Ok quando estiver pronto."))
@@ -1765,6 +1987,22 @@ class Ui_Logged_Screen(object):
         self.btn_validate_training.setText(_translate("MainWindow", "Validar Treinamento"))
         self.lbl_allgood_2.setText(_translate("MainWindow", "Tudo ok por aqui!"))
         self.lbl_text_successvalidation_2.setText(_translate("MainWindow", "Ops, algo deu errado! Insira novamente o cartão do operador e repita o processo."))
+        self.ckb_FPL_0.setText(_translate("MainWindow", "CheckBox"))
+        self.ckb_FPL_1.setText(_translate("MainWindow", "CheckBox"))
+        self.ckb_FPL_2.setText(_translate("MainWindow", "CheckBox"))
+        self.ckb_FPL_3.setText(_translate("MainWindow", "CheckBox"))
+        self.ckb_FPL_4.setText(_translate("MainWindow", "CheckBox"))
+        self.ckb_FPL_5.setText(_translate("MainWindow", "CheckBox"))
+        self.ckb_FPL_6.setText(_translate("MainWindow", "CheckBox"))
+        self.ckb_FPL_7.setText(_translate("MainWindow", "CheckBox"))
+        self.lbl_FPL_0.setText(_translate("MainWindow", "TextLabel"))
+        self.lbl_FPL_1.setText(_translate("MainWindow", "TextLabel"))
+        self.lbl_FPL_2.setText(_translate("MainWindow", "TextLabel"))
+        self.lbl_FPL_3.setText(_translate("MainWindow", "TextLabel"))
+        self.lbl_FPL_4.setText(_translate("MainWindow", "TextLabel"))
+        self.lbl_FPL_5.setText(_translate("MainWindow", "TextLabel"))
+        self.lbl_FPL_6.setText(_translate("MainWindow", "TextLabel"))
+        self.lbl_FPL_7.setText(_translate("MainWindow", "TextLabel"))
 import resources_rc
 
 

@@ -1,4 +1,4 @@
-from RFRead_controller import RFRead_controller
+# from RFRead_controller import RFRead_controller
 from PyQt5.QtCore import QObject, pyqtSignal, QUrl, QThread
 from GlobalParameters import GlobalParameters
 from ApiManager import ApiManager as ws
@@ -60,10 +60,9 @@ class Login_controller(QThread):
 
         while True:
             if flag == True:
-                print('on')
                 try:
-                    # self.Read_ID = 51008294
-                    self.Read_ID = RFRead_controller.RFRead() # Reads Badge ID
+                     self.Read_ID = 51008294
+                    #self.Read_ID = RFRead_controller.RFRead() # Reads Badge ID
                 except Exception as e:
                     traceback.print_exc()
                     logger.error("RFID error: " + type(e).__name__)
@@ -147,6 +146,5 @@ class Login_controller(QThread):
                 # Wait for next thread iteration           
                 time.sleep(self.thread_time) 
             else:
-                print('off')           
                 time.sleep(self.thread_time) 
                 pass
