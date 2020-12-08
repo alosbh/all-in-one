@@ -35,9 +35,9 @@ class Fpl_controller():
         self.valid_documents_dict = {}
         self.invalid_documents_dict = {}
 
-        physicalWorkstationId = self.Station.RouteId
-        traineeRegistration = self.DLid
-        url_alldocs = 'http://brbelm0mat81/ojt/api/Trainings?physicalWorkstationId=355&traineeRegistration=1008294'
+        physicalWorkstationId = str(self.Station.RouteId)
+        traineeRegistration = str(self.DLid)
+        url_alldocs = 'http://brbelm0mat81/ojt/api/Trainings?physicalWorkstationId='+ physicalWorkstationId +'&traineeRegistration=' + traineeRegistration
         request_alldocs = requests.get(url_alldocs)
         response_alldocs = request_alldocs.json()
         response_alldocs = response_alldocs['documents']
