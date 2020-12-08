@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QObject, pyqtSignal, QUrl, QThread
-#from RFRead_controller import RFRead_controller
+from RFRead_controller import RFRead_controller
 from Login_controller import Login_controller
 from DirectLabor import DirectLabor as DL
 
