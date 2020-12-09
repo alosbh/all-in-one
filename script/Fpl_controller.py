@@ -28,6 +28,7 @@ class Fpl_controller():
     
     def error_FPL(self):
         self.body_FPL.hide()
+        self.lbl_value_number_invalidFPL.hide()
         self.btn_FPL.clicked.connect(self.body_FPL_error.show)
         self.btn_close_FPL_error.clicked.connect(self.body_FPL_error.hide)
         
@@ -42,9 +43,11 @@ class Fpl_controller():
         request_alldocs = requests.get(url_alldocs)
 
         if request_alldocs.status_code == 200:
+            i = 1
             response_alldocs = request_alldocs.json()
             response_alldocs = response_alldocs['documents']
             for document in response_alldocs:
+                i += 1
                 if document['isTrained'] == True:
                     self.valid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
                 else:
@@ -57,6 +60,7 @@ class Fpl_controller():
                 self.btn_validate_training.hide()
                 self.lbl_ok_FPL_00.show()
                 self.lbl_invalid_trainings.hide()
+            self.lbl_value_number_invalidFPL.setText(str(i))
             self.create_lbl_ckb()
             self.fpl_btn_functions()
 
