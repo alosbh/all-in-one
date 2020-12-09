@@ -63,7 +63,6 @@ class Fpl_controller():
             self.lbl_value_number_invalidFPL.setText(str(i))
             self.create_lbl_ckb()
             self.fpl_btn_functions()
-
         else:
             self.error_FPL()
 
