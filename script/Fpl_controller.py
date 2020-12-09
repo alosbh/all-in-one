@@ -141,8 +141,11 @@ class thread_vt(QThread):
             if read != first_read and read != None:
                 if self.whatdo == 1:
                     try:
+                        print('---')
                         docarray = Fpl_controller.get_docarray()
                         dlname = Fpl_controller.get_dlname()
+                        print(docarray)
+                        print(dlname)
                         url_validatedocs = 'http://brbelm0mat81/ojt/ojt-service/trainings'
                         headers_validate = {'content-type': 'application/json'}
                         body_validate = {'TraineeName': dlname,
@@ -150,6 +153,7 @@ class thread_vt(QThread):
                         'trainerRegistration': read[1:],
                         'documentInfoCardIds': docarray}
                         request_validatedocs = requests.post(url_validatedocs, data=json.dumps(body_validate), headers=headers_validate)
+                        print(request_validatedocs)
 
                         if request_validatedocs.status_code == 201:
                             self.vt.emit('success')
