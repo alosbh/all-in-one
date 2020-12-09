@@ -1890,12 +1890,41 @@ class Ui_Logged_Screen(object):
         self.lbl_nok_FPL_01.raise_()
         self.widget_FPL1.raise_()
         self.widget_FPL_2.raise_()
+        self.body_FPL_error = QtWidgets.QWidget(self.main)
+        self.body_FPL_error.setGeometry(QtCore.QRect(410, 20, 361, 101))
+        self.body_FPL_error.setStyleSheet("QWidget{\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px  solid rgb(0,0,0);\n"
+"}")
+        self.body_FPL_error.setObjectName("body_FPL_error")
+        self.btn_close_FPL_error = QtWidgets.QPushButton(self.body_FPL_error)
+        self.btn_close_FPL_error.setGeometry(QtCore.QRect(330, 10, 21, 21))
+        self.btn_close_FPL_error.setStyleSheet("image: url(:/Img/redX.png);\n"
+"border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.btn_close_FPL_error.setText("")
+        self.btn_close_FPL_error.setObjectName("btn_close_FPL_error")
+        self.lbl_iconFPL_error = QtWidgets.QLabel(self.body_FPL_error)
+        self.lbl_iconFPL_error.setGeometry(QtCore.QRect(20, 20, 61, 51))
+        self.lbl_iconFPL_error.setStyleSheet("image: url(:/Img/red_error.png);\n"
+"border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.lbl_iconFPL_error.setText("")
+        self.lbl_iconFPL_error.setObjectName("lbl_iconFPL_error")
+        self.lbl_text_FPL_error = QtWidgets.QLabel(self.body_FPL_error)
+        self.lbl_text_FPL_error.setGeometry(QtCore.QRect(90, 10, 201, 71))
+        self.lbl_text_FPL_error.setStyleSheet("border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.lbl_text_FPL_error.setWordWrap(True)
+        self.lbl_text_FPL_error.setObjectName("lbl_text_FPL_error")
         self.horizontalWidget_3.raise_()
         self.btn_5s_back.raise_()
         self.btn_5s_next.raise_()
         self.body_support.raise_()
         self.body_home.raise_()
         self.body_FPL.raise_()
+        self.body_FPL_error.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -2003,6 +2032,7 @@ class Ui_Logged_Screen(object):
         self.lbl_FPL_5.setText(_translate("MainWindow", "TextLabel"))
         self.lbl_FPL_6.setText(_translate("MainWindow", "TextLabel"))
         self.lbl_FPL_7.setText(_translate("MainWindow", "TextLabel"))
+        self.lbl_text_FPL_error.setText(_translate("MainWindow", "Ops, algo deu errado!                             Faça login novamente para carregar os documentos."))
 import resources_rc
 
 

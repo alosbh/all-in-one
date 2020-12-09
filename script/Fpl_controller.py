@@ -1,9 +1,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QObject, pyqtSignal, QUrl, QThread
-from RFRead_controller import RFRead_controller
 from Login_controller import Login_controller
 from DirectLabor import DirectLabor as DL
-
+from OS_define import OS_define
+OS_define = OS_define()
+if OS_define.get_OS_name() == 1:
+    pass
+else:
+    from RFRead_controller import RFRead_controller
 import requests
 import json
 import time
@@ -14,21 +18,18 @@ class Fpl_controller():
         global DL_Name
         DL_Name = DLname
         self.DLid = DLid
-        self.body_FPL.setVisible(False)
+        self.body_FPL.hide()
+        self.body_FPL_error.hide()
         self.get_all_documents()
-        self.fpl_btn_functions()
-
-    def fpl_btn_functions(self):
-        self.btn_FPL.clicked.connect(self.body_FPL.show)
-        self.btn_close_FPL.clicked.connect(self.body_FPL.hide)
-        self.btn_close_startvalidation.clicked.connect(self.lbl_startvalidation_FPL_02.show)
-        self.btn_validate_training.clicked.connect(self.show_validate_window)
-        self.btn_proceed_startvalidation.clicked.connect(self.validate_training)
-        self.btn_ok_successvalidation.clicked.connect(self.turnon_loginlogout)
 
     def show_validate_window(self):
-        self.lbl_startvalidation_FPL_02.setVisible(True)
+        self.lbl_startvalidation_FPL_02.show()
         self.lbl_startvalidation_FPL_02.raise_()
+    
+    def error_FPL(self):
+        self.body_FPL.hide()
+        self.btn_FPL.clicked.connect(self.body_FPL_error.show)
+        self.btn_close_FPL_error.clicked.connect(self.body_FPL_error.hide)
         
 # pega info dos documentos e adiciona em arrays para gerar widgets na janela
     def get_all_documents(self):
@@ -38,27 +39,37 @@ class Fpl_controller():
         physicalWorkstationId = str(self.Station.Id)
         traineeRegistration = str(self.DLid)
         url_alldocs = 'http://brbelm0mat81/ojt/api/Trainings?physicalWorkstationId='+ physicalWorkstationId +'&traineeRegistration=' + traineeRegistration
-        print(url_alldocs)
         request_alldocs = requests.get(url_alldocs)
-        response_alldocs = request_alldocs.json()
-        response_alldocs = response_alldocs['documents']
-        
-        for document in response_alldocs:
-            if document['isTrained'] == True:
-                self.valid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
-            else:
-                self.invalid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
 
-        if self.invalid_documents_dict != None:
-            self.btn_validate_training.setVisible(True)
-            self.lbl_ok_FPL_00.setVisible(False)
-            self.lbl_invalid_trainings.setVisible(True)
+        if request_alldocs.status_code == 200:
+            response_alldocs = request_alldocs.json()
+            response_alldocs = response_alldocs['documents']
+            for document in response_alldocs:
+                if document['isTrained'] == True:
+                    self.valid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
+                else:
+                    self.invalid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
+            if self.invalid_documents_dict != None:
+                self.btn_validate_training.show()
+                self.lbl_ok_FPL_00.hide()
+                self.lbl_invalid_trainings.show()
+            else:
+                self.btn_validate_training.hide()
+                self.lbl_ok_FPL_00.show()
+                self.lbl_invalid_trainings.hide()
+            self.create_lbl_ckb()
+            self.fpl_btn_functions()
+
         else:
-            self.btn_validate_training.setVisible(False)
-            self.lbl_ok_FPL_00.setVisible(True)
-            self.lbl_invalid_trainings.setVisible(False)
-        
-        self.create_lbl_ckb()
+            self.error_FPL()
+
+    def fpl_btn_functions(self):
+        self.btn_FPL.clicked.connect(self.body_FPL.show)
+        self.btn_close_FPL.clicked.connect(self.body_FPL.hide)
+        self.btn_close_startvalidation.clicked.connect(self.lbl_startvalidation_FPL_02.show)
+        self.btn_validate_training.clicked.connect(self.show_validate_window)
+        self.btn_proceed_startvalidation.clicked.connect(self.validate_training)
+        self.btn_ok_successvalidation.clicked.connect(self.turnon_loginlogout)
 
 # manipula labels e checkboxes
     def create_lbl_ckb(self):
@@ -120,11 +131,14 @@ class Fpl_controller():
 # decide qual janela vai subir
     def update_window(self, window):
         if window == 'success':
-            self.lbl_successvalidation_FPL_03.setVisible(True)
+            self.lbl_successvalidation_FPL_03.show()
             self.lbl_successvalidation_FPL_03.raise_()
+        elif window == 'fail':
+            self.lbl_failvalidation_FPL_03.show()
+            self.lbl_failvalidation_FPL_03.raise_()
         elif window == 'logout':
             Login_controller.set_flag(True)
-            self.lbl_ok_FPL_00.setVisible(True)
+            self.lbl_ok_FPL_00.show()
             self.lbl_ok_FPL_00.raise_()
 
 # pega o cracha no leitor(dl) no momento do clique. quando mudar, pega o que foi inserido(responsavel) e faz o request de validacao. depois liga o login/logout novamente
@@ -132,44 +146,43 @@ class thread_vt(QThread):
     vt = QtCore.pyqtSignal(str, str)
     
     def run(self):
-        for attempts in range(20):
-            read = RFRead_controller.RFRead()
+        OS_define = OS_define()
+        if OS_define.get_OS_name() == 0:
+            for attempts in range(20):
+                read = RFRead_controller.RFRead()
 
-            if attempts == 0:
-                first_read = read
+                if attempts == 0:
+                    first_read = read
 
-            if read != first_read and read != None:
-                print('-----')
-                print(read)
-                if self.whatdo == 1:
-                    try:
-                        docarray = Fpl_controller.get_docarray()
-                        dlname = Fpl_controller.get_dlname()
-                        print(docarray)
-                        print(dlname)
-                        url_validatedocs = 'http://brbelm0mat81/ojt/ojt-service/trainings'
-                        headers_validate = {'content-type': 'application/json'}
-                        body_validate = {'TraineeName': dlname,
-                        'traineeRegistration': first_read[1:],
-                        'trainerRegistration': read[1:],
-                        'documentInfoCardIds': docarray}
-                        print(headers_validate)
-                        print(body_validate)
-                        request_validatedocs = requests.post(url_validatedocs, data=json.dumps(body_validate), headers=headers_validate)
-                        print(request_validatedocs)
+                if read != first_read and read != None:
+                    if self.whatdo == 1:
+                        try:
+                            docarray = Fpl_controller.get_docarray()
+                            dlname = Fpl_controller.get_dlname()
+                            url_validatedocs = 'http://brbelm0mat81/ojt/ojt-service/trainings'
+                            headers_validate = {'content-type': 'application/json'}
+                            body_validate = {'TraineeName': dlname,
+                            'traineeRegistration': first_read[1:],
+                            'trainerRegistration': read[1:],
+                            'documentInfoCardIds': docarray}
+                            request_validatedocs = requests.post(url_validatedocs, data=json.dumps(body_validate), headers=headers_validate)
 
-                        if request_validatedocs.status_code == 201:
-                            self.vt.emit('success')
-                        else:
-                            print('deu ruim')
-
+                            if request_validatedocs.status_code == 201:
+                                self.vt.emit('success')
+                                Fpl_controller.get_all_documents()
+                                return
+                            else:
+                                self.vt.emit('fail')
+                                return
+                        except:
+                            self.vt.emit('fail')
+                            return
+                    elif self.whatdo == 2:
+                        self.vt.emit('logout')
                         return
-                    except:
-                        print('ixi')
-                elif self.whatdo == 2:
-                    self.vt.emit('logout')
-                    return
-            time.sleep(0.5)
+                time.sleep(0.5)
+        else:
+            pass
         
     def start_thread(self, whatdo):
         self.whatdo = whatdo
