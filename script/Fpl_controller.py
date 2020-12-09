@@ -152,6 +152,8 @@ class thread_vt(QThread):
                         'traineeRegistration': first_read[1:],
                         'trainerRegistration': read[1:],
                         'documentInfoCardIds': docarray}
+                        print(headers_validate)
+                        print(body_validate)
                         request_validatedocs = requests.post(url_validatedocs, data=json.dumps(body_validate), headers=headers_validate)
                         print(request_validatedocs)
 
