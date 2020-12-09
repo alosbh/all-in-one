@@ -139,9 +139,10 @@ class thread_vt(QThread):
                 first_read = read
 
             if read != first_read and read != None:
+                print('-----')
+                print(read)
                 if self.whatdo == 1:
                     try:
-                        print('---')
                         docarray = Fpl_controller.get_docarray()
                         dlname = Fpl_controller.get_dlname()
                         print(docarray)
