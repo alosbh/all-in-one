@@ -38,6 +38,7 @@ class Fpl_controller():
         physicalWorkstationId = str(self.Station.RouteId)
         traineeRegistration = str(self.DLid)
         url_alldocs = 'http://brbelm0mat81/ojt/api/Trainings?physicalWorkstationId='+ physicalWorkstationId +'&traineeRegistration=' + traineeRegistration
+        print(url_alldocs)
         request_alldocs = requests.get(url_alldocs)
         response_alldocs = request_alldocs.json()
         response_alldocs = response_alldocs['documents']
