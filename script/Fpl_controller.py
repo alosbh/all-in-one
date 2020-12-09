@@ -115,7 +115,7 @@ class Fpl_controller():
         return docarray
     
     def get_dlname():
-        return docarray
+        return DL_Name
 
 # decide qual janela vai subir
     def update_window(self, window):
