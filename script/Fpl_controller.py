@@ -43,17 +43,18 @@ class Fpl_controller():
         request_alldocs = requests.get(url_alldocs)
 
         if request_alldocs.status_code == 200:
-            i = 1
+            i = 0
             response_alldocs = request_alldocs.json()
             response_alldocs = response_alldocs['documents']
             for document in response_alldocs:
-                i += 1
                 if document['isTrained'] == True:
                     self.valid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
                 else:
+                    i += 1
                     self.invalid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
             if self.invalid_documents_dict != None:
                 self.btn_validate_training.show()
+                self.lbl_nok_FPL_01.raise_()
                 self.lbl_ok_FPL_00.hide()
                 self.lbl_invalid_trainings.show()
             else:
