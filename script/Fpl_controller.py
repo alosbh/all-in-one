@@ -169,6 +169,8 @@ class thread_vt(QThread):
                             'trainerRegistration': read[1:],
                             'documentInfoCardIds': docarray}
                             request_validatedocs = requests.post(url_validatedocs, data=json.dumps(body_validate), headers=headers_validate)
+                            print(body_validate)
+                            print(request_validatedocs)
 
                             if request_validatedocs.status_code == 201:
                                 self.vt.emit('success')
