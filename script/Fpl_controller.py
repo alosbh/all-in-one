@@ -150,7 +150,6 @@ class thread_vt(QThread):
     vt = QtCore.pyqtSignal(str, str)
     
     def run(self):
-        OS_define = OS_define()
         if OS_define.get_OS_name() == 0:
             for attempts in range(20):
                 read = RFRead_controller.RFRead()
