@@ -94,6 +94,7 @@ class Fpl_controller():
         for document in self.invalid_documents_dict:
             self.ckb_docname.setdefault(self.array_ckb_FPL[i], self.invalid_documents_dict[document])
             self.array_ckb_FPL[i].setText(document)
+            print(self.array_ckb_FPL[i])
             self.array_ckb_FPL[i].show()
             i += 1
         for document in self.valid_documents_dict:
