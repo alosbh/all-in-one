@@ -147,7 +147,7 @@ class Fpl_controller():
 
 # pega o cracha no leitor(dl) no momento do clique. quando mudar, pega o que foi inserido(responsavel) e faz o request de validacao. depois liga o login/logout novamente
 class thread_vt(QThread):
-    vt = QtCore.pyqtSignal(str, str)
+    vt = QtCore.pyqtSignal(str)
     
     def run(self):
         if OS_define.get_OS_name() == 0:
