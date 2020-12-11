@@ -85,6 +85,11 @@ class Fpl_controller():
         i = 0
         j = 0
 
+        print('invalido')
+        print(self.invalid_documents_dict)
+        print('valido')
+        print(self.valid_documents_dict)
+
         # muda nomes dos lbls e ckbs
         for document in self.invalid_documents_dict:
             self.ckb_docname.setdefault(self.array_ckb_FPL[i], self.invalid_documents_dict[document])
