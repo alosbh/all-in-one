@@ -68,16 +68,13 @@ class Fpl_controller():
             self.error_FPL()
 
     def fpl_btn_functions(self):
-        self.btn_FPL.clicked.connect(self.btn_FPL_func)
+        self.btn_FPL.clicked.connect(self.body_FPL.show)
         self.btn_close_FPL.clicked.connect(self.body_FPL.hide)
         self.btn_close_startvalidation.clicked.connect(self.lbl_startvalidation_FPL_02.show)
         self.btn_validate_training.clicked.connect(self.show_validate_window)
         self.btn_proceed_startvalidation.clicked.connect(self.validate_training)
         self.btn_ok_successvalidation.clicked.connect(self.turnon_loginlogout)
 
-    def btn_FPL_func(self):
-        self.get_all_documents()
-        self.body_FPL.show()
 # manipula labels e checkboxes
     def create_lbl_ckb(self):
         self.ckb_docname = {}
@@ -183,7 +180,7 @@ class thread_vt(QThread):
                                 self.vt.emit('fail')
                                 return
                         except:
-                            print('---')
+                            print('???')
                             self.vt.emit('fail')
                             return
                     elif self.whatdo == 2:
