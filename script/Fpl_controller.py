@@ -174,12 +174,13 @@ class thread_vt(QThread):
 
                             if request_validatedocs.status_code == 201:
                                 self.vt.emit('success')
-                                Fpl_controller.get_all_documents()
                                 return
                             else:
+                                print('???')
                                 self.vt.emit('fail')
                                 return
                         except:
+                            print('---')
                             self.vt.emit('fail')
                             return
                     elif self.whatdo == 2:
