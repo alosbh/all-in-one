@@ -71,7 +71,7 @@ class Fpl_controller():
 # metodos de controle de tela
     def fail_return(self):
         self.lbl_nok_FPL_01.raise_()
-        Login_controller.set_flag(True)
+        Login_controller.start()
         
     def show_validate_window(self):
         self.lbl_startvalidation_FPL_02.show()
@@ -120,7 +120,7 @@ class Fpl_controller():
         self.btn_proceed_startvalidation.setEnabled(False)
         self.ckb_checked_status()
         Login_controller.set_flag(False)
-        self.thread_vt = thread_vt((parent=self))
+        self.thread_vt = thread_vt()
         self.thread_vt.vt.connect(self.update_window)
         self.thread_vt.start_thread(1)
 
@@ -154,7 +154,7 @@ class Fpl_controller():
             self.lbl_failvalidation_FPL_04.show()
             self.lbl_failvalidation_FPL_04.raise_()
         elif window == 'logout':
-            Login_controller.set_flag(True)
+            Login_controller.start()
             self.get_all_documents(2)
             self.body_FPL.hide()
 
