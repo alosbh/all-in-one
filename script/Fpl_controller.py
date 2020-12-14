@@ -207,6 +207,7 @@ class thread_vt(QThread):
             self.exit()
         else:
             pass
+            self.exit()
         
     def start_thread(self, whatdo):
         self.whatdo = whatdo
