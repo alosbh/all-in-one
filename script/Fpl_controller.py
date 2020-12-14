@@ -20,7 +20,7 @@ class Fpl_controller():
         self.DLid = DLid
         self.body_FPL.hide()
         self.body_FPL_error.hide()
-        self.get_all_documents()
+        self.get_all_documents(1)
 
     def show_validate_window(self):
         self.lbl_startvalidation_FPL_02.show()
@@ -33,7 +33,7 @@ class Fpl_controller():
         self.btn_close_FPL_error.clicked.connect(self.body_FPL_error.hide)
         
 # pega info dos documentos e adiciona em arrays para gerar widgets na janela
-    def get_all_documents(self):
+    def get_all_documents(self, flag):
         self.valid_documents_dict = {}
         self.invalid_documents_dict = {}
 
@@ -63,7 +63,8 @@ class Fpl_controller():
                 self.lbl_invalid_trainings.hide()
             self.lbl_value_number_invalidFPL.setText(str(i))
             self.create_lbl_ckb()
-            self.fpl_btn_functions()
+            if flag == 1:
+                self.fpl_btn_functions()
         else:
             self.error_FPL()
 
@@ -74,6 +75,7 @@ class Fpl_controller():
         self.btn_validate_training.clicked.connect(self.show_validate_window)
         self.btn_proceed_startvalidation.clicked.connect(self.validate_training)
         self.btn_ok_successvalidation.clicked.connect(self.turnon_loginlogout)
+        self.btn_return_fail.clicked.connect(self.lbl_nok_FPL_01.raise_)
 
 # manipula labels e checkboxes
     def create_lbl_ckb(self):
@@ -84,11 +86,6 @@ class Fpl_controller():
         self.array_btn_lbl_FPL = [self.btn_lbl_FPL_0, self.btn_lbl_FPL_1, self.btn_lbl_FPL_2, self.btn_lbl_FPL_3, self.btn_lbl_FPL_4, self.btn_lbl_FPL_5, self.btn_lbl_FPL_6, self.btn_lbl_FPL_7]
         i = 0
         j = 0
-
-        print('invalido')
-        print(self.invalid_documents_dict)
-        print('valido')
-        print(self.valid_documents_dict)
 
         # muda nomes dos lbls e ckbs
         for document in self.invalid_documents_dict:
@@ -149,8 +146,8 @@ class Fpl_controller():
             self.lbl_failvalidation_FPL_03.raise_()
         elif window == 'logout':
             Login_controller.set_flag(True)
-            self.lbl_ok_FPL_00.show()
-            self.lbl_ok_FPL_00.raise_()
+            self.get_all_documents(2)
+            self.body_FPL.hide()
 
 # pega o cracha no leitor(dl) no momento do clique. quando mudar, pega o que foi inserido(responsavel) e faz o request de validacao. depois liga o login/logout novamente
 class thread_vt(QThread):
@@ -183,11 +180,9 @@ class thread_vt(QThread):
                                 self.vt.emit('success')
                                 return
                             else:
-                                print('???')
                                 self.vt.emit('fail')
                                 return
                         except:
-                            print('???')
                             self.vt.emit('fail')
                             return
                     elif self.whatdo == 2:
