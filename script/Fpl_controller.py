@@ -120,7 +120,7 @@ class Fpl_controller():
         self.btn_proceed_startvalidation.setEnabled(False)
         self.ckb_checked_status()
         Login_controller.set_flag(False)
-        self.thread_vt = thread_vt()
+        self.thread_vt = thread_vt((parent=self))
         self.thread_vt.vt.connect(self.update_window)
         self.thread_vt.start_thread(1)
 
