@@ -21,16 +21,6 @@ class Fpl_controller():
         self.body_FPL.hide()
         self.body_FPL_error.hide()
         self.get_all_documents(1)
-
-    def show_validate_window(self):
-        self.lbl_startvalidation_FPL_02.show()
-        self.lbl_startvalidation_FPL_02.raise_()
-    
-    def error_FPL(self):
-        self.body_FPL.hide()
-        self.lbl_value_number_invalidFPL.hide()
-        self.btn_FPL.clicked.connect(self.body_FPL_error.show)
-        self.btn_close_FPL_error.clicked.connect(self.body_FPL_error.hide)
         
 # pega info dos documentos e adiciona em arrays para gerar widgets na janela
     def get_all_documents(self, flag):
@@ -73,11 +63,25 @@ class Fpl_controller():
     def fpl_btn_functions(self):
         self.btn_FPL.clicked.connect(self.body_FPL.show)
         self.btn_close_FPL.clicked.connect(self.body_FPL.hide)
-        # self.btn_close_startvalidation.clicked.connect(self.lbl_startvalidation_FPL_02.show)
         self.btn_validate_training.clicked.connect(self.show_validate_window)
         self.btn_proceed_startvalidation.clicked.connect(self.validate_training)
         self.btn_ok_successvalidation.clicked.connect(self.turnon_loginlogout)
-        self.btn_return_fail.clicked.connect(self.lbl_nok_FPL_01.raise_)
+        self.btn_return_fail.clicked.connect(self.fail_return)
+
+# metodos de controle de tela
+    def fail_return(self):
+        self.lbl_nok_FPL_01.raise_()
+        Login_controller.set_flag(True)
+        
+    def show_validate_window(self):
+        self.lbl_startvalidation_FPL_02.show()
+        self.lbl_startvalidation_FPL_02.raise_()
+    
+    def error_FPL(self):
+        self.body_FPL.hide()
+        self.lbl_value_number_invalidFPL.hide()
+        self.btn_FPL.clicked.connect(self.body_FPL_error.show)
+        self.btn_close_FPL_error.clicked.connect(self.body_FPL_error.hide)
 
 # manipula labels e checkboxes
     def create_lbl_ckb(self):
@@ -132,7 +136,8 @@ class Fpl_controller():
             if ckb.isChecked():
                 self.validated_doc.append(self.ckb_docname[ckb])
         docarray = self.validated_doc
-    
+
+# metodos para passar variaveis pra thread
     def get_docarray():
         return docarray
     
@@ -146,8 +151,8 @@ class Fpl_controller():
             self.lbl_successvalidation_FPL_03.show()
             self.lbl_successvalidation_FPL_03.raise_()
         elif window == 'fail':
-            self.lbl_failvalidation_FPL_03.show()
-            self.lbl_failvalidation_FPL_03.raise_()
+            self.lbl_failvalidation_FPL_04.show()
+            self.lbl_failvalidation_FPL_04.raise_()
         elif window == 'logout':
             Login_controller.set_flag(True)
             self.get_all_documents(2)
