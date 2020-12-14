@@ -202,9 +202,6 @@ class thread_vt(QThread):
                         self.vt.emit('logout')
                         return
                 time.sleep(0.5)
-            self.exit()
-        else:
-            self.exit()
         
     def start_thread(self, whatdo):
         self.whatdo = whatdo
