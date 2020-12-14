@@ -172,6 +172,7 @@ class thread_vt(QThread):
                 
                 if attempts == 20:
                     self.vt.emit('fail')
+                    print('sad')
                     return
 
                 if read != first_read and read != None:
