@@ -1,5 +1,9 @@
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import QThread
+
+
+import paho.mqtt.client as mqtt
+
 import requests
 import json
 import time
@@ -22,6 +26,11 @@ class jit_support_controller():
         self.cbx_team_create.currentIndexChanged.connect(self.symptons_by_team)
         self.watchthread = WatchStatus()
         self.fill_cbx_teamssymptons(workstation_name)
+        
+        self.client = mqtt.Client("All in One")
+        self.client.connect("172.24.77.104")
+        self.client.on_message=self.on_message
+        self.client.loop_start()
     
 # creates and fills dictionaries with teams, symptons and it's ids - adds itens to the array that is used to fill comboboxes
     def fill_cbx_teamssymptons(self, workstation_name):
@@ -62,12 +71,14 @@ class jit_support_controller():
 
 # Watch server functions 
     def create_ticket(self, workstation_name):
+
+        self.client.publish("testTopic","ON")
         self.btn_initiate_pending.setEnabled(True)
         self.btn_createticket_create.setEnabled(False)
         if self.rbtn_going_create.isChecked():
-            self.line_situation = '1' # ok line
+            self.line_situation = 0 # ok line
         else:
-            self.line_situation = '0' # stopped line
+            self.line_situation = 1 # stopped line
         
         headers_create = {'content-type': 'application/json'}
         url_create = 'http://brbelm0itqa01/JITAPI/Ticket/Create'
@@ -75,8 +86,13 @@ class jit_support_controller():
         self.team_id = self.team_teamid_dict.get(self.cbx_team_create.currentText())
         self.selected_sympton = self.cbx_sympton_create.currentText()
         self.symptom_id = self.symptons_symptonid_dict.get(self.selected_sympton)
-
+        self.client.subscribe("atualizar/" + str(self.team_id))
         try:
+            
+            
+
+            
+
             postBody_create = {'productionLineStatus': self.line_situation,
             'workstationName': workstation_name,
             'teamId': self.team_id,
@@ -87,12 +103,29 @@ class jit_support_controller():
 
             if request_create.status_code == 201:
                 self.requestID = str(request_create.json()['id'])
+                self.calltime = str(request_create.json()['receivedTime'])
+                self.calltime = self.calltime[:-17]
+                self.calltime = self.calltime[11:]
+                if(self.line_situation):
+                    self.risk = "Parada"
+                else:
+                    self.risk = "Rodando"
+                self.payloadmqtt = {'id': self.requestID ,
+                                'risk': self.risk,
+                                'workstation': workstation_name,
+                                'calltime': self.calltime,
+                                'description': self.cbx_sympton_create.currentText()
+                                }
+                self.mqtt_string = json.dumps(self.payloadmqtt)
+                self.mqtt_topic = "receber/"+ str(self.team_id)
+                self.mqtt_update = "atualizar/"+ str(self.team_id)
+                self.client.publish(self.mqtt_topic,self.mqtt_string)
                 self.thread_ticket_status = 1
                 self.watchthread.startThread(self)
                 self.subbody_waiting_2.raise_()
             else:
                 self.raise_error_window()
-        except:
+        except Exception as e:
             self.raise_error_window()
             
         time.sleep(2)
@@ -100,16 +133,45 @@ class jit_support_controller():
     
 # request updates the ticket status on the server side
     def update_ticket_status(self, status):
-        if status == 4:
+
+        if(status==4):
             self.btn_initiate_pending.setEnabled(False)
+            self.strstatus = "OnGoing"
+        elif(status==5):
+            self.strstatus = "Done"
+
+        self.updatemqtt = {'TicketId': self.requestID ,
+                                'UserName': self.user,
+                                'Status': self.strstatus
+                        }
+        self.mqtt_string = json.dumps(self.updatemqtt)
+        self.client.publish(self.mqtt_update,self.mqtt_string)
+
         headers_update = {'content-type': 'application/json'}
         url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Update'
         postBody_update = {'ticketStatus': status, 'ticketId': int(self.requestID)}
         request_update = requests.post(url_update, data=json.dumps(postBody_update), headers=headers_update)
 
+
     def raise_error_window(self):
         self.lbl_support_error.setVisible(True)
         self.lbl_support_error.raise_()
+    def on_message(self,client, userdata, message):
+        print("message received " ,str(message.payload.decode("utf-8")))
+        d = json.loads(message.payload)
+        if (d["TicketId"] == self.requestID and d["Status"] == "Accepted"):
+            headers_update = {'content-type': 'application/json'}
+            url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Confirm'
+            postBody_update = {'ticketId': int(d["TicketId"]), 'ip': d["Ip"]}
+            request_update = requests.post(url_update, data=json.dumps(postBody_update), headers=headers_update)
+
+
+        print("message topic=",message.topic)
+        print("message qos=",message.qos)
+        print("message retain flag=",message.retain)
+
+    
+
 
 # thread for checking the ticket status
 class WatchStatus(QThread):
@@ -125,8 +187,8 @@ class WatchStatus(QThread):
                 ticket_info_request = ticket_info_request.pop()
                 ticket_info_request = ticket_info_request['text']
                 ticket_info_request = ticket_info_request.split(' ', 1)
-
-                self.body_support.lbl_value_support_name_pending.setText(ticket_info_request[0])
+                self.body_support.user = ticket_info_request[0]
+                self.body_support.lbl_value_support_name_pending.setText(self.body_support.user)
                 self.body_support.subbody_pending_3.raise_()
 
             elif(ticket_info_request['status'] == "OnGoing"):
