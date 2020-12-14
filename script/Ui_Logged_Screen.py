@@ -1401,7 +1401,7 @@ class Ui_Logged_Screen(object):
         self.subbody_pending_3.raise_()
         self.subbody_createticket_1.raise_()
         self.body_FPL = QtWidgets.QWidget(self.main)
-        self.body_FPL.setGeometry(QtCore.QRect(410, 20, 361, 551))
+        self.body_FPL.setGeometry(QtCore.QRect(410, 20, 341, 551))
         self.body_FPL.setStyleSheet("QWidget{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;\n"
@@ -1409,14 +1409,14 @@ class Ui_Logged_Screen(object):
 "}")
         self.body_FPL.setObjectName("body_FPL")
         self.btn_close_FPL = QtWidgets.QPushButton(self.body_FPL)
-        self.btn_close_FPL.setGeometry(QtCore.QRect(330, 10, 21, 21))
+        self.btn_close_FPL.setGeometry(QtCore.QRect(310, 10, 21, 21))
         self.btn_close_FPL.setStyleSheet("image: url(:/Img/redX.png);\n"
 "border-radius: 0px;\n"
 "border: 0px  solid rgb(0,0,0);")
         self.btn_close_FPL.setText("")
         self.btn_close_FPL.setObjectName("btn_close_FPL")
         self.widget_FPL1 = QtWidgets.QWidget(self.body_FPL)
-        self.widget_FPL1.setGeometry(QtCore.QRect(60, 40, 161, 371))
+        self.widget_FPL1.setGeometry(QtCore.QRect(20, 40, 181, 371))
         self.widget_FPL1.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-color: white")
         self.widget_FPL1.setObjectName("widget_FPL1")
@@ -1654,7 +1654,7 @@ class Ui_Logged_Screen(object):
 "border-color: white")
         self.body_validation_flux.setObjectName("body_validation_flux")
         self.lbl_nok_FPL_01 = QtWidgets.QWidget(self.body_validation_flux)
-        self.lbl_nok_FPL_01.setGeometry(QtCore.QRect(0, 0, 311, 131))
+        self.lbl_nok_FPL_01.setGeometry(QtCore.QRect(-10, 0, 311, 131))
         self.lbl_nok_FPL_01.setStyleSheet("")
         self.lbl_nok_FPL_01.setObjectName("lbl_nok_FPL_01")
         self.lbl_invalid_trainings = QtWidgets.QLabel(self.lbl_nok_FPL_01)
@@ -1804,10 +1804,10 @@ class Ui_Logged_Screen(object):
 "")
         self.btn_proceed_startvalidation.setObjectName("btn_proceed_startvalidation")
         self.lbl_ok_FPL_00.raise_()
-        self.lbl_nok_FPL_01.raise_()
         self.lbl_successvalidation_FPL_03.raise_()
         self.lbl_startvalidation_FPL_02.raise_()
         self.lbl_failvalidation_FPL_04.raise_()
+        self.lbl_nok_FPL_01.raise_()
         self.body_FPL_error = QtWidgets.QWidget(self.main)
         self.body_FPL_error.setGeometry(QtCore.QRect(410, 20, 361, 101))
         self.body_FPL_error.setStyleSheet("QWidget{\n"
@@ -1945,7 +1945,7 @@ class Ui_Logged_Screen(object):
         self.lbl_invalid_trainings.setText(_translate("MainWindow", "Parece que você tem treinamentos pendentes. Chame um responsável para validá-los."))
         self.btn_validate_training.setText(_translate("MainWindow", "Validar Treinamento"))
         self.lbl_allgood_2.setText(_translate("MainWindow", "Tudo ok por aqui!"))
-        self.lbl_texterror_fail.setText(_translate("MainWindow", "Ops, algo deu errado! Insira novamente o cartão do operador e repita o processo."))
+        self.lbl_texterror_fail.setText(_translate("MainWindow", "Ops, algo deu errado!                        Insira novamente o cartão do operador, clique em \"Voltar\" e repita o processo."))
         self.btn_return_fail.setText(_translate("MainWindow", "Voltar"))
         self.lbl_text_successvalidation.setText(_translate("MainWindow", "Treinamentos validados!                      Clique em Ok e insira novamente o crachá do operador."))
         self.btn_ok_successvalidation.setText(_translate("MainWindow", "Ok"))

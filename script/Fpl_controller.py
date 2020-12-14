@@ -40,6 +40,7 @@ class Fpl_controller():
         physicalWorkstationId = str(self.Station.Id)
         traineeRegistration = str(self.DLid)
         url_alldocs = 'http://brbelm0mat81/ojt/api/Trainings?physicalWorkstationId='+ physicalWorkstationId +'&traineeRegistration=' + traineeRegistration
+        print(url_alldocs)
         request_alldocs = requests.get(url_alldocs)
 
         if request_alldocs.status_code == 200:
@@ -63,15 +64,16 @@ class Fpl_controller():
                 self.lbl_invalid_trainings.hide()
             self.lbl_value_number_invalidFPL.setText(str(i))
             self.create_lbl_ckb()
-            if flag == 1:
-                self.fpl_btn_functions()
         else:
             self.error_FPL()
+        
+        if flag == 1:
+            self.fpl_btn_functions()
 
     def fpl_btn_functions(self):
         self.btn_FPL.clicked.connect(self.body_FPL.show)
         self.btn_close_FPL.clicked.connect(self.body_FPL.hide)
-        self.btn_close_startvalidation.clicked.connect(self.lbl_startvalidation_FPL_02.show)
+        # self.btn_close_startvalidation.clicked.connect(self.lbl_startvalidation_FPL_02.show)
         self.btn_validate_training.clicked.connect(self.show_validate_window)
         self.btn_proceed_startvalidation.clicked.connect(self.validate_training)
         self.btn_ok_successvalidation.clicked.connect(self.turnon_loginlogout)
@@ -111,6 +113,7 @@ class Fpl_controller():
     
 # coemeca a thread para leitura do cracha e confirmacao - desliga o loop que mantem login e logout ativo
     def validate_training(self):
+        self.btn_proceed_startvalidation.setEnabled(False)
         self.ckb_checked_status()
         Login_controller.set_flag(False)
         self.thread_vt = thread_vt()
@@ -138,6 +141,7 @@ class Fpl_controller():
 
 # decide qual janela vai subir
     def update_window(self, window):
+        self.btn_proceed_startvalidation.setEnabled(True)
         if window == 'success':
             self.lbl_successvalidation_FPL_03.show()
             self.lbl_successvalidation_FPL_03.raise_()
@@ -160,6 +164,10 @@ class thread_vt(QThread):
 
                 if attempts == 0:
                     first_read = read
+                
+                if attempts == 20:
+                    self.vt.emit('fail')
+                    return
 
                 if read != first_read and read != None:
                     if self.whatdo == 1:
