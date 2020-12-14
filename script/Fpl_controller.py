@@ -174,7 +174,7 @@ class thread_vt(QThread):
                 if attempts == 19:
                     print('fail')
                     self.vt.emit('fail')
-                    return
+                    self.exit()
 
                 if read != first_read and read != None:
                     if self.whatdo == 1:
@@ -193,16 +193,16 @@ class thread_vt(QThread):
 
                             if request_validatedocs.status_code == 201:
                                 self.vt.emit('success')
-                                return
+                                self.exit()
                             else:
                                 self.vt.emit('fail')
-                                return
+                                self.exit()
                         except:
                             self.vt.emit('fail')
-                            return
+                            self.exit()
                     elif self.whatdo == 2:
                         self.vt.emit('logout')
-                        return
+                        self.exit()
                 time.sleep(0.5)
         else:
             pass
