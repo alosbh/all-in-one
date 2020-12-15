@@ -33,7 +33,8 @@ class Fpl_controller():
         url_alldocs = 'http://brbelm0mat81/ojt/api/Trainings?physicalWorkstationId='+ physicalWorkstationId +'&traineeRegistration=' + traineeRegistration
         print(url_alldocs)
         request_alldocs = requests.get(url_alldocs)
-
+        
+        print(request_alldocs.status_code)
         if request_alldocs.status_code == 200:
             i = 0
             response_alldocs = request_alldocs.json()
@@ -56,6 +57,7 @@ class Fpl_controller():
                 self.lbl_nok_FPL_01.raise_()
                 self.lbl_ok_FPL_00.hide()
                 self.lbl_invalid_trainings.show()
+                self.lbl_value_number_invalidFPL.show()
                 self.set_red()
 
             self.lbl_value_number_invalidFPL.setText(str(i))
