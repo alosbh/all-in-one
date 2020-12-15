@@ -164,10 +164,9 @@ class thread_vt(QThread):
     vt = QtCore.pyqtSignal(str)
     
     def run(self):
-        #if OS_define.get_OS_name() == 0:
+        if OS_define.get_OS_name() == 0:
             for attempts in range(20):
-                read = 'RFRead_controller.RFRead()'
-                print(attempts)
+                read = RFRead_controller.RFRead()
                 if attempts == 0:
                     first_read = read
 
