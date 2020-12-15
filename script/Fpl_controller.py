@@ -44,15 +44,20 @@ class Fpl_controller():
                 else:
                     i += 1
                     self.invalid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
-            if self.invalid_documents_dict != None:
+            if not self.invalid_documents_dict:
+                self.btn_validate_training.hide()
+                self.lbl_ok_FPL_00.show()
+                self.lbl_ok_FPL_00.raise_()
+                self.lbl_invalid_trainings.hide()
+                self.lbl_value_number_invalidFPL.hide()
+                self.set_blue()
+            else:
                 self.btn_validate_training.show()
                 self.lbl_nok_FPL_01.raise_()
                 self.lbl_ok_FPL_00.hide()
                 self.lbl_invalid_trainings.show()
-            else:
-                self.btn_validate_training.hide()
-                self.lbl_ok_FPL_00.show()
-                self.lbl_invalid_trainings.hide()
+                self.set_red()
+
             self.lbl_value_number_invalidFPL.setText(str(i))
             self.create_lbl_ckb()
         else:

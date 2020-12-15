@@ -14,6 +14,7 @@ from Announcements_controller import *
 from jit_support_controller import *
 from Login_controller import Login_controller
 from Fpl_controller import *
+from theme_controller import theme_controller
 
 import time
 import sys
@@ -125,7 +126,7 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
 #----------------------------------------------------------------------------------
 
 # Inherits the qt Ui_Logged_Screen (main screen) design and manages its setup
-class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_support_controller, LPAactions_controller, Announcements_controller, Fpl_controller):
+class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_support_controller, LPAactions_controller, Announcements_controller, Fpl_controller, theme_controller):
     
     # Instance of the signal to act on button's click
     load_url_signal = QtSignal()
@@ -232,8 +233,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
     # Links the buttons to their respective methods
     def button_handle(self):
         self.btn_5s.clicked.connect(self.show5s)
-        self.btn_support.clicked.connect(self.suporte)
-        self.btn_homepage.clicked.connect(self.home)
+        self.btn_support.clicked.connect(self.set_red)
+        self.btn_homepage.clicked.connect(self.set_blue)
         self.btn_SCTC.clicked.connect(self.jiga_list)
         self.btn_reset.clicked.connect(self.reset)
         self.btn_instruction_sheet.clicked.connect(self.load_fi)
