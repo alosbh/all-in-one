@@ -151,5 +151,5 @@ class Login_controller(QThread):
 
                 # Wait for next thread iteration           
                 time.sleep(self.thread_time) 
-            else:
-                False
+            else:         
+                time.sleep(self.thread_time)

@@ -71,7 +71,7 @@ class Fpl_controller():
 # metodos de controle de tela
     def fail_return(self):
         self.lbl_nok_FPL_01.raise_()
-        Login_controller.start()
+        Login_controller.set_flag(True)
         
     def show_validate_window(self):
         self.lbl_startvalidation_FPL_02.show()
@@ -154,7 +154,7 @@ class Fpl_controller():
             self.lbl_failvalidation_FPL_04.show()
             self.lbl_failvalidation_FPL_04.raise_()
         elif window == 'logout':
-            Login_controller.start()
+            Login_controller.set_flag(True)
             self.get_all_documents(2)
             self.body_FPL.hide()
 
@@ -163,14 +163,15 @@ class thread_vt(QThread):
     vt = QtCore.pyqtSignal(str)
     
     def run(self):
-        if OS_define.get_OS_name() == 0:
+        #if OS_define.get_OS_name() == 0:
             for attempts in range(20):
-                read = RFRead_controller.RFRead()
-
+                read = 'RFRead_controller.RFRead()'
+                print(attempts)
                 if attempts == 0:
                     first_read = read
 
                 if attempts == 19:
+                    print('fail')
                     self.vt.emit('fail')
                     return
 
