@@ -51,6 +51,7 @@ class Fpl_controller():
                 self.lbl_ok_FPL_00.raise_()
                 self.lbl_invalid_trainings.hide()
                 self.lbl_value_number_invalidFPL.hide()
+                print('blue')
                 self.set_blue()
             else:
                 self.btn_validate_training.show()
@@ -58,6 +59,7 @@ class Fpl_controller():
                 self.lbl_ok_FPL_00.hide()
                 self.lbl_invalid_trainings.show()
                 self.lbl_value_number_invalidFPL.show()
+                print('red')
                 self.set_red()
 
             self.lbl_value_number_invalidFPL.setText(str(i))
