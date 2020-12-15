@@ -118,21 +118,12 @@ class Fpl_controller():
     
 # coemeca a thread para leitura do cracha e confirmacao - desliga o loop que mantem login e logout ativo
     def validate_training(self):
-
-        self.btn_proceed_startvalidation.setEnabled(False)
-        print('----1')
-        self.ckb_checked_status()
-        print('----2')
-        Login_controller.set_flag(False)
-        print('----3')
-
-        print(self.thread_vt.isRunning())
         if self.thread_vt.isRunning() == False:
-            print('----4')
+            self.btn_proceed_startvalidation.setEnabled(False)
+            self.ckb_checked_status()
+            Login_controller.set_flag(False)
             self.thread_vt.vt.connect(self.update_window)
-            print('----5')
             self.thread_vt.start_thread(1)
-            print('----6')
 
 # liga o loop que mantem login e logout ativo
     def turnon_loginlogout(self):
