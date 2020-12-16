@@ -74,7 +74,7 @@ class Fpl_controller():
 
     def fpl_btn_functions(self):
         self.btn_FPL.show()
-        self.self.btn_FPL_showerror.hide()
+        self.btn_FPL_showerror.hide()
         self.btn_FPL.clicked.connect(self.body_FPL.show)
         self.btn_close_FPL.clicked.connect(self.body_FPL.hide)
         self.btn_validate_training.clicked.connect(self.show_validate_window)
@@ -94,7 +94,7 @@ class Fpl_controller():
     def error_FPL(self):
         self.body_FPL.hide()
         self.btn_FPL.hide()
-        self.self.btn_FPL_showerror.show()
+        self.btn_FPL_showerror.show()
         self.lbl_value_number_invalidFPL.hide()
         self.btn_FPL_showerror.clicked.connect(self.body_FPL_error.show)
         self.btn_close_FPL_error.clicked.connect(self.body_FPL_error.hide)
