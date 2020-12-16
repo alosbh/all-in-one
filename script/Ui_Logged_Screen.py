@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Logged_Screen(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1363, 774)
+        MainWindow.resize(1363, 773)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -352,7 +352,7 @@ class Ui_Logged_Screen(object):
 "image:url(:/Img/desligar2.png)\n"
 "}\n"
 "QPushButton:hover {\n"
-"image:url(:/Img/desligar (1).png);\n"
+"image:url(:/Img/desligar (1).png)\n"
 "}\n"
 "")
         self.btn_reset.setText("")
@@ -1184,17 +1184,9 @@ class Ui_Logged_Screen(object):
         font.setFamily("Inter UI")
         font.setPointSize(14)
         self.btn_createticket_create.setFont(font)
-        self.btn_createticket_create.setStyleSheet("QPushButton{\n"
+        self.btn_createticket_create.setStyleSheet("border-radius: 8px;\n"
 "color: rgb(255, 255, 255);\n"
-"background-color: rgb(86, 149, 246);\n"
-"}\n"
-"QPushButton:hover {\n"
-"color: rgb(86, 149, 246);\n"
-"background-color: rgb(255, 255, 255);\n"
-"border: 2px  solid  rgb(86, 149, 246);\n"
-"}\n"
-"border-radius: 8px;\n"
-"")
+"background-color: rgb(86, 149, 246);")
         self.btn_createticket_create.setObjectName("btn_createticket_create")
         self.lbl_sympton_create = QtWidgets.QLabel(self.subbody_createticket_1)
         self.lbl_sympton_create.setGeometry(QtCore.QRect(60, 195, 131, 21))
@@ -1272,18 +1264,9 @@ class Ui_Logged_Screen(object):
         font.setFamily("Inter UI")
         font.setPointSize(14)
         self.btn_cancelticket_waiting.setFont(font)
-        self.btn_cancelticket_waiting.setStyleSheet("\n"
-"QPushButton{\n"
-"color: rgb(86, 149, 246);\n"
-"background-color: rgb(255, 255, 255);\n"
-"border: 2px  solid  rgb(86, 149, 246);\n"
-"}\n"
-"QPushButton:hover{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(86, 149, 246);\n"
-"}\n"
-"border-radius: 8px;\n"
-"")
+        self.btn_cancelticket_waiting.setStyleSheet("border-radius: 8px;\n"
+"border: 2px solid rgb(86, 149, 246);\n"
+"background-color: rgb(255, 255, 255);")
         self.btn_cancelticket_waiting.setObjectName("btn_cancelticket_waiting")
         self.lbl_pending_waiting = QtWidgets.QLabel(self.subbody_waiting_2)
         self.lbl_pending_waiting.setGeometry(QtCore.QRect(60, 50, 241, 31))
@@ -1315,18 +1298,9 @@ class Ui_Logged_Screen(object):
         font.setFamily("Inter UI")
         font.setPointSize(14)
         self.btn_cancelticket_pending.setFont(font)
-        self.btn_cancelticket_pending.setStyleSheet("\n"
-"QPushButton{\n"
-"color: rgb(86, 149, 246);\n"
-"background-color: rgb(255, 255, 255);\n"
-"border: 2px  solid  rgb(86, 149, 246);\n"
-"}\n"
-"QPushButton:hover{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(86, 149, 246);\n"
-"}\n"
-"border-radius: 8px;\n"
-"")
+        self.btn_cancelticket_pending.setStyleSheet("border-radius: 8px;\n"
+"border: 2px solid rgb(86, 149, 246);\n"
+"background-color: rgb(255, 255, 255);")
         self.btn_cancelticket_pending.setObjectName("btn_cancelticket_pending")
         self.lbl_pending_pending = QtWidgets.QLabel(self.subbody_pending_3)
         self.lbl_pending_pending.setGeometry(QtCore.QRect(60, 50, 241, 31))
@@ -1353,17 +1327,9 @@ class Ui_Logged_Screen(object):
         font.setFamily("Inter UI")
         font.setPointSize(14)
         self.btn_initiate_pending.setFont(font)
-        self.btn_initiate_pending.setStyleSheet("QPushButton{\n"
+        self.btn_initiate_pending.setStyleSheet("border-radius: 8px;\n"
 "color: rgb(255, 255, 255);\n"
-"background-color: rgb(86, 149, 246);\n"
-"}\n"
-"QPushButton:hover {\n"
-"color: rgb(86, 149, 246);\n"
-"background-color: rgb(255, 255, 255);\n"
-"border: 2px  solid  rgb(86, 149, 246);\n"
-"}\n"
-"border-radius: 8px;\n"
-"")
+"background-color: rgb(86, 149, 246);")
         self.btn_initiate_pending.setObjectName("btn_initiate_pending")
         self.lbl_value_support_name_pending = QtWidgets.QLabel(self.subbody_pending_3)
         self.lbl_value_support_name_pending.setGeometry(QtCore.QRect(450, 290, 191, 31))
@@ -1413,17 +1379,9 @@ class Ui_Logged_Screen(object):
         font.setFamily("Inter UI")
         font.setPointSize(14)
         self.btn_initiate_inprogress.setFont(font)
-        self.btn_initiate_inprogress.setStyleSheet("QPushButton{\n"
+        self.btn_initiate_inprogress.setStyleSheet("border-radius: 8px;\n"
 "color: rgb(255, 255, 255);\n"
-"background-color: rgb(86, 149, 246);\n"
-"}\n"
-"QPushButton:hover {\n"
-"color: rgb(86, 149, 246);\n"
-"background-color: rgb(255, 255, 255);\n"
-"border: 2px  solid  rgb(86, 149, 246);\n"
-"}\n"
-"border-radius: 8px;\n"
-"")
+"background-color: rgb(86, 149, 246);")
         self.btn_initiate_inprogress.setObjectName("btn_initiate_inprogress")
         self.lbl_support_error = QtWidgets.QWidget(self.body_support)
         self.lbl_support_error.setGeometry(QtCore.QRect(430, 450, 291, 131))
@@ -1454,9 +1412,9 @@ class Ui_Logged_Screen(object):
         self.lbl_support_error.raise_()
         self.lbl_JIT.raise_()
         self.lbl_blueline.raise_()
+        self.subbody_waiting_2.raise_()
         self.subbody_inprogress_4.raise_()
         self.subbody_pending_3.raise_()
-        self.subbody_waiting_2.raise_()
         self.subbody_createticket_1.raise_()
         self.body_FPL = QtWidgets.QWidget(self.main)
         self.body_FPL.setGeometry(QtCore.QRect(410, 20, 341, 551))
@@ -1894,13 +1852,13 @@ class Ui_Logged_Screen(object):
 "border: 0px  solid rgb(0,0,0);")
         self.lbl_text_FPL_error.setWordWrap(True)
         self.lbl_text_FPL_error.setObjectName("lbl_text_FPL_error")
-        self.body_FPL_error.raise_()
         self.horizontalWidget_3.raise_()
         self.btn_5s_back.raise_()
         self.btn_5s_next.raise_()
         self.body_support.raise_()
         self.body_home.raise_()
         self.body_FPL.raise_()
+        self.body_FPL_error.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
