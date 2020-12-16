@@ -22,6 +22,7 @@ class Fpl_controller():
         self.body_FPL.hide()
         self.body_FPL_error.hide()
         self.get_all_documents(1)
+        self.widget_FPL_2.hide()
         
 # pega info dos documentos e adiciona em arrays para gerar widgets na janela
     def get_all_documents(self, flag):
@@ -31,10 +32,8 @@ class Fpl_controller():
         physicalWorkstationId = str(self.Station.Id)
         traineeRegistration = str(self.DLid)
         url_alldocs = 'http://brbelm0mat81/ojt/api/Trainings?physicalWorkstationId='+ physicalWorkstationId +'&traineeRegistration=' + traineeRegistration
-        print(url_alldocs)
         request_alldocs = requests.get(url_alldocs)
         
-        print(request_alldocs.status_code)
         if request_alldocs.status_code == 200:
             i = 0
             response_alldocs = request_alldocs.json()
