@@ -69,6 +69,7 @@ class Fpl_controller():
                 self.fpl_btn_functions()
         else:
             print('erro')
+            self.set_blue()
             self.error_FPL()
 
     def fpl_btn_functions(self):
