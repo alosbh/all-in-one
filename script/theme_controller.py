@@ -12,7 +12,7 @@ class theme_controller():
     def set_red(self):
         self.sidebar.setStyleSheet("background-color:#FD2F2F")
         self.logo_container.setStyleSheet("background-color:#aa0002")
-        self.sidebar_apps.setStyleSheet("QPushButton {border:none;color:white;text-align:left;padding-left:20px;border:none;}QPushButton:hover {color:white;text-align:left;padding-left:20px;border:none;background-color:#FFD0D0}")
+        self.sidebar_apps.setStyleSheet("QPushButton {border:none;color:white;text-align:left;padding-left:20px;border:none;}QPushButton:hover {color:white;text-align:left;padding-left:20px;border:none;background-color:#aa0002}")
         self.header.setStyleSheet("background-color: #FFD0D0;border:none;")
         self.footer.setStyleSheet("background-color:#FFD0D0;border:none;")
         self.bar_total.setStyleSheet("background-color:#aa0002;border-radius:5px;")
