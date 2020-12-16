@@ -230,8 +230,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
     # Links the buttons to their respective methods
     def button_handle(self):
         self.btn_5s.clicked.connect(self.show5s)
-        self.btn_support.clicked.connect(self.set_red)
-        self.btn_homepage.clicked.connect(self.set_blue)
+        self.btn_support.clicked.connect(self.suporte)
+        self.btn_homepage.clicked.connect(self.home)
         self.btn_SCTC.clicked.connect(self.jiga_list)
         self.btn_reset.clicked.connect(self.reset)
         self.btn_instruction_sheet.clicked.connect(self.load_fi)
