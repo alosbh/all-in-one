@@ -67,6 +67,7 @@ class Fpl_controller():
             
             if flag == 1:
                 self.fpl_btn_functions()
+                self.self.body_FPL_error.hide()
         else:
             print('erro')
             self.set_blue()
