@@ -1718,13 +1718,13 @@ class Ui_Logged_Screen(object):
         self.lbl_failvalidation_FPL_04.setGeometry(QtCore.QRect(0, 0, 291, 131))
         self.lbl_failvalidation_FPL_04.setObjectName("lbl_failvalidation_FPL_04")
         self.lbl_texterror_fail = QtWidgets.QLabel(self.lbl_failvalidation_FPL_04)
-        self.lbl_texterror_fail.setGeometry(QtCore.QRect(80, 30, 201, 71))
+        self.lbl_texterror_fail.setGeometry(QtCore.QRect(70, 20, 211, 81))
         self.lbl_texterror_fail.setStyleSheet("border-radius: 0px;\n"
 "border: 0px  solid rgb(0,0,0);")
         self.lbl_texterror_fail.setWordWrap(True)
         self.lbl_texterror_fail.setObjectName("lbl_texterror_fail")
         self.lbl_error_fail = QtWidgets.QLabel(self.lbl_failvalidation_FPL_04)
-        self.lbl_error_fail.setGeometry(QtCore.QRect(10, 40, 61, 51))
+        self.lbl_error_fail.setGeometry(QtCore.QRect(0, 40, 61, 51))
         self.lbl_error_fail.setStyleSheet("image: url(:/Img/red_error.png);\n"
 "border-radius: 0px;\n"
 "border: 0px  solid rgb(0,0,0);")
@@ -1753,13 +1753,13 @@ class Ui_Logged_Screen(object):
         self.lbl_successvalidation_FPL_03.setGeometry(QtCore.QRect(0, 0, 291, 131))
         self.lbl_successvalidation_FPL_03.setObjectName("lbl_successvalidation_FPL_03")
         self.lbl_text_successvalidation = QtWidgets.QLabel(self.lbl_successvalidation_FPL_03)
-        self.lbl_text_successvalidation.setGeometry(QtCore.QRect(80, 20, 201, 71))
+        self.lbl_text_successvalidation.setGeometry(QtCore.QRect(70, 10, 211, 81))
         self.lbl_text_successvalidation.setStyleSheet("border-radius: 0px;\n"
 "border: 0px  solid rgb(0,0,0);")
         self.lbl_text_successvalidation.setWordWrap(True)
         self.lbl_text_successvalidation.setObjectName("lbl_text_successvalidation")
         self.lbl_greencheck_successvalidation = QtWidgets.QLabel(self.lbl_successvalidation_FPL_03)
-        self.lbl_greencheck_successvalidation.setGeometry(QtCore.QRect(10, 40, 61, 51))
+        self.lbl_greencheck_successvalidation.setGeometry(QtCore.QRect(0, 40, 61, 51))
         self.lbl_greencheck_successvalidation.setStyleSheet("image: url(:/Img/greencheck.png);\n"
 "border-radius: 0px;\n"
 "border: 0px  solid rgb(0,0,0);")
@@ -1788,13 +1788,13 @@ class Ui_Logged_Screen(object):
         self.lbl_startvalidation_FPL_02.setGeometry(QtCore.QRect(0, 0, 291, 131))
         self.lbl_startvalidation_FPL_02.setObjectName("lbl_startvalidation_FPL_02")
         self.lbl_instructions_startvalidation = QtWidgets.QLabel(self.lbl_startvalidation_FPL_02)
-        self.lbl_instructions_startvalidation.setGeometry(QtCore.QRect(60, 20, 221, 71))
+        self.lbl_instructions_startvalidation.setGeometry(QtCore.QRect(50, 10, 231, 81))
         self.lbl_instructions_startvalidation.setStyleSheet("border-radius: 0px;\n"
 "border: 0px  solid rgb(0,0,0);")
         self.lbl_instructions_startvalidation.setWordWrap(True)
         self.lbl_instructions_startvalidation.setObjectName("lbl_instructions_startvalidation")
         self.lbl_warning_02 = QtWidgets.QLabel(self.lbl_startvalidation_FPL_02)
-        self.lbl_warning_02.setGeometry(QtCore.QRect(10, 40, 41, 31))
+        self.lbl_warning_02.setGeometry(QtCore.QRect(0, 40, 41, 31))
         self.lbl_warning_02.setStyleSheet("image: url(:/Img/yellowerror.png);\n"
 "border-radius: 0px;\n"
 "border: 0px  solid rgb(0,0,0);")
@@ -1820,8 +1820,8 @@ class Ui_Logged_Screen(object):
 "")
         self.btn_proceed_startvalidation.setObjectName("btn_proceed_startvalidation")
         self.lbl_ok_FPL_00.raise_()
-        self.lbl_startvalidation_FPL_02.raise_()
         self.lbl_nok_FPL_01.raise_()
+        self.lbl_startvalidation_FPL_02.raise_()
         self.lbl_successvalidation_FPL_03.raise_()
         self.lbl_failvalidation_FPL_04.raise_()
         self.body_FPL_error = QtWidgets.QWidget(self.main)
@@ -1852,13 +1852,13 @@ class Ui_Logged_Screen(object):
 "border: 0px  solid rgb(0,0,0);")
         self.lbl_text_FPL_error.setWordWrap(True)
         self.lbl_text_FPL_error.setObjectName("lbl_text_FPL_error")
+        self.body_FPL_error.raise_()
         self.horizontalWidget_3.raise_()
         self.btn_5s_back.raise_()
         self.btn_5s_next.raise_()
         self.body_support.raise_()
         self.body_home.raise_()
         self.body_FPL.raise_()
-        self.body_FPL_error.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -1961,11 +1961,11 @@ class Ui_Logged_Screen(object):
         self.lbl_invalid_trainings.setText(_translate("MainWindow", "Parece que você tem treinamentos pendentes. Chame um responsável para validá-los."))
         self.btn_validate_training.setText(_translate("MainWindow", "Validar Treinamento"))
         self.lbl_allgood_2.setText(_translate("MainWindow", "Tudo ok por aqui!"))
-        self.lbl_texterror_fail.setText(_translate("MainWindow", "Ops, algo deu errado!                        Insira novamente o cartão do operador, clique em \"Voltar\" e repita o processo."))
+        self.lbl_texterror_fail.setText(_translate("MainWindow", "Ops, algo deu errado!                            Insira novamente o cartão do operador, clique em \"Voltar\" e repita o processo."))
         self.btn_return_fail.setText(_translate("MainWindow", "Voltar"))
         self.lbl_text_successvalidation.setText(_translate("MainWindow", "Treinamentos validados!                      Clique em Ok e insira novamente o crachá do operador."))
         self.btn_ok_successvalidation.setText(_translate("MainWindow", "Ok"))
-        self.lbl_instructions_startvalidation.setText(_translate("MainWindow", "Clicando em prosseguir: retire o crachá do operador do leitor, insira o do responsável e aguarde a janela de confirmação aparecer. Você terá 10 segundos para realizar esse processo."))
+        self.lbl_instructions_startvalidation.setText(_translate("MainWindow", "Clicando em prosseguir: retire o crachá do operador do leitor, insira o do responsável e aguarde a janela de confirmação aparecer. Você terá 20 segundos para realizar esse processo."))
         self.btn_proceed_startvalidation.setText(_translate("MainWindow", "Prosseguir"))
         self.lbl_text_FPL_error.setText(_translate("MainWindow", "Ops, algo deu errado!                             Faça login novamente para carregar os documentos."))
 import resources_rc
