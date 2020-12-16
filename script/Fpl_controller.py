@@ -64,12 +64,12 @@ class Fpl_controller():
 
             self.lbl_value_number_invalidFPL.setText(str(i))
             self.create_lbl_ckb()
+            
+            if flag == 1:
+                self.fpl_btn_functions()
         else:
             print('erro')
             self.error_FPL()
-        
-        if flag == 1:
-            self.fpl_btn_functions()
 
     def fpl_btn_functions(self):
         self.btn_FPL.clicked.connect(self.body_FPL.show)
