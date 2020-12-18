@@ -146,7 +146,7 @@ class ApiManager:
         baseUrl = 'http://10.57.16.41/LPAEletronico/Lpa/Login?registration='
         
         
-
+        print("##############      ID DA LINHA:" + RouteID)
         if (str(RouteID)=="187" or str(RouteID)=="168" or str(RouteID)=="23" or str(RouteID)=="13" or str(RouteID)=="20" or str(RouteID)=="26" or str(RouteID)=="197"):
             baseUrl = baseUrl + str(BadgeID) + '&idworkline=' + str(RouteID)
         
