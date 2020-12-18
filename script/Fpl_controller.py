@@ -32,10 +32,8 @@ class Fpl_controller():
         physicalWorkstationId = str(self.Station.Id)
         traineeRegistration = str(self.DLid)
         url_alldocs = 'http://brbelm0mat81/ojt/api/Trainings?physicalWorkstationId='+ physicalWorkstationId +'&traineeRegistration=' + traineeRegistration
-        print(url_alldocs)
         request_alldocs = requests.get(url_alldocs)
         
-        print(request_alldocs.status_code)
         if request_alldocs.status_code == 200:
             i = 0
             response_alldocs = request_alldocs.json()
@@ -52,7 +50,6 @@ class Fpl_controller():
                 self.lbl_ok_FPL_00.raise_()
                 self.lbl_invalid_trainings.hide()
                 self.lbl_value_number_invalidFPL.hide()
-                print('blue')
                 self.set_blue()
             else:
                 self.btn_validate_training.show()
@@ -60,7 +57,6 @@ class Fpl_controller():
                 self.lbl_ok_FPL_00.hide()
                 self.lbl_invalid_trainings.show()
                 self.lbl_value_number_invalidFPL.show()
-                print('red')
                 self.set_red()
 
             self.lbl_value_number_invalidFPL.setText(str(i))
@@ -69,7 +65,6 @@ class Fpl_controller():
             if flag == 1:
                 self.fpl_btn_functions()
         else:
-            print('erro')
             self.set_blue()
             self.error_FPL()
 
@@ -187,7 +182,6 @@ class thread_vt(QThread):
                     first_read = read
 
                 if attempts == 19:
-                    print('fail')
                     self.vt.emit('fail')
                     return
 
@@ -203,8 +197,6 @@ class thread_vt(QThread):
                             'trainerRegistration': read[1:],
                             'documentInfoCardIds': docarray}
                             request_validatedocs = requests.post(url_validatedocs, data=json.dumps(body_validate), headers=headers_validate)
-                            print(body_validate)
-                            print(request_validatedocs)
 
                             if request_validatedocs.status_code == 201:
                                 self.vt.emit('success')

@@ -48,7 +48,6 @@ class jit_support_controller():
         
         for team in self.fill_cbx_dict:
             self.cbx_team_create.addItem(team)
-            print(self.fill_cbx_dict[team])
                         
 # fills comboboxes with symptons and teams
     def symptons_by_team(self):

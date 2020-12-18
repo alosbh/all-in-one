@@ -8,25 +8,28 @@ array_urls = ([])
 class buttons_controller():
 
     def build_sidebar_buttons(self, workstation_name):
-        # request active tags by hostname
-        url = 'http://brbelm0itqa01/AIOServiceSTG/Estation/GetTagsByHostname/' + workstation_name
-        request = requests.get(url, verify = False)
-        response = json.loads(request.content)
-        
         self.define_icons()
 
-        # if tag is active append to array
-        # if there is none active, a default array is created
-        array_buttons = []
-        for botao in response:
-            if botao['IsActive'] == True:
-                array_buttons.append(botao['TagName'])
-        
-        if not array_buttons:
-            array_buttons = ['LPA','FI', 'Boas Ideias', 'SCTC', 'Posto 5s', 'JIT suporte']
+        try:
+            # request active tags by hostname
+            url = 'http://brbelm0itqa01/AIOServiceSTG/Estation/GetTagsByHostname/' + workstation_name
+            request = requests.get(url, verify = False)
+            response = json.loads(request.content)
 
-        self.general_buttons()
-        self.create_buttons(array_buttons)
+            # if tag is active append to array
+            # if there is none active, a default array is created
+            array_buttons = []
+            for botao in response:
+                if botao['IsActive'] == True:
+                    array_buttons.append(botao['TagName'])
+
+            if not array_buttons:
+                array_buttons = ['LPA','FI', 'Boas Ideias', 'SCTC', 'Posto 5s', 'JIT suporte']
+
+        except:
+            array_buttons = ['LPA','FI', 'Boas Ideias', 'SCTC', 'Posto 5s', 'JIT suporte']
+            self.general_buttons()
+            self.create_buttons(array_buttons)
     
     # iterate previous array to create buttons on the side bar
     def create_buttons(self, array):
@@ -85,7 +88,7 @@ class buttons_controller():
                 self.draw_buttons(self.btn_JIT, y_position)
                 self.btn_JIT.setObjectName("btn_JIT")
                 self.btn_JIT.setIcon(self.icon_watch)
-                self.btn_JIT.setText("   Suporte (Breve...)")
+                self.btn_JIT.setText("   Suporte")
                 self.btn_JIT.clicked.connect(self.suporte)
             elif button_name == 'Dashboard Reparo':
                 self.btn_reparo = QtWidgets.QPushButton(self.sidebar_apps)
@@ -108,16 +111,6 @@ class buttons_controller():
         font.setWeight(50)
         button.setFont(font)
         button.setGeometry(QtCore.QRect(0, y_position, 234, 41))
-        button.setStyleSheet("QPushButton {\n"
-"color:white;text-align:left;padding-left:20px;border:none;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"color:white;text-align:left;padding-left:20px;border:none;background-color:#5253ee\n"
-"}\n"
-"\n"
-"\n"
-"")
         button.setIconSize(QtCore.QSize(22, 22))
         button.raise_()
 
