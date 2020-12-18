@@ -45,7 +45,6 @@
     AIO: 
         baseUrl: http://brbelm0apps02/AIOService/
 
-
         CNCS:
             GetDocumentsByFilter:
                 Type: Post
@@ -70,7 +69,6 @@
                 ArgumentsCount: 1
 
     AIO_Dashboard:
-
         baseUrl: http://brbelm0itqa01/AIOService_AIODashboard/
 
         Prodash:
@@ -80,5 +78,11 @@
             GetByLine:
                 Type: Get
                 ArgumentsCount: 1
+    
+    # JMD:
+    #     baseUrl: http://http://brbelm0apps02/JMDDataServices/workstation/{}/productionlines
 
-
+    #     workstation:
+    #         Type: Get
+    #         ArgumentsCount: 1
+    #             productionlines:

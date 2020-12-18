@@ -1,6 +1,5 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QApplication,QMainWindow
-from PyQt5.QtCore import QThread
 import time
 import sys
 from Ui_chamado import *
@@ -23,7 +22,6 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Support_QtWindow = QtWidgets.QMainWindow()
         self.setupUi(self.Support_QtWindow)
         self.Support_QtWindow.move((1366 - 353)/2, (768 - 240)/2)
-        logger.error("instanciei a classe")
         self.posto = ""
         self.index = 0
         self.time = "Engenharia"
@@ -36,13 +34,6 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         postBody = {}
         
 
-        
-
-        
-        
-
-        
-
         self.button_handle()
 
     def Show(self):
@@ -50,7 +41,6 @@ class Support_Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Support_QtWindow.show()
     
     def button_handle(self):
-        logger.error("setei os botoes")
         self.btn_solicitar.clicked.connect(self.enviaChamado)
         self.btn_concluir.clicked.connect(self.finaliza)
         self.btn_cancelar.clicked.connect(self.finaliza)
@@ -205,11 +195,8 @@ class CountSeconds(QThread):
 
 class WatchStatus(QThread):
  
-
     def run(self):
 
-        
-        
         while(self.janelaSuporte.status == 1):
 
             getrequest = requests.get(self.url)
@@ -221,10 +208,6 @@ class WatchStatus(QThread):
             elif(getrequest.json()['additionalData']['status'] == "Done"):
                 self.janelaSuporte.lbl_status.setText("Finalizado")
 
-
-           
-
-
             time.sleep(5)
 
     def startThread(self,janelaSuporte):
@@ -232,10 +215,4 @@ class WatchStatus(QThread):
         self.janelaSuporte = janelaSuporte
         self.url = "http://brbelm0itqa01/AioWatch/GetById?id=" + self.janelaSuporte.requestID
         
-        
-        
-        
-        
         self.start()
-        
-
