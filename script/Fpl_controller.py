@@ -34,7 +34,7 @@ class Fpl_controller():
         url_alldocs = 'http://brbelm0mat81/ojt/api/Trainings?physicalWorkstationId='+ physicalWorkstationId +'&traineeRegistration=' + traineeRegistration
         
         try:
-            request_alldocs = requests.get(url_alldocs)
+            request_alldocs = requests.get(url_alldocs, timeout=15)
             if request_alldocs.status_code == 200:
                 i = 0
                 response_alldocs = request_alldocs.json()
