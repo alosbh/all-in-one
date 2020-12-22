@@ -32,41 +32,46 @@ class Fpl_controller():
         physicalWorkstationId = str(self.Station.Id)
         traineeRegistration = str(self.DLid)
         url_alldocs = 'http://brbelm0mat81/ojt/api/Trainings?physicalWorkstationId='+ physicalWorkstationId +'&traineeRegistration=' + traineeRegistration
-        request_alldocs = requests.get(url_alldocs)
         
-        if request_alldocs.status_code == 200:
-            i = 0
-            response_alldocs = request_alldocs.json()
-            response_alldocs = response_alldocs['documents']
-            for document in response_alldocs:
-                if document['isTrained'] == True:
-                    self.valid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
+        try:
+            request_alldocs = requests.get(url_alldocs)
+            if request_alldocs.status_code == 200:
+                i = 0
+                response_alldocs = request_alldocs.json()
+                response_alldocs = response_alldocs['documents']
+                for document in response_alldocs:
+                    if document['isTrained'] == True:
+                        self.valid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
+                    else:
+                        i += 1
+                        self.invalid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
+                if not self.invalid_documents_dict:
+                    self.btn_validate_training.hide()
+                    self.lbl_ok_FPL_00.show()
+                    self.lbl_ok_FPL_00.raise_()
+                    self.lbl_invalid_trainings.hide()
+                    self.lbl_value_number_invalidFPL.hide()
+                    self.set_blue()
                 else:
-                    i += 1
-                    self.invalid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
-            if not self.invalid_documents_dict:
-                self.btn_validate_training.hide()
-                self.lbl_ok_FPL_00.show()
-                self.lbl_ok_FPL_00.raise_()
-                self.lbl_invalid_trainings.hide()
-                self.lbl_value_number_invalidFPL.hide()
-                self.set_blue()
-            else:
-                self.btn_validate_training.show()
-                self.lbl_nok_FPL_01.raise_()
-                self.lbl_ok_FPL_00.hide()
-                self.lbl_invalid_trainings.show()
-                self.lbl_value_number_invalidFPL.show()
-                self.set_red()
+                    self.btn_validate_training.show()
+                    self.lbl_nok_FPL_01.raise_()
+                    self.lbl_ok_FPL_00.hide()
+                    self.lbl_invalid_trainings.show()
+                    self.lbl_value_number_invalidFPL.show()
+                    self.set_red()
 
-            self.lbl_value_number_invalidFPL.setText(str(i))
-            self.create_lbl_ckb()
-            
-            if flag == 1:
-                self.fpl_btn_functions()
-        else:
+                self.lbl_value_number_invalidFPL.setText(str(i))
+                self.create_lbl_ckb()
+
+                if flag == 1:
+                    self.fpl_btn_functions()
+            else:
+                self.set_blue()
+                self.error_FPL()
+        except:
             self.set_blue()
             self.error_FPL()
+
 
     def fpl_btn_functions(self):
         self.btn_FPL.show()
