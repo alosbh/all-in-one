@@ -47,14 +47,11 @@ class Raspberry:
         
         try:
             request = requests.get(url)
-            print(request)
 
             if request.status_code == 200:
-                print('deu certo')
                 response = json.loads(request.content)
                 hostname = response['hostname']
                 self.Name = hostname
-                print('ue')
             else:
                 self.request_rasp_hostname()
         except:
