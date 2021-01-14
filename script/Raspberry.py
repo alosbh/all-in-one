@@ -43,13 +43,16 @@ class Raspberry:
     def request_rasp_hostname(self):
         ip = os.environ.get('SYSCON_IP')
         url = "http://" + ip + "/api/v1.0/system/info"
-        print(url)
         
         try:
+            print(url)
             request = requests.get(url)
+            print(request)
 
             if request.status_code == 200:
+                print('-----------------')
                 response = json.loads(request.content)
+                print(response)
                 hostname = response['hostname']
                 self.Name = hostname
             else:
