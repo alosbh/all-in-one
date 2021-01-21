@@ -46,7 +46,9 @@ class Raspberry:
         
         try:
             request = requests.get(url)
+            print('vvvvvvvrequest_rasp_hostnamevvvvvvv')
             print(request)
+            print('^^^^^^^request_rasp_hostname^^^^^^^')
 
             if request.status_code == 200:
                 response = json.loads(request.content)
