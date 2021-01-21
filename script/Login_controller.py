@@ -63,7 +63,9 @@ class Login_controller(QThread):
         Login_controller.set_flag(True)
 
         while True:
+            print('true')
             if flag == True:
+                print('flag')
                 try:
                     if OS_define.get_OS_name() == 1:
                         self.Read_ID = 51008294
@@ -77,12 +79,13 @@ class Login_controller(QThread):
                     self.NonLogged_Window.nome_posto.setText(str('Erro leitura RFID'))
 
                 if (self.Read_ID != None and self.NonLogged_Window.Station.Enabled == 1 ): 
-
+                    
                     cont_logout = 0
 
                     # If the read id is not null, compares it to the active user. In case its different, login the new user. 
                     if (self.Actual_ID != self.Read_ID):
                         try:
+                            print('LOGUEI-')
                             # Api call to login a user on OJT server
                             logger.debug("Login user " + str(self.Read_ID) + "..........")
 
