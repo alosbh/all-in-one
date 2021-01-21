@@ -68,8 +68,7 @@ class Login_controller(QThread):
                     if OS_define.get_OS_name() == 1:
                         self.Read_ID = 51008294
                     else:
-                        # self.Read_ID = RFRead_controller.RFRead() # Reads Badge ID
-                        self.Read_ID = 51008294
+                        self.Read_ID = RFRead_controller.RFRead() # Reads Badge ID
                 except Exception as e:
                     traceback.print_exc()
                     logger.error("RFID error: " + type(e).__name__)
