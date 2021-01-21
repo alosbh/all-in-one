@@ -84,11 +84,12 @@ class Login_controller(QThread):
                     # If the read id is not null, compares it to the active user. In case its different, login the new user. 
                     if (self.Actual_ID != self.Read_ID):
                         try:
-                            print('LOGUEI-')
+                            print('entrei no login-')
                             # Api call to login a user on OJT server
                             logger.debug("Login user " + str(self.Read_ID) + "..........")
 
                             LoginResponse = self.API.Request(self.API.OJT, "LoginByWorker", {'HostName': self.host, 'Badge': self.Read_ID}) 
+                            print('-logeui-')
 
                             # catch login status
                             status = LoginResponse['Status']
