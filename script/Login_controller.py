@@ -77,7 +77,8 @@ class Login_controller(QThread):
                     self.NonLogged_Window.nome_posto.setText(str('Erro leitura RFID'))
 
                 if (self.Read_ID != None and self.NonLogged_Window.Station.Enabled == 1 ): 
-                    
+                    print('real ' + str(self.Read_ID))
+                    print('atual ' + str(self.Actual_ID))
                     cont_logout = 0
 
                     # If the read id is not null, compares it to the active user. In case its different, login the new user. 
