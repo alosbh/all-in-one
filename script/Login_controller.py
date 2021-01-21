@@ -63,9 +63,7 @@ class Login_controller(QThread):
         Login_controller.set_flag(True)
 
         while True:
-            print('true')
             if flag == True:
-                print('flag')
                 try:
                     if OS_define.get_OS_name() == 1:
                         self.Read_ID = 51008294
