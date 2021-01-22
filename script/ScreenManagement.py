@@ -13,7 +13,7 @@ from LPAactions_controller import *
 from Announcements_controller import *
 from jit_support_controller import *
 
-import MFRC522
+# import MFRC522
 import time
 import sys
 import os
@@ -237,6 +237,13 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.btn_goodideas.clicked.connect(self.load_bi)
         self.btn_lpa.clicked.connect(self.load_lpa)
         self.btn_custom.clicked.connect(self.custom_button_load)
+        
+        stopwatch_array = ['GEWBOXPSA001', 'GEWBOXPSA002', 'GEWBOXTBSUBM', 'GEWBOXPSC001', 'GEWBOXPSCLEAN', 'GEWBOXPSPACK']
+
+        if self.Station.Name not in stopwatch_array:
+            self.btn_stopwatcher.hide()
+        else:
+            self.btn_stopwatcher.clicked.connect(self.load_stopwatcher)
 
     def reset(self):
         self.Reset_Window.Show()
@@ -276,8 +283,13 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
 
     def jiga_list(self):
         self.hide5s()
-        JigaAddr = self.thread.API.load_Jiga(self.thread.objStation.RouteId) 
+        JigaAddr = self.thread.API.load_Jiga(self.thread.objStation.RouteId)
         self.load_url_signal.signal.emit(JigaAddr)
+    
+    def load_stopwatcher(self):
+        url = "https://brbelm0itqa01/Stopwatch/Stopwatch/Index?workstation="+ str(self.Station.Id) + "&user=" + str(self.thread.DL.ID)
+        self.hide5s()
+        self.load_url_signal.signal.emit(url)
         
     def load_lpa(self):
         self.hide5s()
@@ -377,8 +389,8 @@ class MainThread(QThread):
         while(True):
             
             try:
-                # Read_ID = 51008294
-                Read_ID = (RFRead()) # Reads Badge ID
+                Read_ID = 51008294
+                #Read_ID = (RFRead()) # Reads Badge ID
             except Exception as e:
                 traceback.print_exc()
                 logger.error("RFID error: " + type(e).__name__)
@@ -401,8 +413,7 @@ class MainThread(QThread):
                         # Api call to login a user on OJT server
                         logger.debug("Login user " + str(Read_ID) + "..........")
 
-                        LoginResponse = self.API.Request(self.API.OJT, "LoginByWorker", {'HostName': self.host, 'Badge': Read_ID}) 
-
+                        LoginResponse = self.API.Request(self.API.OJT, "LoginByWorker", {'HostName': self.host, 'Badge': Read_ID})
                         # catch login status
                         status = LoginResponse['Status']
                         # status="Login realizado"

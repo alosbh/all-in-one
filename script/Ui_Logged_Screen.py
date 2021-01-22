@@ -335,6 +335,29 @@ class Ui_Logged_Screen(object):
         self.btn_custom.setIcon(icon7)
         self.btn_custom.setIconSize(QtCore.QSize(22, 22))
         self.btn_custom.setObjectName("btn_custom")
+        self.btn_stopwatcher = QtWidgets.QPushButton(self.sidebar_apps)
+        self.btn_stopwatcher.setGeometry(QtCore.QRect(0, 332, 234, 41))
+        font = QtGui.QFont()
+        font.setFamily("Inter UI")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setWeight(50)
+        self.btn_stopwatcher.setFont(font)
+        self.btn_stopwatcher.setStyleSheet("QPushButton {\n"
+"color:white;text-align:left;padding-left:20px;border:none;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"color:white;text-align:left;padding-left:20px;border:none;background-color:#5253ee\n"
+"}\n"
+"\n"
+"\n"
+"")
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(":/Img/stopwatch.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_stopwatcher.setIcon(icon8)
+        self.btn_stopwatcher.setIconSize(QtCore.QSize(22, 22))
+        self.btn_stopwatcher.setObjectName("btn_stopwatcher")
         self.btn_homepage.raise_()
         self.btn_instruction_sheet.raise_()
         self.btn_5s.raise_()
@@ -343,6 +366,7 @@ class Ui_Logged_Screen(object):
         self.btn_goodideas.raise_()
         self.btn_SCTC.raise_()
         self.btn_custom.raise_()
+        self.btn_stopwatcher.raise_()
         self.lbl_progress = QtWidgets.QLabel(self.sidebar)
         self.lbl_progress.setGeometry(QtCore.QRect(0, 300, 234, 31))
         font = QtGui.QFont()
@@ -1523,6 +1547,7 @@ class Ui_Logged_Screen(object):
         self.btn_5s.setText(_translate("MainWindow", "   Posto Ideal 5s"))
         self.btn_SCTC.setText(_translate("MainWindow", "     Ferramentas - SCTC"))
         self.btn_custom.setText(_translate("MainWindow", "   Custom"))
+        self.btn_stopwatcher.setText(_translate("MainWindow", "     Stopwatcher"))
         self.lbl_progress.setText(_translate("MainWindow", "para o próximo nível"))
         self.lbl_value_workstation.setText(_translate("MainWindow", "INGBOXENT001"))
         self.lbl_workstation.setText(_translate("MainWindow", "Posto"))
