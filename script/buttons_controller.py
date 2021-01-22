@@ -30,6 +30,13 @@ class buttons_controller():
             array_buttons = ['LPA','FI', 'Boas Ideias', 'SCTC', 'Posto 5s', 'JIT suporte']
             self.general_buttons()
             self.create_buttons(array_buttons)
+        
+        
+        stopwatch_array = ['GEWBOXPSA001', 'GEWBOXPSA002', 'GEWBOXTBSUBM', 'GEWBOXPSC001', 'GEWBOXPSCLEAN', 'GEWBOXPSPACK']
+        if workstation_name not in stopwatch_array:
+            pass
+        else:
+            array_buttons.append('Stopwatcher')
     
     # iterate previous array to create buttons on the side bar
     def create_buttons(self, array):
@@ -96,6 +103,12 @@ class buttons_controller():
                 self.btn_reparo.setObjectName("btn_reparo")
                 self.btn_reparo.setIcon(self.icon_SCTC)
                 self.btn_reparo.setText("   Dashboard Reparo")
+            elif button_name == 'Stopwatcher':
+                self.btn_reparo = QtWidgets.QPushButton(self.sidebar_apps)
+                self.draw_buttons(self.btn_reparo, y_position)
+                self.btn_reparo.setObjectName("btn_stopwatcher")
+                self.btn_reparo.setIcon(self.icon_SCTC)
+                self.btn_reparo.setText("   Stopwatcher")
     
     # creates slots for general buttons
     def general_buttons(self):
