@@ -283,7 +283,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         
     def load_bi(self):
         self.hide5s()
-        BIAddr = self.thread.API.load_BI(self.thread.DL.ID_trim) 
+        BIAddr = self.thread.API.load_BI(self.thread.DL.ID_trim,self.thread.objStation.Id) 
         self.load_url_signal.signal.emit(BIAddr)
 
     def load_fi(self):

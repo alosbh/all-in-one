@@ -1518,7 +1518,7 @@ class Ui_Logged_Screen(object):
         self.btn_homepage.setText(_translate("MainWindow", "   Pagina Inicial"))
         self.btn_lpa.setText(_translate("MainWindow", "   LPA"))
         self.btn_instruction_sheet.setText(_translate("MainWindow", "   Ficha de Instrução"))
-        self.btn_goodideas.setText(_translate("MainWindow", "   Boas Ideias"))
+        self.btn_goodideas.setText(_translate("MainWindow", "   Stopwatcher"))
         self.btn_support.setText(_translate("MainWindow", "   Suporte"))
         self.btn_5s.setText(_translate("MainWindow", "   Posto Ideal 5s"))
         self.btn_SCTC.setText(_translate("MainWindow", "     Ferramentas - SCTC"))

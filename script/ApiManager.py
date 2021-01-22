@@ -145,10 +145,23 @@ class ApiManager:
         baseUrl = baseUrl + str(lineId)
         return baseUrl
 
-    def load_BI(self,BadgeID):
-        baseUrl = 'http://brbelm0apps01/GoodIdeas/GoodIdea/NewIdea?registration='
-        baseUrl = baseUrl + str(BadgeID)
-        baseUrl = baseUrl + '&menuCollapse=true'
+    def load_BI(self,BadgeID,StationID):
+
+        print("workstation id:" + str(StationID))
+        userIdurl = "http://brbelm0apps02/AIOService/Jmd/GetUserDetailsByRegistration/" + BadgeID
+        r = requests.get(userIdurl)
+        response = r.json()
+        userId = response['idUser']
+        print(response)
+        print(userId)
+
+        
+
+        baseUrl = "https://brbelm0itqa01/Stopwatch?workstationId=" + str(StationID) + "&userId=" + str(userId)
+        
+        # baseUrl = 'http://brbelm0apps01/GoodIdeas/GoodIdea/NewIdea?registration='
+        # baseUrl = baseUrl + str(BadgeID)
+        # baseUrl = baseUrl + '&menuCollapse=true'
         print("BI URL addres: " + baseUrl)
         
         return baseUrl
