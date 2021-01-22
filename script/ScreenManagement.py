@@ -13,7 +13,7 @@ from LPAactions_controller import *
 from Announcements_controller import *
 from jit_support_controller import *
 
-import MFRC522
+#import MFRC522
 import time
 import sys
 import os
@@ -287,7 +287,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.load_url_signal.signal.emit(JigaAddr)
     
     def load_stopwatcher(self):
-        url = "https://brbelm0itqa01/Stopwatch/Stopwatch/Index?workstation="+ str(self.Station.Id) + "&user=" + str(self.thread.DL.ID)
+        url = "https://brbelm0itqa01/Stopwatch?workstationId="+ str(self.Station.Id) + "&userId=" + str(self.thread.DL.ID)
+        print(url)
         self.hide5s()
         self.load_url_signal.signal.emit(url)
         
@@ -389,8 +390,8 @@ class MainThread(QThread):
         while(True):
             
             try:
-                #Read_ID = 51008294
-                Read_ID = (RFRead()) # Reads Badge ID
+                Read_ID = 51008294
+                #Read_ID = (RFRead()) # Reads Badge ID
             except Exception as e:
                 traceback.print_exc()
                 logger.error("RFID error: " + type(e).__name__)
