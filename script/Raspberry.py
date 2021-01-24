@@ -33,7 +33,8 @@ class Raspberry:
             if OS == 1:
                 self.Name = 'BRBELME024'
             else:
-                self.request_rasp_hostname()
+                self.Name = 'BRBELRASP344'
+                # self.request_rasp_hostname()
             
             logger.debug("Successfully created Raspberry object " + self.Name )
 
