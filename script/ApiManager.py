@@ -189,9 +189,15 @@ class ApiManager:
 
         baseUrl = 'http://brbelm0itqa01/AIOServiceSTG/Images5S/GetAll?query='
         baseUrl = baseUrl + str(Workstation)
+        logger.error("AGORA VOU PRINT A URL")
         logger.error(baseUrl)
+        logger.error("AGORA TERMINEI PRINTAR A URL")
         try:
+            logger.error("AGORA VOU PRINT A RESPOSTA")
+      
+        
             response = requests.get(baseUrl)
+            logger.error("AGORA TERMINEI PRINTAR A RESPOSTA")
             logger.error(response.json())
             return response.json();
         except Exception as e:
