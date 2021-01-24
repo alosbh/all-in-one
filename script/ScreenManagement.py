@@ -238,7 +238,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.btn_lpa.clicked.connect(self.load_lpa)
         self.btn_custom.clicked.connect(self.custom_button_load)
         
-        stopwatch_array = ['GEWBOXPSA001', 'GEWBOXPSA002', 'GEWBOXTBSUBM', 'GEWBOXPSC001', 'GEWBOXPSCLEAN', 'GEWBOXPSPACK']
+        stopwatch_array = ['GEWBOXPSA001', 'GEWBOXPSA002','GEWBOXPSA003', 'GEWBOXPSA004', 'GEWBOXTBSUBM','GEWBOXPSASUBM', 'GEWBOXPSC001','GEWBOXTB001','GEWBOXTB002', 'GEWBOXPSCLEAN', 'GEWBOXPSPACK']
 
         if self.Station.Name not in stopwatch_array:
             self.btn_stopwatcher.hide()

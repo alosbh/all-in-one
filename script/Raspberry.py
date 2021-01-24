@@ -24,7 +24,7 @@ class Raspberry:
             self.SystemVersion = platform.version()
             self.SystemRelease = platform.release()  
             self.Validated = False
-            self.GetSystemInfo()
+            
 
             self.OS_define = OS_define()
             OS = self.OS_define.get_OS_name()
@@ -33,9 +33,11 @@ class Raspberry:
             if OS == 1:
                 self.Name = 'BRBELME024'
             else:
-                self.Name = 'BRBELRASP344'
+                # self.Name = 'BRBELRASP344'
+                self.Name = platform.node()
                 # self.request_rasp_hostname()
-            
+                
+            self.GetSystemInfo()
             logger.debug("Successfully created Raspberry object " + self.Name )
 
         except Exception as e:
