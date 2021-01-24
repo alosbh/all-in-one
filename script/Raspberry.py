@@ -33,7 +33,7 @@ class Raspberry:
             if OS == 1:
                 self.Name = 'BRBELME024'
             else:
-                # self.Name = 'BRBELRASP344'
+                
                 self.Name = platform.node()
                 # self.request_rasp_hostname()
                 
