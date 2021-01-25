@@ -434,6 +434,8 @@ class MainThread(QThread):
                         print('-----213')
                         self.DL.Setup(LoginResponse, self.host)
                         print('-----xxxxxx')
+                        print(self.host)
+                        print('-----xxxxxx')
                         self.DL.load_avatar()
                         print('-----yyyy')
                         # Setup the user fields on the logged screen
