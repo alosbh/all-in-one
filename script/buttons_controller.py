@@ -7,18 +7,18 @@ array_urls = ([])
 
 class buttons_controller():
 
-    def build_sidebar_buttons(self, workstation_name):
-        self.define_icons()
-
+    def build_sidebar_buttons(self, hostname, workstation):
         try:
+            self.define_icons()
+            array_buttons = []
+
             # request active tags by hostname
-            url = 'http://brbelm0itqa01/AIOServiceSTG/Estation/GetTagsByHostname/' + workstation_name
+            url = 'http://brbelm0itqa01/AIOServiceSTG/Estation/GetTagsByHostname/' + hostname
             request = requests.get(url, verify = False)
             response = json.loads(request.content)
 
             # if tag is active append to array
             # if there is none active, a default array is created
-            array_buttons = []
             for botao in response:
                 if botao['IsActive'] == True:
                     array_buttons.append(botao['TagName'])
@@ -28,15 +28,16 @@ class buttons_controller():
 
         except:
             array_buttons = ['LPA','FI', 'Boas Ideias', 'SCTC', 'Posto 5s', 'JIT suporte']
-            self.general_buttons()
-            self.create_buttons(array_buttons)
-        
-        
+
+        # workstations with stopwatcher fucntion
         stopwatch_array = ['GEWBOXPSA001', 'GEWBOXPSA002', 'GEWBOXTBSUBM', 'GEWBOXPSC001', 'GEWBOXPSCLEAN', 'GEWBOXPSPACK']
-        if workstation_name not in stopwatch_array:
+        if workstation not in stopwatch_array:
             pass
         else:
             array_buttons.append('Stopwatcher')
+        
+        self.general_buttons()
+        self.create_buttons(array_buttons)
     
     # iterate previous array to create buttons on the side bar
     def create_buttons(self, array):
@@ -104,11 +105,12 @@ class buttons_controller():
                 self.btn_reparo.setIcon(self.icon_SCTC)
                 self.btn_reparo.setText("   Dashboard Reparo")
             elif button_name == 'Stopwatcher':
-                self.btn_reparo = QtWidgets.QPushButton(self.sidebar_apps)
-                self.draw_buttons(self.btn_reparo, y_position)
-                self.btn_reparo.setObjectName("btn_stopwatcher")
-                self.btn_reparo.setIcon(self.icon_SCTC)
-                self.btn_reparo.setText("   Stopwatcher")
+                self.btn_stopwatcher = QtWidgets.QPushButton(self.sidebar_apps)
+                self.draw_buttons(self.btn_stopwatcher, y_position)
+                self.btn_stopwatcher.setObjectName("btn_stopwatcher")
+                self.btn_stopwatcher.setIcon(self.icon_stopwatch)
+                self.btn_stopwatcher.setText("     Stopwatcher")
+                self.btn_stopwatcher.clicked.connect(self.load_stopwatcher)
     
     # creates slots for general buttons
     def general_buttons(self):
@@ -141,3 +143,5 @@ class buttons_controller():
         self.icon_5s.addPixmap(QtGui.QPixmap(":/Img/posto-de-trabalho.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.icon_watch = QtGui.QIcon()
         self.icon_watch.addPixmap(QtGui.QPixmap(":/Img/bxs-watch-alt.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.icon_stopwatch = QtGui.QIcon()
+        self.icon_stopwatch.addPixmap(QtGui.QPixmap(":/Img/stopwatch.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)

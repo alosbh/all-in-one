@@ -162,7 +162,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.Raspberry = Raspberry
         self.generate_5s(self.Station.Name)
         self.support_screen_functions(self.Station.Name)
-        self.build_sidebar_buttons(self.Raspberry.Name)
+        self.build_sidebar_buttons(self.Raspberry.Name, self.Station.Name)
 
         # Fills labels with workstation values
         self.lbl_value_workstation.setText(str(self.Station.Name)) 
