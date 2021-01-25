@@ -34,7 +34,6 @@ class jit_support_controller():
 
         for x in response_teamid:
             self.team_teamid_dict.setdefault(x['name'], x['id'])
-
             request_symptons_byteam = requests.get(url = 'http://brbelm0itqa01/JITAPI/Symptom/GetActiveByTeam/' + str(x['id']), verify=False)
             response_symptons_byteam = request_symptons_byteam.json()
 

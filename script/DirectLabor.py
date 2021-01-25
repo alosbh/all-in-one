@@ -8,6 +8,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap, QBitmap, QColor,QPainter,QImage,QBrush,QWindow
 from PyQt5.QtCore import Qt, QRect
 import urllib.request
+import requests
+import json
+
 global logger
 logger=logging.getLogger() 
 logger.setLevel(logging.DEBUG)
@@ -35,7 +38,6 @@ class DirectLabor:
 
     # Setup User Attributes and Metrics
     def Setup(self, LoginResponse, hostname):
-        
         self.Name = LoginResponse["UserName"]
         name_array = self.Name.split(" ")
         name_len = len(name_array)
@@ -44,6 +46,13 @@ class DirectLabor:
         self.ID_trim = LoginResponse["UserRegistration"]
         self.Load_Metrics(hostname)
         
+        # get used id
+        baseUrl = "http://brbelm0apps02/AIOService/Jmd/GetUserDetailsByRegistration/" + str(self.ID_trim)
+        userdid = requests.get(baseUrl)
+        userdid = userdid.json()['idUser']
+        self.ID = userdid
+        print(self.ID_trim)
+
         # loading user image
         pixmap = self.load_avatar()
         self.picture= pixmap
@@ -57,7 +66,7 @@ class DirectLabor:
 
         # Api call to get actual user metrics on the workstation
         Metrics = ws.Request(ws.AIO_Dashboard, "GetActualUserAttributes", hostname)
-
+        
         try:
         # Parse out Yield and Productivity from the Metrics
             self.Yield = str(round(float(Metrics[0]["Attributes"][3]["Percent"]), 1))

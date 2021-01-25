@@ -77,20 +77,15 @@ class Login_controller(QThread):
                     self.NonLogged_Window.nome_posto.setText(str('Erro leitura RFID'))
 
                 if (self.Read_ID != None and self.NonLogged_Window.Station.Enabled == 1 ): 
-                    print('real ' + str(self.Read_ID))
-                    print('atual ' + str(self.Actual_ID))
                     cont_logout = 0
 
                     # If the read id is not null, compares it to the active user. In case its different, login the new user. 
                     if (self.Actual_ID != self.Read_ID):
                         try:
-                            print('entrei no login-')
                             # Api call to login a user on OJT server
                             logger.debug("Login user " + str(self.Read_ID) + "..........")
 
                             LoginResponse = self.API.Request(self.API.OJT, "LoginByWorker", {'HostName': self.host, 'Badge': self.Read_ID}) 
-                            print('-logeui-')
-
                             # catch login status
                             status = LoginResponse['Status']
                             # status="Login realizado"
