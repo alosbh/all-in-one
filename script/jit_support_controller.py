@@ -33,21 +33,17 @@ class jit_support_controller():
         response_teamid = request_teamid.json()
 
         for x in response_teamid:
-            print('request --- http://brbelm0itqa01/JITAPI/Symptom/GetActiveByTeam/' + str(x['id']))
             self.team_teamid_dict.setdefault(x['name'], x['id'])
             request_symptons_byteam = requests.get(url = 'http://brbelm0itqa01/JITAPI/Symptom/GetActiveByTeam/' + str(x['id']), verify=False)
             response_symptons_byteam = request_symptons_byteam.json()
 
-            if response_symptons_byteam != None:
-                for y in response_symptons_byteam:
-                    print('y')
-                    # a API retorna um array em formato de string (???)
-                    return_workstation = literal_eval(y['workstation'])
-                    for z in return_workstation:
-                        print('z')
-                        if z['text'] == workstation_name:
-                            self.symptons_symptonid_dict.setdefault(y['description'],y['id'])
-                            self.fill_cbx_dict.setdefault(x['name'],[]).append(y['description'])
+            for y in response_symptons_byteam:
+                # a API retorna um array em formato de string (???)
+                return_workstation = literal_eval(y['workstation'])
+                for z in return_workstation:
+                    if z['text'] == workstation_name:
+                        self.symptons_symptonid_dict.setdefault(y['description'],y['id'])
+                        self.fill_cbx_dict.setdefault(x['name'],[]).append(y['description'])
         
         for team in self.fill_cbx_dict:
             self.cbx_team_create.addItem(team)
