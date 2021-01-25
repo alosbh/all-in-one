@@ -51,7 +51,7 @@ class DirectLabor:
         userdid = requests.get(baseUrl)
         userdid = userdid.json()['idUser']
         self.ID = userdid
-        print(self.ID)
+        print(self.ID_trim)
 
         # loading user image
         pixmap = self.load_avatar()

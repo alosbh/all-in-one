@@ -199,7 +199,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
 
     # Method called in the MainThread - fills labor user fields
     def SetupUser(self, DL):
-        # self.LPAactions_functions(self.Station.Name)
+        self.LPAactions_functions(self.Station.Name)
         self.load_announcements_label()
         self.lbl_value_name.setText(DL.Name)
         self.lbl_value_yield.setText(DL.Yield)
@@ -433,8 +433,6 @@ class MainThread(QThread):
                         # Setup the Direct Labor object with actual worker data
                         print('-----213')
                         self.DL.Setup(LoginResponse, self.host)
-                        print('-----xxxxxx')
-                        print(self.host)
                         print('-----xxxxxx')
                         self.DL.load_avatar()
                         print('-----yyyy')
