@@ -20,7 +20,7 @@ class jit_support_controller():
         self.btn_initiate_pending.clicked.connect(lambda: self.update_ticket_status(4))
         self.btn_initiate_inprogress.clicked.connect(lambda: self.update_ticket_status(5))
         self.cbx_team_create.currentIndexChanged.connect(self.symptons_by_team)
-        # self.watchthread = WatchStatus()
+        self.watchthread = WatchStatus()
         # self.fill_cbx_teamssymptons(workstation_name)
     
 # creates and fills dictionaries with teams, symptons and it's ids - adds itens to the array that is used to fill comboboxes
