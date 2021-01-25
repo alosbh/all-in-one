@@ -431,10 +431,14 @@ class MainThread(QThread):
                     if(status=="Login realizado"):
                         self.Logged_Window.home()
                         # Setup the Direct Labor object with actual worker data
+                        print('-----213')
                         self.DL.Setup(LoginResponse, self.host)
+                        print('-----xxxxxx')
                         self.DL.load_avatar()
+                        print('-----yyyy')
                         # Setup the user fields on the logged screen
                         self.Logged_Window.SetupUser(self.DL)
+                        print('-----4698rqw56r65146r15qw651')
                         # The active ID is the newly logged ID               
                         Actual_ID = Read_ID
                         print("Actual ID apos alterar: " + str(Actual_ID))
