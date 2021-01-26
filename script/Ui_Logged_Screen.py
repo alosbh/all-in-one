@@ -295,22 +295,6 @@ class Ui_Logged_Screen(object):
 "color: rgb(255, 255, 255);")
         self.lbl_value_number_invalidFPL.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_value_number_invalidFPL.setObjectName("lbl_value_number_invalidFPL")
-        self.btn_FPL_showerror = QtWidgets.QPushButton(self.header)
-        self.btn_FPL_showerror.setGeometry(QtCore.QRect(1020, 10, 41, 41))
-        self.btn_FPL_showerror.setAutoFillBackground(False)
-        self.btn_FPL_showerror.setStyleSheet("image: url(:/Img/presentation.png);")
-        self.btn_FPL_showerror.setText("")
-        self.btn_FPL_showerror.setObjectName("btn_FPL_showerror")
-        self.btn_FPL_showerror.raise_()
-        self.lbl_value_workstation.raise_()
-        self.lbl_workstation.raise_()
-        self.lbl_line.raise_()
-        self.lbl_value_line.raise_()
-        self.btn_reset.raise_()
-        self.btn_actionsLPA.raise_()
-        self.lbl_value_number_actionsLPA.raise_()
-        self.btn_FPL.raise_()
-        self.lbl_value_number_invalidFPL.raise_()
         self.footer = QtWidgets.QFrame(self.centralwidget)
         self.footer.setGeometry(QtCore.QRect(235, 722, 1131, 51))
         self.footer.setStyleSheet("background-color:white;border:none;")
@@ -1085,9 +1069,17 @@ class Ui_Logged_Screen(object):
         font.setFamily("Inter UI")
         font.setPointSize(14)
         self.btn_createticket_create.setFont(font)
-        self.btn_createticket_create.setStyleSheet("border-radius: 8px;\n"
+        self.btn_createticket_create.setStyleSheet("QPushButton{\n"
 "color: rgb(255, 255, 255);\n"
-"background-color: rgb(86, 149, 246);")
+"background-color: rgb(86, 149, 246);\n"
+"}\n"
+"QPushButton:hover {\n"
+"color: rgb(86, 149, 246);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border: 2px  solid  rgb(86, 149, 246);\n"
+"}\n"
+"border-radius: 8px;\n"
+"")
         self.btn_createticket_create.setObjectName("btn_createticket_create")
         self.lbl_sympton_create = QtWidgets.QLabel(self.subbody_createticket_1)
         self.lbl_sympton_create.setGeometry(QtCore.QRect(60, 195, 131, 21))
