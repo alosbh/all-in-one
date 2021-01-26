@@ -29,31 +29,33 @@ class jit_support_controller():
         self.symptons_symptonid_dict = {}
         self.fill_cbx_dict = {}
 
-        request_team = requests.get(url = 'http://brbelm0itqa01/JITAPI/Team/GetAllActive', verify=False)
-        response_team = request_team.json()
-        request_symptons = requests.get(url = 'http://brbelm0itqa01/JITAPI/Symptom/GetAll', verify=False)
-        response_symptons = request_symptons.json()
+        try:
+            request_team = requests.get(url = 'http://brbelm0itqa01/JITAPI/Team/GetAllActive', verify=False)
+            response_team = request_team.json()
+            request_symptons = requests.get(url = 'http://brbelm0itqa01/JITAPI/Symptom/GetAll', verify=False)
+            response_symptons = request_symptons.json()
 
-        # cria dict q relaciona nome com id do time
-        for x in response_team:
-            self.team_teamid_dict.setdefault(x['name'], x['id'])
-        
-        # cria dict q relaciona nome com id do sintoma
-        # cria dict q relaciona time com sintoma
-        for y in response_symptons:
-            return_workstation = literal_eval(y['workstation'])
-            for z in return_workstation:
-                if z['text'] == workstation_name:
-                    self.symptons_symptonid_dict.setdefault(y['description'],y['id'])
-                    for team_name in self.team_teamid_dict:
-                        self.fill_cbx_dict.setdefault(team_name,[]).append(y['description'])
-        
-        print(self.fill_cbx_dict)
+            # cria dict q relaciona nome e id do time
+            for x in response_team:
+                self.team_teamid_dict.setdefault(x['name'], x['id'])
 
-        for team in response_team:
-            for sympton in response_symptons:
-                if sympton['teamId'] == team['id']:
-                    self.cbx_team_create.addItem(team['name'])
+                # cria dict q relaciona nome e id do sintoma
+                # cria dict q relaciona time e sintoma
+                # captura id do time
+                for y in response_symptons:
+                    return_workstation = literal_eval(y['workstation'])
+                    for z in return_workstation:
+                        if z['text'] == workstation_name:
+                            self.symptons_symptonid_dict.setdefault(y['description'],y['id'])
+                            self.fill_cbx_dict.setdefault(x['name'],[]).append(y['description'])
+                            team_id = y['teamId']
+
+            # adiciona nome do time no cbx
+            for team_info in response_team:
+                if team_info['id'] == team_id:
+                    self.cbx_team_create.addItem(team_info['name'])
+        except:
+            print('Posto sem sintomas cadastrados.')
                         
 # fills comboboxes with symptons and teams
     def symptons_by_team(self):
