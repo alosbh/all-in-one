@@ -29,24 +29,31 @@ class jit_support_controller():
         self.symptons_symptonid_dict = {}
         self.fill_cbx_dict = {}
 
-        request_teamid = requests.get(url = 'http://brbelm0itqa01/JITAPI/Team/GetAllActive', verify=False)
-        response_teamid = request_teamid.json()
+        request_team = requests.get(url = 'http://brbelm0itqa01/JITAPI/Team/GetAllActive', verify=False)
+        response_team = request_team.json()
+        request_symptons = requests.get(url = 'http://brbelm0itqa01/JITAPI/Symptom/GetAll', verify=False)
+        response_symptons = request_symptons.json()
 
-        for x in response_teamid:
+        # cria dict q relaciona nome com id do time
+        for x in response_team:
             self.team_teamid_dict.setdefault(x['name'], x['id'])
-            request_symptons_byteam = requests.get(url = 'http://brbelm0itqa01/JITAPI/Symptom/GetActiveByTeam/' + str(x['id']), verify=False)
-            response_symptons_byteam = request_symptons_byteam.json()
-
-            for y in response_symptons_byteam:
-                # a API retorna um array em formato de string (???)
-                return_workstation = literal_eval(y['workstation'])
-                for z in return_workstation:
-                    if z['text'] == workstation_name:
-                        self.symptons_symptonid_dict.setdefault(y['description'],y['id'])
-                        self.fill_cbx_dict.setdefault(x['name'],[]).append(y['description'])
         
-        for team in self.fill_cbx_dict:
-            self.cbx_team_create.addItem(team)
+        # cria dict q relaciona nome com id do sintoma
+        # cria dict q relaciona time com sintoma
+        for y in response_symptons:
+            return_workstation = literal_eval(y['workstation'])
+            for z in return_workstation:
+                if z['text'] == workstation_name:
+                    self.symptons_symptonid_dict.setdefault(y['description'],y['id'])
+                    for team_name in self.team_teamid_dict:
+                        self.fill_cbx_dict.setdefault(team_name,[]).append(y['description'])
+        
+        print(self.fill_cbx_dict)
+
+        for team in response_team:
+            for sympton in response_symptons:
+                if sympton['teamId'] == team['id']:
+                    self.cbx_team_create.addItem(team['name'])
                         
 # fills comboboxes with symptons and teams
     def symptons_by_team(self):
