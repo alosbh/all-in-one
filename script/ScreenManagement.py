@@ -252,14 +252,14 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.load_url_signal.signal.emit(CustomAddr)
 
     def load_stopwatcher(self):
-        url = "https://brbelm0itqa01/Stopwatch?workstationId="+ str(self.Station.Id) + "&userId=" + str(self.thread.DL.ID)
-        print(url)
         self.hide5s()
+        url = "https://brbelm0itqa01/Stopwatch?workstationId="+ str(self.Station.Id) + "&userId=" + str(self.thread.DL.ID)
         self.load_url_signal.signal.emit(url)
 
     def jiga_list(self):
         self.hide5s()
         JigaAddr = self.thread.API.load_Jiga(self.thread.objStation.RouteId) 
+        print(JigaAddr)
         self.load_url_signal.signal.emit(JigaAddr)
         
     def load_lpa(self):
