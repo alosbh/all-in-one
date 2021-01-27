@@ -54,7 +54,7 @@ class Raspberry:
             if request.status_code == 200:
                 response = json.loads(request.content)
                 hostname = response['hostname']
-            self.Name = hostname
+                self.Name = hostname
             else:
                 self.request_rasp_hostname()
         except:
