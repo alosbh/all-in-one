@@ -60,7 +60,7 @@ class Raspberry:
         else:
             self.request_rasp_hostname()
         
-            self.Name = 'Erro: não encontrado'
+            #self.Name = 'Erro: não encontrado'
             
         
     def GetSystemInfo(self):
