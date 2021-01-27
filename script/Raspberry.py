@@ -47,7 +47,9 @@ class Raspberry:
         
         try:
             request = requests.get(url)
+            print('vvvvvv')
             print(request)
+            print('^^^^^^')
 
             if request.status_code == 200:
                 response = json.loads(request.content)
