@@ -47,6 +47,7 @@ class Raspberry:
         
         try:
             request = requests.get(url)
+            print(url)
             print(request)
 
             if request.status_code == 200:
@@ -56,7 +57,6 @@ class Raspberry:
             else:
                 self.request_rasp_hostname()
         except:
-            print('Request falhou - tentando novamente')
             self.request_rasp_hostname()
             
         
