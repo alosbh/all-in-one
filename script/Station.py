@@ -64,6 +64,7 @@ class Station:
         
 
         try:
+            print(RaspberryName)
             jsonData = ws.Request(ws.AIO, 'GetEquipmentByHostname', RaspberryName)
 
             request_lineInfo = ws.Request(ws.AIO_Dashboard, "GetByLine", str(jsonData["LineId"]))
