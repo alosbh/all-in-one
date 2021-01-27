@@ -44,7 +44,9 @@ class Raspberry:
     def request_rasp_hostname(self):
         ip = os.environ.get('SYSCON_IP')
         url = "http://" + ip + "/api/v1.0/system/info"
-        
+        print('-------------------')
+        print(url)
+        print('-------------------')
         try:
             request = requests.get(url)
             print('vvvvvv')
