@@ -47,19 +47,19 @@ class Raspberry:
         print('-------------------')
         print(url)
         print('-------------------')
-        try:
-            request = requests.get(url)
-            print('vvvvvv')
-            print(request)
-            print('^^^^^^')
 
-            if request.status_code == 200:
-                response = json.loads(request.content)
-                hostname = response['hostname']
-                self.Name = hostname
-            else:
-                self.request_rasp_hostname()
-        except:
+        request = requests.get(url)
+        print('vvvvvv')
+        print(request)
+        print('^^^^^^')
+
+        if request.status_code == 200:
+            response = json.loads(request.content)
+            hostname = response['hostname']
+            self.Name = hostname
+        else:
+            self.request_rasp_hostname()
+        
             self.Name = 'Erro: não encontrado'
             
         
