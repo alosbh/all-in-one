@@ -28,6 +28,7 @@ class jit_support_controller():
         self.team_teamid_dict = {}
         self.symptons_symptonid_dict = {}
         self.fill_cbx_dict = {}
+        team_id_list = []
 
         try:
             request_team = requests.get(url = 'http://brbelm0itqa01/JITAPI/Team/GetAllActive', verify=False)
@@ -43,17 +44,21 @@ class jit_support_controller():
                 # cria dict q relaciona time e sintoma
                 # captura id do time
                 for y in response_symptons:
-                    return_workstation = literal_eval(y['workstation'])
-                    for z in return_workstation:
+                    text = literal_eval(y['workstation'])
+                    for z in text:
                         if z['text'] == workstation_name:
                             self.symptons_symptonid_dict.setdefault(y['description'],y['id'])
-                            self.fill_cbx_dict.setdefault(x['name'],[]).append(y['description'])
-                            team_id = y['teamId']
+                            team_id_list.append(y['teamId'])
+                            if y['teamId'] == x['id']:
+                                self.fill_cbx_dict.setdefault(x['name'],[]).append(y['description'])
+
+            team_id_list = list(set(team_id_list))
 
             # adiciona nome do time no cbx
             for team_info in response_team:
-                if team_info['id'] == team_id:
-                    self.cbx_team_create.addItem(team_info['name'])
+                for team_id in team_id_list:
+                    if team_info['id'] == team_id:
+                        self.cbx_team_create.addItem(team_info['name'])
         except:
             print('Posto sem sintomas cadastrados.')
                         
@@ -61,6 +66,7 @@ class jit_support_controller():
     def symptons_by_team(self):
         self.cbx_sympton_create.clear()
         selected_team = self.cbx_team_create.currentText()
+        print(self.fill_cbx_dict[selected_team])
 
         try:
             for sympton in self.fill_cbx_dict[selected_team]:
