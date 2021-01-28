@@ -66,7 +66,6 @@ class jit_support_controller():
     def symptons_by_team(self):
         self.cbx_sympton_create.clear()
         selected_team = self.cbx_team_create.currentText()
-        print(self.fill_cbx_dict[selected_team])
 
         try:
             for sympton in self.fill_cbx_dict[selected_team]:
