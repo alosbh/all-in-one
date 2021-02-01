@@ -7,6 +7,7 @@ import requests
 import sys
 import json
 import os
+from pathlib import Path
 from OS_define import *
 
 global logger
@@ -47,18 +48,20 @@ class Raspberry:
         
         try:
             request = requests.get(url)
-            print(url)
-            print(request.json())
-            print(request)
-
             if request.status_code == 200:
                 response = json.loads(request.content)
                 hostname = response['hostname']
                 self.Name = hostname
             else:
-                self.request_rasp_hostname()
+                mypath = Path(__file__).absolute().parent
+                with open('hostname.txt') as f:
+                    lines = f.readlines()
+                hostname = lines[0]
         except:
-            self.request_rasp_hostname()
+            mypath = Path(__file__).absolute().parent
+            with open('hostname.txt') as f:
+                lines = f.readlines()
+            hostname = lines[0]
             
         
     def GetSystemInfo(self):
