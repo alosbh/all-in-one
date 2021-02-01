@@ -50,20 +50,19 @@ class Raspberry:
             request = requests.get(url)
             if request.status_code == 200:
                 response = json.loads(request.content)
-                hostname = response['hostname']
-                self.Name = hostname
+                self.Name = response['hostname']
             else:
                 print('cai no else -- ')
                 mypath = Path(__file__).absolute().parent
                 with open('hostname.txt') as f:
                     lines = f.readlines()
-                hostname = lines[0]
+                self.Name = lines[0]
         except:
             print('cai no except -- ')
             mypath = Path(__file__).absolute().parent
             with open('hostname.txt') as f:
                 lines = f.readlines()
-            hostname = lines[0]
+            self.Name = lines[0]
             
         
     def GetSystemInfo(self):
