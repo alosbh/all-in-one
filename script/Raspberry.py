@@ -52,13 +52,11 @@ class Raspberry:
                 response = json.loads(request.content)
                 self.Name = response['hostname']
             else:
-                print('cai no else -- ')
                 mypath = Path(__file__).absolute().parent
                 with open('hostname.txt') as f:
                     lines = f.readlines()
                 self.Name = lines[0]
         except:
-            print('cai no except -- ')
             mypath = Path(__file__).absolute().parent
             with open('hostname.txt') as f:
                 lines = f.readlines()
