@@ -335,6 +335,29 @@ class Ui_Logged_Screen(object):
         self.btn_custom.setIcon(icon7)
         self.btn_custom.setIconSize(QtCore.QSize(22, 22))
         self.btn_custom.setObjectName("btn_custom")
+        self.btn_stopwatcher = QtWidgets.QPushButton(self.sidebar_apps)
+        self.btn_stopwatcher.setGeometry(QtCore.QRect(0, 332, 234, 41))
+        font = QtGui.QFont()
+        font.setFamily("Inter UI")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setWeight(50)
+        self.btn_stopwatcher.setFont(font)
+        self.btn_stopwatcher.setStyleSheet("QPushButton {\n"
+"color:white;text-align:left;padding-left:20px;border:none;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"color:white;text-align:left;padding-left:20px;border:none;background-color:#5253ee\n"
+"}\n"
+"\n"
+"\n"
+"")
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(":/Img/stopwatch.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_stopwatcher.setIcon(icon8)
+        self.btn_stopwatcher.setIconSize(QtCore.QSize(22, 22))
+        self.btn_stopwatcher.setObjectName("btn_stopwatcher")
         self.btn_homepage.raise_()
         self.btn_instruction_sheet.raise_()
         self.btn_5s.raise_()
@@ -343,6 +366,7 @@ class Ui_Logged_Screen(object):
         self.btn_goodideas.raise_()
         self.btn_SCTC.raise_()
         self.btn_custom.raise_()
+        self.btn_stopwatcher.raise_()
         self.lbl_progress = QtWidgets.QLabel(self.sidebar)
         self.lbl_progress.setGeometry(QtCore.QRect(0, 300, 234, 31))
         font = QtGui.QFont()
@@ -1113,6 +1137,15 @@ class Ui_Logged_Screen(object):
         self.lbl_achiev_points_06.setIndent(-1)
         self.lbl_achiev_points_06.setObjectName("lbl_achiev_points_06")
         self.grid_achievments.addWidget(self.container_achiev_06, 2, 1, 1, 1)
+        self.barchart_container_2 = QtWidgets.QWidget(self.container_achievments)
+        self.barchart_container_2.setGeometry(QtCore.QRect(0, 0, 467, 281))
+        self.barchart_container_2.setStyleSheet("background-color:white;border-radius:8px;")
+        self.barchart_container_2.setObjectName("barchart_container_2")
+        self.lbl_value_announcement_03 = QtWidgets.QLabel(self.barchart_container_2)
+        self.lbl_value_announcement_03.setGeometry(QtCore.QRect(16, 2, 441, 271))
+        self.lbl_value_announcement_03.setText("")
+        self.lbl_value_announcement_03.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbl_value_announcement_03.setObjectName("lbl_value_announcement_03")
         self.frame_achievments.addWidget(self.container_achievments, 0, 0, 1, 1)
         self.gridLayoutWidget_4 = QtWidgets.QWidget(self.apps)
         self.gridLayoutWidget_4.setGeometry(QtCore.QRect(0, 300, 641, 361))
@@ -1523,6 +1556,7 @@ class Ui_Logged_Screen(object):
         self.btn_5s.setText(_translate("MainWindow", "   Posto Ideal 5s"))
         self.btn_SCTC.setText(_translate("MainWindow", "     Ferramentas - SCTC"))
         self.btn_custom.setText(_translate("MainWindow", "   Custom"))
+        self.btn_stopwatcher.setText(_translate("MainWindow", "     Stopwatcher"))
         self.lbl_progress.setText(_translate("MainWindow", "para o próximo nível"))
         self.lbl_value_workstation.setText(_translate("MainWindow", "INGBOXENT001"))
         self.lbl_workstation.setText(_translate("MainWindow", "Posto"))

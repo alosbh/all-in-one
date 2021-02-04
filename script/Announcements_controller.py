@@ -6,7 +6,7 @@ class Announcements:
     def load_announcements_label(self):
         try:
             self.lbl_value_announcement_01.setVisible(True)
-            url1_pixmap = self.get_pixmap('http://brbelm0itqa01/AIOServiceSTG/Images5S/Frame1.png')
+            url1_pixmap = self.get_pixmap('http://brbelm0itqa01/AIOServiceSTG/Images5S/Painel.png')
             # url1_pixmap = url1_pixmap.scaled(591, 311, QtCore.Qt.KeepAspectRatio)
             self.lbl_value_announcement_01.setPixmap(url1_pixmap)
         except:
@@ -14,11 +14,19 @@ class Announcements:
 
         try:
             self.lbl_value_announcement_02.setVisible(True)
-            url2_pixmap = self.get_pixmap('http://brbelm0itqa01/AIOServiceSTG/Images5S/Frame2.png')
+            url2_pixmap = self.get_pixmap('http://brbelm0itqa01/AIOServiceSTG/Images5S/Lean.png')
             # url2_pixmap = url2_pixmap.scaled(441, 311, QtCore.Qt.KeepAspectRatio)
             self.lbl_value_announcement_02.setPixmap(url2_pixmap)
         except:
             self.lbl_value_announcement_02.setVisible(False)
+        
+        try:
+            self.lbl_value_announcement_03.setVisible(True)
+            url2_pixmap = self.get_pixmap('http://brbelm0itqa01/AIOServiceSTG/Images5S/Toolbox.png')
+            # url2_pixmap = url2_pixmap.scaled(441, 311, QtCore.Qt.KeepAspectRatio)
+            self.lbl_value_announcement_03.setPixmap(url2_pixmap)
+        except:
+            self.lbl_value_announcement_03.setVisible(False)
     
     def get_pixmap(self, url):
         data = urllib.request.urlopen(url).read()
