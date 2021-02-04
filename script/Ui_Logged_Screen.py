@@ -1142,7 +1142,7 @@ class Ui_Logged_Screen(object):
         self.barchart_container_2.setStyleSheet("background-color:white;border-radius:8px;")
         self.barchart_container_2.setObjectName("barchart_container_2")
         self.lbl_value_announcement_03 = QtWidgets.QLabel(self.barchart_container_2)
-        self.lbl_value_announcement_03.setGeometry(QtCore.QRect(16, 2, 441, 271))
+        self.lbl_value_announcement_03.setGeometry(QtCore.QRect(15, 10, 441, 261))
         self.lbl_value_announcement_03.setText("")
         self.lbl_value_announcement_03.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_value_announcement_03.setObjectName("lbl_value_announcement_03")
