@@ -27,7 +27,7 @@ class jit_support_controller():
         self.watchthread = WatchStatus()
         self.fill_cbx_teamssymptons(workstation_name)
 
-        elf.client = mqtt.Client("All in One")
+        self.client = mqtt.Client("All in One")
         self.client.connect("10.57.39.164")
         self.client.on_message=self.on_message
         self.client.loop_start()
