@@ -12,8 +12,11 @@ from functions_5s import functions_5s
 from LPAactions_controller import *
 from Announcements_controller import *
 from jit_support_controller import *
+from Login_controller import Login_controller
+from Fpl_controller import *
+from theme_controller import theme_controller
+from buttons_controller import buttons_controller
 
-import MFRC522
 import time
 import sys
 import os
@@ -77,7 +80,6 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
     Workstation_Signal = QtSignal()
     
     def __init__(self, *args, **kwargs):
-        
         self.Workstation_Signal.signal.connect(self.Print_Workstation)
         # Creates the Qt Widget that holds the UI 
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
@@ -85,7 +87,6 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
         self.app = ScreenManagement()
 
     def Setup(self, Station, Raspberry, Params, Reset_Window):
-
         self.Station = Station
         self.Raspberry = Raspberry
         self.Reset_Window = Reset_Window
@@ -126,7 +127,7 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
 #----------------------------------------------------------------------------------
 
 # Inherits the qt Ui_Logged_Screen (main screen) design and manages its setup
-class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_support_controller, LPAactions_controller, Announcements):
+class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, buttons_controller, jit_support_controller, LPAactions_controller, Announcements_controller, Fpl_controller, theme_controller):
     
     # Instance of the signal to act on button's click
     load_url_signal = QtSignal()
@@ -140,7 +141,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.Logged_QtWindow = QtWidgets.QMainWindow()
 
         # Instance of the main thread, that keeps looking for RF readings and active user
-        self.thread = MainThread()
+        self.thread = Login_controller()
 
         # Connects the signal sent from the thread to display the url on the webviewer
         self.thread.thread_signal.signal.connect(self.load_url)
@@ -158,10 +159,10 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.build_body_web()
         self.Station = Station
         self.DL = DL()
-        self.build_custom_button()
-        self.button_handle()
+        self.Raspberry = Raspberry
         self.generate_5s(self.Station.Name)
         self.support_screen_functions(self.Station.Name)
+        self.build_sidebar_buttons(self.Raspberry.Name, self.Station.Name)
 
         # Fills labels with workstation values
         self.lbl_value_workstation.setText(str(self.Station.Name)) 
@@ -207,36 +208,12 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.lbl_value_goodideas.setText('-')
         self.lbl_value_jabilcoins.setText('-')
         self.lbl_user_avatar.setPixmap(DL.picture)
+        self.setup_fpl(DL.Name, DL.ID_trim)
         
     # Method to show the window widget 
     def Show(self):
         self.lbl_value_workstation.setText(self.Station.Name)
         self.Logged_QtWindow.showFullScreen()
-
-    # Builds the custom button if it is enabled at the workstation
-    def build_custom_button(self):
-        global LabelsObject 
-        LabelsObject = labels()
-
-        try:
-            self.btn_custom.setText(LabelsObject.data['Buttons'][4][str(self.Station.Area)][int(self.Station.Index)])
-        except:
-            try:
-                self.btn_custom.setText(LabelsObject.data['Buttons'][4][str(self.Station.AreaTrim)][int(self.Station.Index)])
-            except:
-                self.btn_custom.setVisible(False)
-   
-    # Links the buttons to their respective methods
-    def button_handle(self):
-        self.btn_5s.clicked.connect(self.show5s)
-        self.btn_support.clicked.connect(self.suporte)
-        self.btn_homepage.clicked.connect(self.home)
-        self.btn_SCTC.clicked.connect(self.jiga_list)
-        self.btn_reset.clicked.connect(self.reset)
-        self.btn_instruction_sheet.clicked.connect(self.load_fi)
-        self.btn_goodideas.clicked.connect(self.load_bi)
-        self.btn_lpa.clicked.connect(self.load_lpa)
-        self.btn_custom.clicked.connect(self.custom_button_load)
 
     def reset(self):
         self.Reset_Window.Show()
@@ -266,14 +243,23 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
 
     def finish_loading(self):
         self.loading_status = 1
+        logger.error("logger: terminou de carregar")
+        print("print: terminou de carregar")
+        self.FI_button.setEnabled(True)
 
     def custom_button_load(self):
         CustomAddr = self.thread.API.custom_button(self.Station.Area,self.Station.AreaTrim, self.Station.RouteMin, self.Station.Index)
         self.load_url_signal.signal.emit(CustomAddr)
 
+    def load_stopwatcher(self):
+        self.hide5s()
+        url = "http://brbelm0itqa01/Stopwatch?workstationId="+ str(self.Station.Id) + "&userId=" + str(self.thread.DL.ID)
+        self.load_url_signal.signal.emit(url)
+
     def jiga_list(self):
         self.hide5s()
         JigaAddr = self.thread.API.load_Jiga(self.thread.objStation.RouteId) 
+        print(JigaAddr)
         self.load_url_signal.signal.emit(JigaAddr)
         
     def load_lpa(self):
@@ -312,159 +298,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.body_web.setVisible(True) 
         self.body_support.setVisible(False) 
         self.hide5s()
-
-# Badge reading function
-def RFRead():
-    
-    Read_ID = None
-
-         # Instantiate the RFID reader class
-    reader = MFRC522.MFRC522()
-
-         # Get the badge id from the RFID reader
-    Read_ID = reader.JABIL_Matricula() 
-
-         # close the SPI slot 
-    reader.close_SPI()
-
-    return Read_ID
-
-#----------------------------------------------------------------------------------------
-#Thread for badge reading
-#----------------------------------------------------------------------------------------
-class MainThread(QThread):
-    
-    thread_signal = QtSignal()
-    thread_signal2 = QtSignal()
-    global API
-    global NonLogged_Window
-    global Logged_Window
-    global thread_time
-    global logout_limit
-    global DL
-    
-    def __init__(self, *args, **kwargs):
-        super().__init__()
-
-        # Loads thread sleep time and logout counter on null RF reads.
-        self.thread_time = GlobalParameters.BadgeReader_ThreadTime/1000 
-        self.logout_limit = GlobalParameters.BadgeReader_MininumGoodReads
-
-        self.API = ws()
-        self.DL = DL()
-        
-        self.NonLogged_Window = None
-        self.Logged_Window = None
-        
-        
-    def run(self):
-        # Logged Badge ID
-        global Actual_ID
-        Actual_ID = None
-        # New Badge ID read from the RF module
-        global Read_ID
-        #Starts logount counter, so the user will be disconnected after reaching the limit of NULL readings
-
-        cont_logout = 0
-        status_workstation = self.NonLogged_Window.Station.Enabled
-
-        logger=logging.getLogger() 
-        logger.setLevel(logging.DEBUG)
-        
-        while(True):
-            
-            try:
-                # Read_ID = 51008294
-                Read_ID = (RFRead()) # Reads Badge ID
-                # logger.error("ID lida:")
-                # logger.error(Read_ID)
-            except Exception as e:
-                traceback.print_exc()
-                logger.error("RFID error: " + type(e).__name__)
-                print(type(e).__name__)
-                Read_ID = None
-                self.NonLogged_Window.nome_posto.setText(str('Erro leitura RFID'))
-
-
-            if (Read_ID != None and self.NonLogged_Window.Station.Enabled == 1 ): 
-
-                
-                cont_logout = 0
-
-                # If the read id is not null, compares it to the active user. In case its different, login the new user. 
-                
-                if (Actual_ID != Read_ID):
-                    
-
-                    try:
-                        # Api call to login a user on OJT server
-                        logger.debug("Login user " + str(Read_ID) + "..........")
-
-                        LoginResponse = self.API.Request(self.API.OJT, "LoginByWorker", {'HostName': self.host, 'Badge': Read_ID}) 
-
-                        # catch login status
-                        status = LoginResponse['Status']
-                        # status="Login realizado"
-                        print("Stats1:"+status)
-
-                    except Exception as e: 
-                        traceback.print_exc()
-                        logger.error("Login Error: " + type(e).__name__)
-                        print(type(e).__name__)
-                        status = ""
-                        
-                    print("Stats2:"+status)
-                    # In case of succesfull login            
-                    if(status=="Login realizado"):
-                        self.Logged_Window.home()
-                        # Setup the Direct Labor object with actual worker data
-                        self.DL.Setup(LoginResponse, self.host)
-                        self.DL.load_avatar()
-                        # Setup the user fields on the logged screen
-                        self.Logged_Window.SetupUser(self.DL)
-                        # The active ID is the newly logged ID               
-                        Actual_ID = Read_ID
-                        print("Actual ID apos alterar: " + str(Actual_ID))
-                        # Show the Logged screen and hide the initial screen
-                        self.thread_signal2.signal.emit('about:blank')
-                        # self.Logged_Window.Logged_QtWindow.show()
-                        # self.NonLogged_Window.NonLogged_QtWindow.hide()
-
-
-            else: 
-                cont_logout += 1 
-                
-                #if the null reads has reached the limit and there is someone logged
-                if (cont_logout >= self.logout_limit):
-                    cont_logout = self.logout_limit
-                    if (Actual_ID != None):
-                        
-                        try:
-                            # API Call to logout the user
-                            print("Logout user " + Actual_ID + ".........")
-                            logger.debug("Logout user " + Actual_ID + ".........")
-                            LogoutResponse = self.API.Request(self.API.OJT, "Logout", {'HostName': self.host, 'Badge': Actual_ID});
-                            status = LogoutResponse['Status']
-
-                            if((status=="Logout realizado")or (status=="Não encontrado")):
-                                # Show home screen
-                                self.NonLogged_Window.Show() 
-                                #Hide the logged screen
-                                self.Logged_Window.Logged_QtWindow.hide()
-                                Actual_ID = None
-                                self.Logged_Window.home()
-                            
-                        except Exception as e:
-                            print("Couldnt do logout. Error: " + type(e).__name__)
-                            logger.error("Couldnt do logout. Error: " + type(e).__name__)    
-
-
-                        # Clear the webviewer on the logged screen
-                        self.thread_signal.signal.emit('about:blank')
-                        time.sleep(1)
-  
-            # Wait for next thread iteration           
-            time.sleep(self.thread_time) 
 
 #----------------------------------------------------------------------------------------
 #Thread - tries to connect to station with the Raspberry info 

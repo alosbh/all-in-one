@@ -7,6 +7,7 @@ import requests
 import sys
 import json
 import os
+from pathlib import Path
 from OS_define import *
 
 global logger
@@ -24,7 +25,7 @@ class Raspberry:
             self.SystemVersion = platform.version()
             self.SystemRelease = platform.release()  
             self.Validated = False
-            self.GetSystemInfo()
+            
 
             self.OS_define = OS_define()
             OS = self.OS_define.get_OS_name()
@@ -34,7 +35,8 @@ class Raspberry:
                 self.Name = 'BRBELME024'
             else:
                 self.request_rasp_hostname()
-            
+                
+            self.GetSystemInfo()
             logger.debug("Successfully created Raspberry object " + self.Name )
 
         except Exception as e:
@@ -43,14 +45,23 @@ class Raspberry:
     def request_rasp_hostname(self):
         ip = os.environ.get('SYSCON_IP')
         url = "http://" + ip + "/api/v1.0/system/info"
-        request = requests.get(url)
         
-        if request.status_code == 200:
-            response = json.loads(request.content)
-            hostname = response['hostname']
-            self.Name = hostname
-        else:
-            self.request_rasp_hostname()
+        try:
+            request = requests.get(url)
+            if request.status_code == 200:
+                response = json.loads(request.content)
+                self.Name = response['hostname']
+            else:
+                mypath = Path(__file__).absolute().parent
+                with open('hostname.txt') as f:
+                    lines = f.readlines()
+                self.Name = lines[0]
+        except:
+            mypath = Path(__file__).absolute().parent
+            with open('hostname.txt') as f:
+                lines = f.readlines()
+            self.Name = lines[0]
+            
         
     def GetSystemInfo(self):
         self.IP = socket.gethostbyname(socket.gethostname())
