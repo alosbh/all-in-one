@@ -1791,16 +1791,6 @@ class Ui_Logged_Screen(object):
         self.lbl_value_xp_total.setText(_translate("MainWindow", "2200"))
         self.lbl_value_percnextlvl.setText(_translate("MainWindow", "0%"))
         self.btn_homepage.setText(_translate("MainWindow", "   Pagina Inicial"))
-<<<<<<< HEAD
-        self.btn_lpa.setText(_translate("MainWindow", "   LPA"))
-        self.btn_instruction_sheet.setText(_translate("MainWindow", "   Ficha de Instrução"))
-        self.btn_goodideas.setText(_translate("MainWindow", "   Stopwatcher"))
-        self.btn_support.setText(_translate("MainWindow", "   Suporte"))
-        self.btn_5s.setText(_translate("MainWindow", "   Posto Ideal 5s"))
-        self.btn_SCTC.setText(_translate("MainWindow", "     Ferramentas - SCTC"))
-        self.btn_custom.setText(_translate("MainWindow", "   Custom"))
-=======
->>>>>>> 92936d0dfe614f4789eb6e51456b9da9cf896eab
         self.lbl_progress.setText(_translate("MainWindow", "para o próximo nível"))
         self.lbl_value_workstation.setText(_translate("MainWindow", "INGBOXENT001"))
         self.lbl_workstation.setText(_translate("MainWindow", "Posto"))
