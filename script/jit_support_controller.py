@@ -28,7 +28,7 @@ class jit_support_controller():
         self.fill_cbx_teamssymptons(workstation_name)
 
         self.client = mqtt.Client(workstation_name)
-        self.client.connect("172.24.76.164")
+        self.client.connect("172.24.76.90")
         self.client.on_message=self.on_message
         self.client.loop_start()
     
