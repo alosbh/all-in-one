@@ -21,13 +21,13 @@ class jit_support_controller():
         self.btn_cancelticket_waiting.clicked.connect(lambda: self.update_ticket_status(5))
         self.btn_cancelticket_pending.clicked.connect(lambda: self.update_ticket_status(5))
         self.btn_cancelticket_inprogress.clicked.connect(lambda: self.update_ticket_status(5))
-        self.btn_initiate_pending.clicked.connect(lambda: self.update_ticket_status(4))
-        self.btn_initiate_inprogress.clicked.connect(lambda: self.update_ticket_status(5))
+        self.btn_initiate_pending.clicked.connect(self.init_ticket)
+        self.btn_initiate_inprogress.clicked.connect(self.finish_ticket)
         self.cbx_team_create.currentIndexChanged.connect(self.symptons_by_team)
         self.watchthread = WatchStatus()
         self.fill_cbx_teamssymptons(workstation_name)
 
-        self.client = mqtt.Client("All in One")
+        self.client = mqtt.Client(workstation_name)
         self.client.connect("10.57.39.164")
         self.client.on_message=self.on_message
         self.client.loop_start()
@@ -141,6 +141,32 @@ class jit_support_controller():
         self.btn_createticket_create.setEnabled(True)
     
 # request updates the ticket status on the server side
+
+    def init_ticket(self):
+        self.updatemqtt = {'TicketId': self.requestID ,
+                                'UserName': self.user,
+                                'Status': 'OnGoing'
+                        }
+        self.mqtt_string = json.dumps(self.updatemqtt)
+        self.client.publish(self.mqtt_update,self.mqtt_string)
+        headers_update = {'content-type': 'application/json'}
+        url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Update'
+        postBody_update = {'ticketStatus': 4, 'ticketId': int(self.requestID)}
+        request_update = requests.post(url_update, data=json.dumps(postBody_update), headers=headers_update)
+
+    def finish_ticket(self):
+        self.updatemqtt = {'TicketId': self.requestID ,
+                                'UserName': self.user,
+                                'Status': 'Done'
+                        }
+        self.mqtt_string = json.dumps(self.updatemqtt)
+        self.client.publish(self.mqtt_update,self.mqtt_string)
+        headers_update = {'content-type': 'application/json'}
+        url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Update'
+        postBody_update = {'ticketStatus': 5, 'ticketId': int(self.requestID)}
+        request_update = requests.post(url_update, data=json.dumps(postBody_update), headers=headers_update)
+
+
     def update_ticket_status(self, status):
         if(status==4):
             self.btn_initiate_pending.setEnabled(False)
@@ -168,6 +194,7 @@ class jit_support_controller():
         d = json.loads(message.payload)
         if (d["TicketId"] == self.requestID and d["Status"] == "Accepted"):
             headers_update = {'content-type': 'application/json'}
+            self.user = d["UserName"]
             url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Confirm'
             postBody_update = {'ticketId': int(d["TicketId"]), 'ip': d["Ip"]}
             request_update = requests.post(url_update, data=json.dumps(postBody_update), headers=headers_update)
