@@ -13,7 +13,7 @@ class buttons_controller():
             array_buttons = []
 
             # request active tags by hostname
-            url = 'http://brbelm0itqa01/AIOServiceSTG/Estation/GetTagsByHostname/' + hostname
+            url = 'http://brbelm0apps02/AIOService/Estation/GetTagByHostname/' + hostname
             request = requests.get(url, verify = False)
             response = json.loads(request.content)
 
