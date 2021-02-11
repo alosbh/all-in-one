@@ -13,7 +13,7 @@ class buttons_controller():
             array_buttons = []
 
             # request active tags by hostname
-            url = 'http://brbelm0apps02/AIOService/Estation/GetTagByHostname/' + hostname
+            url = 'http://brbelm0apps02/AIOService/Estation/GetTagByEquipment/' + workstation
             request = requests.get(url, verify = False)
             response = json.loads(request.content)
 
@@ -21,15 +21,17 @@ class buttons_controller():
             # if there is none active, a default array is created
             for botao in response:
                 if botao['IsActive'] == True:
-                    array_buttons.append(botao['TagName'])
+                    array_buttons.append(botao['Name'])
 
             if not array_buttons:
                 array_buttons = ['LPA','FI', 'Boas Ideias', 'SCTC', 'Posto 5s', 'JIT suporte']
 
         except:
+            print("erro")
             array_buttons = ['LPA','FI', 'Boas Ideias', 'SCTC', 'Posto 5s', 'JIT suporte']
 
         # workstations with stopwatcher fucntion
+        print(array_buttons)
         stopwatch_array = ['GEWBOXPSA001', 'GEWBOXPSA002', 'GEWBOXTBSUBM', 'GEWBOXPSC001', 'GEWBOXPSCLEAN', 'GEWBOXPSPACK']
         if workstation not in stopwatch_array:
             pass
