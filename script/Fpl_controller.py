@@ -72,16 +72,6 @@ class Fpl_controller():
             self.set_blue()
             self.error_FPL()
 
-
-    def fpl_btn_functions(self):
-        self.btn_FPL.show()
-        self.btn_FPL.clicked.connect(self.body_FPL.show)
-        self.btn_close_FPL.clicked.connect(self.body_FPL.hide)
-        self.btn_validate_training.clicked.connect(self.show_validate_window)
-        self.btn_proceed_startvalidation.clicked.connect(self.validate_training)
-        self.btn_ok_successvalidation.clicked.connect(self.turnon_loginlogout)
-        self.btn_return_fail.clicked.connect(self.fail_return)
-
 # metodos de controle de tela
     def fail_return(self):
         self.lbl_nok_FPL_01.raise_()
@@ -128,7 +118,41 @@ class Fpl_controller():
             self.array_lbl_FPL[j].hide()
             self.array_btn_lbl_FPL[j].hide()
             j += 1
-    
+
+    def fpl_btn_functions(self):
+        self.btn_FPL.show()
+        #self.btn_FPL.clicked.connect(self.body_FPL.show)
+        #self.btn_close_FPL.clicked.connect(self.body_FPL.hide)
+        self.btn_validate_training.clicked.connect(self.show_validate_window)
+        self.btn_proceed_startvalidation.clicked.connect(self.validate_training)
+        self.btn_ok_successvalidation.clicked.connect(self.turnon_loginlogout)
+        self.btn_return_fail.clicked.connect(self.fail_return)
+
+        self.btn_FPL.clicked.connect(self.do_everything)
+        self.btn_close_FPL.clicked.connect(self.undo_everything)
+
+    def start_everything(self):
+        read = RFRead_controller.RFRead()
+        if OS_define.get_OS_name() == 0:
+            for attempts in range(60):
+                if attempts == 0:
+                    first_read = read
+
+                if read != first_read and read != None:
+
+    def do_everything(self):
+        if self.thread_vt.isRunning() == False:
+            self.ckb_checked_status()
+            Login_controller.set_flag(False)
+            self.thread_vt.vt.connect(self.update_window)
+            self.thread_vt.start_thread(1)
+
+    def undo_everything(self):
+        self.body_FPL.hide()
+        if self.thread_vt.isRunning() == True:
+            self.thread_vt.start_thread(2)
+        
+
 # coemeca a thread para leitura do cracha e confirmacao - desliga o loop que mantem login e logout ativo
     def validate_training(self):
         if self.thread_vt.isRunning() == False:
