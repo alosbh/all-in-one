@@ -13,7 +13,7 @@ from LPAactions_controller import *
 from Announcements_controller import *
 from jit_support_controller import *
 
-import MFRC522
+# import MFRC522
 import time
 import sys
 import os
@@ -237,6 +237,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.btn_goodideas.clicked.connect(self.load_bi)
         self.btn_lpa.clicked.connect(self.load_lpa)
         self.btn_custom.clicked.connect(self.custom_button_load)
+        self.btn_stopwatcher.clicked.connect(self.load_stopwatcher)
 
     def reset(self):
         self.Reset_Window.Show()
@@ -278,6 +279,11 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, jit_s
         self.hide5s()
         JigaAddr = self.thread.API.load_Jiga(self.thread.objStation.RouteId) 
         self.load_url_signal.signal.emit(JigaAddr)
+    
+    def load_stopwatcher(self):
+        self.hide5s()
+        url = "http://brbelm0itqa01/Stopwatch?workstationId="+ str(self.Station.Id) + "&userId=" + str(self.thread.DL.ID)
+        self.load_url_signal.signal.emit(url)
         
     def load_lpa(self):
         self.hide5s()
@@ -377,8 +383,8 @@ class MainThread(QThread):
         while(True):
             
             try:
-                # Read_ID = 51008294
-                Read_ID = (RFRead()) # Reads Badge ID
+                Read_ID = 51008294
+                # Read_ID = (RFRead()) # Reads Badge ID
             except Exception as e:
                 traceback.print_exc()
                 logger.error("RFID error: " + type(e).__name__)

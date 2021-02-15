@@ -289,6 +289,31 @@ class Ui_Logged_Screen(object):
         self.btn_5s.setIcon(icon5)
         self.btn_5s.setIconSize(QtCore.QSize(22, 22))
         self.btn_5s.setObjectName("btn_5s")
+
+        self.btn_stopwatcher = QtWidgets.QPushButton(self.sidebar_apps)
+        self.btn_stopwatcher.setGeometry(QtCore.QRect(0, 292, 234, 41))
+        font = QtGui.QFont()
+        font.setFamily("Inter UI")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setWeight(50)
+        self.btn_stopwatcher.setFont(font)
+        self.btn_stopwatcher.setStyleSheet("QPushButton {\n"
+"color:white;text-align:left;padding-left:20px;border:none;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"color:white;text-align:left;padding-left:20px;border:none;background-color:#5253ee\n"
+"}\n"
+"\n"
+"\n"
+"")
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/Img/posto-de-trabalho.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_stopwatcher.setIcon(icon5)
+        self.btn_stopwatcher.setIconSize(QtCore.QSize(22, 22))
+        self.btn_stopwatcher.setObjectName("btn_stopwatcher")
+
         self.btn_SCTC = QtWidgets.QPushButton(self.sidebar_apps)
         self.btn_SCTC.setGeometry(QtCore.QRect(0, 172, 234, 41))
         font = QtGui.QFont()
@@ -340,6 +365,7 @@ class Ui_Logged_Screen(object):
         self.btn_5s.raise_()
         self.btn_lpa.raise_()
         self.btn_support.raise_()
+        self.btn_stopwatcher.raise_()
         self.btn_goodideas.raise_()
         self.btn_SCTC.raise_()
         self.btn_custom.raise_()
@@ -1534,6 +1560,7 @@ class Ui_Logged_Screen(object):
         self.btn_instruction_sheet.setText(_translate("MainWindow", "   Ficha de Instrução"))
         self.btn_goodideas.setText(_translate("MainWindow", "   Boas Ideias"))
         self.btn_support.setText(_translate("MainWindow", "   Suporte"))
+        self.btn_stopwatcher.setText(_translate("MainWindow", "   Stopwatcher"))
         self.btn_5s.setText(_translate("MainWindow", "   Posto Ideal 5s"))
         self.btn_SCTC.setText(_translate("MainWindow", "     Ferramentas - SCTC"))
         self.btn_custom.setText(_translate("MainWindow", "   Custom"))
