@@ -18,15 +18,15 @@ class jit_support_controller():
     def support_screen_functions(self, workstation_name):
         self.btn_createticket_create.clicked.connect(lambda: self.create_ticket(workstation_name))
         self.btn_close_error.clicked.connect(lambda: self.lbl_support_error.setVisible(False))
-        self.btn_cancelticket_waiting.clicked.connect(lambda: self.update_ticket_status(5))
-        self.btn_cancelticket_pending.clicked.connect(lambda: self.update_ticket_status(5))
-        self.btn_cancelticket_inprogress.clicked.connect(lambda: self.update_ticket_status(5))
+        self.btn_cancelticket_waiting.clicked.connect(self.finish_ticket)
+        self.btn_cancelticket_pending.clicked.connect(self.finish_ticket)
+        self.btn_cancelticket_inprogress.clicked.connect(self.finish_ticket)
         self.btn_initiate_pending.clicked.connect(self.init_ticket)
         self.btn_initiate_inprogress.clicked.connect(self.finish_ticket)
         self.cbx_team_create.currentIndexChanged.connect(self.symptons_by_team)
         self.watchthread = WatchStatus()
         self.fill_cbx_teamssymptons(workstation_name)
-
+        self.user = "USER"
         self.client = mqtt.Client(workstation_name)
         self.client.connect("172.24.76.90")
         self.client.on_message=self.on_message
