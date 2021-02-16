@@ -156,7 +156,7 @@ class Fpl_controller():
 
     def get_user_by_badge(self, badge):
         # sim, um post com parametro na URL e que nao pode receber nada no body
-        url_getuser = 'http://brbelm0itqa01/OJT/ojtws/Authentication/GetUserByBadge?badge=' + badge
+        url_getuser = 'http://brbelm0itqa01.corp.jabil.org/OJT/ojtws/Authentication/GetUserByBadge?badge=' + badge
         print(url_getuser)
         headers_getuser = {'content-type': 'application/json'}
         body_getuser = { }

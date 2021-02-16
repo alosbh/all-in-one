@@ -253,7 +253,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
 
     def load_stopwatcher(self):
         self.hide5s()
-        url = "http://brbelm0itqa01/Stopwatch?workstationId="+ str(self.Station.Id) + "&userId=" + str(self.thread.DL.ID)
+        url = "http://brbelm0itqa01.corp.jabil.org/Stopwatch?workstationId="+ str(self.Station.Id) + "&userId=" + str(self.thread.DL.ID)
         self.load_url_signal.signal.emit(url)
 
     def jiga_list(self):

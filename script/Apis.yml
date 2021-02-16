@@ -1,6 +1,6 @@
 ---
     OJT: 
-        baseUrl: http://brbelm0itqa01/OJT/ojtws/
+        baseUrl: http://brbelm0itqa01.corp.jabil.org/OJT/ojtws/
 
         Configuration:
             ChangeLeaderPassword:
@@ -43,7 +43,7 @@
                 ArgumentsCount: 1  
 
     AIO: 
-        baseUrl: http://brbelm0apps02/AIOService/
+        baseUrl: http://brbelm0apps02.corp.jabil.org/AIOService/
 
         CNCS:
             GetDocumentsByFilter:
@@ -69,7 +69,7 @@
                 ArgumentsCount: 1
 
     AIO_Dashboard:
-        baseUrl: http://brbelm0itqa01/AIOService_AIODashboard/
+        baseUrl: http://brbelm0itqa01.corp.jabil.org/AIOService_AIODashboard/
 
         Prodash:
             GetActualUserAttributes:
