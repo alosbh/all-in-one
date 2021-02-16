@@ -7,6 +7,7 @@ class LPAactions_controller():
     def LPAactions_functions(self, workstation_name):
         url_LPAactions = 'http://brbelm0apps02.corp.jabil.org/AIOService/Lpa/GetOpenActionsByPost/?parameters=' + workstation_name
         request_LPAactions = requests.get(url_LPAactions)
+        print(url_LPAactions + " - elapsed time: " + request_LPAactions.elapsed.total_seconds())
         response_LPAactions = request_LPAactions.json()
         if response_LPAactions == 0:
             self.btn_actionsLPA.hide()

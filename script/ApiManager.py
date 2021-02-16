@@ -63,6 +63,8 @@ class ApiManager:
                         try:
                             if (regex.match(RequestType, 'Post', regex.I|regex.M)):
                                 response = requests.post(endPoint, parameterObject)
+                                print(endPoint + " - elapsed time: "+response.elapsed.total_seconds())
+
                                 
                                 
                                 return response.json();

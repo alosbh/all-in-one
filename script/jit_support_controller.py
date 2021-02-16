@@ -42,8 +42,11 @@ class jit_support_controller():
         try:
             request_team = requests.get(url = 'http://brbelm0itqa01.corp.jabil.org/JITAPI/Team/GetAllActive', verify=False)
             response_team = request_team.json()
+            print('http://brbelm0itqa01.corp.jabil.org/JITAPI/Team/GetAllActive' + " - elapsed time: " + request_team.elapsed.total_seconds())
+
             request_symptons = requests.get(url = 'http://brbelm0itqa01.corp.jabil.org/JITAPI/Symptom/GetAll', verify=False)
             response_symptons = request_symptons.json()
+            print('http://brbelm0itqa01.corp.jabil.org/JITAPI/Symptom/GetAll' + " - elapsed time: " + request_symptons.elapsed.total_seconds())
 
             # cria dict q relaciona nome e id do time
             for x in response_team:
