@@ -5,7 +5,7 @@ import json
 
 class LPAactions_controller():
     def LPAactions_functions(self, workstation_name):
-        url_LPAactions = 'http://brbelm0apps02/AIOService/Lpa/GetOpenActionsByPost/?parameters=' + workstation_name
+        url_LPAactions = 'http://brbelm0apps02.corp.jabil.org/AIOService/Lpa/GetOpenActionsByPost/?parameters=' + workstation_name
         request_LPAactions = requests.get(url_LPAactions)
         response_LPAactions = request_LPAactions.json()
         if response_LPAactions == 0:
@@ -19,6 +19,6 @@ class LPAactions_controller():
 
 
     def redirect_LPAactions(self, workstation_name):
-        url_LPAactions = 'http://brbelm0apps01/LPAEletronico/lpa/GetOpenActionsByPost/' + workstation_name
+        url_LPAactions = 'http://brbelm0apps01.corp.jabil.org/LPAEletronico/lpa/GetOpenActionsByPost/' + workstation_name
         self.body_web.load(QUrl(url_LPAactions))
         self.body_web.setVisible(True)
