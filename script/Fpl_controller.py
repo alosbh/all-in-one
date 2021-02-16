@@ -128,29 +128,47 @@ class Fpl_controller():
         self.btn_ok_successvalidation.clicked.connect(self.turnon_loginlogout)
         self.btn_return_fail.clicked.connect(self.fail_return)
 
-        self.btn_FPL.clicked.connect(self.do_everything)
+        self.btn_FPL.clicked.connect(self.start_everything)
         self.btn_close_FPL.clicked.connect(self.undo_everything)
+        self.btn_close_FPL_success.clicked.connect(body_FPL_success.hide)
+        self.btn_close_FPL_fail.clicked.connect(body_FPL_fail.hide)
 
     def start_everything(self):
-        read = RFRead_controller.RFRead()
+        print('comecou')
+        self.lbl_nok_FPL_01.raise_()
+        Login_controller.set_flag(False)
+        print('login desligado')
         if OS_define.get_OS_name() == 0:
             for attempts in range(60):
+                read = RFRead_controller.RFRead()
+                print('read = ' + read)
                 if attempts == 0:
                     first_read = read
+                    print('first read = ' + first_read)
 
                 if read != first_read and read != None:
+                    self.get_user_by_badge(read)
+                    self.ckb_checked_status()
+                    self.thread_vt.vt.connect(self.update_window)
+                    self.thread_vt.start_thread(1)
 
-    def do_everything(self):
-        if self.thread_vt.isRunning() == False:
-            self.ckb_checked_status()
-            Login_controller.set_flag(False)
-            self.thread_vt.vt.connect(self.update_window)
-            self.thread_vt.start_thread(1)
+                time.sleep(0.5)
+
+    def get_user_by_badge(self, badge):
+        # sim, um post com parametro na URL e que nao pode receber nada no body
+        url_getuser = 'http://brbelm0itqa01/OJT/ojtws/Authentication/GetUserByBadge?badge=' + badge
+        print(url_getuser)
+        headers_getuser = {'content-type': 'application/json'}
+        body_getuser = { }
+        request_getuser = requests.post(url_getuser, data=json.dumps(body_getuser), headers=headers_getuser)
+        print(request_getuser)
+        response_getuser = json.loads(request_getuser.content)
+        print(response_getuser)
+        return response_getuser['Registration']
 
     def undo_everything(self):
         self.body_FPL.hide()
-        if self.thread_vt.isRunning() == True:
-            self.thread_vt.start_thread(2)
+        Login_controller.set_flag(True)
         
 
 # coemeca a thread para leitura do cracha e confirmacao - desliga o loop que mantem login e logout ativo
@@ -170,10 +188,15 @@ class Fpl_controller():
     def ckb_checked_status(self):
         global docarray
         self.validated_doc = []
-        for ckb in self.ckb_docname:
-            if ckb.isChecked():
-                self.validated_doc.append(self.ckb_docname[ckb])
-        docarray = self.validated_doc
+        try:
+            for ckb in self.ckb_docname:
+                if ckb.isChecked():
+                    self.validated_doc.append(self.ckb_docname[ckb])
+            docarray = self.validated_doc
+            print('pegando info dos ckb')
+        except:
+            print('nao consegui os ckb')
+            self.update_window('fail')
 
 # metodos para passar variaveis pra thread
     def get_docarray():
@@ -186,11 +209,17 @@ class Fpl_controller():
     def update_window(self, window):
         self.btn_proceed_startvalidation.setEnabled(True)
         if window == 'success':
-            self.lbl_successvalidation_FPL_03.show()
-            self.lbl_successvalidation_FPL_03.raise_()
+            Login_controller.set_flag(True)
+            self.get_all_documents(2)
+            self.body_FPL.hide()
+            # self.lbl_successvalidation_FPL_03.show()
+            # self.lbl_successvalidation_FPL_03.raise_()
         elif window == 'fail':
-            self.lbl_failvalidation_FPL_04.show()
-            self.lbl_failvalidation_FPL_04.raise_()
+            Login_controller.set_flag(True)
+            self.get_all_documents(2)
+            self.body_FPL.hide()
+            # self.lbl_failvalidation_FPL_04.show()
+            # self.lbl_failvalidation_FPL_04.raise_()
         elif window == 'logout':
             Login_controller.set_flag(True)
             self.get_all_documents(2)
@@ -201,42 +230,41 @@ class thread_vt(QThread):
     vt = QtCore.pyqtSignal(str)
     
     def run(self):
-        if OS_define.get_OS_name() == 0:
-            for attempts in range(20):
-                read = RFRead_controller.RFRead()
-                if attempts == 0:
-                    first_read = read
+        # if OS_define.get_OS_name() == 0:
+        #     for attempts in range(20):
+        read = RFRead_controller.RFRead()
+        #         if attempts == 0:
+        #             first_read = read
 
-                if attempts == 19:
+        #         if attempts == 19:
+        #             self.vt.emit('fail')
+        #             return
+
+        #         if read != first_read and read != None:
+        if self.whatdo == 1:
+            try:
+                docarray = Fpl_controller.get_docarray()
+                dlname = Fpl_controller.get_dlname()
+                url_validatedocs = 'http://brbelm0mat81/ojt/ojt-service/trainings'
+                headers_validate = {'content-type': 'application/json'}
+                body_validate = {'TraineeName': dlname,
+                'traineeRegistration': first_read[1:],
+                'trainerRegistration': read[1:],
+                'documentInfoCardIds': docarray}
+                request_validatedocs = requests.post(url_validatedocs, data=json.dumps(body_validate), headers=headers_validate)
+
+                if request_validatedocs.status_code == 201:
+                    self.vt.emit('success')
+                    return
+                else:
                     self.vt.emit('fail')
                     return
-
-                if read != first_read and read != None:
-                    if self.whatdo == 1:
-                        try:
-                            docarray = Fpl_controller.get_docarray()
-                            dlname = Fpl_controller.get_dlname()
-                            url_validatedocs = 'http://brbelm0mat81/ojt/ojt-service/trainings'
-                            headers_validate = {'content-type': 'application/json'}
-                            body_validate = {'TraineeName': dlname,
-                            'traineeRegistration': first_read[1:],
-                            'trainerRegistration': read[1:],
-                            'documentInfoCardIds': docarray}
-                            request_validatedocs = requests.post(url_validatedocs, data=json.dumps(body_validate), headers=headers_validate)
-
-                            if request_validatedocs.status_code == 201:
-                                self.vt.emit('success')
-                                return
-                            else:
-                                self.vt.emit('fail')
-                                return
-                        except:
-                            self.vt.emit('fail')
-                            return
-                    elif self.whatdo == 2:
-                        self.vt.emit('logout')
-                        return
-                time.sleep(0.5)
+            except:
+                self.vt.emit('fail')
+                return
+        elif self.whatdo == 2:
+            self.vt.emit('logout')
+            return
         
     def start_thread(self, whatdo):
         self.whatdo = whatdo
