@@ -136,6 +136,7 @@ class Fpl_controller():
     def start_everything(self):
         global trainer_registration
         global DL_registration
+        self.body_FPL.show()
         print('comecou')
         self.lbl_nok_FPL_01.raise_()
         Login_controller.set_flag(False)
