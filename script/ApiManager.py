@@ -63,6 +63,7 @@ class ApiManager:
                         try:
                             if (regex.match(RequestType, 'Post', regex.I|regex.M)):
                                 response = requests.post(endPoint, parameterObject)
+                                print(response.elapsed.total_seconds())
                                 
                                 
                                 return response.json();
@@ -157,16 +158,9 @@ class ApiManager:
         r = requests.get(userIdurl)
         response = r.json()
         userId = response['idUser']
-        print(response)
-        print(userId)
-
         
-
-        baseUrl = "https://brbelm0itqa01/Stopwatch?workstationId=" + str(StationID) + "&userId=" + str(userId)
+        baseUrl = 'http://brbelm0apps01/GoodIdeas/GoodIdea/NewIdea?registration=' + str(BadgeID) + '&menuCollapse=true'
         
-        # baseUrl = 'http://brbelm0apps01/GoodIdeas/GoodIdea/NewIdea?registration='
-        # baseUrl = baseUrl + str(BadgeID)
-        # baseUrl = baseUrl + '&menuCollapse=true'
         print("BI URL addres: " + baseUrl)
         
         return baseUrl

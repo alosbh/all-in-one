@@ -9,19 +9,21 @@ class buttons_controller():
 
     def build_sidebar_buttons(self, hostname, workstation):
         try:
+            array_buttons = ['LPA','FI', 'Boas Ideias', 'SCTC', 'Posto 5s', 'JIT suporte']
+
             self.define_icons()
-            array_buttons = []
+            # array_buttons = []
 
-            # request active tags by hostname
-            url = 'http://brbelm0apps02/AIOService/Estation/GetTagByEquipment/' + workstation
-            request = requests.get(url, verify = False)
-            response = json.loads(request.content)
+            # # request active tags by hostname
+            # url = 'http://brbelm0apps02/AIOService/Estation/GetTagByEquipment/' + workstation
+            # request = requests.get(url, verify = False)
+            # response = json.loads(request.content)
 
-            # if tag is active append to array
-            # if there is none active, a default array is created
-            for botao in response:
-                if botao['IsActive'] == True:
-                    array_buttons.append(botao['Name'])
+            # # if tag is active append to array
+            # # if there is none active, a default array is created
+            # for botao in response:
+            #     if botao['IsActive'] == True:
+            #         array_buttons.append(botao['Name'])
 
             if not array_buttons:
                 array_buttons = ['LPA','FI', 'Boas Ideias', 'SCTC', 'Posto 5s', 'JIT suporte']
@@ -33,11 +35,17 @@ class buttons_controller():
         # workstations with stopwatcher fucntion
         print(array_buttons)
         stopwatch_array = ['GEWBOXPSA001', 'GEWBOXPSA002', 'GEWBOXTBSUBM', 'GEWBOXPSC001', 'GEWBOXPSCLEAN', 'GEWBOXPSPACK']
+        OR_monitor_array = ['INGCUSLIB001', 'INGCUSPAM001', 'INGCUSHOR001', 'INGCUSMIN001', 'INGCUSDIA001']
         if workstation not in stopwatch_array:
             pass
         else:
             array_buttons.append('Stopwatcher')
-        
+
+        if workstation not in OR_monitor_array:
+            pass
+        else:
+            array_buttons.append('OR Monitor')
+
         self.general_buttons()
         self.create_buttons(array_buttons)
     
@@ -72,6 +80,7 @@ class buttons_controller():
                 self.btn_OR.setObjectName("btn_OR")
                 self.btn_OR.setIcon(self.icon_FI)
                 self.btn_OR.setText("   OR Monitor")
+                self.btn_OR.clicked.connect(self.load_ORMonitor)
             elif button_name == 'Boas Ideias':
                 self.btn_goodideas = QtWidgets.QPushButton(self.sidebar_apps)
                 self.draw_buttons(self.btn_goodideas, y_position)

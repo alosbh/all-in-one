@@ -15,14 +15,20 @@ import sys
 
 class Fpl_controller():
     def setup_fpl(self, DLname, DLid):
-        global DL_Name
-        DL_Name = DLname
-        self.DLid = DLid
-        self.thread_vt = thread_vt()
         self.body_FPL.hide()
         self.body_FPL_error.hide()
-        self.get_all_documents(1)
-        self.widget_FPL_2.hide()
+        self.btn_FPL.hide()
+        self.lbl_value_number_invalidFPL.hide()
+
+    # def setup_fpl(self, DLname, DLid):
+    #     global DL_Name
+    #     DL_Name = DLname
+    #     self.DLid = DLid
+    #     self.thread_vt = thread_vt()
+    #     self.body_FPL.hide()
+    #     self.body_FPL_error.hide()
+    #     self.get_all_documents(1)
+    #     self.widget_FPL_2.hide()
         
 # pega info dos documentos e adiciona em arrays para gerar widgets na janela
     def get_all_documents(self, flag):
