@@ -160,7 +160,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.Station = Station
         self.DL = DL()
         self.Raspberry = Raspberry
-        self.build_sidebar_buttons(self.Raspberry.Name, self.Station.Name)
+        self.build_sidebar_buttons(self.Raspberry.Name, self.Station.Name, self.Station.RouteName)
         self.generate_5s(self.Station.Name)
         self.setup_support_screen(self.Station.Name)
 
@@ -254,6 +254,9 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
     def load_stopwatcher(self):
         self.hide5s()
         url = "http://brbelm0itqa01/Stopwatch?workstationId="+ str(self.Station.Id) + "&userId=" + str(self.thread.DL.ID)
+        print("############")
+        print(url)
+        print("############")
         self.load_url_signal.signal.emit(url)
 
     def jiga_list(self):

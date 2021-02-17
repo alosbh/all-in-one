@@ -7,7 +7,7 @@ array_urls = ([])
 
 class buttons_controller():
 
-    def build_sidebar_buttons(self, hostname, workstation):
+    def build_sidebar_buttons(self, hostname, workstation, route):
         try:
             array_buttons = ['LPA','FI', 'Boas Ideias', 'SCTC', 'Posto 5s', 'JIT suporte']
 
@@ -34,9 +34,11 @@ class buttons_controller():
 
         # workstations with stopwatcher fucntion
         print(array_buttons)
-        stopwatch_array = ['GEWBOXPSA001', 'GEWBOXPSA002', 'GEWBOXTBSUBM', 'GEWBOXPSC001', 'GEWBOXPSCLEAN', 'GEWBOXPSPACK']
+        # stopwatch_array = ['GEWBOXPSA001', 'GEWBOXPSA002', 'GEWBOXTBSUBM', 'GEWBOXPSC001', 'GEWBOXPSCLEAN', 'GEWBOXPSPACK']
+        stopwatch_array = ['GE Wind', 'GE WIND CONVERTER', 'GE WIND Top Box']
         OR_monitor_array = ['INGCUSLIB001', 'INGCUSPAM001', 'INGCUSHOR001', 'INGCUSMIN001', 'INGCUSDIA001']
-        if workstation not in stopwatch_array:
+        print("Linha: " + route)
+        if route not in stopwatch_array:
             pass
         else:
             array_buttons.append('Stopwatcher')

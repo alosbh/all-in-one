@@ -57,13 +57,14 @@ class ApiManager:
                         ArgumentsCount = webServiceObject._WebService__yamlContents[prop][key]['ArgumentsCount']; 
                     
 
-                    
-                        #print ("link: " + endPoint+str(parameterObject))
+                        print("##########")
+                        print ("link: " + endPoint+str(parameterObject))
 
                         try:
                             if (regex.match(RequestType, 'Post', regex.I|regex.M)):
                                 response = requests.post(endPoint, parameterObject)
                                 print(response.elapsed.total_seconds())
+                                print("##########")
                                 
                                 
                                 return response.json();
@@ -72,7 +73,8 @@ class ApiManager:
                                 response = requests.get(endPoint+parameterObject)
                                 
                                 if (response.status_code==200):
-                                    
+                                    print(response.elapsed.total_seconds())
+                                    print("##########")
                                     return response.json()
                                 
                                 elif (returnData.status_code==404):
@@ -194,8 +196,10 @@ class ApiManager:
 
     def load_5s(self,Workstation):
 
+        
         baseUrl = 'http://brbelm0itqa01/AIOServiceSTG/Images5S/GetAll?query='
         baseUrl = baseUrl + str(Workstation)
+        print("###########")
         logger.error(baseUrl)
         try:
             response = requests.get(baseUrl)
