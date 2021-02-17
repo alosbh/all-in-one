@@ -15,22 +15,33 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 # 0 = received // 1 = sent // 2 = accepted // 3 = declined // 4 = ongoing // 5 = done
 class jit_support_controller():
 
-    def support_screen_functions(self, workstation_name):
+    def setup_support_screen(self, workstation_name):
+        try:
+            self.setup_mqtt(workstation_name)
+            self.support_screen_ui_functions(workstation_name)
+            self.fill_cbx_teamssymptons(workstation_name)
+            self.watchthread = WatchStatus()
+        except:
+            self.btn_JIT.setText("   INDISPONIVEL")
+            self.btn_JIT.clicked.disconnect()
+
+    def support_screen_ui_functions(self, workstation_name):
         self.btn_createticket_create.clicked.connect(lambda: self.create_ticket(workstation_name))
         self.btn_close_error.clicked.connect(lambda: self.lbl_support_error.setVisible(False))
-        self.btn_cancelticket_waiting.clicked.connect(lambda: self.update_ticket_status(5))
-        self.btn_cancelticket_pending.clicked.connect(lambda: self.update_ticket_status(5))
-        self.btn_cancelticket_inprogress.clicked.connect(lambda: self.update_ticket_status(5))
+        self.btn_cancelticket_waiting.clicked.connect(self.finish_ticket)
+        self.btn_cancelticket_pending.clicked.connect(self.finish_ticket)
+        self.btn_cancelticket_inprogress.clicked.connect(self.finish_ticket)
         self.btn_initiate_pending.clicked.connect(self.init_ticket)
         self.btn_initiate_inprogress.clicked.connect(self.finish_ticket)
         self.cbx_team_create.currentIndexChanged.connect(self.symptons_by_team)
-        self.watchthread = WatchStatus()
-        self.fill_cbx_teamssymptons(workstation_name)
-
+    
+    def setup_mqtt(self, workstation_name):
+        self.user = "USER"
         self.client = mqtt.Client(workstation_name)
         self.client.connect("172.24.76.90")
         self.client.on_message=self.on_message
         self.client.loop_start()
+
     
 # creates and fills dictionaries with teams, symptons and it's ids - adds itens to the array that is used to fill comboboxes
     def fill_cbx_teamssymptons(self, workstation_name):
@@ -42,8 +53,10 @@ class jit_support_controller():
         try:
             request_team = requests.get(url = 'http://brbelm0itqa01.corp.jabil.org/JITAPI/Team/GetAllActive', verify=False)
             response_team = request_team.json()
-            request_symptons = requests.get(url = 'http://brbelm0itqa01.corp.jabil.org/JITAPI/Symptom/GetAll', verify=False)
+            print(request_team.elapsed.total_seconds())
+            request_symptons = requests.get(url = 'http://brbelm0itqa01/JITAPI/Symptom/GetAll', verify=False)
             response_symptons = request_symptons.json()
+            print(request_symptons.elapsed.total_seconds())
 
             # cria dict q relaciona nome e id do time
             for x in response_team:

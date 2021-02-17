@@ -160,9 +160,9 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.Station = Station
         self.DL = DL()
         self.Raspberry = Raspberry
+        self.build_sidebar_buttons(self.Raspberry.Name, self.Station.Name, self.Station.RouteName)
         self.generate_5s(self.Station.Name)
-        self.support_screen_functions(self.Station.Name)
-        self.build_sidebar_buttons(self.Raspberry.Name, self.Station.Name)
+        self.setup_support_screen(self.Station.Name)
 
         # Fills labels with workstation values
         self.lbl_value_workstation.setText(str(self.Station.Name)) 
@@ -247,13 +247,16 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         print("print: terminou de carregar")
         self.FI_button.setEnabled(True)
 
-    def custom_button_load(self):
+    def load_ORMonitor(self):
         CustomAddr = self.thread.API.custom_button(self.Station.Area,self.Station.AreaTrim, self.Station.RouteMin, self.Station.Index)
         self.load_url_signal.signal.emit(CustomAddr)
 
     def load_stopwatcher(self):
         self.hide5s()
-        url = "http://brbelm0itqa01.corp.jabil.org/Stopwatch?workstationId="+ str(self.Station.Id) + "&userId=" + str(self.thread.DL.ID)
+        url = "http://brbelm0itqa01/Stopwatch?workstationId="+ str(self.Station.Id) + "&userId=" + str(self.thread.DL.ID)
+        print("############")
+        print(url)
+        print("############")
         self.load_url_signal.signal.emit(url)
 
     def jiga_list(self):
