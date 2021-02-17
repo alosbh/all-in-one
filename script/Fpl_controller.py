@@ -15,20 +15,14 @@ import sys
 
 class Fpl_controller():
     def setup_fpl(self, DLname, DLid):
+        global DL_Name
+        DL_Name = DLname
+        self.DLid = DLid
+        self.thread_vt = thread_vt()
         self.body_FPL.hide()
         self.body_FPL_error.hide()
-        self.btn_FPL.hide()
-        self.lbl_value_number_invalidFPL.hide()
-
-    # def setup_fpl(self, DLname, DLid):
-    #     global DL_Name
-    #     DL_Name = DLname
-    #     self.DLid = DLid
-    #     self.thread_vt = thread_vt()
-    #     self.body_FPL.hide()
-    #     self.body_FPL_error.hide()
-    #     self.get_all_documents(1)
-    #     self.widget_FPL_2.hide()
+        self.get_all_documents(1)
+        self.widget_FPL_2.hide()
         
 # pega info dos documentos e adiciona em arrays para gerar widgets na janela
     def get_all_documents(self, flag):
@@ -140,6 +134,8 @@ class Fpl_controller():
         self.btn_close_FPL_fail.clicked.connect(body_FPL_fail.hide)
 
     def start_everything(self):
+        global trainer_registration
+        global DL_registration
         print('comecou')
         self.lbl_nok_FPL_01.raise_()
         Login_controller.set_flag(False)
@@ -153,7 +149,8 @@ class Fpl_controller():
                     print('first read = ' + first_read)
 
                 if read != first_read and read != None:
-                    self.get_user_by_badge(read)
+                    trainer_registration = self.get_user_by_badge(read)
+                    DL_registration = self.get_user_by_badge(first_read)
                     self.ckb_checked_status()
                     self.thread_vt.vt.connect(self.update_window)
                     self.thread_vt.start_thread(1)
@@ -210,6 +207,12 @@ class Fpl_controller():
     
     def get_dlname():
         return DL_Name
+        
+    def get_trainer_registration():
+        return trainer_registration
+    
+    def get_DL_registration():
+        return DL_registration
 
 # decide qual janela vai subir
     def update_window(self, window):
@@ -251,13 +254,18 @@ class thread_vt(QThread):
             try:
                 docarray = Fpl_controller.get_docarray()
                 dlname = Fpl_controller.get_dlname()
+                trainer_registration = Fpl_controller.get_trainer_registration()
+                DL_registration = Fpl_controller.get_DL_registration()
+
                 url_validatedocs = 'http://brbelm0mat81/ojt/ojt-service/trainings'
                 headers_validate = {'content-type': 'application/json'}
                 body_validate = {'TraineeName': dlname,
-                'traineeRegistration': first_read[1:],
-                'trainerRegistration': read[1:],
+                'traineeRegistration': DL_registration,
+                'trainerRegistration': trainer_registration,
                 'documentInfoCardIds': docarray}
+                print(body_validate)
                 request_validatedocs = requests.post(url_validatedocs, data=json.dumps(body_validate), headers=headers_validate)
+                print(request_validatedocs)
 
                 if request_validatedocs.status_code == 201:
                     self.vt.emit('success')
