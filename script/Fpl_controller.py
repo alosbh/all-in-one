@@ -145,22 +145,9 @@ class Fpl_controller():
         self.lbl_nok_FPL_01.raise_()
         Login_controller.set_flag(False)
         print('login desligado')
-        if OS_define.get_OS_name() == 0:
-            for attempts in range(60):
-                read = RFRead_controller.RFRead()
-                print('read = ' + read)
-                if attempts == 0:
-                    first_read = read
-                    print('first read = ' + first_read)
-
-                if read != first_read and read != None:
-                    trainer_registration = self.get_user_by_badge(read)
-                    DL_registration = self.get_user_by_badge(first_read)
-                    self.ckb_checked_status()
-                    self.thread_vt.vt.connect(self.update_window)
-                    self.thread_vt.start_thread(1)
-
-                time.sleep(0.5)
+        self.thread_vt.vt.connect(self.update_window)
+        self.thread_vt.start_thread(1)
+        
 
     def get_user_by_badge(self, badge):
         # sim, um post com parametro na URL e que nao pode receber nada no body
@@ -255,6 +242,21 @@ class thread_vt(QThread):
         #             return
 
         #         if read != first_read and read != None:
+        if OS_define.get_OS_name() == 0:
+            for attempts in range(60):
+                read = RFRead_controller.RFRead()
+                print('read = ' + read)
+                if attempts == 0:
+                    first_read = read
+                    print('first read = ' + first_read)
+
+                if read != first_read and read != None:
+                    trainer_registration = Fpl_controller.get_user_by_badge(read)
+                    DL_registration = Fpl_controller.get_user_by_badge(first_read)
+                    Fpl_controller.ckb_checked_status()
+
+                time.sleep(0.5)
+
         if self.whatdo == 1:
             try:
                 docarray = Fpl_controller.get_docarray()
