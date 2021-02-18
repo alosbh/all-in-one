@@ -131,7 +131,7 @@ class Fpl_controller():
         Login_controller.set_flag(False)
         print('login desligado')
         self.thread_vt.vt.connect(self.update_window)
-        self.thread_vt.ar.connect(self.ckb_checked_status)
+        self.thread_vt.ar.connect(self.get_docarray)
         self.thread_vt.start_thread()
         print('thread ligada')
 
