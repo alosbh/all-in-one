@@ -202,12 +202,12 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
     def SetupUser(self, DL):
         # self.LPAactions_functions(self.Station.Name)
         # self.load_announcements_label()
-        # self.lbl_value_name.setText(DL.Name)
-        # self.lbl_value_yield.setText(DL.Yield)
-        # self.lbl_value_productivity.setText(DL.Productivity)
-        # self.lbl_value_goodideas.setText('-')
-        # self.lbl_value_jabilcoins.setText('-')
-        # self.lbl_user_avatar.setPixmap(DL.picture)
+        self.lbl_value_name.setText(DL.Name)
+        self.lbl_value_yield.setText(DL.Yield)
+        self.lbl_value_productivity.setText(DL.Productivity)
+        self.lbl_value_goodideas.setText('-')
+        self.lbl_value_jabilcoins.setText('-')
+        self.lbl_user_avatar.setPixmap(DL.picture)
         self.setup_fpl(DL.Name, DL.ID_trim)
         
     # Method to show the window widget 
