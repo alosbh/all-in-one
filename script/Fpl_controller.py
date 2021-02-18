@@ -195,21 +195,13 @@ class Fpl_controller():
     def update_window(self, window):
         self.btn_proceed_startvalidation.setEnabled(True)
         if window == 'success':
-            Login_controller.set_flag(True)
             self.get_all_documents(2)
             self.body_FPL.hide()
-            # self.lbl_successvalidation_FPL_03.show()
-            # self.lbl_successvalidation_FPL_03.raise_()
+            self.body_FPL_success.show()
         elif window == 'fail':
-            Login_controller.set_flag(True)
             self.get_all_documents(2)
             self.body_FPL.hide()
-            # self.lbl_failvalidation_FPL_04.show()
-            # self.lbl_failvalidation_FPL_04.raise_()
-        elif window == 'logout':
-            Login_controller.set_flag(True)
-            self.get_all_documents(2)
-            self.body_FPL.hide()
+            self.body_FPL_fail.show()
 
 # pega o cracha no leitor(dl) no momento do clique. quando mudar, pega o que foi inserido(responsavel) e faz o request de validacao. depois liga o login/logout novamente
 class thread_vt(QThread):
@@ -260,16 +252,18 @@ class thread_vt(QThread):
                         print(request_validatedocs)
         
                         if request_validatedocs.status_code == 201:
-                            time.sleep(10)
                             self.vt.emit('success')
+                            time.sleep(10)
                             return
                         else:
-                            time.sleep(10)
                             self.vt.emit('fail')
+                            time.sleep(10)
+                            Login_controller.set_flag(True)
                             return
                     except:
-                        time.sleep(10)
                         self.vt.emit('fail')
+                        time.sleep(10)
+                        Login_controller.set_flag(True)
                         return
                 time.sleep(0.5)
 
