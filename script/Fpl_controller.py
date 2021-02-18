@@ -237,8 +237,8 @@ class thread_vt(QThread):
                 if read != first_read and read != None:
                     print('comecando')
                     self.ar.emit()
-                    trainer_registration = self.get_user_by_badge(read)
                     DL_registration = self.get_user_by_badge(first_read)
+                    trainer_registration = self.get_user_by_badge(read)
                     #Fpl_controller.ckb_checked_status()
                     try:
                         print('1')
@@ -248,11 +248,6 @@ class thread_vt(QThread):
                         dlname = Fpl_controller.get_dlname()
                         print('3')
                         print(dlname)
-                        trainer_registration = Fpl_controller.get_trainer_registration()
-                        print('4')
-                        print(trainer_registration)
-                        DL_registration = Fpl_controller.get_DL_registration()
-                        print(DL_registration)
         
                         url_validatedocs = 'http://brbelm0mat81/ojt/ojt-service/trainings'
                         headers_validate = {'content-type': 'application/json'}
