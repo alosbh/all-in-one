@@ -260,12 +260,15 @@ class thread_vt(QThread):
                         print(request_validatedocs)
         
                         if request_validatedocs.status_code == 201:
+                            time.sleep(10)
                             self.vt.emit('success')
                             return
                         else:
+                            time.sleep(10)
                             self.vt.emit('fail')
                             return
                     except:
+                        time.sleep(10)
                         self.vt.emit('fail')
                         return
                 time.sleep(0.5)
