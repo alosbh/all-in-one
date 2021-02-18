@@ -280,7 +280,7 @@ class thread_vt(QThread):
         # elif self.whatdo == 2:
         #     self.vt.emit('logout')
         #     return
-    def get_user_by_badge(badge):
+    def get_user_by_badge(self, badge):
         # sim, um post com parametro na URL e que nao pode receber nada no body
         print('geting user ----------------------------------------------------------------')
         url_getuser = 'http://brbelm0itqa01.corp.jabil.org/OJT/ojtws/Authentication/GetUserByBadge?badge=' + badge
