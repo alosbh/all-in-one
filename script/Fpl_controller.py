@@ -145,17 +145,15 @@ class Fpl_controller():
 
 # se ckbx estiver marcado adiciona a um array que vai ser usado no request que valida documentos
     def get_docarray(self):
-        global docarray
-        self.validated_doc = []
+        validated_doc = []
         try:
             for ckb in self.ckb_docname:
                 if ckb.isChecked():
-                    self.validated_doc.append(self.ckb_docname[ckb])
-            docarray = self.validated_doc
+                    validated_doc.append(self.ckb_docname[ckb])
             print('ckb-----')
-            print(self.validated_doc)
+            print(validated_doc)
             print('ckb-----')
-            return docarray
+            return validated_doc
         except:
             print('nao consegui os ckb')
             self.update_window('fail')
