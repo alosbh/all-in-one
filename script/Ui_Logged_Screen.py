@@ -1585,25 +1585,6 @@ class Ui_Logged_Screen(object):
         self.lbl_invalid_trainings.setStyleSheet("border: solid white;")
         self.lbl_invalid_trainings.setWordWrap(True)
         self.lbl_invalid_trainings.setObjectName("lbl_invalid_trainings")
-        self.btn_validate_training = QtWidgets.QPushButton(self.lbl_nok_FPL_01)
-        self.btn_validate_training.setGeometry(QtCore.QRect(30, 80, 261, 41))
-        font = QtGui.QFont()
-        font.setFamily("Inter UI")
-        font.setPointSize(14)
-        self.btn_validate_training.setFont(font)
-        self.btn_validate_training.setStyleSheet("QPushButton{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(86, 149, 246);\n"
-"border: solid white;\n"
-"}\n"
-"QPushButton:hover {\n"
-"color: rgb(86, 149, 246);\n"
-"background-color: rgb(255, 255, 255);\n"
-"border: 2px  solid  rgb(86, 149, 246);\n"
-"}\n"
-"border-radius: 8px;\n"
-"")
-        self.btn_validate_training.setObjectName("btn_validate_training")
         self.lbl_ok_FPL_00 = QtWidgets.QWidget(self.body_validation_flux)
         self.lbl_ok_FPL_00.setGeometry(QtCore.QRect(0, 0, 291, 131))
         self.lbl_ok_FPL_00.setStyleSheet("")
@@ -1621,115 +1602,7 @@ class Ui_Logged_Screen(object):
 "border: 0px  solid rgb(0,0,0);")
         self.lbl_thumbsup.setText("")
         self.lbl_thumbsup.setObjectName("lbl_thumbsup")
-        self.lbl_failvalidation_FPL_04 = QtWidgets.QWidget(self.body_validation_flux)
-        self.lbl_failvalidation_FPL_04.setGeometry(QtCore.QRect(0, 0, 291, 131))
-        self.lbl_failvalidation_FPL_04.setObjectName("lbl_failvalidation_FPL_04")
-        self.lbl_texterror_fail = QtWidgets.QLabel(self.lbl_failvalidation_FPL_04)
-        self.lbl_texterror_fail.setGeometry(QtCore.QRect(70, 20, 211, 81))
-        self.lbl_texterror_fail.setStyleSheet("border-radius: 0px;\n"
-"border: 0px  solid rgb(0,0,0);")
-        self.lbl_texterror_fail.setWordWrap(True)
-        self.lbl_texterror_fail.setObjectName("lbl_texterror_fail")
-        self.lbl_error_fail = QtWidgets.QLabel(self.lbl_failvalidation_FPL_04)
-        self.lbl_error_fail.setGeometry(QtCore.QRect(0, 40, 61, 51))
-        self.lbl_error_fail.setStyleSheet("image: url(:/Img/red_error.png);\n"
-"border-radius: 0px;\n"
-"border: 0px  solid rgb(0,0,0);")
-        self.lbl_error_fail.setText("")
-        self.lbl_error_fail.setObjectName("lbl_error_fail")
-        self.btn_return_fail = QtWidgets.QPushButton(self.lbl_failvalidation_FPL_04)
-        self.btn_return_fail.setGeometry(QtCore.QRect(90, 100, 141, 21))
-        font = QtGui.QFont()
-        font.setFamily("Inter UI")
-        font.setPointSize(11)
-        self.btn_return_fail.setFont(font)
-        self.btn_return_fail.setStyleSheet("QPushButton{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(86, 149, 246);\n"
-"border: solid white;\n"
-"}\n"
-"QPushButton:hover {\n"
-"color: rgb(86, 149, 246);\n"
-"background-color: rgb(255, 255, 255);\n"
-"border: 2px  solid  rgb(86, 149, 246);\n"
-"}\n"
-"border-radius: 8px;\n"
-"")
-        self.btn_return_fail.setObjectName("btn_return_fail")
-        self.lbl_successvalidation_FPL_03 = QtWidgets.QWidget(self.body_validation_flux)
-        self.lbl_successvalidation_FPL_03.setGeometry(QtCore.QRect(0, 0, 291, 131))
-        self.lbl_successvalidation_FPL_03.setObjectName("lbl_successvalidation_FPL_03")
-        self.lbl_text_successvalidation = QtWidgets.QLabel(self.lbl_successvalidation_FPL_03)
-        self.lbl_text_successvalidation.setGeometry(QtCore.QRect(70, 10, 211, 81))
-        self.lbl_text_successvalidation.setStyleSheet("border-radius: 0px;\n"
-"border: 0px  solid rgb(0,0,0);")
-        self.lbl_text_successvalidation.setWordWrap(True)
-        self.lbl_text_successvalidation.setObjectName("lbl_text_successvalidation")
-        self.lbl_greencheck_successvalidation = QtWidgets.QLabel(self.lbl_successvalidation_FPL_03)
-        self.lbl_greencheck_successvalidation.setGeometry(QtCore.QRect(0, 40, 61, 51))
-        self.lbl_greencheck_successvalidation.setStyleSheet("image: url(:/Img/greencheck.png);\n"
-"border-radius: 0px;\n"
-"border: 0px  solid rgb(0,0,0);")
-        self.lbl_greencheck_successvalidation.setText("")
-        self.lbl_greencheck_successvalidation.setObjectName("lbl_greencheck_successvalidation")
-        self.btn_ok_successvalidation = QtWidgets.QPushButton(self.lbl_successvalidation_FPL_03)
-        self.btn_ok_successvalidation.setGeometry(QtCore.QRect(90, 90, 141, 21))
-        font = QtGui.QFont()
-        font.setFamily("Inter UI")
-        font.setPointSize(11)
-        self.btn_ok_successvalidation.setFont(font)
-        self.btn_ok_successvalidation.setStyleSheet("QPushButton{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(86, 149, 246);\n"
-"border: solid white;\n"
-"}\n"
-"QPushButton:hover {\n"
-"color: rgb(86, 149, 246);\n"
-"background-color: rgb(255, 255, 255);\n"
-"border: 2px  solid  rgb(86, 149, 246);\n"
-"}\n"
-"border-radius: 8px;\n"
-"")
-        self.btn_ok_successvalidation.setObjectName("btn_ok_successvalidation")
-        self.lbl_startvalidation_FPL_02 = QtWidgets.QWidget(self.body_validation_flux)
-        self.lbl_startvalidation_FPL_02.setGeometry(QtCore.QRect(0, 0, 291, 131))
-        self.lbl_startvalidation_FPL_02.setObjectName("lbl_startvalidation_FPL_02")
-        self.lbl_instructions_startvalidation = QtWidgets.QLabel(self.lbl_startvalidation_FPL_02)
-        self.lbl_instructions_startvalidation.setGeometry(QtCore.QRect(50, 10, 231, 81))
-        self.lbl_instructions_startvalidation.setStyleSheet("border-radius: 0px;\n"
-"border: 0px  solid rgb(0,0,0);")
-        self.lbl_instructions_startvalidation.setWordWrap(True)
-        self.lbl_instructions_startvalidation.setObjectName("lbl_instructions_startvalidation")
-        self.lbl_warning_02 = QtWidgets.QLabel(self.lbl_startvalidation_FPL_02)
-        self.lbl_warning_02.setGeometry(QtCore.QRect(0, 40, 41, 31))
-        self.lbl_warning_02.setStyleSheet("image: url(:/Img/yellowerror.png);\n"
-"border-radius: 0px;\n"
-"border: 0px  solid rgb(0,0,0);")
-        self.lbl_warning_02.setText("")
-        self.lbl_warning_02.setObjectName("lbl_warning_02")
-        self.btn_proceed_startvalidation = QtWidgets.QPushButton(self.lbl_startvalidation_FPL_02)
-        self.btn_proceed_startvalidation.setGeometry(QtCore.QRect(85, 100, 141, 21))
-        font = QtGui.QFont()
-        font.setFamily("Inter UI")
-        font.setPointSize(11)
-        self.btn_proceed_startvalidation.setFont(font)
-        self.btn_proceed_startvalidation.setStyleSheet("QPushButton{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(86, 149, 246);\n"
-"border: solid white;\n"
-"}\n"
-"QPushButton:hover {\n"
-"color: rgb(86, 149, 246);\n"
-"background-color: rgb(255, 255, 255);\n"
-"border: 2px  solid  rgb(86, 149, 246);\n"
-"}\n"
-"border-radius: 8px;\n"
-"")
-        self.btn_proceed_startvalidation.setObjectName("btn_proceed_startvalidation")
         self.lbl_ok_FPL_00.raise_()
-        self.lbl_startvalidation_FPL_02.raise_()
-        self.lbl_successvalidation_FPL_03.raise_()
-        self.lbl_failvalidation_FPL_04.raise_()
         self.lbl_nok_FPL_01.raise_()
         self.body_FPL_error = QtWidgets.QWidget(self.main)
         self.body_FPL_error.setGeometry(QtCore.QRect(410, 20, 361, 101))
@@ -1760,7 +1633,7 @@ class Ui_Logged_Screen(object):
         self.lbl_text_FPL_error.setWordWrap(True)
         self.lbl_text_FPL_error.setObjectName("lbl_text_FPL_error")
         self.body_FPL_success = QtWidgets.QWidget(self.main)
-        self.body_FPL_success.setGeometry(QtCore.QRect(410, 150, 361, 101))
+        self.body_FPL_success.setGeometry(QtCore.QRect(410, 20, 361, 101))
         self.body_FPL_success.setStyleSheet("QWidget{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;\n"
@@ -1788,7 +1661,7 @@ class Ui_Logged_Screen(object):
         self.lbl_text_FPL_success.setWordWrap(True)
         self.lbl_text_FPL_success.setObjectName("lbl_text_FPL_success")
         self.body_FPL_fail = QtWidgets.QWidget(self.main)
-        self.body_FPL_fail.setGeometry(QtCore.QRect(410, 280, 361, 101))
+        self.body_FPL_fail.setGeometry(QtCore.QRect(410, 20, 361, 101))
         self.body_FPL_fail.setStyleSheet("QWidget{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;\n"
@@ -1921,14 +1794,7 @@ class Ui_Logged_Screen(object):
         self.lbl_FPL_6.setText(_translate("MainWindow", "TextLabel"))
         self.lbl_FPL_7.setText(_translate("MainWindow", "TextLabel"))
         self.lbl_invalid_trainings.setText(_translate("MainWindow", "Parece que você tem treinamentos pendentes. Chame um responsável para validá-los."))
-        self.btn_validate_training.setText(_translate("MainWindow", "Validar Treinamento"))
         self.lbl_allgood_2.setText(_translate("MainWindow", "Tudo ok por aqui!"))
-        self.lbl_texterror_fail.setText(_translate("MainWindow", "Ops, algo deu errado!                            Insira novamente o cartão do operador, clique em \"Voltar\" e repita o processo."))
-        self.btn_return_fail.setText(_translate("MainWindow", "Voltar"))
-        self.lbl_text_successvalidation.setText(_translate("MainWindow", "Treinamentos validados!                      Clique em Ok e insira novamente o crachá do operador."))
-        self.btn_ok_successvalidation.setText(_translate("MainWindow", "Ok"))
-        self.lbl_instructions_startvalidation.setText(_translate("MainWindow", "Clicando em prosseguir: retire o crachá do operador do leitor, insira o do responsável e aguarde a janela de confirmação aparecer. Você terá 20 segundos para realizar esse processo."))
-        self.btn_proceed_startvalidation.setText(_translate("MainWindow", "Prosseguir"))
         self.lbl_text_FPL_error.setText(_translate("MainWindow", "Ops, algo deu errado!                             Faça login novamente para carregar os documentos."))
         self.lbl_text_FPL_success.setText(_translate("MainWindow", "Treinamentos validados!"))
         self.lbl_text_FPL_fail.setText(_translate("MainWindow", "Algo deu errado, tente validar os documentos novamente."))
