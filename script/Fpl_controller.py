@@ -292,7 +292,7 @@ class thread_vt(QThread):
                     except:
                         self.vt.emit('fail')
                         return
-                            time.sleep(0.5)
+                time.sleep(0.5)
 
         #if self.whatdo == 1:
         
