@@ -166,7 +166,6 @@ class Fpl_controller():
 
 # decide qual janela vai subir
     def update_window(self, window):
-        self.btn_proceed_startvalidation.setEnabled(True)
         if window == 'success':
             self.get_all_documents(2)
             self.body_FPL.hide()
