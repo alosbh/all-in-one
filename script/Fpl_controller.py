@@ -258,45 +258,44 @@ class thread_vt(QThread):
                     self.ar.emit()
                     trainer_registration = Fpl_controller.get_user_by_badge(read)
                     DL_registration = Fpl_controller.get_user_by_badge(first_read)
-                    break
                     #Fpl_controller.ckb_checked_status()
-
-                time.sleep(0.5)
+                    try:
+                        print('1')
+                        docarray = Fpl_controller.get_docarray()
+                        print('2')
+                        print(docarray)
+                        dlname = Fpl_controller.get_dlname()
+                        print('3')
+                        print(dlname)
+                        trainer_registration = Fpl_controller.get_trainer_registration()
+                        print('4')
+                        print(trainer_registration)
+                        DL_registration = Fpl_controller.get_DL_registration()
+                        print(DL_registration)
+        
+                        url_validatedocs = 'http://brbelm0mat81/ojt/ojt-service/trainings'
+                        headers_validate = {'content-type': 'application/json'}
+                        body_validate = {'TraineeName': dlname,
+                        'traineeRegistration': DL_registration,
+                        'trainerRegistration': trainer_registration,
+                        'documentInfoCardIds': docarray}
+                        print(body_validate)
+                        request_validatedocs = requests.post(url_validatedocs, data=json.dumps(body_validate), headers=headers_validate)
+                        print(request_validatedocs)
+        
+                        if request_validatedocs.status_code == 201:
+                            self.vt.emit('success')
+                            return
+                        else:
+                            self.vt.emit('fail')
+                            return
+                    except:
+                        self.vt.emit('fail')
+                        return
+                            time.sleep(0.5)
 
         #if self.whatdo == 1:
-        try:
-            print('1')
-            docarray = Fpl_controller.get_docarray()
-            print('2')
-            print(docarray)
-            dlname = Fpl_controller.get_dlname()
-            print('3')
-            print(dlname)
-            trainer_registration = Fpl_controller.get_trainer_registration()
-            print('4')
-            print(trainer_registration)
-            DL_registration = Fpl_controller.get_DL_registration()
-            print(DL_registration)
-
-            url_validatedocs = 'http://brbelm0mat81/ojt/ojt-service/trainings'
-            headers_validate = {'content-type': 'application/json'}
-            body_validate = {'TraineeName': dlname,
-            'traineeRegistration': DL_registration,
-            'trainerRegistration': trainer_registration,
-            'documentInfoCardIds': docarray}
-            print(body_validate)
-            request_validatedocs = requests.post(url_validatedocs, data=json.dumps(body_validate), headers=headers_validate)
-            print(request_validatedocs)
-
-            if request_validatedocs.status_code == 201:
-                self.vt.emit('success')
-                return
-            else:
-                self.vt.emit('fail')
-                return
-        except:
-            self.vt.emit('fail')
-            return
+        
         # elif self.whatdo == 2:
         #     self.vt.emit('logout')
         #     return
