@@ -260,40 +260,40 @@ class thread_vt(QThread):
 
                 time.sleep(0.5)
 
-        if self.whatdo == 1:
-            try:
-                print('whatdo 11111111111111111111111')
-                docarray = Fpl_controller.get_docarray()
-                print(docarray)
-                dlname = Fpl_controller.get_dlname()
-                print(dlname)
-                trainer_registration = Fpl_controller.get_trainer_registration()
-                print(trainer_registration)
-                DL_registration = Fpl_controller.get_DL_registration()
-                print(DL_registration)
+        #if self.whatdo == 1:
+        try:
+            print('whatdo 11111111111111111111111')
+            docarray = Fpl_controller.get_docarray()
+            print(docarray)
+            dlname = Fpl_controller.get_dlname()
+            print(dlname)
+            trainer_registration = Fpl_controller.get_trainer_registration()
+            print(trainer_registration)
+            DL_registration = Fpl_controller.get_DL_registration()
+            print(DL_registration)
 
-                url_validatedocs = 'http://brbelm0mat81/ojt/ojt-service/trainings'
-                headers_validate = {'content-type': 'application/json'}
-                body_validate = {'TraineeName': dlname,
-                'traineeRegistration': DL_registration,
-                'trainerRegistration': trainer_registration,
-                'documentInfoCardIds': docarray}
-                print(body_validate)
-                request_validatedocs = requests.post(url_validatedocs, data=json.dumps(body_validate), headers=headers_validate)
-                print(request_validatedocs)
+            url_validatedocs = 'http://brbelm0mat81/ojt/ojt-service/trainings'
+            headers_validate = {'content-type': 'application/json'}
+            body_validate = {'TraineeName': dlname,
+            'traineeRegistration': DL_registration,
+            'trainerRegistration': trainer_registration,
+            'documentInfoCardIds': docarray}
+            print(body_validate)
+            request_validatedocs = requests.post(url_validatedocs, data=json.dumps(body_validate), headers=headers_validate)
+            print(request_validatedocs)
 
-                if request_validatedocs.status_code == 201:
-                    self.vt.emit('success')
-                    return
-                else:
-                    self.vt.emit('fail')
-                    return
-            except:
+            if request_validatedocs.status_code == 201:
+                self.vt.emit('success')
+                return
+            else:
                 self.vt.emit('fail')
                 return
-        elif self.whatdo == 2:
-            self.vt.emit('logout')
+        except:
+            self.vt.emit('fail')
             return
+        # elif self.whatdo == 2:
+        #     self.vt.emit('logout')
+        #     return
         
     def start_thread(self, whatdo):
         self.whatdo = whatdo
