@@ -262,10 +262,15 @@ class thread_vt(QThread):
 
         if self.whatdo == 1:
             try:
+                print('whatdo 11111111111111111111111')
                 docarray = Fpl_controller.get_docarray()
+                print(docarray)
                 dlname = Fpl_controller.get_dlname()
+                print(dlname)
                 trainer_registration = Fpl_controller.get_trainer_registration()
+                print(trainer_registration)
                 DL_registration = Fpl_controller.get_DL_registration()
+                print(DL_registration)
 
                 url_validatedocs = 'http://brbelm0mat81/ojt/ojt-service/trainings'
                 headers_validate = {'content-type': 'application/json'}
