@@ -256,6 +256,7 @@ class thread_vt(QThread):
                     trainer_registration = Fpl_controller.get_user_by_badge(read)
                     DL_registration = Fpl_controller.get_user_by_badge(first_read)
                     self.ar.emit()
+                    break
                     #Fpl_controller.ckb_checked_status()
 
                 time.sleep(0.5)
