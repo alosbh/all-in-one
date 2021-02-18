@@ -1727,10 +1727,10 @@ class Ui_Logged_Screen(object):
 "")
         self.btn_proceed_startvalidation.setObjectName("btn_proceed_startvalidation")
         self.lbl_ok_FPL_00.raise_()
-        self.lbl_nok_FPL_01.raise_()
         self.lbl_startvalidation_FPL_02.raise_()
         self.lbl_successvalidation_FPL_03.raise_()
         self.lbl_failvalidation_FPL_04.raise_()
+        self.lbl_nok_FPL_01.raise_()
         self.body_FPL_error = QtWidgets.QWidget(self.main)
         self.body_FPL_error.setGeometry(QtCore.QRect(410, 20, 361, 101))
         self.body_FPL_error.setStyleSheet("QWidget{\n"
@@ -1759,6 +1759,62 @@ class Ui_Logged_Screen(object):
 "border: 0px  solid rgb(0,0,0);")
         self.lbl_text_FPL_error.setWordWrap(True)
         self.lbl_text_FPL_error.setObjectName("lbl_text_FPL_error")
+        self.body_FPL_success = QtWidgets.QWidget(self.main)
+        self.body_FPL_success.setGeometry(QtCore.QRect(410, 150, 361, 101))
+        self.body_FPL_success.setStyleSheet("QWidget{\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px  solid rgb(0,0,0);\n"
+"}")
+        self.body_FPL_success.setObjectName("body_FPL_success")
+        self.btn_close_FPL_success = QtWidgets.QPushButton(self.body_FPL_success)
+        self.btn_close_FPL_success.setGeometry(QtCore.QRect(330, 10, 21, 21))
+        self.btn_close_FPL_success.setStyleSheet("image: url(:/Img/redX.png);\n"
+"border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.btn_close_FPL_success.setText("")
+        self.btn_close_FPL_success.setObjectName("btn_close_FPL_success")
+        self.lbl_iconFPL_success = QtWidgets.QLabel(self.body_FPL_success)
+        self.lbl_iconFPL_success.setGeometry(QtCore.QRect(20, 20, 61, 51))
+        self.lbl_iconFPL_success.setStyleSheet("image: url(:/Img/thumbs-up.png);\n"
+"border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.lbl_iconFPL_success.setText("")
+        self.lbl_iconFPL_success.setObjectName("lbl_iconFPL_success")
+        self.lbl_text_FPL_success = QtWidgets.QLabel(self.body_FPL_success)
+        self.lbl_text_FPL_success.setGeometry(QtCore.QRect(90, 10, 201, 71))
+        self.lbl_text_FPL_success.setStyleSheet("border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.lbl_text_FPL_success.setWordWrap(True)
+        self.lbl_text_FPL_success.setObjectName("lbl_text_FPL_success")
+        self.body_FPL_fail = QtWidgets.QWidget(self.main)
+        self.body_FPL_fail.setGeometry(QtCore.QRect(410, 280, 361, 101))
+        self.body_FPL_fail.setStyleSheet("QWidget{\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px  solid rgb(0,0,0);\n"
+"}")
+        self.body_FPL_fail.setObjectName("body_FPL_fail")
+        self.btn_close_FPL_fail = QtWidgets.QPushButton(self.body_FPL_fail)
+        self.btn_close_FPL_fail.setGeometry(QtCore.QRect(330, 10, 21, 21))
+        self.btn_close_FPL_fail.setStyleSheet("image: url(:/Img/redX.png);\n"
+"border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.btn_close_FPL_fail.setText("")
+        self.btn_close_FPL_fail.setObjectName("btn_close_FPL_fail")
+        self.lbl_iconFPL_fail = QtWidgets.QLabel(self.body_FPL_fail)
+        self.lbl_iconFPL_fail.setGeometry(QtCore.QRect(20, 20, 61, 51))
+        self.lbl_iconFPL_fail.setStyleSheet("image: url(:/Img/red_error.png);\n"
+"border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.lbl_iconFPL_fail.setText("")
+        self.lbl_iconFPL_fail.setObjectName("lbl_iconFPL_fail")
+        self.lbl_text_FPL_fail = QtWidgets.QLabel(self.body_FPL_fail)
+        self.lbl_text_FPL_fail.setGeometry(QtCore.QRect(90, 10, 201, 71))
+        self.lbl_text_FPL_fail.setStyleSheet("border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.lbl_text_FPL_fail.setWordWrap(True)
+        self.lbl_text_FPL_fail.setObjectName("lbl_text_FPL_fail")
         self.horizontalWidget_3.raise_()
         self.btn_5s_back.raise_()
         self.btn_5s_next.raise_()
@@ -1766,6 +1822,8 @@ class Ui_Logged_Screen(object):
         self.body_home.raise_()
         self.body_FPL.raise_()
         self.body_FPL_error.raise_()
+        self.body_FPL_success.raise_()
+        self.body_FPL_fail.raise_()
         self.sidebar.raise_()
         self.footer.raise_()
         self.main.raise_()
@@ -1872,6 +1930,8 @@ class Ui_Logged_Screen(object):
         self.lbl_instructions_startvalidation.setText(_translate("MainWindow", "Clicando em prosseguir: retire o crachá do operador do leitor, insira o do responsável e aguarde a janela de confirmação aparecer. Você terá 20 segundos para realizar esse processo."))
         self.btn_proceed_startvalidation.setText(_translate("MainWindow", "Prosseguir"))
         self.lbl_text_FPL_error.setText(_translate("MainWindow", "Ops, algo deu errado!                             Faça login novamente para carregar os documentos."))
+        self.lbl_text_FPL_success.setText(_translate("MainWindow", "Treinamentos validados!"))
+        self.lbl_text_FPL_fail.setText(_translate("MainWindow", "Algo deu errado, tente validar os documentos novamente."))
 import resources_rc
 
 
