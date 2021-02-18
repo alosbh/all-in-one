@@ -146,6 +146,7 @@ class Fpl_controller():
         Login_controller.set_flag(False)
         print('login desligado')
         self.thread_vt.vt.connect(self.update_window)
+        self.thread_vt.ar.connect(self.ckb_checked_status)
         self.thread_vt.start_thread(1)
         print('thread ligada')
         
@@ -230,6 +231,7 @@ class Fpl_controller():
 # pega o cracha no leitor(dl) no momento do clique. quando mudar, pega o que foi inserido(responsavel) e faz o request de validacao. depois liga o login/logout novamente
 class thread_vt(QThread):
     vt = QtCore.pyqtSignal(str)
+    ar = QtCore.pyqtSignal()
     
     def run(self):
         # if OS_define.get_OS_name() == 0:
@@ -253,7 +255,8 @@ class thread_vt(QThread):
                 if read != first_read and read != None:
                     trainer_registration = Fpl_controller.get_user_by_badge(read)
                     DL_registration = Fpl_controller.get_user_by_badge(first_read)
-                    Fpl_controller.ckb_checked_status()
+                    self.ar.emit()
+                    #Fpl_controller.ckb_checked_status()
 
                 time.sleep(0.5)
 
