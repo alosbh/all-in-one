@@ -147,6 +147,7 @@ class Fpl_controller():
         print('login desligado')
         self.thread_vt.vt.connect(self.update_window)
         self.thread_vt.start_thread(1)
+        print('thread ligada')
         
 
     def get_user_by_badge(self, badge):
@@ -233,7 +234,6 @@ class thread_vt(QThread):
     def run(self):
         # if OS_define.get_OS_name() == 0:
         #     for attempts in range(20):
-        read = RFRead_controller.RFRead()
         #         if attempts == 0:
         #             first_read = read
 
