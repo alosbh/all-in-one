@@ -149,19 +149,6 @@ class Fpl_controller():
         self.thread_vt.ar.connect(self.ckb_checked_status)
         self.thread_vt.start_thread(1)
         print('thread ligada')
-        
-
-    def get_user_by_badge(badge):
-        # sim, um post com parametro na URL e que nao pode receber nada no body
-        url_getuser = 'http://brbelm0itqa01.corp.jabil.org/OJT/ojtws/Authentication/GetUserByBadge?badge=' + badge
-        print(url_getuser)
-        headers_getuser = {'content-type': 'application/json'}
-        body_getuser = { }
-        request_getuser = requests.post(url_getuser, data=json.dumps(body_getuser), headers=headers_getuser)
-        print(request_getuser)
-        response_getuser = json.loads(request_getuser.content)
-        print(response_getuser)
-        return response_getuser['Registration']
 
     def undo_everything(self):
         self.body_FPL.hide()
@@ -203,12 +190,6 @@ class Fpl_controller():
     
     def get_dlname():
         return DL_Name
-        
-    def get_trainer_registration():
-        return trainer_registration
-    
-    def get_DL_registration():
-        return DL_registration
 
 # decide qual janela vai subir
     def update_window(self, window):
@@ -256,8 +237,8 @@ class thread_vt(QThread):
                 if read != first_read and read != None:
                     print('comecando')
                     self.ar.emit()
-                    trainer_registration = Fpl_controller.get_user_by_badge(read)
-                    DL_registration = Fpl_controller.get_user_by_badge(first_read)
+                    trainer_registration = self.get_user_by_badge(read)
+                    DL_registration = self.get_user_by_badge(first_read)
                     #Fpl_controller.ckb_checked_status()
                     try:
                         print('1')
@@ -299,7 +280,20 @@ class thread_vt(QThread):
         # elif self.whatdo == 2:
         #     self.vt.emit('logout')
         #     return
-        
+    def get_user_by_badge(badge):
+        # sim, um post com parametro na URL e que nao pode receber nada no body
+        print('geting user ----------------------------------------------------------------')
+        url_getuser = 'http://brbelm0itqa01.corp.jabil.org/OJT/ojtws/Authentication/GetUserByBadge?badge=' + badge
+        print(url_getuser)
+        headers_getuser = {'content-type': 'application/json'}
+        body_getuser = { }
+        request_getuser = requests.post(url_getuser, data=json.dumps(body_getuser), headers=headers_getuser)
+        print(request_getuser)
+        response_getuser = json.loads(request_getuser.content)
+        print(response_getuser)
+        print('got the user ----------------------------------------------------------------')
+        return response_getuser['Registration']
+
     def start_thread(self, whatdo):
         self.whatdo = whatdo
         self.start()
