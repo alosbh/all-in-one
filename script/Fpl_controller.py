@@ -190,7 +190,9 @@ class Fpl_controller():
                 if ckb.isChecked():
                     self.validated_doc.append(self.ckb_docname[ckb])
             docarray = self.validated_doc
-            print('pegando info dos ckb')
+            print('ckb-----')
+            print(self.validated_doc)
+            print('ckb-----')
         except:
             print('nao consegui os ckb')
             self.update_window('fail')
@@ -253,9 +255,9 @@ class thread_vt(QThread):
 
                 if read != first_read and read != None:
                     print('comecando')
+                    self.ar.emit()
                     trainer_registration = Fpl_controller.get_user_by_badge(read)
                     DL_registration = Fpl_controller.get_user_by_badge(first_read)
-                    self.ar.emit()
                     break
                     #Fpl_controller.ckb_checked_status()
 
