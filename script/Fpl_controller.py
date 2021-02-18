@@ -247,12 +247,12 @@ class thread_vt(QThread):
         if OS_define.get_OS_name() == 0:
             for attempts in range(60):
                 read = RFRead_controller.RFRead()
-                print('read = ' + read)
                 if attempts == 0:
                     first_read = read
                     print('first read = ' + first_read)
 
                 if read != first_read and read != None:
+                    print('comecando')
                     trainer_registration = Fpl_controller.get_user_by_badge(read)
                     DL_registration = Fpl_controller.get_user_by_badge(first_read)
                     self.ar.emit()
@@ -263,12 +263,15 @@ class thread_vt(QThread):
 
         #if self.whatdo == 1:
         try:
-            print('whatdo 11111111111111111111111')
+            print('1')
             docarray = Fpl_controller.get_docarray()
+            print('2')
             print(docarray)
             dlname = Fpl_controller.get_dlname()
+            print('3')
             print(dlname)
             trainer_registration = Fpl_controller.get_trainer_registration()
+            print('4')
             print(trainer_registration)
             DL_registration = Fpl_controller.get_DL_registration()
             print(DL_registration)
