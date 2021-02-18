@@ -36,55 +36,45 @@ class Fpl_controller():
         url_alldocs = 'http://brbelm0mat81/ojt/api/Trainings?physicalWorkstationId='+ physicalWorkstationId +'&traineeRegistration=' + traineeRegistration
         print(url_alldocs)
         
-        #try:
-        request_alldocs = requests.get(url_alldocs, timeout=15)
-        print(request_alldocs)
-        if request_alldocs.status_code == 200:
-            i = 0
-            response_alldocs = request_alldocs.json()
-            response_alldocs = response_alldocs['documents']
-            for document in response_alldocs:
-                if document['isTrained'] == True:
-                    self.valid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
+        try:
+            request_alldocs = requests.get(url_alldocs, timeout=15)
+            print(request_alldocs)
+            if request_alldocs.status_code == 200:
+                i = 0
+                response_alldocs = request_alldocs.json()
+                response_alldocs = response_alldocs['documents']
+                for document in response_alldocs:
+                    if document['isTrained'] == True:
+                        self.valid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
+                    else:
+                        i += 1
+                        self.invalid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
+                if not self.invalid_documents_dict:
+                    self.lbl_ok_FPL_00.show()
+                    self.lbl_ok_FPL_00.raise_()
+                    self.lbl_invalid_trainings.hide()
+                    self.lbl_value_number_invalidFPL.hide()
+                    self.set_blue()
                 else:
-                    i += 1
-                    self.invalid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
-            if not self.invalid_documents_dict:
-                self.btn_validate_training.hide()
-                self.lbl_ok_FPL_00.show()
-                self.lbl_ok_FPL_00.raise_()
-                self.lbl_invalid_trainings.hide()
-                self.lbl_value_number_invalidFPL.hide()
-                self.set_blue()
+                    self.lbl_nok_FPL_01.raise_()
+                    self.lbl_ok_FPL_00.hide()
+                    self.lbl_invalid_trainings.show()
+                    self.lbl_value_number_invalidFPL.show()
+                    self.set_red()
+
+                self.lbl_value_number_invalidFPL.setText(str(i))
+                self.create_lbl_ckb()
+
+                if flag == 1:
+                    self.fpl_btn_functions()
             else:
-                self.btn_validate_training.show()
-                self.lbl_nok_FPL_01.raise_()
-                self.lbl_ok_FPL_00.hide()
-                self.lbl_invalid_trainings.show()
-                self.lbl_value_number_invalidFPL.show()
-                self.set_red()
-
-            self.lbl_value_number_invalidFPL.setText(str(i))
-            self.create_lbl_ckb()
-
-            if flag == 1:
-                self.fpl_btn_functions()
-        else:
+                self.set_blue()
+                self.error_FPL()
+        except:
             self.set_blue()
             self.error_FPL()
-        # except:
-        #     self.set_blue()
-        #     self.error_FPL()
 
 # metodos de controle de tela
-    def fail_return(self):
-        self.lbl_nok_FPL_01.raise_()
-        Login_controller.set_flag(True)
-        
-    def show_validate_window(self):
-        self.lbl_startvalidation_FPL_02.show()
-        self.lbl_startvalidation_FPL_02.raise_()
-    
     def error_FPL(self):
         self.body_FPL.hide()
         self.lbl_value_number_invalidFPL.hide()
@@ -125,18 +115,13 @@ class Fpl_controller():
 
     def fpl_btn_functions(self):
         self.btn_FPL.show()
-        #self.btn_FPL.clicked.connect(self.body_FPL.show)
-        #self.btn_close_FPL.clicked.connect(self.body_FPL.hide)
-        self.btn_validate_training.clicked.connect(self.show_validate_window)
-        self.btn_proceed_startvalidation.clicked.connect(self.validate_training)
-        self.btn_ok_successvalidation.clicked.connect(self.turnon_loginlogout)
-        self.btn_return_fail.clicked.connect(self.fail_return)
 
         self.btn_FPL.clicked.connect(self.start_everything)
         self.btn_close_FPL.clicked.connect(self.undo_everything)
         self.btn_close_FPL_success.clicked.connect(self.body_FPL_success.hide)
         self.btn_close_FPL_fail.clicked.connect(self.body_FPL_fail.hide)
 
+# coemeca a thread para leitura do cracha e confirmacao - desliga o loop que mantem login e logout ativo
     def start_everything(self):
         global trainer_registration
         global DL_registration
@@ -147,29 +132,19 @@ class Fpl_controller():
         print('login desligado')
         self.thread_vt.vt.connect(self.update_window)
         self.thread_vt.ar.connect(self.ckb_checked_status)
-        self.thread_vt.start_thread(1)
+        self.thread_vt.start_thread()
         print('thread ligada')
 
     def undo_everything(self):
         self.body_FPL.hide()
         Login_controller.set_flag(True)
-        
-
-# coemeca a thread para leitura do cracha e confirmacao - desliga o loop que mantem login e logout ativo
-    def validate_training(self):
-        if self.thread_vt.isRunning() == False:
-            self.btn_proceed_startvalidation.setEnabled(False)
-            self.ckb_checked_status()
-            Login_controller.set_flag(False)
-            self.thread_vt.vt.connect(self.update_window)
-            self.thread_vt.start_thread(1)
 
 # liga o loop que mantem login e logout ativo
     def turnon_loginlogout(self):
-        self.thread_vt.start_thread(2)
+        self.thread_vt.start_thread()
 
 # se ckbx estiver marcado adiciona a um array que vai ser usado no request que valida documentos
-    def ckb_checked_status(self):
+    def get_docarray(self):
         global docarray
         self.validated_doc = []
         try:
@@ -180,14 +155,12 @@ class Fpl_controller():
             print('ckb-----')
             print(self.validated_doc)
             print('ckb-----')
+            return docarray
         except:
             print('nao consegui os ckb')
             self.update_window('fail')
 
 # metodos para passar variaveis pra thread
-    def get_docarray():
-        return docarray
-    
     def get_dlname():
         return DL_Name
 
@@ -209,16 +182,6 @@ class thread_vt(QThread):
     ar = QtCore.pyqtSignal()
     
     def run(self):
-        # if OS_define.get_OS_name() == 0:
-        #     for attempts in range(20):
-        #         if attempts == 0:
-        #             first_read = read
-
-        #         if attempts == 19:
-        #             self.vt.emit('fail')
-        #             return
-
-        #         if read != first_read and read != None:
         if OS_define.get_OS_name() == 0:
             for attempts in range(60):
                 read = RFRead_controller.RFRead()
@@ -231,7 +194,6 @@ class thread_vt(QThread):
                     self.ar.emit()
                     DL_registration = self.get_user_by_badge(first_read)
                     trainer_registration = self.get_user_by_badge(read)
-                    #Fpl_controller.ckb_checked_status()
                     try:
                         print('1')
                         docarray = Fpl_controller.get_docarray()
@@ -267,11 +229,6 @@ class thread_vt(QThread):
                         return
                 time.sleep(0.5)
 
-        #if self.whatdo == 1:
-        
-        # elif self.whatdo == 2:
-        #     self.vt.emit('logout')
-        #     return
     def get_user_by_badge(self, badge):
         # sim, um post com parametro na URL e que nao pode receber nada no body
         print('geting user ----------------------------------------------------------------')
@@ -286,8 +243,7 @@ class thread_vt(QThread):
         print('got the user ----------------------------------------------------------------')
         return response_getuser['Registration']
 
-    def start_thread(self, whatdo):
-        self.whatdo = whatdo
+    def start_thread(self):
         self.start()
 
 
