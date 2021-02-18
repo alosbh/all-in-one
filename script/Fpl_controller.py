@@ -150,7 +150,7 @@ class Fpl_controller():
         print('thread ligada')
         
 
-    def get_user_by_badge(self, badge):
+    def get_user_by_badge(badge):
         # sim, um post com parametro na URL e que nao pode receber nada no body
         url_getuser = 'http://brbelm0itqa01.corp.jabil.org/OJT/ojtws/Authentication/GetUserByBadge?badge=' + badge
         print(url_getuser)
