@@ -103,7 +103,7 @@ class Login_controller(QThread):
                             self.Logged_Window.home()
                             # Setup the Direct Labor object with actual worker data
                             self.DL.Setup(LoginResponse, self.host)
-                            self.DL.load_avatar()
+                            # self.DL.load_avatar()   #### FUNÇÃO REPETIDA... JA ESTA DENTRO DO DL
                             # Setup the user fields on the logged screen
                             self.Logged_Window.SetupUser(self.DL)
                             # The active ID is the newly logged ID               
