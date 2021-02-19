@@ -38,7 +38,6 @@ class Fpl_controller():
         
         try:
             request_alldocs = requests.get(url_alldocs, timeout=15)
-            print(request_alldocs)
             if request_alldocs.status_code == 200:
                 i = 0
                 response_alldocs = request_alldocs.json()
@@ -50,12 +49,14 @@ class Fpl_controller():
                         i += 1
                         self.invalid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
                 if not self.invalid_documents_dict:
+                    self.btn_FPL.clicked.disconnect()
                     self.lbl_ok_FPL_00.show()
                     self.lbl_ok_FPL_00.raise_()
                     self.lbl_invalid_trainings.hide()
                     self.lbl_value_number_invalidFPL.hide()
                     self.set_blue()
                 else:
+                    self.btn_FPL.clicked.connect(self.start_everything)
                     self.lbl_nok_FPL_01.raise_()
                     self.lbl_ok_FPL_00.hide()
                     self.lbl_invalid_trainings.show()
@@ -116,7 +117,6 @@ class Fpl_controller():
     def fpl_btn_functions(self):
         self.btn_FPL.show()
 
-        self.btn_FPL.clicked.connect(self.start_everything)
         self.btn_close_FPL.clicked.connect(self.undo_everything)
         self.btn_close_FPL_success.clicked.connect(self.body_FPL_success.hide)
         self.btn_close_FPL_fail.clicked.connect(self.body_FPL_fail.hide)
@@ -125,23 +125,17 @@ class Fpl_controller():
     def start_everything(self):
         global trainer_registration
         global DL_registration
+
         self.body_FPL.show()
-        print('comecou')
         self.lbl_nok_FPL_01.raise_()
         Login_controller.set_flag(False)
-        print('login desligado')
         self.thread_vt.vt.connect(self.update_window)
         self.thread_vt.ar.connect(self.check_ckb)
         self.thread_vt.start_thread()
-        print('thread ligada')
 
     def undo_everything(self):
         self.body_FPL.hide()
         Login_controller.set_flag(True)
-
-# liga o loop que mantem login e logout ativo
-    def turnon_loginlogout(self):
-        self.thread_vt.start_thread()
 
 # se ckbx estiver marcado adiciona a um array que vai ser usado no request que valida documentos
     def check_ckb(self):
@@ -151,11 +145,7 @@ class Fpl_controller():
             for ckb in self.ckb_docname:
                 if ckb.isChecked():
                     validated_doc.append(self.ckb_docname[ckb])
-            print('ckb-----')
-            print(validated_doc)
-            print('ckb-----')
         except:
-            print('nao consegui os ckb')
             self.update_window('fail')
 
 # metodos para passar variaveis pra thread
@@ -190,18 +180,12 @@ class thread_vt(QThread):
                     print('first read = ' + first_read)
 
                 if read != first_read and read != None:
-                    print('comecando')
                     self.ar.emit()
                     DL_registration = self.get_user_by_badge(first_read)
                     trainer_registration = self.get_user_by_badge(read)
                     try:
-                        print('1')
                         docarray = Fpl_controller.get_docarray()
-                        print(docarray)
-                        print('2')
                         dlname = Fpl_controller.get_dlname()
-                        print('3')
-                        print(dlname)
         
                         url_validatedocs = 'http://brbelm0mat81/ojt/ojt-service/trainings'
                         headers_validate = {'content-type': 'application/json'}
@@ -216,6 +200,7 @@ class thread_vt(QThread):
                         if request_validatedocs.status_code == 201:
                             self.vt.emit('success')
                             time.sleep(10)
+                            Login_controller.set_flag(True)
                             return
                         else:
                             self.vt.emit('fail')
@@ -231,16 +216,11 @@ class thread_vt(QThread):
 
     def get_user_by_badge(self, badge):
         # sim, um post com parametro na URL e que nao pode receber nada no body
-        print('geting user ----------------------------------------------------------------')
         url_getuser = 'http://brbelm0itqa01.corp.jabil.org/OJT/ojtws/Authentication/GetUserByBadge?badge=' + badge
-        print(url_getuser)
         headers_getuser = {'content-type': 'application/json'}
         body_getuser = { }
         request_getuser = requests.post(url_getuser, data=json.dumps(body_getuser), headers=headers_getuser)
-        print(request_getuser)
         response_getuser = json.loads(request_getuser.content)
-        print(response_getuser)
-        print('got the user ----------------------------------------------------------------')
         return response_getuser['Registration']
 
     def start_thread(self):
