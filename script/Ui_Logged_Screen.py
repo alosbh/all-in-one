@@ -1398,51 +1398,59 @@ class Ui_Logged_Screen(object):
         self.ckb_FPL_7.setObjectName("ckb_FPL_7")
         self.layout_OJT_docnames.addWidget(self.ckb_FPL_7)
         self.lbl_FPL_0 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.lbl_FPL_0.setStyleSheet("\n"
+        self.lbl_FPL_0.setStyleSheet("color: rgb(36, 176, 4);\n"
 "background-color: rgb(255, 255, 255);\n"
-"border-color: white")
+"border-color: white;\n"
+"image: url(:/Img/greencheck.png)")
         self.lbl_FPL_0.setObjectName("lbl_FPL_0")
         self.layout_OJT_docnames.addWidget(self.lbl_FPL_0)
         self.lbl_FPL_1 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.lbl_FPL_1.setStyleSheet("\n"
+        self.lbl_FPL_1.setStyleSheet("color: rgb(36, 176, 4);\n"
 "background-color: rgb(255, 255, 255);\n"
-"border-color: white")
+"border-color: white;\n"
+"image: url(:/Img/greencheck.png)")
         self.lbl_FPL_1.setObjectName("lbl_FPL_1")
         self.layout_OJT_docnames.addWidget(self.lbl_FPL_1)
         self.lbl_FPL_2 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.lbl_FPL_2.setStyleSheet("\n"
+        self.lbl_FPL_2.setStyleSheet("color: rgb(36, 176, 4);\n"
 "background-color: rgb(255, 255, 255);\n"
-"border-color: white")
+"border-color: white;\n"
+"image: url(:/Img/greencheck.png)")
         self.lbl_FPL_2.setObjectName("lbl_FPL_2")
         self.layout_OJT_docnames.addWidget(self.lbl_FPL_2)
         self.lbl_FPL_3 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.lbl_FPL_3.setStyleSheet("\n"
+        self.lbl_FPL_3.setStyleSheet("color: rgb(36, 176, 4);\n"
 "background-color: rgb(255, 255, 255);\n"
-"border-color: white")
+"border-color: white;\n"
+"image: url(:/Img/greencheck.png)")
         self.lbl_FPL_3.setObjectName("lbl_FPL_3")
         self.layout_OJT_docnames.addWidget(self.lbl_FPL_3)
         self.lbl_FPL_4 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.lbl_FPL_4.setStyleSheet("\n"
+        self.lbl_FPL_4.setStyleSheet("color: rgb(36, 176, 4);\n"
 "background-color: rgb(255, 255, 255);\n"
-"border-color: white")
+"border-color: white;\n"
+"image: url(:/Img/greencheck.png)")
         self.lbl_FPL_4.setObjectName("lbl_FPL_4")
         self.layout_OJT_docnames.addWidget(self.lbl_FPL_4)
         self.lbl_FPL_5 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.lbl_FPL_5.setStyleSheet("\n"
+        self.lbl_FPL_5.setStyleSheet("color: rgb(36, 176, 4);\n"
 "background-color: rgb(255, 255, 255);\n"
-"border-color: white")
+"border-color: white;\n"
+"image: url(:/Img/greencheck.png)")
         self.lbl_FPL_5.setObjectName("lbl_FPL_5")
         self.layout_OJT_docnames.addWidget(self.lbl_FPL_5)
         self.lbl_FPL_6 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.lbl_FPL_6.setStyleSheet("\n"
+        self.lbl_FPL_6.setStyleSheet("color: rgb(36, 176, 4);\n"
 "background-color: rgb(255, 255, 255);\n"
-"border-color: white")
+"border-color: white;\n"
+"image: url(:/Img/greencheck.png)")
         self.lbl_FPL_6.setObjectName("lbl_FPL_6")
         self.layout_OJT_docnames.addWidget(self.lbl_FPL_6)
         self.lbl_FPL_7 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.lbl_FPL_7.setStyleSheet("\n"
+        self.lbl_FPL_7.setStyleSheet("color: rgb(36, 176, 4);\n"
 "background-color: rgb(255, 255, 255);\n"
-"border-color: white")
+"border-color: white;\n"
+"image: url(:/Img/greencheck.png)")
         self.lbl_FPL_7.setObjectName("lbl_FPL_7")
         self.layout_OJT_docnames.addWidget(self.lbl_FPL_7)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
@@ -1581,10 +1589,16 @@ class Ui_Logged_Screen(object):
         self.lbl_nok_FPL_01.setStyleSheet("")
         self.lbl_nok_FPL_01.setObjectName("lbl_nok_FPL_01")
         self.lbl_invalid_trainings = QtWidgets.QLabel(self.lbl_nok_FPL_01)
-        self.lbl_invalid_trainings.setGeometry(QtCore.QRect(40, 30, 241, 41))
+        self.lbl_invalid_trainings.setGeometry(QtCore.QRect(40, 20, 241, 31))
         self.lbl_invalid_trainings.setStyleSheet("border: solid white;")
         self.lbl_invalid_trainings.setWordWrap(True)
         self.lbl_invalid_trainings.setObjectName("lbl_invalid_trainings")
+        self.lbl_yellowwarning = QtWidgets.QLabel(self.lbl_nok_FPL_01)
+        self.lbl_yellowwarning.setGeometry(QtCore.QRect(90, 60, 121, 61))
+        self.lbl_yellowwarning.setStyleSheet("border: solid white;\n"
+"image: url(:/Img/yellow-warning.png);")
+        self.lbl_yellowwarning.setText("")
+        self.lbl_yellowwarning.setObjectName("lbl_yellowwarning")
         self.lbl_ok_FPL_00 = QtWidgets.QWidget(self.body_validation_flux)
         self.lbl_ok_FPL_00.setGeometry(QtCore.QRect(0, 0, 291, 131))
         self.lbl_ok_FPL_00.setStyleSheet("")
