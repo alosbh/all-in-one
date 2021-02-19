@@ -188,14 +188,13 @@ class thread_vt(QThread):
 
                 if read != first_read and read != None:
                     print('comecando')
-                    self.ar.emit()
                     DL_registration = self.get_user_by_badge(first_read)
                     trainer_registration = self.get_user_by_badge(read)
                     try:
                         print('1')
-                        docarray = Fpl_controller.get_docarray()
-                        print('2')
+                        docarray = self.ar.emit()
                         print(docarray)
+                        print('2')
                         dlname = Fpl_controller.get_dlname()
                         print('3')
                         print(dlname)
