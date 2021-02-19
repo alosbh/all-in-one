@@ -49,14 +49,12 @@ class Fpl_controller():
                         i += 1
                         self.invalid_documents_dict.setdefault(document['infoCardNumber'],document['infoCardId'])
                 if not self.invalid_documents_dict:
-                    self.btn_FPL.clicked.disconnect()
                     self.lbl_ok_FPL_00.show()
                     self.lbl_ok_FPL_00.raise_()
                     self.lbl_invalid_trainings.hide()
                     self.lbl_value_number_invalidFPL.hide()
                     self.set_blue()
                 else:
-                    self.btn_FPL.clicked.connect(self.start_everything)
                     self.lbl_nok_FPL_01.raise_()
                     self.lbl_ok_FPL_00.hide()
                     self.lbl_invalid_trainings.show()
@@ -68,6 +66,10 @@ class Fpl_controller():
 
                 if flag == 1:
                     self.fpl_btn_functions()
+                    if not self.invalid_documents_dict:
+                        self.btn_FPL.clicked.connect(self.body_FPL.show)
+                    else:
+                        self.btn_FPL.clicked.connect(self.start_everything)
             else:
                 self.set_blue()
                 self.error_FPL()
