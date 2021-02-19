@@ -131,7 +131,7 @@ class Fpl_controller():
         Login_controller.set_flag(False)
         print('login desligado')
         self.thread_vt.vt.connect(self.update_window)
-        self.thread_vt.ar.connect(self.get_docarray)
+        self.thread_vt.ar.connect(self.check_ckb)
         self.thread_vt.start_thread()
         print('thread ligada')
 
@@ -144,7 +144,8 @@ class Fpl_controller():
         self.thread_vt.start_thread()
 
 # se ckbx estiver marcado adiciona a um array que vai ser usado no request que valida documentos
-    def get_docarray(self):
+    def check_ckb(self):
+        global validated_doc
         validated_doc = []
         try:
             for ckb in self.ckb_docname:
@@ -153,7 +154,6 @@ class Fpl_controller():
             print('ckb-----')
             print(validated_doc)
             print('ckb-----')
-            return validated_doc
         except:
             print('nao consegui os ckb')
             self.update_window('fail')
@@ -161,6 +161,9 @@ class Fpl_controller():
 # metodos para passar variaveis pra thread
     def get_dlname():
         return DL_Name
+    
+    def get_docarray():
+        return validated_doc
 
 # decide qual janela vai subir
     def update_window(self, window):
@@ -188,11 +191,12 @@ class thread_vt(QThread):
 
                 if read != first_read and read != None:
                     print('comecando')
+                    self.ar.emit()
                     DL_registration = self.get_user_by_badge(first_read)
                     trainer_registration = self.get_user_by_badge(read)
                     try:
                         print('1')
-                        docarray = self.ar.emit()
+                        docarray = Fpl_controller.get_docarray()
                         print(docarray)
                         print('2')
                         dlname = Fpl_controller.get_dlname()
