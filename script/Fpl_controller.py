@@ -126,6 +126,7 @@ class Fpl_controller():
         global trainer_registration
         global DL_registration
 
+        print('--comecou--')
         self.body_FPL.show()
         self.lbl_nok_FPL_01.raise_()
         Login_controller.set_flag(False)
