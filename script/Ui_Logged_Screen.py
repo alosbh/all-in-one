@@ -1344,7 +1344,7 @@ class Ui_Logged_Screen(object):
 "border-color: white")
         self.widget_FPL1.setObjectName("widget_FPL1")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.widget_FPL1)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 0, 181, 371))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 0, 301, 371))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.layout_OJT_docnames = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.layout_OJT_docnames.setContentsMargins(0, 0, 0, 0)
