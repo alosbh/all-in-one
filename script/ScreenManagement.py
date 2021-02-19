@@ -200,8 +200,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
 
     # Method called in the MainThread - fills labor user fields
     def SetupUser(self, DL):
-        # self.LPAactions_functions(self.Station.Name)
-        # self.load_announcements_label()
+        self.LPAactions_functions(self.Station.Name)
+        self.load_announcements_label()
         self.lbl_value_name.setText(DL.Name)
         self.lbl_value_yield.setText(DL.Yield)
         self.lbl_value_productivity.setText(DL.Productivity)
