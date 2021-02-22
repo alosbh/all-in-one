@@ -9,7 +9,7 @@ class buttons_controller():
 
     def build_sidebar_buttons(self, hostname, workstation, route):
         try:
-            array_buttons = ['LPA','FI', 'Boas Ideias', 'SCTC', 'Posto 5s', 'JIT suporte']
+            array_buttons = ['LPA','FI', 'SCTC', 'Posto 5s', 'JIT suporte']
 
             self.define_icons()
             # array_buttons = []
@@ -26,11 +26,11 @@ class buttons_controller():
             #         array_buttons.append(botao['Name'])
 
             if not array_buttons:
-                array_buttons = ['LPA','FI', 'Boas Ideias', 'SCTC', 'Posto 5s', 'JIT suporte']
+                array_buttons = ['LPA','FI', 'SCTC', 'Posto 5s', 'JIT suporte']
 
         except:
             print("erro")
-            array_buttons = ['LPA','FI', 'Boas Ideias', 'SCTC', 'Posto 5s', 'JIT suporte']
+            array_buttons = ['LPA','FI', 'SCTC', 'Posto 5s', 'JIT suporte']
 
         # workstations with stopwatcher fucntion
         print(array_buttons)
