@@ -92,7 +92,6 @@ class Login_controller(QThread):
                             print("Stats1:"+status)
 
                         except Exception as e: 
-                            traceback.print_exc()
                             logger.error("Login Error: " + type(e).__name__)
                             print(type(e).__name__)
                             status = ""
