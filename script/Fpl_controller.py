@@ -164,15 +164,21 @@ class Fpl_controller():
 
 # decide qual janela vai subir
     def update_window(self, window):
-        self.get_all_documents(2)
-        self.body_FPL.hide()
         if window == 'success':
+            self.get_all_documents(2)
+            self.body_FPL.hide()
             self.body_FPL_success.show()
         elif window == 'fail':
+            self.get_all_documents(2)
+            self.body_FPL.hide()
             self.body_FPL_fail_3.show()
         elif window == 'fail_permission':
+            self.get_all_documents(2)
+            self.body_FPL.hide()
             self.body_FPL_fail.show()
         elif window == 'fail_notfound':
+            self.get_all_documents(2)
+            self.body_FPL.hide()
             self.body_FPL_fail_2.show()
 
 # pega o cracha no leitor(dl) no momento do clique. quando mudar, pega o que foi inserido(responsavel) e faz o request de validacao. depois liga o login/logout novamente
