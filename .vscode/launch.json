@@ -8,7 +8,7 @@
             "name": "Python: AIO main",
             "type": "python",
             "request": "launch",
-            "program": "C:/Users/100059527/Desktop/all-in-one/script/main.py",
+            "program": "C:/02 - www/all-in-one/script/main.py",
             "console": "integratedTerminal"
         }
     ]

@@ -208,7 +208,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.lbl_value_goodideas.setText('-')
         self.lbl_value_jabilcoins.setText('-')
         self.lbl_user_avatar.setPixmap(DL.picture)
-        self.setup_fpl(DL.Name, DL.ID_trim)
+        # self.setup_fpl(DL.Name, DL.ID_trim)
         
     # Method to show the window widget 
     def Show(self):
