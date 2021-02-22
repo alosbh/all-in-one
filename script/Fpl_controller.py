@@ -211,13 +211,11 @@ class thread_vt(QThread):
                             time.sleep(10)
                             Login_controller.set_flag(True)
                             return
-                        elif:
-                            request_validatedocs.status_code == 400:
+                        elif request_validatedocs.status_code == 400:
                             self.vt.emit('fail_permission')
                             time.sleep(10)
                             Login_controller.set_flag(True)
-                        elif:
-                            request_validatedocs.status_code == 404:
+                        elif request_validatedocs.status_code == 404:
                             self.vt.emit('fail_notfound')
                             time.sleep(10)
                             Login_controller.set_flag(True)

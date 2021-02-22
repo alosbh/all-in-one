@@ -1589,14 +1589,14 @@ class Ui_Logged_Screen(object):
         self.lbl_nok_FPL_01.setStyleSheet("")
         self.lbl_nok_FPL_01.setObjectName("lbl_nok_FPL_01")
         self.lbl_invalid_trainings = QtWidgets.QLabel(self.lbl_nok_FPL_01)
-        self.lbl_invalid_trainings.setGeometry(QtCore.QRect(40, 20, 241, 31))
+        self.lbl_invalid_trainings.setGeometry(QtCore.QRect(40, 10, 241, 51))
         self.lbl_invalid_trainings.setStyleSheet("border: solid white;")
         self.lbl_invalid_trainings.setWordWrap(True)
         self.lbl_invalid_trainings.setObjectName("lbl_invalid_trainings")
         self.lbl_yellowwarning = QtWidgets.QLabel(self.lbl_nok_FPL_01)
-        self.lbl_yellowwarning.setGeometry(QtCore.QRect(90, 60, 121, 61))
+        self.lbl_yellowwarning.setGeometry(QtCore.QRect(100, 70, 101, 41))
         self.lbl_yellowwarning.setStyleSheet("border: solid white;\n"
-"image: url(:/Img/yellow-warning.png);")
+"image: url(:/Img/yellowerror.png);")
         self.lbl_yellowwarning.setText("")
         self.lbl_yellowwarning.setObjectName("lbl_yellowwarning")
         self.lbl_ok_FPL_00 = QtWidgets.QWidget(self.body_validation_flux)
@@ -1702,6 +1702,62 @@ class Ui_Logged_Screen(object):
 "border: 0px  solid rgb(0,0,0);")
         self.lbl_text_FPL_fail.setWordWrap(True)
         self.lbl_text_FPL_fail.setObjectName("lbl_text_FPL_fail")
+        self.body_FPL_fail_2 = QtWidgets.QWidget(self.main)
+        self.body_FPL_fail_2.setGeometry(QtCore.QRect(410, 20, 361, 101))
+        self.body_FPL_fail_2.setStyleSheet("QWidget{\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px  solid rgb(0,0,0);\n"
+"}")
+        self.body_FPL_fail_2.setObjectName("body_FPL_fail_2")
+        self.btn_close_FPL_fail_2 = QtWidgets.QPushButton(self.body_FPL_fail_2)
+        self.btn_close_FPL_fail_2.setGeometry(QtCore.QRect(330, 10, 21, 21))
+        self.btn_close_FPL_fail_2.setStyleSheet("image: url(:/Img/redX.png);\n"
+"border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.btn_close_FPL_fail_2.setText("")
+        self.btn_close_FPL_fail_2.setObjectName("btn_close_FPL_fail_2")
+        self.lbl_iconFPL_fail_2 = QtWidgets.QLabel(self.body_FPL_fail_2)
+        self.lbl_iconFPL_fail_2.setGeometry(QtCore.QRect(20, 20, 61, 51))
+        self.lbl_iconFPL_fail_2.setStyleSheet("image: url(:/Img/red_error.png);\n"
+"border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.lbl_iconFPL_fail_2.setText("")
+        self.lbl_iconFPL_fail_2.setObjectName("lbl_iconFPL_fail_2")
+        self.lbl_text_FPL_fail_2 = QtWidgets.QLabel(self.body_FPL_fail_2)
+        self.lbl_text_FPL_fail_2.setGeometry(QtCore.QRect(90, 10, 201, 71))
+        self.lbl_text_FPL_fail_2.setStyleSheet("border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.lbl_text_FPL_fail_2.setWordWrap(True)
+        self.lbl_text_FPL_fail_2.setObjectName("lbl_text_FPL_fail_2")
+        self.body_FPL_fail_3 = QtWidgets.QWidget(self.main)
+        self.body_FPL_fail_3.setGeometry(QtCore.QRect(410, 20, 361, 101))
+        self.body_FPL_fail_3.setStyleSheet("QWidget{\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px  solid rgb(0,0,0);\n"
+"}")
+        self.body_FPL_fail_3.setObjectName("body_FPL_fail_3")
+        self.btn_close_FPL_fail_3 = QtWidgets.QPushButton(self.body_FPL_fail_3)
+        self.btn_close_FPL_fail_3.setGeometry(QtCore.QRect(330, 10, 21, 21))
+        self.btn_close_FPL_fail_3.setStyleSheet("image: url(:/Img/redX.png);\n"
+"border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.btn_close_FPL_fail_3.setText("")
+        self.btn_close_FPL_fail_3.setObjectName("btn_close_FPL_fail_3")
+        self.lbl_iconFPL_fail_3 = QtWidgets.QLabel(self.body_FPL_fail_3)
+        self.lbl_iconFPL_fail_3.setGeometry(QtCore.QRect(20, 20, 61, 51))
+        self.lbl_iconFPL_fail_3.setStyleSheet("image: url(:/Img/red_error.png);\n"
+"border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.lbl_iconFPL_fail_3.setText("")
+        self.lbl_iconFPL_fail_3.setObjectName("lbl_iconFPL_fail_3")
+        self.lbl_text_FPL_fail_3 = QtWidgets.QLabel(self.body_FPL_fail_3)
+        self.lbl_text_FPL_fail_3.setGeometry(QtCore.QRect(90, 10, 201, 71))
+        self.lbl_text_FPL_fail_3.setStyleSheet("border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);")
+        self.lbl_text_FPL_fail_3.setWordWrap(True)
+        self.lbl_text_FPL_fail_3.setObjectName("lbl_text_FPL_fail_3")
         self.horizontalWidget_3.raise_()
         self.btn_5s_back.raise_()
         self.btn_5s_next.raise_()
@@ -1710,6 +1766,8 @@ class Ui_Logged_Screen(object):
         self.body_FPL.raise_()
         self.body_FPL_error.raise_()
         self.body_FPL_success.raise_()
+        self.body_FPL_fail_2.raise_()
+        self.body_FPL_fail_3.raise_()
         self.body_FPL_fail.raise_()
         self.sidebar.raise_()
         self.footer.raise_()
@@ -1811,7 +1869,9 @@ class Ui_Logged_Screen(object):
         self.lbl_allgood_2.setText(_translate("MainWindow", "Tudo ok por aqui!"))
         self.lbl_text_FPL_error.setText(_translate("MainWindow", "Ops, algo deu errado!                             Faça login novamente para carregar os documentos."))
         self.lbl_text_FPL_success.setText(_translate("MainWindow", "Treinamentos validados!"))
-        self.lbl_text_FPL_fail.setText(_translate("MainWindow", "Algo deu errado, tente validar os documentos novamente."))
+        self.lbl_text_FPL_fail.setText(_translate("MainWindow", "O treinador não tem permissão para validar este documento."))
+        self.lbl_text_FPL_fail_2.setText(_translate("MainWindow", "Treinador não encontrado."))
+        self.lbl_text_FPL_fail_3.setText(_translate("MainWindow", "Algo deu errado, tente validar os documentos novamente."))
 import resources_rc
 
 
