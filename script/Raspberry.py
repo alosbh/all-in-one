@@ -52,15 +52,20 @@ class Raspberry:
                 response = json.loads(request.content)
                 self.Name = response['hostname']
             else:
+
+                print("**************  PRIMEIRA TENTATIVA PEGAR HOSTNAME *******************")
                 mypath = Path(__file__).absolute().parent
                 with open('/etc/hostname','r') as f:
                     lines = f.readlines()
                 self.Name = lines[0]
+                print(lines)
         except:
+            print("**************  SEGUNDA TENTATIVA PEGAR HOSTNAME *******************")
             mypath = Path(__file__).absolute().parent
             with open('/etc/hostname','r') as f:
                 lines = f.readlines()
             self.Name = lines[0]
+            print(lines)
             
         
     def GetSystemInfo(self):
