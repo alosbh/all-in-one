@@ -130,6 +130,9 @@ class Fpl_controller():
         self.btn_close_FPL_fail.clicked.connect(self.body_FPL_fail.hide)
         self.btn_close_FPL_fail_2.clicked.connect(self.body_FPL_fail_2.hide)
         self.btn_close_FPL_fail_3.clicked.connect(self.body_FPL_fail_3.hide)
+        self.btn_close_FPL_fail.clicked.connect(Login_controller.set_flag(True))
+        self.btn_close_FPL_fail_2.clicked.connect(Login_controller.set_flag(True))
+        self.btn_close_FPL_fail_3.clicked.connect(Login_controller.set_flag(True))
 
 # coemeca a thread para leitura do cracha e confirmacao - desliga o loop que mantem login e logout ativo
     def start_everything(self):
@@ -168,21 +171,23 @@ class Fpl_controller():
 
 # decide qual janela vai subir
     def update_window(self, window):
+        self.get_all_documents(2)
+        self.body_FPL.hide()
         if window == 'success':
-            self.get_all_documents(2)
-            self.body_FPL.hide()
+            #self.get_all_documents(2)
+            #self.body_FPL.hide()
             self.body_FPL_success.show()
         elif window == 'fail':
-            self.get_all_documents(2)
-            self.body_FPL.hide()
+            #self.get_all_documents(2)
+            #self.body_FPL.hide()
             self.body_FPL_fail_3.show()
         elif window == 'fail_permission':
-            self.get_all_documents(2)
-            self.body_FPL.hide()
+            #self.get_all_documents(2)
+            #self.body_FPL.hide()
             self.body_FPL_fail.show()
         elif window == 'fail_notfound':
-            self.get_all_documents(2)
-            self.body_FPL.hide()
+            #self.get_all_documents(2)
+            #self.body_FPL.hide()
             self.body_FPL_fail_2.show()
 
 # pega o cracha no leitor(dl) no momento do clique. quando mudar, pega o que foi inserido(responsavel) e faz o request de validacao. depois liga o login/logout novamente
@@ -218,26 +223,28 @@ class thread_vt(QThread):
         
                         if request_validatedocs.status_code == 201:
                             self.vt.emit('success')
-                            time.sleep(10)
-                            Login_controller.set_flag(True)
+                            #time.sleep(10)
+                            #Login_controller.set_flag(True)
                             return
                         elif request_validatedocs.status_code == 400:
                             self.vt.emit('fail_permission')
-                            time.sleep(10)
-                            Login_controller.set_flag(True)
+                            #time.sleep(10)
+                            #Login_controller.set_flag(True)
+                            return
                         elif request_validatedocs.status_code == 404:
                             self.vt.emit('fail_notfound')
-                            time.sleep(10)
-                            Login_controller.set_flag(True)
+                            #time.sleep(10)
+                            #Login_controller.set_flag(True)
+                            return
                         else:
                             self.vt.emit('fail')
-                            time.sleep(10)
-                            Login_controller.set_flag(True)
+                            #time.sleep(10)
+                            #Login_controller.set_flag(True)
                             return
                     except:
                         self.vt.emit('fail')
-                        time.sleep(10)
-                        Login_controller.set_flag(True)
+                        #time.sleep(10)
+                        #Login_controller.set_flag(True)
                         return
                 time.sleep(0.5)
 
