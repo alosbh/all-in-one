@@ -241,8 +241,7 @@ class thread_vt(QThread):
         # sim, um post com parametro na URL e que nao pode receber nada no body
         url_getuser = 'http://brbelm0itqa01.corp.jabil.org/OJT/ojtws/Authentication/GetUserByBadge?badge=' + badge
         headers_getuser = {'content-type': 'application/json'}
-        body_getuser = { }
-        request_getuser = requests.post(url_getuser, data=json.dumps(body_getuser), headers=headers_getuser)
+        request_getuser = requests.get(url_getuser, headers=headers_getuser)
         response_getuser = json.loads(request_getuser.content)
         return response_getuser['Registration']
 
