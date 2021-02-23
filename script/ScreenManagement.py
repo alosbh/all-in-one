@@ -198,6 +198,14 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.webSettings = self.body_web.settings()
         self.body_web.setVisible(False) 
 
+    def preload_screen(self):
+        self.preload_setup_fpl()
+        self.btn_actionsLPA.hide()
+        self.lbl_value_yield.setText('-')
+        self.lbl_value_productivity.setText('-')
+        self.lbl_value_goodideas.setText('-')
+        self.lbl_value_jabilcoins.setText('-')
+
     # Method called in the MainThread - fills labor user fields
     def SetupUser(self, DL):
         self.LPAactions_functions(self.Station.Name)
@@ -205,10 +213,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.lbl_value_name.setText(DL.Name)
         # self.lbl_value_yield.setText(DL.Yield)
         # self.lbl_value_productivity.setText(DL.Productivity)
-        self.lbl_value_yield.setText('-')
-        self.lbl_value_productivity.setText('-')
-        self.lbl_value_goodideas.setText('-')
-        self.lbl_value_jabilcoins.setText('-')
         self.lbl_user_avatar.setPixmap(DL.picture)
         self.setup_fpl(DL.Name, DL.ID_trim)
         

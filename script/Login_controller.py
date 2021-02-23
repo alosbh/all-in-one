@@ -100,6 +100,8 @@ class Login_controller(QThread):
                         # In case of succesfull login            
                         if(status=="Login realizado"):
                             self.Logged_Window.home()
+                            self.Logged_Window.preload_screen()
+                            self.thread_signal2.signal.emit('about:blank')
                             # Setup the Direct Labor object with actual worker data
                             self.DL.Setup(LoginResponse, self.host)
                             self.DL.load_avatar()
@@ -109,7 +111,6 @@ class Login_controller(QThread):
                             self.Actual_ID = self.Read_ID
                             print("Actual ID apos alterar: " + str(self.Actual_ID))
                             # Show the Logged screen and hide the initial screen
-                            self.thread_signal2.signal.emit('about:blank')
                             # self.Logged_Window.Logged_QtWindow.show()
                             # self.NonLogged_Window.NonLogged_QtWindow.hide()
 

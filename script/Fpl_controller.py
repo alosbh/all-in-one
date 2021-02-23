@@ -18,6 +18,11 @@ class Fpl_controller():
         global DL_Name
         DL_Name = DLname
         self.DLid = DLid
+        self.get_all_documents(1)
+    
+    def preload_setup_fpl(self):
+        self.btn_FPL.hide()
+        self.widget_FPL_2.hide()
         self.thread_vt = thread_vt()
         self.body_FPL.hide()
         self.body_FPL_error.hide()
@@ -25,9 +30,7 @@ class Fpl_controller():
         self.body_FPL_fail.hide()
         self.body_FPL_fail_2.hide()
         self.body_FPL_fail_3.hide()
-        self.get_all_documents(1)
-        self.widget_FPL_2.hide()
-        
+
 # pega info dos documentos e adiciona em arrays para gerar widgets na janela
     def get_all_documents(self, flag):
         self.valid_documents_dict = {}
@@ -238,7 +241,6 @@ class thread_vt(QThread):
                 time.sleep(0.5)
 
     def get_user_by_badge(self, badge):
-        # sim, um post com parametro na URL e que nao pode receber nada no body
         url_getuser = 'http://brbelm0itqa01.corp.jabil.org/OJT/ojtws/Authentication/GetUserByBadge?badge=' + badge
         headers_getuser = {'content-type': 'application/json'}
         request_getuser = requests.get(url_getuser, headers=headers_getuser)
