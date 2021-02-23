@@ -7,7 +7,8 @@ OS_define = OS_define()
 if OS_define.get_OS_name() == 1:
     pass
 else:
-    from RFRead_controller import RFRead_controller
+    # from RFRead_controller import RFRead_controller
+    pass
 import logging
 import time
 
@@ -68,7 +69,9 @@ class Login_controller(QThread):
                     if OS_define.get_OS_name() == 1:
                         self.Read_ID = 51008294
                     else:
-                        self.Read_ID = RFRead_controller.RFRead() # Reads Badge ID
+                        # self.Read_ID = RFRead_controller.RFRead() # Reads Badge ID
+                        self.Read_ID = 51008294
+                        
                 except Exception as e:
                     traceback.print_exc()
                     logger.error("RFID error: " + type(e).__name__)
