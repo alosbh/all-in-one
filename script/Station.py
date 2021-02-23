@@ -46,7 +46,9 @@ class Station:
             raise Exception("O segundo parametro é obrigatorio.")
           
         if isinstance(RaspberryObject, Raspberry):
-            self.Enabled = self.GetStationInfo(RaspberryObject.Name)
+
+            # self.Enabled = self.GetStationInfo(RaspberryObject.Name)
+            self.Enabled = self.GetStationInfo("brbelraspbusterdev2")
 
         elif isinstance(RaspberryObject, str):
             logger.error("Invalid Raspberry object")
