@@ -30,6 +30,7 @@ class Fpl_controller():
         self.body_FPL_fail.hide()
         self.body_FPL_fail_2.hide()
         self.body_FPL_fail_3.hide()
+        self.lbl_value_number_invalidFPL.hide()
 
 # pega info dos documentos e adiciona em arrays para gerar widgets na janela
     def get_all_documents(self, flag):
