@@ -230,28 +230,18 @@ class thread_vt(QThread):
         
                         if request_validatedocs.status_code == 201:
                             self.vt.emit('success')
-                            #time.sleep(10)
-                            #Login_controller.set_flag(True)
                             return
                         elif request_validatedocs.status_code == 400:
                             self.vt.emit('fail_permission')
-                            #time.sleep(10)
-                            #Login_controller.set_flag(True)
                             return
                         elif request_validatedocs.status_code == 404:
                             self.vt.emit('fail_notfound')
-                            #time.sleep(10)
-                            #Login_controller.set_flag(True)
                             return
                         else:
                             self.vt.emit('fail')
-                            #time.sleep(10)
-                            #Login_controller.set_flag(True)
                             return
                     except:
                         self.vt.emit('fail')
-                        #time.sleep(10)
-                        #Login_controller.set_flag(True)
                         return
                 time.sleep(0.5)
 
