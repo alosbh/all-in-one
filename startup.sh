@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python3 /aio/main.py
+python3 -u /aio/main.py
