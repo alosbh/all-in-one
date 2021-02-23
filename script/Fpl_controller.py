@@ -124,15 +124,22 @@ class Fpl_controller():
 
     def fpl_btn_functions(self):
         self.btn_FPL.show()
-
         self.btn_close_FPL.clicked.connect(self.undo_everything)
         self.btn_close_FPL_success.clicked.connect(self.body_FPL_success.hide)
-        self.btn_close_FPL_fail.clicked.connect(self.body_FPL_fail.hide)
-        self.btn_close_FPL_fail_2.clicked.connect(self.body_FPL_fail_2.hide)
-        self.btn_close_FPL_fail_3.clicked.connect(self.body_FPL_fail_3.hide)
-        self.btn_close_FPL_fail.clicked.connect(lambda: Login_controller.set_flag(True))
-        self.btn_close_FPL_fail_2.clicked.connect(lambda: Login_controller.set_flag(True))
-        self.btn_close_FPL_fail_3.clicked.connect(lambda: Login_controller.set_flag(True))
+        self.btn_close_FPL_fail.clicked.connect(self.func_btn_close_FPL_fail)
+        self.btn_close_FPL_fail_2.clicked.connect(self.func_btn_close_FPL_fail_2)
+        self.btn_close_FPL_fail_3.clicked.connect(self.func_btn_close_FPL_fail_3)
+    
+    def func_btn_close_FPL_fail(self):
+        self.body_FPL_fail.hide()
+        Login_controller.set_flag(True)
+    def func_btn_close_FPL_fail_2(self):
+        self.body_FPL_fail_2.hide()
+        Login_controller.set_flag(True)
+    def func_btn_close_FPL_fail_3(self):
+        self.body_FPL_fail_3.hide()
+        Login_controller.set_flag(True)
+
 
 # coemeca a thread para leitura do cracha e confirmacao - desliga o loop que mantem login e logout ativo
     def start_everything(self):

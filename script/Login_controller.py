@@ -45,6 +45,7 @@ class Login_controller(QThread):
     #     return flag
 
     def set_flag(onoff):
+        print('asdasdasdasd')
         global flag
         flag = onoff
 
