@@ -47,8 +47,8 @@ class Station:
           
         if isinstance(RaspberryObject, Raspberry):
 
-            # self.Enabled = self.GetStationInfo(RaspberryObject.Name)
-            self.Enabled = self.GetStationInfo("brbelraspbusterdev2")
+            self.Enabled = self.GetStationInfo(RaspberryObject.Name)
+            
 
         elif isinstance(RaspberryObject, str):
             logger.error("Invalid Raspberry object")
