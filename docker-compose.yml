@@ -7,10 +7,11 @@ services:
   # All in One appication
   AIO:
    # image: docker.corp.jabil.org/automation-bel/aio:latest
-    image: testeteste:latest
+    image: aio:semcracha
     volumes:
       - /run/dbus:/host/run/dbus
       - /storage/pi/:/storage/pi/
+      - /etc/hostname:/etc/hostname
     ports:
       - 8082:5900
     privileged: true
