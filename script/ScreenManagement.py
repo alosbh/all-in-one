@@ -201,6 +201,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
     def preload_screen(self):
         self.preload_setup_fpl()
         self.btn_actionsLPA.hide()
+        self.lbl_value_number_actionsLPA.hide()
         self.lbl_value_yield.setText('-')
         self.lbl_value_productivity.setText('-')
         self.lbl_value_goodideas.setText('-')
