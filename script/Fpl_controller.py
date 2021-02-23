@@ -130,9 +130,9 @@ class Fpl_controller():
         self.btn_close_FPL_fail.clicked.connect(self.body_FPL_fail.hide)
         self.btn_close_FPL_fail_2.clicked.connect(self.body_FPL_fail_2.hide)
         self.btn_close_FPL_fail_3.clicked.connect(self.body_FPL_fail_3.hide)
-        self.btn_close_FPL_fail.clicked.connect(Login_controller.set_flag(True))
-        self.btn_close_FPL_fail_2.clicked.connect(Login_controller.set_flag(True))
-        self.btn_close_FPL_fail_3.clicked.connect(Login_controller.set_flag(True))
+        self.btn_close_FPL_fail.clicked.connect(lambda: Login_controller.set_flag(True))
+        self.btn_close_FPL_fail_2.clicked.connect(lambda: Login_controller.set_flag(True))
+        self.btn_close_FPL_fail_3.clicked.connect(lambda: Login_controller.set_flag(True))
 
 # coemeca a thread para leitura do cracha e confirmacao - desliga o loop que mantem login e logout ativo
     def start_everything(self):
