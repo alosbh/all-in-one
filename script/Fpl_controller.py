@@ -37,13 +37,12 @@ class Fpl_controller():
     def get_all_documents(self, flag):
         self.valid_documents_dict = {}
         self.invalid_documents_dict = {}
-
-        physicalWorkstationId = str(self.Station.Id)
-        traineeRegistration = str(self.DLid)
-        url_alldocs = 'http://brbelm0mat81/ojt/api/Trainings?physicalWorkstationId='+ physicalWorkstationId +'&traineeRegistration=' + traineeRegistration
-        print(url_alldocs)
         
         try:
+            physicalWorkstationId = str(self.Station.Id)
+            traineeRegistration = str(self.DLid)
+            url_alldocs = 'http://brbelm0mat81/ojt/api/Trainings?physicalWorkstationId='+ physicalWorkstationId +'&traineeRegistration=' + traineeRegistration
+            print(url_alldocs)
             request_alldocs = requests.get(url_alldocs, timeout=15)
             if request_alldocs.status_code == 200:
                 i = 0
