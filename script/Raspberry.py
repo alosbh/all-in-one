@@ -31,7 +31,8 @@ class Raspberry:
             OS = self.OS_define.get_OS_name()
 
             # Get Hostname by request
-            if OS == 1:
+            #if (OS == 1):
+            if (True):
                 self.Name = 'BRBELME024'
             else:
                 self.request_rasp_hostname()
