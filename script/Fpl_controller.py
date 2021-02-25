@@ -59,13 +59,13 @@ class Fpl_controller():
                     self.lbl_ok_FPL_00.raise_()
                     self.lbl_invalid_trainings.hide()
                     self.lbl_value_number_invalidFPL.hide()
-                    #self.set_blue()
+                    self.set_blue()
                 else:
                     self.lbl_nok_FPL_01.raise_()
                     self.lbl_ok_FPL_00.hide()
                     self.lbl_invalid_trainings.show()
                     self.lbl_value_number_invalidFPL.show()
-                    #self.set_red()
+                    self.set_red()
 
                 self.lbl_value_number_invalidFPL.setText(str(i))
                 self.create_lbl_ckb()
@@ -77,10 +77,10 @@ class Fpl_controller():
                     else:
                         self.btn_FPL.clicked.connect(self.start_everything)
             else:
-                #self.set_blue()
+                self.set_blue()
                 self.error_FPL()
         except:
-            #self.set_blue()
+            self.set_blue()
             self.error_FPL()
 
 # metodos de controle de tela
