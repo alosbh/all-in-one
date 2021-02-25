@@ -126,11 +126,14 @@ class Fpl_controller():
     def fpl_btn_functions(self):
         self.btn_FPL.show()
         self.btn_close_FPL.clicked.connect(self.undo_everything)
-        self.btn_close_FPL_success.clicked.connect(self.body_FPL_success.hide)
+        self.btn_close_FPL_success.clicked.connect(self.func_btn_close_FPL_success)
         self.btn_close_FPL_fail.clicked.connect(self.func_btn_close_FPL_fail)
         self.btn_close_FPL_fail_2.clicked.connect(self.func_btn_close_FPL_fail_2)
         self.btn_close_FPL_fail_3.clicked.connect(self.func_btn_close_FPL_fail_3)
-    
+
+    def func_btn_close_FPL_success(self):
+        self.body_FPL_success.hide()
+        Login_controller.set_flag(True)
     def func_btn_close_FPL_fail(self):
         self.body_FPL_fail.hide()
         Login_controller.set_flag(True)
