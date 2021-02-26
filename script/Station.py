@@ -66,8 +66,6 @@ class Station:
         try:
             jsonData = ws.Request(ws.AIO, 'GetEquipmentByHostname', RaspberryName)
 
-            request_lineInfo = ws.Request(ws.AIO_Dashboard, "GetByLine", str(jsonData["LineId"]))
-
             lineName = ws.load_lineName(jsonData['Id'])
             lineName = lineName[0]
             
@@ -86,13 +84,6 @@ class Station:
             self.Enabled = 1
 
             self.Index = int(self.Name[-2:])
-
-            if (request_lineInfo is None):
-                self.ProductName = 'No product'
-                self.ClientName = 'No client'
-            else:
-                self.ProductName = request_lineInfo['Product']
-                self.ClientName = request_lineInfo['ProductionGroup']
 
             return 1
 
@@ -115,3 +106,12 @@ class Station:
                 logger.error("Error creating Station object. Exception: " + type(e).__name__ )
 
             return 0
+    def get_product_info(self):
+        request_lineInfo = ws.Request(ws.AIO_Dashboard, "GetByLine", str(self.RouteId))
+
+        if (request_lineInfo is None):
+            self.ProductName = 'No product'
+            self.ClientName = 'No client'
+        else:
+            self.ProductName = request_lineInfo['Product']
+            self.ClientName = request_lineInfo['ProductionGroup']

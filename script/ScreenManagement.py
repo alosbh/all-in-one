@@ -168,8 +168,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.lbl_value_workstation.setText(str(self.Station.Name)) 
         self.lbl_value_version.setText(str(GlobalParameters.AIO_Version)) 
         self.lbl_value_line.setText(str(self.Station.RouteName))
-        self.lbl_value_product.setText(str(self.Station.ProductName))
-        self.lbl_value_client.setText(str(self.Station.ClientName))
         
         # Setting up reset window
         self.Reset_Window = Reset_Window
@@ -215,8 +213,11 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.lbl_user_avatar.setPixmap(DL.picture)
         self.LPAactions_functions(self.Station.Name)
         self.load_announcements_label()
+        self.Station.get_product_info()
         # self.lbl_value_yield.setText(DL.Yield)
         # self.lbl_value_productivity.setText(DL.Productivity)
+        self.lbl_value_product.setText(str(self.Station.ProductName))
+        self.lbl_value_client.setText(str(self.Station.ClientName))
         self.setup_fpl(DL.Name, DL.ID_trim)
         print('User loaded.')
         print('Functions working.')
