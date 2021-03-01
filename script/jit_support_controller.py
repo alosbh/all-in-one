@@ -51,7 +51,7 @@ class jit_support_controller():
         team_id_list = []
 
         try:
-            request_team = requests.get(url = 'http://brbelm0itqa01/JITAPI/Team/GetAllActive', verify=False)
+            request_team = requests.get(url = 'http://brbelm0itqa01.corp.jabil.org/JITAPI/Team/GetAllActive', verify=False)
             response_team = request_team.json()
             print(request_team.elapsed.total_seconds())
             request_symptons = requests.get(url = 'http://brbelm0itqa01/JITAPI/Symptom/GetAll', verify=False)

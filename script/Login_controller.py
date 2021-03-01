@@ -92,7 +92,6 @@ class Login_controller(QThread):
                             print("Stats1:"+status)
 
                         except Exception as e: 
-                            traceback.print_exc()
                             logger.error("Login Error: " + type(e).__name__)
                             print(type(e).__name__)
                             status = ""
@@ -102,6 +101,8 @@ class Login_controller(QThread):
                         if(status=="Login realizado"):
                             self.thread_signal2.signal.emit('about:blank')
                             self.Logged_Window.home()
+                            self.Logged_Window.preload_screen()
+                            self.thread_signal2.signal.emit('about:blank')
                             # Setup the Direct Labor object with actual worker data
                             self.DL.Setup(LoginResponse, self.host)
                             self.DL.load_avatar()

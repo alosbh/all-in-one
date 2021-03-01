@@ -162,14 +162,12 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.Raspberry = Raspberry
         self.build_sidebar_buttons(self.Raspberry.Name, self.Station.Name, self.Station.RouteName)
         self.generate_5s(self.Station.Name)
-        self.setup_support_screen(self.Station.Name)
+        #self.setup_support_screen(self.Station.Name)
 
         # Fills labels with workstation values
         self.lbl_value_workstation.setText(str(self.Station.Name)) 
         self.lbl_value_version.setText(str(GlobalParameters.AIO_Version)) 
         self.lbl_value_line.setText(str(self.Station.RouteName))
-        self.lbl_value_product.setText(str(self.Station.ProductName))
-        self.lbl_value_client.setText(str(self.Station.ClientName))
         
         # Setting up reset window
         self.Reset_Window = Reset_Window
@@ -198,17 +196,31 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.webSettings = self.body_web.settings()
         self.body_web.setVisible(False) 
 
-    # Method called in the MainThread - fills labor user fields
-    def SetupUser(self, DL):
-        self.setup_fpl(DL.Name, DL.ID_trim)
-        self.LPAactions_functions(self.Station.Name)
-        self.load_announcements_label()
-        self.lbl_value_name.setText(DL.Name)
-        self.lbl_value_yield.setText(DL.Yield)
-        self.lbl_value_productivity.setText(DL.Productivity)
+    def preload_screen(self):
+        self.preload_setup_fpl()
+        self.lbl_value_name.setText("Carregando...")
+        self.btn_actionsLPA.hide()
+        self.lbl_value_number_actionsLPA.hide()
+        self.lbl_value_yield.setText('-')
+        self.lbl_value_productivity.setText('-')
         self.lbl_value_goodideas.setText('-')
         self.lbl_value_jabilcoins.setText('-')
+
+    # Method called in the MainThread - fills labor user fields
+    def SetupUser(self, DL):
+        print('Loading user ...')
+        self.lbl_value_name.setText(DL.Name)
         self.lbl_user_avatar.setPixmap(DL.picture)
+        self.LPAactions_functions(self.Station.Name)
+        self.load_announcements_label()
+        self.Station.get_product_info()
+        # self.lbl_value_yield.setText(DL.Yield)
+        # self.lbl_value_productivity.setText(DL.Productivity)
+        self.lbl_value_product.setText(str(self.Station.ProductName))
+        self.lbl_value_client.setText(str(self.Station.ClientName))
+        self.setup_fpl(DL.Name, DL.ID_trim)
+        print('User loaded.')
+        print('Functions working.')
         
     # Method to show the window widget 
     def Show(self):
