@@ -7,6 +7,7 @@ from functions_5s import functions_5s
 # import RPi.GPIO as GPIO
 import os
 import datetime
+import asyncio
 
 global Raspberry
 Raspberry = Raspberry()
@@ -36,7 +37,7 @@ functions_5s = functions_5s()
 
 
 
-def main():
+async def main():
         #Handling of the GPIO ports, to disable their warnings and reset all used ports.        
         # GPIO.setwarnings(False)
         # GPIO.cleanup()
@@ -47,7 +48,7 @@ def main():
 
         #Setup of the logged screen UI
         
-        Logged_Screen.Setup(Station,Raspberry,GlobalParameters,NonLogged_Screen,Reset_Window)
+        await Logged_Screen.Setup(Station,Raspberry,GlobalParameters,NonLogged_Screen,Reset_Window)
      
         #Starts the QT application that manages the screens.
         ScreenManagement.QtApplication.exec_()
@@ -55,4 +56,4 @@ def main():
 
 # Run main() function
 if __name__ == "__main__":
-        main()
+        asyncio.run(main())
