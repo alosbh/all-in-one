@@ -25,7 +25,6 @@ import logging
 import traceback
 import urllib.request
 import asyncio
-import httpx
 
 from PyQt5.QtCore import QObject, pyqtSignal, QUrl, QThread
 from PyQt5.QtGui import QPixmap, QIcon
@@ -158,23 +157,21 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.ActualFIPage = 1
 
     async def something_fast(self, session):
-        #esponse = await session.request(method="GET", url='http://httpbin.org/delay/5')
+        response = await session.request(method="GET", url='http://httpbin.org/delay/5')
         #response = response.json()
-        response = await session.get('http://httpbin.org/delay/5')
         print('----------------------------------------------')
-        print(response.json())
+        print(response)
         print('----------------------------------------------')
     
     async def something_fast_5(self, session):
-        #response = await session.request(method="GET", url='http://httpbin.org/delay/5')
+        response = await session.request(method="GET", url='http://httpbin.org/delay/5')
         #response = response.json()
-        response = await session.get('http://httpbin.org/delay/5')
         print('----------------------------------------------')
-        print(response.json())
+        print(response)
         print('----------------------------------------------')
 
     async def all_async(self):
-        async with httpx.AsyncClient(timeout=None) as session:
+        async with ClientSession() as session:
             await asyncio.gather(self.something_fast(session), self.something_fast_5(session))
 
     def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window):
