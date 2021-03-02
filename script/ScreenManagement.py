@@ -158,22 +158,24 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
 
     async def something_fast(self):
         async with httpx.AsyncClient() as client:
-            r = await client.get('http://httpbin.org/delay/1')
+            r = await client.get('http://httpbin.org/delay/10')
             response = r.json()
+            print('----------------------------------------------')
             print(response)
+            print('----------------------------------------------')
     
     async def something_fast_5(self):
         async with httpx.AsyncClient() as client:
             r = await client.get('http://httpbin.org/delay/5')
             response = r.json()
+            print('----------------------------------------------')
             print(response)
+            print('----------------------------------------------')
 
     async def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window):
         self.setupUi(self.Logged_QtWindow)
         self.build_body_web()
-        print('----------------------------------------------')
-        await asyncio.gather(self.something_fast(), self.something_fast_5())
-        print('----------------------------------------------')
+        asyncio.gather(self.something_fast(), self.something_fast_5())
 
         self.Station = Station
         self.DL = DL()
