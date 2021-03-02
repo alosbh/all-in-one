@@ -1,0 +1,27 @@
+<RCC>
+  <qresource prefix="/Img">
+    <file>ingenicologo.png</file>
+    <file>logoaio.png</file>
+    <file>LogoJabil.png</file>
+    <file>estrategia.png</file>
+    <file>lista.png</file>
+    <file>ideia.png</file>
+    <file>posto-de-trabalho.png</file>
+    <file>bxs-watch-alt.png</file>
+    <file>painel-de-controle.png</file>
+    <file alias="logo">escrito allinone.png</file>
+    <file>rpi.png</file>
+    <file>Avatar.png</file>
+    <file>bxs-watch-alt.svg</file>
+    <file>bx-zoom-in.svg</file>
+    <file>estrategia.svg</file>
+    <file>ideia.svg</file>
+    <file>lista.svg</file>
+    <file>painel-de-controle.svg</file>
+    <file>posto-de-trabalho.svg</file>
+    <file alias="yield">bx-trending-up.png</file>
+    <file alias="productivty">bar.png</file>
+    <file alias="jabilcoins">dollar.png</file>
+    <file>lamp.png</file>
+  </qresource>
+</RCC>

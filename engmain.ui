@@ -1,0 +1,2597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1366</width>
+    <height>768</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="body">
+    <property name="geometry">
+     <rect>
+      <x>235</x>
+      <y>60</y>
+      <width>1131</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(245,245,245);border:none;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QFrame" name="dropshadowtop">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1131</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: qlineargradient(x1:0, y1:1, x2:0, y2:0,
+                  stop: 1 rgba(200,200,200,0.2), stop:0 rgb(245,245,245));border:none;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+    </widget>
+    <widget class="QFrame" name="dropshadowbox">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>620</y>
+       <width>1131</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                  stop: 1 rgba(200,200,200,0.2), stop:0 rgb(245,245,245));border:none;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+    </widget>
+    <widget class="QFrame" name="apps">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1131</width>
+       <height>661</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;border:none;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QWidget" name="gridLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>341</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="frame_metrics">
+       <property name="leftMargin">
+        <number>16</number>
+       </property>
+       <property name="topMargin">
+        <number>16</number>
+       </property>
+       <property name="rightMargin">
+        <number>8</number>
+       </property>
+       <property name="bottomMargin">
+        <number>8</number>
+       </property>
+       <property name="spacing">
+        <number>16</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QWidget" name="productivity" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;border-radius:8px;</string>
+         </property>
+         <widget class="QWidget" name="icon_productivity" native="true">
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>10</y>
+            <width>30</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">image:url(:/Img/productivty);
+border-radius:13px;
+background-color: rgba(50,255,50,0.3);</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lbl_productivity">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>100</y>
+            <width>147</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(170,170,170)</string>
+          </property>
+          <property name="text">
+           <string>Productivity</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="value_productivity">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>40</y>
+            <width>147</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic</family>
+            <pointsize>28</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color:transparent;color:rgb(90,90,90)</string>
+          </property>
+          <property name="text">
+           <string>93.1</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QWidget" name="yield_metric" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;border-radius:8px;</string>
+         </property>
+         <widget class="QWidget" name="icon_yield" native="true">
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>10</y>
+            <width>27</width>
+            <height>27</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">image:url(:/Img/yield);
+border-radius:13px;
+background-color: rgba(100,74,180,0.3);</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lbl_yield">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>100</y>
+            <width>147</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(170,170,170)</string>
+          </property>
+          <property name="text">
+           <string>Yield</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="value_yield">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>40</y>
+            <width>147</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic</family>
+            <pointsize>28</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color:transparent;color:rgb(90,90,90)</string>
+          </property>
+          <property name="text">
+           <string>98.3</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QWidget" name="jabilcoins" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;border-radius:8px;</string>
+         </property>
+         <widget class="QWidget" name="icon_jabilcoins" native="true">
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>10</y>
+            <width>27</width>
+            <height>27</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">image: url(:/Img/jabilcoins);
+border-radius:13px;
+background-color: rgba(50,74,255,0.3);</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lbl_jabilcoins">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>100</y>
+            <width>147</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(170,170,170)</string>
+          </property>
+          <property name="text">
+           <string>Jabil Coins</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="value_jabilcoins">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>40</y>
+            <width>147</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic</family>
+            <pointsize>28</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color:transparent;color:rgb(90,90,90)</string>
+          </property>
+          <property name="text">
+           <string>4</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QWidget" name="goodideas" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;border-radius:8px;</string>
+         </property>
+         <widget class="QWidget" name="icon_goodideas" native="true">
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>10</y>
+            <width>27</width>
+            <height>27</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">image:url(:/Img/lamp.png);
+border-radius:13px;
+background-color: rgba(215,157,80,0.3);</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lbl_goodideas">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>100</y>
+            <width>147</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(170,170,170)</string>
+          </property>
+          <property name="text">
+           <string>Good Ideas</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="value_goodideas">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>40</y>
+            <width>147</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic</family>
+            <pointsize>28</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color:transparent;color:rgb(90,90,90)</string>
+          </property>
+          <property name="text">
+           <string>2</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>-1</y>
+        <width>301</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="frame_produto">
+       <property name="leftMargin">
+        <number>8</number>
+       </property>
+       <property name="topMargin">
+        <number>16</number>
+       </property>
+       <property name="rightMargin">
+        <number>8</number>
+       </property>
+       <property name="bottomMargin">
+        <number>8</number>
+       </property>
+       <property name="spacing">
+        <number>16</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QWidget" name="product" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;border-radius:8px;</string>
+         </property>
+         <widget class="QLabel" name="lbl_product">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>101</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(170,170,170)</string>
+          </property>
+          <property name="text">
+           <string>Product</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="value_product">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>40</y>
+            <width>285</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic</family>
+            <pointsize>20</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color:transparent;color:rgb(90,90,90)</string>
+          </property>
+          <property name="text">
+           <string>PWA31910430EP</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QWidget" name="customer" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;border-radius:8px;</string>
+         </property>
+         <widget class="QLabel" name="lbl_customer">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>101</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(170,170,170)</string>
+          </property>
+          <property name="text">
+           <string>Customer</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="value_customer">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>50</y>
+            <width>201</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-image: url(:/Img/ingenicologo.png);</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>639</x>
+        <y>-1</y>
+        <width>491</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="frame_achievments">
+       <property name="leftMargin">
+        <number>8</number>
+       </property>
+       <property name="topMargin">
+        <number>16</number>
+       </property>
+       <property name="rightMargin">
+        <number>16</number>
+       </property>
+       <property name="bottomMargin">
+        <number>8</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QWidget" name="achievments" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;border-radius:8px;</string>
+         </property>
+         <widget class="QLabel" name="lbl_achievments">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>101</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(170,170,170)</string>
+          </property>
+          <property name="text">
+           <string>Achievments</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+         <widget class="QWidget" name="gridLayoutWidget_6">
+          <property name="geometry">
+           <rect>
+            <x>-1</x>
+            <y>39</y>
+            <width>471</width>
+            <height>241</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="grid_achievments">
+           <property name="leftMargin">
+            <number>8</number>
+           </property>
+           <property name="rightMargin">
+            <number>10</number>
+           </property>
+           <property name="bottomMargin">
+            <number>10</number>
+           </property>
+           <item row="3" column="0">
+            <widget class="QWidget" name="achiev_7" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color:rgb(240,240,240);border-radius:8px;border:1px solid rgb(0,123,255);</string>
+             </property>
+             <widget class="QWidget" name="icon_frame_9" native="true">
+              <property name="geometry">
+               <rect>
+                <x>6</x>
+                <y>6</y>
+                <width>41</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(200,200,200);</string>
+              </property>
+              <widget class="QLabel" name="icon_image_9">
+               <property name="geometry">
+                <rect>
+                 <x>3</x>
+                 <y>3</y>
+                 <width>35</width>
+                 <height>35</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border-image:url(:/Img/ideia.svg);border:1px solid rgb(0,123,255);</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QLabel" name="achiev_desc_9">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>6</y>
+                <width>121</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>8</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Complete 200 hours logged in All in One&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_baratual_9" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>60</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_bartotal_9" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>160</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgba(220,220,220,0.8);border-radius:5px;</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="achiev_points_9">
+              <property name="geometry">
+               <rect>
+                <x>170</x>
+                <y>0</y>
+                <width>51</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>10</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>700p</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QWidget" name="achiev" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color:rgb(240,240,240);border-radius:8px;border:1px solid rgb(0,123,255);</string>
+             </property>
+             <widget class="QWidget" name="icon_frame" native="true">
+              <property name="geometry">
+               <rect>
+                <x>6</x>
+                <y>6</y>
+                <width>41</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(200,200,200);</string>
+              </property>
+              <widget class="QLabel" name="icon_image">
+               <property name="geometry">
+                <rect>
+                 <x>3</x>
+                 <y>3</y>
+                 <width>35</width>
+                 <height>35</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border-image:url(:/Img/ideia.svg);border:1px solid rgb(0,123,255);</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QLabel" name="achiev_desc">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>6</y>
+                <width>121</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>8</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Submit a good idea&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_baratual" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>160</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(48,133,248);;border-radius:5px;</string>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_bartotal" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>160</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgba(220,220,220,0.8);border-radius:5px;</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="achiev_points">
+              <property name="geometry">
+               <rect>
+                <x>170</x>
+                <y>0</y>
+                <width>51</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>10</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>250p</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+             <zorder>icon_frame</zorder>
+             <zorder>achiev_desc</zorder>
+             <zorder>achiev_bartotal</zorder>
+             <zorder>achiev_baratual</zorder>
+             <zorder>achiev_points</zorder>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QWidget" name="achiev_3" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color:rgb(240,240,240);border-radius:8px;border:1px solid rgb(0,123,255);</string>
+             </property>
+             <widget class="QWidget" name="icon_frame_3" native="true">
+              <property name="geometry">
+               <rect>
+                <x>6</x>
+                <y>6</y>
+                <width>41</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(200,200,200);</string>
+              </property>
+              <widget class="QLabel" name="icon_image_3">
+               <property name="geometry">
+                <rect>
+                 <x>3</x>
+                 <y>3</y>
+                 <width>35</width>
+                 <height>35</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border-image:url(:/Img/ideia.svg);border:1px solid rgb(0,123,255);</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QLabel" name="achiev_desc_3">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>6</y>
+                <width>121</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>8</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Submit three good ideas&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_baratual_3" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>105</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_bartotal_3" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>160</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgba(220,220,220,0.8);border-radius:5px;</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="achiev_points_3">
+              <property name="geometry">
+               <rect>
+                <x>170</x>
+                <y>0</y>
+                <width>51</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>10</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>650p</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QWidget" name="achiev_6" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color:rgb(240,240,240);border-radius:8px;border:1px solid rgb(0,123,255);</string>
+             </property>
+             <widget class="QWidget" name="icon_frame_6" native="true">
+              <property name="geometry">
+               <rect>
+                <x>6</x>
+                <y>6</y>
+                <width>41</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(200,200,200);</string>
+              </property>
+              <widget class="QLabel" name="icon_image_6">
+               <property name="geometry">
+                <rect>
+                 <x>3</x>
+                 <y>3</y>
+                 <width>35</width>
+                 <height>35</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border-image:url(:/Img/ideia.svg);border:1px solid rgb(0,123,255);</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QLabel" name="achiev_desc_6">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>6</y>
+                <width>121</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>8</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reach Level 5&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_baratual_6" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>80</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_bartotal_6" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>160</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgba(220,220,220,0.8);border-radius:5px;</string>
+              </property>
+              <widget class="QWidget" name="achiev_baratual_7" native="true">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>160</width>
+                 <height>10</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color:rgb(48,133,248);;border-radius:5px;</string>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QLabel" name="achiev_points_6">
+              <property name="geometry">
+               <rect>
+                <x>170</x>
+                <y>0</y>
+                <width>51</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>10</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>400p</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QWidget" name="achiev_2" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color:rgb(240,240,240);border-radius:8px;border:1px solid rgb(0,123,255);</string>
+             </property>
+             <widget class="QWidget" name="icon_frame_2" native="true">
+              <property name="geometry">
+               <rect>
+                <x>6</x>
+                <y>6</y>
+                <width>41</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(200,200,200);</string>
+              </property>
+              <widget class="QLabel" name="icon_image_2">
+               <property name="geometry">
+                <rect>
+                 <x>3</x>
+                 <y>3</y>
+                 <width>35</width>
+                 <height>35</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border-image:url(:/Img/ideia.svg);border:1px solid rgb(0,123,255);</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QLabel" name="achiev_desc_2">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>6</y>
+                <width>121</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>8</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Win weekly Productivy Challenge&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_baratual_2" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>0</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_bartotal_2" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>160</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgba(220,220,220,0.8);border-radius:5px;</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="achiev_points_2">
+              <property name="geometry">
+               <rect>
+                <x>170</x>
+                <y>0</y>
+                <width>51</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>10</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>1500p</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QWidget" name="achiev_4" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color:rgb(240,240,240);border-radius:8px;border:1px solid rgb(0,123,255);</string>
+             </property>
+             <widget class="QWidget" name="icon_frame_4" native="true">
+              <property name="geometry">
+               <rect>
+                <x>6</x>
+                <y>6</y>
+                <width>41</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(200,200,200);</string>
+              </property>
+              <widget class="QLabel" name="icon_image_4">
+               <property name="geometry">
+                <rect>
+                 <x>3</x>
+                 <y>3</y>
+                 <width>35</width>
+                 <height>35</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border-image:url(:/Img/ideia.svg);border:1px solid rgb(0,123,255);</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QLabel" name="achiev_desc_4">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>6</y>
+                <width>121</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>8</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Win weekly Yield Challenge&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_baratual_4" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>0</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_bartotal_4" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>160</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgba(220,220,220,0.8);border-radius:5px;</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="achiev_points_4">
+              <property name="geometry">
+               <rect>
+                <x>170</x>
+                <y>0</y>
+                <width>51</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>10</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>1500p</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QWidget" name="achiev_8" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color:rgb(240,240,240);border-radius:8px;border:1px solid rgb(0,123,255);</string>
+             </property>
+             <widget class="QWidget" name="icon_frame_10" native="true">
+              <property name="geometry">
+               <rect>
+                <x>6</x>
+                <y>6</y>
+                <width>41</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(200,200,200);</string>
+              </property>
+              <widget class="QLabel" name="icon_image_10">
+               <property name="geometry">
+                <rect>
+                 <x>3</x>
+                 <y>3</y>
+                 <width>35</width>
+                 <height>35</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border-image:url(:/Img/ideia.svg);border:1px solid rgb(0,123,255);</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QLabel" name="achiev_desc_10">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>6</y>
+                <width>121</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>8</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reach level 20&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_baratual_10" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>50</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_bartotal_10" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>160</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgba(220,220,220,0.8);border-radius:5px;</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="achiev_points_10">
+              <property name="geometry">
+               <rect>
+                <x>170</x>
+                <y>0</y>
+                <width>51</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>10</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>1000p</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QWidget" name="achiev_5" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color:rgb(240,240,240);border-radius:8px;border:1px solid rgb(0,123,255);</string>
+             </property>
+             <widget class="QWidget" name="icon_frame_11" native="true">
+              <property name="geometry">
+               <rect>
+                <x>6</x>
+                <y>6</y>
+                <width>41</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(200,200,200);</string>
+              </property>
+              <widget class="QLabel" name="icon_image_11">
+               <property name="geometry">
+                <rect>
+                 <x>3</x>
+                 <y>3</y>
+                 <width>35</width>
+                 <height>35</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border-image:url(:/Img/ideia.svg);border:1px solid rgb(0,123,255);</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QLabel" name="achiev_desc_11">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>6</y>
+                <width>121</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>8</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(100,100,100);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Complete 40 hours logged in All in One&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_baratual_11" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>80</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgb(0,123,255);;border-radius:5px;</string>
+              </property>
+             </widget>
+             <widget class="QWidget" name="achiev_bartotal_11" native="true">
+              <property name="geometry">
+               <rect>
+                <x>54</x>
+                <y>38</y>
+                <width>160</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:rgba(220,220,220,0.8);border-radius:5px;</string>
+              </property>
+              <widget class="QWidget" name="achiev_baratual_5" native="true">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>160</width>
+                 <height>10</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color:rgb(48,133,248);;border-radius:5px;</string>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QLabel" name="achiev_points_11">
+              <property name="geometry">
+               <rect>
+                <x>170</x>
+                <y>0</y>
+                <width>51</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>PibotoLt</family>
+                <pointsize>10</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(0,123,255);border:none;background:transparent;</string>
+              </property>
+              <property name="text">
+               <string>200p</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>-1</number>
+              </property>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>300</y>
+        <width>641</width>
+        <height>361</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="frame_performance">
+       <property name="leftMargin">
+        <number>16</number>
+       </property>
+       <property name="topMargin">
+        <number>8</number>
+       </property>
+       <property name="rightMargin">
+        <number>8</number>
+       </property>
+       <property name="bottomMargin">
+        <number>16</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QWidget" name="linechart_container" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;border-radius:8px;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>639</x>
+        <y>299</y>
+        <width>491</width>
+        <height>361</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="frame_areas">
+       <property name="leftMargin">
+        <number>8</number>
+       </property>
+       <property name="topMargin">
+        <number>8</number>
+       </property>
+       <property name="rightMargin">
+        <number>16</number>
+       </property>
+       <property name="bottomMargin">
+        <number>16</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QWidget" name="barchart_container" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;border-radius:8px;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="sidebar" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>234</width>
+      <height>768</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(67,67,67);</string>
+    </property>
+    <widget class="QWidget" name="logo_container" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>234</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/Img/logoaio.png);</string>
+     </property>
+    </widget>
+    <widget class="QFrame" name="usercard">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>60</y>
+       <width>231</width>
+       <height>250</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border:none;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QWidget" name="avatar" native="true">
+      <property name="geometry">
+       <rect>
+        <x>57</x>
+        <y>25</y>
+        <width>120</width>
+        <height>120</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Img/Avatar.png);
+border-radius:60px;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="value_name">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>150</y>
+        <width>234</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>PibotoLt</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;</string>
+      </property>
+      <property name="text">
+       <string>ANDRE SILVA</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QWidget" name="bar_atual" native="true">
+      <property name="geometry">
+       <rect>
+        <x>16</x>
+        <y>210</y>
+        <width>202</width>
+        <height>10</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgba(220,220,220,0.8);border-radius:5px;</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="bar_total" native="true">
+      <property name="geometry">
+       <rect>
+        <x>16</x>
+        <y>210</y>
+        <width>80</width>
+        <height>10</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(48,133,248);border-radius:5px;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="progress">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>215</y>
+        <width>234</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>PibotoLt</family>
+        <pointsize>8</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:transparent;color: white;</string>
+      </property>
+      <property name="text">
+       <string>39% to the next level</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_nivel">
+      <property name="geometry">
+       <rect>
+        <x>16</x>
+        <y>180</y>
+        <width>40</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>PibotoLt</family>
+        <pointsize>8</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:transparent;color: white;</string>
+      </property>
+      <property name="text">
+       <string>Level:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_xp">
+      <property name="geometry">
+       <rect>
+        <x>117</x>
+        <y>180</y>
+        <width>21</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Yu Gothic UI Semibold</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:transparent;color: white;</string>
+      </property>
+      <property name="text">
+       <string>XP:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="value_level">
+      <property name="geometry">
+       <rect>
+        <x>52</x>
+        <y>180</y>
+        <width>80</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>PibotoLt</family>
+        <pointsize>8</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:transparent;color: white;</string>
+      </property>
+      <property name="text">
+       <string> 6</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="value_xp_atual">
+      <property name="geometry">
+       <rect>
+        <x>133</x>
+        <y>180</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Yu Gothic UI Semibold</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:transparent;color: white;</string>
+      </property>
+      <property name="text">
+       <string>892</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_barra">
+      <property name="geometry">
+       <rect>
+        <x>139</x>
+        <y>180</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>PibotoLt</family>
+        <pointsize>8</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:transparent;color: white;</string>
+      </property>
+      <property name="text">
+       <string>/</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="value_xp_total">
+      <property name="geometry">
+       <rect>
+        <x>185</x>
+        <y>180</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Yu Gothic UI Semibold</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:transparent;color: white;</string>
+      </property>
+      <property name="text">
+       <string>2200</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="sidebar_apps">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>309</y>
+       <width>234</width>
+       <height>461</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border:none;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>12</y>
+        <width>234</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Yu Gothic</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+color:white;text-align:left;padding-left:20px;border:none;
+}
+
+QPushButton:hover {
+color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(48,133,248,1)
+}
+
+
+</string>
+      </property>
+      <property name="text">
+       <string>   Dashboard</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources/resources.qrc">
+        <normaloff>:/Img/painel-de-controle.png</normaloff>:/Img/painel-de-controle.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>22</width>
+        <height>22</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>52</y>
+        <width>234</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Yu Gothic</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+color:white;text-align:left;padding-left:20px;border:none;
+}
+
+QPushButton:hover {
+color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(48,133,248,1)
+}
+
+
+</string>
+      </property>
+      <property name="text">
+       <string>   LPA</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources/resources.qrc">
+        <normaloff>:/Img/lista.png</normaloff>:/Img/lista.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>22</width>
+        <height>22</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>92</y>
+        <width>234</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Yu Gothic</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+color:white;text-align:left;padding-left:20px;border:none;
+}
+
+QPushButton:hover {
+color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(48,133,248,1)
+}
+
+
+</string>
+      </property>
+      <property name="text">
+       <string>   Instruction Sheet</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources/resources.qrc">
+        <normaloff>:/Img/estrategia.png</normaloff>:/Img/estrategia.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>22</width>
+        <height>22</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>132</y>
+        <width>234</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Yu Gothic</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+color:white;text-align:left;padding-left:20px;border:none;
+}
+
+QPushButton:hover {
+color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(48,133,248,1)
+}
+
+
+</string>
+      </property>
+      <property name="text">
+       <string>   Good Idea</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources/resources.qrc">
+        <normaloff>:/Img/ideia.png</normaloff>:/Img/ideia.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>22</width>
+        <height>22</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_5">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>212</y>
+        <width>234</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Yu Gothic</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+color:white;text-align:left;padding-left:20px;border:none;
+}
+
+QPushButton:hover {
+color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(48,133,248,1)
+}
+
+
+</string>
+      </property>
+      <property name="text">
+       <string>   Ask for Support</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources/resources.qrc">
+        <normaloff>:/Img/bxs-watch-alt.png</normaloff>:/Img/bxs-watch-alt.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>22</width>
+        <height>22</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_6">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>172</y>
+        <width>234</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Yu Gothic</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+color:white;text-align:left;padding-left:20px;border:none;
+}
+
+QPushButton:hover {
+color:white;text-align:left;padding-left:20px;border:none;background-color:rgba(48,133,248,1)
+}
+
+
+</string>
+      </property>
+      <property name="text">
+       <string>   Target 5S Station</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources/resources.qrc">
+        <normaloff>:/Img/posto-de-trabalho.png</normaloff>:/Img/posto-de-trabalho.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>22</width>
+        <height>22</height>
+       </size>
+      </property>
+     </widget>
+     <zorder>pushButton</zorder>
+     <zorder>pushButton_3</zorder>
+     <zorder>pushButton_6</zorder>
+     <zorder>pushButton_2</zorder>
+     <zorder>pushButton_5</zorder>
+     <zorder>pushButton_4</zorder>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="header">
+    <property name="geometry">
+     <rect>
+      <x>235</x>
+      <y>0</y>
+      <width>1131</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: white;border:none;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="value_workstation">
+     <property name="geometry">
+      <rect>
+       <x>15</x>
+       <y>10</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>PibotoLt</family>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #757475</string>
+     </property>
+     <property name="text">
+      <string>INGBOXENT001</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lbl_workstation">
+     <property name="geometry">
+      <rect>
+       <x>15</x>
+       <y>30</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>PibotoLt</family>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #ADADAD</string>
+     </property>
+     <property name="text">
+      <string>Workstation</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lbl_line">
+     <property name="geometry">
+      <rect>
+       <x>184</x>
+       <y>30</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>PibotoLt</family>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #ADADAD</string>
+     </property>
+     <property name="text">
+      <string>Production Line</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="value_line">
+     <property name="geometry">
+      <rect>
+       <x>184</x>
+       <y>10</y>
+       <width>271</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>PibotoLt</family>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #757475</string>
+     </property>
+     <property name="text">
+      <string>Ingenico Box Enterprise</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="datetime">
+     <property name="geometry">
+      <rect>
+       <x>860</x>
+       <y>20</y>
+       <width>251</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>PibotoLt</family>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #757475</string>
+     </property>
+     <property name="text">
+      <string>8/7/2020 16:45:00</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="footer">
+    <property name="geometry">
+     <rect>
+      <x>235</x>
+      <y>722</y>
+      <width>1131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;border:none;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QWidget" name="jabil_logo" native="true">
+     <property name="geometry">
+      <rect>
+       <x>950</x>
+       <y>10</y>
+       <width>171</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/Img/LogoJabil.png);background:transparent;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lbl_automation">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>15</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>PibotoLt</family>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #757475</string>
+     </property>
+     <property name="text">
+      <string>BEL Automation, 2020</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="value_version">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>15</y>
+       <width>50</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>PibotoLt</family>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #757475</string>
+     </property>
+     <property name="text">
+      <string>v1.0</string>
+     </property>
+    </widget>
+   </widget>
+   <zorder>sidebar</zorder>
+   <zorder>body</zorder>
+   <zorder>header</zorder>
+   <zorder>footer</zorder>
+  </widget>
+ </widget>
+ <resources>
+  <include location="resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
