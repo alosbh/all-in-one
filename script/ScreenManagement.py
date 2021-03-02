@@ -16,6 +16,7 @@ from Login_controller import Login_controller
 from Fpl_controller import *
 from theme_controller import theme_controller
 from buttons_controller import buttons_controller
+from aiohttp import ClientSession
 
 import time
 import sys
@@ -156,26 +157,29 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
 
         self.ActualFIPage = 1
 
-    async def something_fast(self):
-        async with httpx.AsyncClient() as client:
-            r = await client.get('http://httpbin.org/delay/10')
-            response = r.json()
-            print('----------------------------------------------')
-            print(response)
-            print('----------------------------------------------')
+    async def something_fast(self, session):
+        #esponse = await session.request(method="GET", url='http://httpbin.org/delay/5')
+        #response = response.json()
+        response = await session.get('http://httpbin.org/delay/5')
+        print('----------------------------------------------')
+        print(response.json())
+        print('----------------------------------------------')
     
-    async def something_fast_5(self):
-        async with httpx.AsyncClient() as client:
-            r = await client.get('http://httpbin.org/delay/5')
-            response = r.json()
-            print('----------------------------------------------')
-            print(response)
-            print('----------------------------------------------')
+    async def something_fast_5(self, session):
+        #response = await session.request(method="GET", url='http://httpbin.org/delay/5')
+        #response = response.json()
+        response = await session.get('http://httpbin.org/delay/5')
+        print('----------------------------------------------')
+        print(response.json())
+        print('----------------------------------------------')
 
-    async def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window):
+    async def all_async(self):
+        async with httpx.AsyncClient(timeout=None) as session:
+            await asyncio.gather(self.something_fast(session), self.something_fast_5(session))
+
+    def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window):
         self.setupUi(self.Logged_QtWindow)
         self.build_body_web()
-        asyncio.gather(self.something_fast(), self.something_fast_5())
 
         self.Station = Station
         self.DL = DL()
@@ -199,6 +203,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         # Serves the thread the screen objects, so it can hide, show and manage the windows when needed.
         self.thread.NonLogged_Window = NonLogged_Window
         self.thread.Logged_Window = self
+       
 
     def build_body_web(self):
         #setting up body_web - windows/raspberry

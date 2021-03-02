@@ -37,7 +37,7 @@ functions_5s = functions_5s()
 
 
 
-async def main():
+def main():
         #Handling of the GPIO ports, to disable their warnings and reset all used ports.        
         # GPIO.setwarnings(False)
         # GPIO.cleanup()
@@ -48,7 +48,7 @@ async def main():
 
         #Setup of the logged screen UI
         
-        await Logged_Screen.Setup(Station,Raspberry,GlobalParameters,NonLogged_Screen,Reset_Window)
+        Logged_Screen.Setup(Station,Raspberry,GlobalParameters,NonLogged_Screen,Reset_Window)
      
         #Starts the QT application that manages the screens.
         ScreenManagement.QtApplication.exec_()
@@ -56,4 +56,4 @@ async def main():
 
 # Run main() function
 if __name__ == "__main__":
-        asyncio.run(main())
+        main()

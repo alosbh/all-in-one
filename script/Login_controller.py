@@ -10,6 +10,7 @@ else:
     from RFRead_controller import RFRead_controller
 import logging
 import time
+import asyncio
 
 GlobalParameters = GlobalParameters()
 
@@ -102,8 +103,9 @@ class Login_controller(QThread):
                             self.thread_signal2.signal.emit('about:blank')
                             self.Logged_Window.home()
                             self.Logged_Window.preload_screen()
-                            self.thread_signal2.signal.emit('about:blank')
+                            #self.thread_signal2.signal.emit('about:blank')
                             # Setup the Direct Labor object with actual worker data
+                            asyncio.run(self.Logged_Window.all_async())
                             self.DL.Setup(LoginResponse, self.host)
                             self.DL.load_avatar()
                             # Setup the user fields on the logged screen
