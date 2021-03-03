@@ -1,9 +1,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
+from Async_login_routine import *
 import urllib.request
 
-class Announcements_controller:
+class Announcements_controller(Async_login_routine):
     def load_announcements_label(self):
+        print('())(((((((((((((((((((((((((((')
+        print (self.something_fast_resp)
+        print('())(((((((((((((((((((((((((((')
         try:
             self.lbl_value_announcement_01.setVisible(True)
             url1_pixmap = self.get_pixmap('http://brbelm0itqa01/AIOServiceSTG/Images5S/Painel.png')

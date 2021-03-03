@@ -105,7 +105,7 @@ class Login_controller(QThread):
                             self.Logged_Window.preload_screen()
                             #self.thread_signal2.signal.emit('about:blank')
                             # Setup the Direct Labor object with actual worker data
-                            asyncio.run(self.Logged_Window.all_async())
+                            asyncio.run(self.Logged_Window.async_calls())
                             self.DL.Setup(LoginResponse, self.host)
                             self.DL.load_avatar()
                             # Setup the user fields on the logged screen

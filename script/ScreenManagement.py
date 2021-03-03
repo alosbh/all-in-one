@@ -14,9 +14,10 @@ from Announcements_controller import *
 from jit_support_controller import *
 from Login_controller import Login_controller
 from Fpl_controller import *
+from Async_login_routine import *
 from theme_controller import theme_controller
 from buttons_controller import buttons_controller
-from aiohttp import ClientSession
+#from aiohttp import ClientSession
 
 import time
 import sys
@@ -24,7 +25,7 @@ import os
 import logging
 import traceback
 import urllib.request
-import asyncio
+#import asyncio
 
 from PyQt5.QtCore import QObject, pyqtSignal, QUrl, QThread
 from PyQt5.QtGui import QPixmap, QIcon
@@ -129,7 +130,7 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
 #----------------------------------------------------------------------------------
 
 # Inherits the qt Ui_Logged_Screen (main screen) design and manages its setup
-class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, buttons_controller, jit_support_controller, LPAactions_controller, Announcements_controller, Fpl_controller, theme_controller):
+class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, buttons_controller, jit_support_controller, LPAactions_controller, Announcements_controller, Fpl_controller, theme_controller, Async_login_routine):
     
     # Instance of the signal to act on button's click
     load_url_signal = QtSignal()
@@ -155,24 +156,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.loading_status = 1
 
         self.ActualFIPage = 1
-
-    async def something_fast(self, session):
-        response = await session.request(method="GET", url='http://httpbin.org/delay/5')
-        #response = response.json()
-        print('----------------------------------------------')
-        print(response)
-        print('----------------------------------------------')
-    
-    async def something_fast_5(self, session):
-        response = await session.request(method="GET", url='http://httpbin.org/delay/5')
-        #response = response.json()
-        print('----------------------------------------------')
-        print(response)
-        print('----------------------------------------------')
-
-    async def all_async(self):
-        async with ClientSession() as session:
-            await asyncio.gather(self.something_fast(session), self.something_fast_5(session))
 
     def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window):
         self.setupUi(self.Logged_QtWindow)
