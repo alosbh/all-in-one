@@ -44,9 +44,10 @@ class Raspberry:
 
     def request_rasp_hostname(self):
         ip = os.environ.get('SYSCON_IP')
-        url = "http://" + ip + "/api/v1.0/system/info"
+        
         
         try:
+            url = "http://" + ip + "/api/v1.0/system/info"
             request = requests.get(url)
             if request.status_code == 200:
                 response = json.loads(request.content)
@@ -55,20 +56,23 @@ class Raspberry:
                 mypath = Path(__file__).absolute().parent
                 with open('/etc/hostname','r') as f:
                     lines = f.readlines()
-                    lines.replace("\n","").replace("'","")
-                self.Name = lines[0]
+                    hostname = lines[0]
+                    
+                hostname = hostname.replace("\n","").replace("'","")
+                self.Name = hostname
                 print("#########")
-                print(lines)
+                print(hostname)
                 print("#########")
         except:
             mypath = Path(__file__).absolute().parent
-            
             with open('/etc/hostname','r') as f:
                 lines = f.readlines()
-                lines.replace("\n","").replace("'","")
-            self.Name = lines[0]
+                hostname = lines[0]
+                
+            hostname = hostname.replace("\n","").replace("'","")
+            self.Name = hostname
             print("#########")
-            print(lines)
+            print(hostname)
             print("#########")
             
         
