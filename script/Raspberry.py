@@ -53,14 +53,22 @@ class Raspberry:
                 self.Name = response['hostname']
             else:
                 mypath = Path(__file__).absolute().parent
-                with open('hostname.txt') as f:
+                with open('etc/hostname','r') as f:
                     lines = f.readlines()
+                    lines.replace("\n","").replace("'","")
                 self.Name = lines[0]
+                print("#########")
+                print(lines)
+                print("#########")
         except:
             mypath = Path(__file__).absolute().parent
-            with open('hostname.txt') as f:
-                lines = f.readlines()
-            self.Name = lines[0]
+                with open('etc/hostname','r') as f:
+                    lines = f.readlines()
+                    lines.replace("\n","").replace("'","")
+                self.Name = lines[0]
+                print("#########")
+                print(lines)
+                print("#########")
             
         
     def GetSystemInfo(self):
