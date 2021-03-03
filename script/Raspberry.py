@@ -53,7 +53,7 @@ class Raspberry:
                 self.Name = response['hostname']
             else:
                 mypath = Path(__file__).absolute().parent
-                with open('etc/hostname','r') as f:
+                with open('/etc/hostname','r') as f:
                     lines = f.readlines()
                     lines.replace("\n","").replace("'","")
                 self.Name = lines[0]
@@ -63,7 +63,7 @@ class Raspberry:
         except:
             mypath = Path(__file__).absolute().parent
             
-            with open('etc/hostname','r') as f:
+            with open('/etc/hostname','r') as f:
                 lines = f.readlines()
                 lines.replace("\n","").replace("'","")
             self.Name = lines[0]
