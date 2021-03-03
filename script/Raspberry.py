@@ -62,13 +62,14 @@ class Raspberry:
                 print("#########")
         except:
             mypath = Path(__file__).absolute().parent
-                with open('etc/hostname','r') as f:
-                    lines = f.readlines()
-                    lines.replace("\n","").replace("'","")
-                self.Name = lines[0]
-                print("#########")
-                print(lines)
-                print("#########")
+            
+            with open('etc/hostname','r') as f:
+                lines = f.readlines()
+                lines.replace("\n","").replace("'","")
+            self.Name = lines[0]
+            print("#########")
+            print(lines)
+            print("#########")
             
         
     def GetSystemInfo(self):
