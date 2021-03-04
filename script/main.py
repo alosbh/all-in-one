@@ -7,6 +7,8 @@ from functions_5s import functions_5s
 # import RPi.GPIO as GPIO
 import os
 import datetime
+from _pydev_bundle import pydev_monkey_qt
+pydev_monkey_qt.patch_qt('auto')
 
 global Raspberry
 Raspberry = Raspberry()

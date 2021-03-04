@@ -60,7 +60,7 @@ class Raspberry:
                     
                 hostname = hostname.replace("\n","").replace("'","")
                 self.Name = hostname
-                print("#########")
+                print("#########aeeeeeee")
                 print(hostname)
                 print("#########")
         except:
@@ -71,7 +71,7 @@ class Raspberry:
                 
             hostname = hostname.replace("\n","").replace("'","")
             self.Name = hostname
-            print("#########")
+            print("#########sssssss")
             print(hostname)
             print("#########")
             
