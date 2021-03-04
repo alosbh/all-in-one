@@ -39,14 +39,9 @@ class Fpl_controller():
         self.invalid_documents_dict = {}
         
         try:
-            physicalWorkstationId = str(self.Station.Id)
-            traineeRegistration = str(self.DLid)
-            url_alldocs = 'http://brbelm0mat81/ojt/api/Trainings?physicalWorkstationId='+ physicalWorkstationId +'&traineeRegistration=' + traineeRegistration
-            print(url_alldocs)
-            request_alldocs = requests.get(url_alldocs, timeout=15)
-            if request_alldocs.status_code == 200:
+            response_alldocs = self.get_fpl_all_docs()
+            if response_alldocs is not None:
                 i = 0
-                response_alldocs = request_alldocs.json()
                 response_alldocs = response_alldocs['documents']
                 for document in response_alldocs:
                     if document['isTrained'] == True:

@@ -8,9 +8,7 @@ class LPAactions_controller():
 
     def LPAactions_functions(self, workstation_name):
         self.workstation_namePP = workstation_name
-        url_LPAactions = 'http://brbelm0apps02/AIOService/Lpa/GetOpenActionsByPost/?parameters=' + workstation_name
-        request_LPAactions = requests.get(url_LPAactions)
-        response_LPAactions = request_LPAactions.json()
+        response_LPAactions = self.get_lpa_actions()
         if response_LPAactions == 0:
             self.btn_actionsLPA.hide()
             self.lbl_value_number_actionsLPA.hide()

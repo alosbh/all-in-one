@@ -106,12 +106,3 @@ class Station:
                 logger.error("Error creating Station object. Exception: " + type(e).__name__ )
 
             return 0
-    def get_product_info(self):
-        request_lineInfo = ws.Request(ws.AIO_Dashboard, "GetByLine", str(self.RouteId))
-
-        if (request_lineInfo is None):
-            self.ProductName = 'No product'
-            self.ClientName = 'No client'
-        else:
-            self.ProductName = request_lineInfo['Product']
-            self.ClientName = request_lineInfo['ProductionGroup']

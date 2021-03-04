@@ -44,7 +44,6 @@ class DirectLabor:
         self.Name = name_array[0] + " " + name_array[name_len-1]
 
         self.ID_trim = LoginResponse["UserRegistration"]
-        # self.Load_Metrics(hostname)
         
         # get used id
         baseUrl = "http://brbelm0apps02/AIOService/Jmd/GetUserDetailsByRegistration/" + str(self.ID_trim)
@@ -55,27 +54,6 @@ class DirectLabor:
         # loading user image
         pixmap = self.load_avatar()
         self.picture= pixmap
-        
-
-
-    def Load_Metrics(self, hostname):
-        
-        # Starts the API manager
-        ws = ApiManager()
-
-        # Api call to get actual user metrics on the workstation
-        Metrics = ws.Request(ws.AIO_Dashboard, "GetActualUserAttributes", hostname)
-        
-        try:
-        # Parse out Yield and Productivity from the Metrics
-            self.Yield = str(round(float(Metrics[0]["Attributes"][3]["Percent"]), 1))
-            self.Productivity = str(round(float(Metrics[0]["Attributes"][4]["Percent"]), 1))
-            self.GoodIdeas = str(0)
-            self.JabilCoins = str(0)
-            logger.debug("Successfully loaded user metrics")
-        except Exception as e:
-            logger.error("Couldnt load user metrics. Error:" + type(e).__name__)
-
 
     def load_avatar(self):
         baseurl = 'http://brbelm0apps01/UserImage/' + self.ID_trim + '.jpg'
