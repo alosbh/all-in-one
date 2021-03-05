@@ -9,6 +9,6 @@
         BadgeReadFrequency: 500 #in milli seconds
 
     Version:
-        Actual: 'v1.10'
+        Actual: '1.10.0'
         
               
