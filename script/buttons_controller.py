@@ -36,7 +36,7 @@ class buttons_controller():
         print(array_buttons)
         # stopwatch_array = ['GEWBOXPSA001', 'GEWBOXPSA002', 'GEWBOXTBSUBM', 'GEWBOXPSC001', 'GEWBOXPSCLEAN', 'GEWBOXPSPACK']
         stopwatch_array = ['GE Wind', 'GE WIND CONVERTER', 'GE WIND Top Box']
-        OR_monitor_array = ['INGCUSLIB001', 'INGCUSPAM001', 'INGCUSHOR001', 'INGCUSMIN001', 'INGCUSDIA001']
+        OR_monitor_array = ['INGCUSLIB001', 'INGCUSPAM001', 'INGCUSHOR001', 'INGCUSMIN001', 'INGCUSDIA001', 'INGCUSREW001']
         print("Linha: " + route)
         if route not in stopwatch_array:
             pass
