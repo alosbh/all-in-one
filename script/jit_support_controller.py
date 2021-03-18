@@ -38,7 +38,7 @@ class jit_support_controller():
     def setup_mqtt(self, workstation_name):
         self.user = "USER"
         self.client = mqtt.Client(workstation_name)
-        self.client.connect("172.24.76.90")
+        self.client.connect("172.24.77.86")
         self.client.on_message=self.on_message
         self.client.loop_start()
 
