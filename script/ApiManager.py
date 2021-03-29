@@ -181,7 +181,7 @@ class ApiManager:
         self.req = QWebEngineHttpRequest()
 
         self.url.setScheme("http")
-        self.url.setHost("brbelm0apps01")
+        self.url.setHost("brbelm0apps99")
         self.url.setPath("/FICreator/FIViewer/SlideShow")
 
         self.req.setUrl(self.url)
