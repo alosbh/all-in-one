@@ -21,6 +21,8 @@ class Login_controller(QThread):
     
     thread_signal = QtSignal()
     thread_signal2 = QtSignal()
+    login_fail_signal_show = QtSignal()
+    login_fail_signal_hide = QtSignal()
     #abcd_signal = QtSignal()
     
     global API
@@ -40,9 +42,9 @@ class Login_controller(QThread):
         self.NonLogged_Window = None
         self.Logged_Window = None
 
-    # def get_flag():
-    #     flag = Fpl_controller.get_flag()
-    #     return flag
+    def set_matricula(matricula):
+        global matricula_login
+        matricula_login = matricula
 
     def set_flag(onoff):
         global flag
@@ -61,14 +63,12 @@ class Login_controller(QThread):
         logger=logging.getLogger() 
         logger.setLevel(logging.DEBUG)
         Login_controller.set_flag(True)
+        Login_controller.set_matricula(None)
 
         while True:
             if flag == True:
                 try:
-                    if OS_define.get_OS_name() == 1:
-                        self.Read_ID = 51008294
-                    else:
-                        self.Read_ID = RFRead_controller.RFRead() # Reads Badge ID
+                    self.Read_ID = matricula_login
                 except Exception as e:
                     traceback.print_exc()
                     logger.error("RFID error: " + type(e).__name__)
@@ -89,20 +89,21 @@ class Login_controller(QThread):
                             # catch login status
                             status = LoginResponse['Status']
                             # status="Login realizado"
-                            print("Stats1:"+status)
+                            if status != 'Login realizado':
+                                self.login_fail_signal_show.signal.emit('about:blank')
 
                         except Exception as e: 
+                            self.login_fail_signal_show.signal.emit('about:blank')
                             logger.error("Login Error: " + type(e).__name__)
                             print(type(e).__name__)
                             status = ""
 
-                        print("Stats2:"+status)
                         # In case of succesfull login            
                         if(status=="Login realizado"):
+                            self.login_fail_signal_hide.signal.emit('about:blank')
                             self.thread_signal2.signal.emit('about:blank')
                             self.Logged_Window.home()
                             self.Logged_Window.preload_screen()
-                            self.thread_signal2.signal.emit('about:blank')
                             # Setup the Direct Labor object with actual worker data
                             self.DL.Setup(LoginResponse, self.host)
                             self.DL.load_avatar()

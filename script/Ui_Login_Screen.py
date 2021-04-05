@@ -30,13 +30,8 @@ class Ui_Login_Screen(object):
         self.lbl_BIGlogo.setStyleSheet("border-image: url(:/Img/BIG_logo.PNG);")
         self.lbl_BIGlogo.setText("")
         self.lbl_BIGlogo.setObjectName("lbl_BIGlogo")
-        self.lbl_iconcracha = QtWidgets.QLabel(self.main_loginscreen)
-        self.lbl_iconcracha.setGeometry(QtCore.QRect(1030, 590, 61, 61))
-        self.lbl_iconcracha.setStyleSheet("image: url(:/Img/insert_badge.png);")
-        self.lbl_iconcracha.setText("")
-        self.lbl_iconcracha.setObjectName("lbl_iconcracha")
         self.lbl_insertbadge = QtWidgets.QLabel(self.main_loginscreen)
-        self.lbl_insertbadge.setGeometry(QtCore.QRect(1010, 660, 121, 21))
+        self.lbl_insertbadge.setGeometry(QtCore.QRect(1000, 660, 301, 21))
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
         font.setPointSize(10)
@@ -46,7 +41,7 @@ class Ui_Login_Screen(object):
         self.lbl_insertbadge.setStyleSheet("color: rgb(45, 34, 94)")
         self.lbl_insertbadge.setObjectName("lbl_insertbadge")
         self.lbl_value_version = QtWidgets.QLabel(self.main_loginscreen)
-        self.lbl_value_version.setGeometry(QtCore.QRect(1163, 250, 51, 21))
+        self.lbl_value_version.setGeometry(QtCore.QRect(1163, 250, 71, 21))
         font = QtGui.QFont()
         font.setFamily("Inter UI")
         font.setPointSize(11)
@@ -54,7 +49,7 @@ class Ui_Login_Screen(object):
         self.lbl_value_version.setStyleSheet("color: rgb(45, 34, 94)")
         self.lbl_value_version.setObjectName("lbl_value_version")
         self.lbl_value_workstation = QtWidgets.QLabel(self.main_loginscreen)
-        self.lbl_value_workstation.setGeometry(QtCore.QRect(880, 370, 361, 31))
+        self.lbl_value_workstation.setGeometry(QtCore.QRect(850, 370, 421, 31))
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
         font.setPointSize(24)
@@ -79,7 +74,7 @@ class Ui_Login_Screen(object):
         self.lbl_jabilogo.setText("")
         self.lbl_jabilogo.setObjectName("lbl_jabilogo")
         self.lbl_value_hostname = QtWidgets.QLabel(self.main_loginscreen)
-        self.lbl_value_hostname.setGeometry(QtCore.QRect(955, 465, 211, 31))
+        self.lbl_value_hostname.setGeometry(QtCore.QRect(910, 465, 311, 31))
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
         font.setPointSize(16)
@@ -90,7 +85,7 @@ class Ui_Login_Screen(object):
         self.lbl_value_hostname.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_value_hostname.setObjectName("lbl_value_hostname")
         self.lbl_hostname = QtWidgets.QLabel(self.main_loginscreen)
-        self.lbl_hostname.setGeometry(QtCore.QRect(1020, 500, 81, 21))
+        self.lbl_hostname.setGeometry(QtCore.QRect(1025, 500, 81, 21))
         font = QtGui.QFont()
         font.setFamily("Inter UI")
         font.setPointSize(10)
@@ -102,9 +97,77 @@ class Ui_Login_Screen(object):
         self.lbl_verticallogo.setStyleSheet("image: url(:/Img/logovertical.PNG);")
         self.lbl_verticallogo.setText("")
         self.lbl_verticallogo.setObjectName("lbl_verticallogo")
+        self.btn_insert = QtWidgets.QPushButton(self.main_loginscreen)
+        self.btn_insert.setGeometry(QtCore.QRect(1025, 570, 75, 81))
+        self.btn_insert.setStyleSheet("image: url(:/Img/insert_badge.png);")
+        self.btn_insert.setText("")
+        self.btn_insert.setObjectName("btn_insert")
+        self.body_insert_matricula = QtWidgets.QWidget(self.main_loginscreen)
+        self.body_insert_matricula.setGeometry(QtCore.QRect(580, 290, 201, 121))
+        self.body_insert_matricula.setStyleSheet("QWidget{\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px  solid rgb(0,0,0);\n"
+"}")
+        self.body_insert_matricula.setObjectName("body_insert_matricula")
+        self.lbl_matricula = QtWidgets.QLabel(self.body_insert_matricula)
+        self.lbl_matricula.setGeometry(QtCore.QRect(70, 20, 71, 16))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.lbl_matricula.setFont(font)
+        self.lbl_matricula.setStyleSheet("border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);\n"
+"color: rgb(45, 34, 94)")
+        self.lbl_matricula.setObjectName("lbl_matricula")
+        self.txt_matricula = QtWidgets.QLineEdit(self.body_insert_matricula)
+        self.txt_matricula.setGeometry(QtCore.QRect(20, 50, 161, 20))
+        self.txt_matricula.setStyleSheet("border-radius: 0px;\n"
+"border: 1px  solid rgb(0,0,0);")
+        self.txt_matricula.setObjectName("txt_matricula")
+        self.btn_login = QtWidgets.QPushButton(self.body_insert_matricula)
+        self.btn_login.setGeometry(QtCore.QRect(70, 80, 61, 23))
+        self.btn_login.setStyleSheet("QPushButton{\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(86, 149, 246);\n"
+"border: 0px  solid rgb(0,0,0);\n"
+"}\n"
+"QPushButton:hover {\n"
+"color: rgb(86, 149, 246);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border: 2px  solid  rgb(86, 149, 246);\n"
+"}\n"
+"border-radius: 8px;\n"
+"")
+        self.btn_login.setObjectName("btn_login")
+        self.body_login_fail = QtWidgets.QWidget(self.main_loginscreen)
+        self.body_login_fail.setGeometry(QtCore.QRect(580, 420, 201, 121))
+        self.body_login_fail.setStyleSheet("QWidget{\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px  solid rgb(0,0,0);\n"
+"}")
+        self.body_login_fail.setObjectName("body_login_fail")
+        self.lbl_login_fail = QtWidgets.QLabel(self.body_login_fail)
+        self.lbl_login_fail.setGeometry(QtCore.QRect(20, 10, 161, 51))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.lbl_login_fail.setFont(font)
+        self.lbl_login_fail.setStyleSheet("border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);\n"
+"color: rgb(45, 34, 94)")
+        self.lbl_login_fail.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbl_login_fail.setWordWrap(True)
+        self.lbl_login_fail.setObjectName("lbl_login_fail")
+        self.label = QtWidgets.QLabel(self.body_login_fail)
+        self.label.setGeometry(QtCore.QRect(77, 60, 47, 51))
+        self.label.setStyleSheet("border-radius: 0px;\n"
+"border: 0px  solid rgb(0,0,0);\n"
+"color: rgb(45, 34, 94);\n"
+"image: url(:/Img/red_error.png);")
+        self.label.setText("")
+        self.label.setObjectName("label")
         self.lbl_BIGlogo.raise_()
         self.btn_reset.raise_()
-        self.lbl_iconcracha.raise_()
         self.lbl_insertbadge.raise_()
         self.lbl_value_version.raise_()
         self.lbl_value_workstation.raise_()
@@ -113,6 +176,9 @@ class Ui_Login_Screen(object):
         self.lbl_value_hostname.raise_()
         self.lbl_hostname.raise_()
         self.lbl_verticallogo.raise_()
+        self.btn_insert.raise_()
+        self.body_insert_matricula.raise_()
+        self.body_login_fail.raise_()
         MainWindow.setCentralWidget(self.main_loginscreen)
 
         self.retranslateUi(MainWindow)
@@ -121,12 +187,15 @@ class Ui_Login_Screen(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.lbl_insertbadge.setText(_translate("MainWindow", "Insira seu crachá"))
+        self.lbl_insertbadge.setText(_translate("MainWindow", "Insira sua matrícula"))
         self.lbl_value_version.setText(_translate("MainWindow", "V1.00"))
         self.lbl_value_workstation.setText(_translate("MainWindow", "INGCUSMIN002"))
         self.lbl_workstation.setText(_translate("MainWindow", "POSTO"))
         self.lbl_value_hostname.setText(_translate("MainWindow", "BRBELRASP333"))
         self.lbl_hostname.setText(_translate("MainWindow", "HOSTNAME"))
+        self.lbl_matricula.setText(_translate("MainWindow", "Matrícula:"))
+        self.btn_login.setText(_translate("MainWindow", "Login"))
+        self.lbl_login_fail.setText(_translate("MainWindow", "Login falhou, tente novamente"))
 import resources_rc
 
 

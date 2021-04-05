@@ -90,11 +90,16 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
         self.Station = Station
         self.Raspberry = Raspberry
         self.Reset_Window = Reset_Window
+
         # Setup the designer UI on the QT window Widget
         self.setupUi(self.NonLogged_QtWindow)
         self.btn_reset.clicked.connect(self.reset)
+        self.btn_login.clicked.connect(self.set_matricula)
+        Login_controller.login_fail_signal_show.signal.connect(self.body_login_fail.show)
+        Login_controller.login_fail_signal_hide.signal.connect(self.body_login_fail.hide)
 
         # Fill hostname, Workstation and AIO version fields
+        self.body_login_fail.hide()
         self.lbl_value_hostname.setText(str(Raspberry.Name))
         self.lbl_value_version.setText(str(Params.AIO_Version))
 
@@ -123,6 +128,10 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
     
     def reset(self):
         self.Reset_Window.Show()
+    
+    def set_matricula(self):
+        Login_controller.set_matricula(self.txt_matricula.text())
+        self.txt_matricula.clear()
 
 #----------------------------------------------------------------------------------
 
@@ -168,6 +177,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.lbl_value_workstation.setText(str(self.Station.Name)) 
         self.lbl_value_version.setText(str(GlobalParameters.AIO_Version)) 
         self.lbl_value_line.setText(str(self.Station.RouteName))
+        self.pushButton.clicked.connect(self.set_matricula)
         
         # Setting up reset window
         self.Reset_Window = Reset_Window
@@ -241,6 +251,9 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.body_web.setVisible(False)
         self.body_support.setVisible(False)
         self.hide5s()
+
+    def set_matricula(self):
+        Login_controller.set_matricula(None)
 
     #Method to load an url on the webviewer
     def load_url(self, url):

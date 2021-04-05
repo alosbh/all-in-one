@@ -295,6 +295,12 @@ class Ui_Logged_Screen(object):
 "color: rgb(255, 255, 255);")
         self.lbl_value_number_invalidFPL.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_value_number_invalidFPL.setObjectName("lbl_value_number_invalidFPL")
+        self.pushButton = QtWidgets.QPushButton(self.header)
+        self.pushButton.setGeometry(QtCore.QRect(870, 20, 75, 23))
+        self.pushButton.setStyleSheet("background-color: rgb(255, 0, 0);\n"
+"border-radius: 2px;\n"
+"border: 2px  solid rgb(0,0,0);")
+        self.pushButton.setObjectName("pushButton")
         self.footer = QtWidgets.QFrame(self.centralwidget)
         self.footer.setGeometry(QtCore.QRect(235, 722, 1131, 51))
         self.footer.setStyleSheet("background-color:white;border:none;")
@@ -1794,6 +1800,7 @@ class Ui_Logged_Screen(object):
         self.lbl_value_line.setText(_translate("MainWindow", "Carregando..."))
         self.lbl_value_number_actionsLPA.setText(_translate("MainWindow", "5"))
         self.lbl_value_number_invalidFPL.setText(_translate("MainWindow", "5"))
+        self.pushButton.setText(_translate("MainWindow", "LOGOUT"))
         self.lbl_automation.setText(_translate("MainWindow", "BEL Automation, 2020"))
         self.lbl_value_version.setText(_translate("MainWindow", "v1.0"))
         self.lbl_productivity.setText(_translate("MainWindow", "Produtividade"))
