@@ -36,9 +36,9 @@ class jit_support_controller():
         self.cbx_team_create.currentIndexChanged.connect(self.symptons_by_team)
     
     def setup_mqtt(self, workstation_name):
-        self.user = "USER"
+        self.user = None
         self.client = mqtt.Client(workstation_name)
-        self.client.connect("172.24.77.86")
+        self.client.connect("test.mosquitto.org", port=1883, keepalive=120)
         self.client.on_message=self.on_message
         self.client.loop_start()
 
@@ -53,10 +53,8 @@ class jit_support_controller():
         try:
             request_team = requests.get(url = 'http://brbelm0itqa01.corp.jabil.org/JITAPI/Team/GetAllActive', verify=False)
             response_team = request_team.json()
-            print(request_team.elapsed.total_seconds())
             request_symptons = requests.get(url = 'http://brbelm0itqa01/JITAPI/Symptom/GetAll', verify=False)
             response_symptons = request_symptons.json()
-            print(request_symptons.elapsed.total_seconds())
 
             # cria dict q relaciona nome e id do time
             for x in response_team:
@@ -126,7 +124,7 @@ class jit_support_controller():
                 self.calltime = str(request_create.json()['receivedTime'])
                 self.calltime = self.calltime[:-17]
                 self.calltime = self.calltime[11:]
-                if(self.line_situation):
+                if(self.line_situation == 0):
                     self.risk = "Parada"
                 else:
                     self.risk = "Rodando"
@@ -139,7 +137,7 @@ class jit_support_controller():
                 self.mqtt_string = json.dumps(self.payloadmqtt)
                 self.mqtt_topic = "receber/"+ str(self.team_id)
                 self.mqtt_update = "atualizar/"+ str(self.team_id)
-                self.client.publish(self.mqtt_topic,self.mqtt_string)
+                self.client.publish(self.mqtt_topic, self.mqtt_string, qos=1)
                 
                 
                 self.thread_ticket_status = 1
@@ -161,7 +159,7 @@ class jit_support_controller():
                                 'Status': 'OnGoing'
                         }
         self.mqtt_string = json.dumps(self.updatemqtt)
-        self.client.publish(self.mqtt_update,self.mqtt_string)
+        self.client.publish(self.mqtt_update, self.mqtt_string, qos=1)
         headers_update = {'content-type': 'application/json'}
         url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Update'
         postBody_update = {'ticketStatus': 4, 'ticketId': int(self.requestID)}
@@ -173,7 +171,7 @@ class jit_support_controller():
                                 'Status': 'Done'
                         }
         self.mqtt_string = json.dumps(self.updatemqtt)
-        self.client.publish(self.mqtt_update,self.mqtt_string)
+        self.client.publish(self.mqtt_update, self.mqtt_string, qos=1)
         headers_update = {'content-type': 'application/json'}
         url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Update'
         postBody_update = {'ticketStatus': 5, 'ticketId': int(self.requestID)}
@@ -192,7 +190,7 @@ class jit_support_controller():
                                 'Status': self.strstatus
                         }
         self.mqtt_string = json.dumps(self.updatemqtt)
-        self.client.publish(self.mqtt_update,self.mqtt_string)
+        self.client.publish(self.mqtt_update, self.mqtt_string, qos=1)
         headers_update = {'content-type': 'application/json'}
         url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Update'
         postBody_update = {'ticketStatus': status, 'ticketId': int(self.requestID)}
@@ -212,7 +210,7 @@ class jit_support_controller():
             postBody_update = {'ticketId': int(d["TicketId"]), 'ip': d["Ip"]}
             request_update = requests.post(url_update, data=json.dumps(postBody_update), headers=headers_update)
 
-
+        print('PASSEI -----------------')
         print("message topic=",message.topic)
         print("message qos=",message.qos)
         print("message retain flag=",message.retain)
