@@ -36,10 +36,11 @@ class jit_support_controller():
         self.cbx_team_create.currentIndexChanged.connect(self.symptons_by_team)
     
     def setup_mqtt(self, workstation_name):
-        self.user = None
+        self.user = 'None'
         self.client = mqtt.Client(workstation_name)
-        self.client.connect("test.mosquitto.org", port=1883, keepalive=120)
+        self.client.connect("test.mosquitto.org")
         self.client.on_message=self.on_message
+        self.client.subscribe("atualizar/11")
         self.client.loop_start()
 
     
@@ -108,7 +109,7 @@ class jit_support_controller():
         self.team_id = self.team_teamid_dict.get(self.cbx_team_create.currentText())
         self.selected_sympton = self.cbx_sympton_create.currentText()
         self.symptom_id = self.symptons_symptonid_dict.get(self.selected_sympton)
-        self.client.subscribe("atualizar/" + str(self.team_id))
+        self.client.subscribe("atualizar/" + str(self.team_id), qos=1)
 
         try:
             postBody_create = {'productionLineStatus': self.line_situation,
@@ -200,7 +201,7 @@ class jit_support_controller():
         self.lbl_support_error.setVisible(True)
         self.lbl_support_error.raise_()
 
-    def on_message(self,client, userdata, message):
+    def on_message(self, client, userdata, message):
         print("message received " ,str(message.payload.decode("utf-8")))
         d = json.loads(message.payload)
         if (d["TicketId"] == self.requestID and d["Status"] == "Accepted"):
@@ -210,7 +211,6 @@ class jit_support_controller():
             postBody_update = {'ticketId': int(d["TicketId"]), 'ip': d["Ip"]}
             request_update = requests.post(url_update, data=json.dumps(postBody_update), headers=headers_update)
 
-        print('PASSEI -----------------')
         print("message topic=",message.topic)
         print("message qos=",message.qos)
         print("message retain flag=",message.retain)
