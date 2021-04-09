@@ -40,9 +40,7 @@ class jit_support_controller():
         self.client = mqtt.Client(workstation_name)
         self.client.connect("test.mosquitto.org")
         self.client.on_message=self.on_message
-        self.client.subscribe("atualizar/11")
         self.client.loop_start()
-
     
 # creates and fills dictionaries with teams, symptons and it's ids - adds itens to the array that is used to fill comboboxes
     def fill_cbx_teamssymptons(self, workstation_name):
