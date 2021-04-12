@@ -175,6 +175,7 @@ class jit_support_controller():
         url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Update'
         postBody_update = {'ticketStatus': 5, 'ticketId': int(self.requestID)}
         request_update = requests.post(url_update, data=json.dumps(postBody_update), headers=headers_update)
+        self.client.unsubscribe("atualizar/" + str(self.team_id))
 
 
     def update_ticket_status(self, status):
