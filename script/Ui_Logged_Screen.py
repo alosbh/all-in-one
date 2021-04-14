@@ -233,7 +233,7 @@ class Ui_Logged_Screen(object):
         self.lbl_line.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.lbl_line.setObjectName("lbl_line")
         self.lbl_value_line = QtWidgets.QLabel(self.header)
-        self.lbl_value_line.setGeometry(QtCore.QRect(184, 10, 271, 21))
+        self.lbl_value_line.setGeometry(QtCore.QRect(184, 10, 191, 21))
         font = QtGui.QFont()
         font.setFamily("Inter UI")
         font.setPointSize(12)
@@ -295,6 +295,28 @@ class Ui_Logged_Screen(object):
 "color: rgb(255, 255, 255);")
         self.lbl_value_number_invalidFPL.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_value_number_invalidFPL.setObjectName("lbl_value_number_invalidFPL")
+        self.lbl_value_nickname = QtWidgets.QLabel(self.header)
+        self.lbl_value_nickname.setGeometry(QtCore.QRect(390, 10, 261, 21))
+        font = QtGui.QFont()
+        font.setFamily("Inter UI")
+        font.setPointSize(12)
+        font.setBold(False)
+        font.setWeight(50)
+        self.lbl_value_nickname.setFont(font)
+        self.lbl_value_nickname.setStyleSheet("color: #757475")
+        self.lbl_value_nickname.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.lbl_value_nickname.setObjectName("lbl_value_nickname")
+        self.lbl_nickname = QtWidgets.QLabel(self.header)
+        self.lbl_nickname.setGeometry(QtCore.QRect(390, 30, 171, 21))
+        font = QtGui.QFont()
+        font.setFamily("Inter UI")
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setWeight(75)
+        self.lbl_nickname.setFont(font)
+        self.lbl_nickname.setStyleSheet("color: #ADADAD")
+        self.lbl_nickname.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.lbl_nickname.setObjectName("lbl_nickname")
         self.footer = QtWidgets.QFrame(self.centralwidget)
         self.footer.setGeometry(QtCore.QRect(235, 722, 1131, 51))
         self.footer.setStyleSheet("background-color:white;border:none;")
@@ -1089,6 +1111,9 @@ class Ui_Logged_Screen(object):
 "background-color: rgb(255, 255, 255);\n"
 "border: 2px  solid  rgb(86, 149, 246);\n"
 "}\n"
+"QPushButton:pressed {\n"
+"border: 6px  solid  rgb(86, 149, 246);\n"
+"}\n"
 "border-radius: 8px;\n"
 "")
         self.btn_createticket_create.setObjectName("btn_createticket_create")
@@ -1168,9 +1193,20 @@ class Ui_Logged_Screen(object):
         font.setFamily("Inter UI")
         font.setPointSize(14)
         self.btn_cancelticket_waiting.setFont(font)
-        self.btn_cancelticket_waiting.setStyleSheet("border-radius: 8px;\n"
+        self.btn_cancelticket_waiting.setStyleSheet("QPushButton{\n"
+"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);\n"
 "border: 2px solid rgb(86, 149, 246);\n"
-"background-color: rgb(255, 255, 255);")
+"}\n"
+"QPushButton:hover {\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(86, 149, 246);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"border: 4px  solid  rgb(255, 255, 255);\n"
+"}\n"
+"border-radius: 8px;\n"
+"")
         self.btn_cancelticket_waiting.setObjectName("btn_cancelticket_waiting")
         self.lbl_pending_waiting = QtWidgets.QLabel(self.subbody_waiting_2)
         self.lbl_pending_waiting.setGeometry(QtCore.QRect(60, 50, 241, 31))
@@ -1202,9 +1238,20 @@ class Ui_Logged_Screen(object):
         font.setFamily("Inter UI")
         font.setPointSize(14)
         self.btn_cancelticket_pending.setFont(font)
-        self.btn_cancelticket_pending.setStyleSheet("border-radius: 8px;\n"
+        self.btn_cancelticket_pending.setStyleSheet("QPushButton{\n"
+"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);\n"
 "border: 2px solid rgb(86, 149, 246);\n"
-"background-color: rgb(255, 255, 255);")
+"}\n"
+"QPushButton:hover {\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(86, 149, 246);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"border: 4px  solid  rgb(255, 255, 255);\n"
+"}\n"
+"border-radius: 8px;\n"
+"")
         self.btn_cancelticket_pending.setObjectName("btn_cancelticket_pending")
         self.lbl_pending_pending = QtWidgets.QLabel(self.subbody_pending_3)
         self.lbl_pending_pending.setGeometry(QtCore.QRect(60, 50, 241, 31))
@@ -1231,9 +1278,20 @@ class Ui_Logged_Screen(object):
         font.setFamily("Inter UI")
         font.setPointSize(14)
         self.btn_initiate_pending.setFont(font)
-        self.btn_initiate_pending.setStyleSheet("border-radius: 8px;\n"
+        self.btn_initiate_pending.setStyleSheet("QPushButton{\n"
 "color: rgb(255, 255, 255);\n"
-"background-color: rgb(86, 149, 246);")
+"background-color: rgb(86, 149, 246);\n"
+"}\n"
+"QPushButton:hover {\n"
+"color: rgb(86, 149, 246);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border: 2px  solid  rgb(86, 149, 246);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"border: 6px  solid  rgb(86, 149, 246);\n"
+"}\n"
+"border-radius: 8px;\n"
+"")
         self.btn_initiate_pending.setObjectName("btn_initiate_pending")
         self.lbl_value_support_name_pending = QtWidgets.QLabel(self.subbody_pending_3)
         self.lbl_value_support_name_pending.setGeometry(QtCore.QRect(450, 290, 191, 31))
@@ -1254,9 +1312,20 @@ class Ui_Logged_Screen(object):
         font.setFamily("Inter UI")
         font.setPointSize(14)
         self.btn_cancelticket_inprogress.setFont(font)
-        self.btn_cancelticket_inprogress.setStyleSheet("border-radius: 8px;\n"
+        self.btn_cancelticket_inprogress.setStyleSheet("QPushButton{\n"
+"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);\n"
 "border: 2px solid rgb(86, 149, 246);\n"
-"background-color: rgb(255, 255, 255);")
+"}\n"
+"QPushButton:hover {\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(86, 149, 246);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"border: 4px  solid  rgb(255, 255, 255);\n"
+"}\n"
+"border-radius: 8px;\n"
+"")
         self.btn_cancelticket_inprogress.setObjectName("btn_cancelticket_inprogress")
         self.lbl_pending_inprogress = QtWidgets.QLabel(self.subbody_inprogress_4)
         self.lbl_pending_inprogress.setGeometry(QtCore.QRect(60, 50, 241, 31))
@@ -1283,9 +1352,20 @@ class Ui_Logged_Screen(object):
         font.setFamily("Inter UI")
         font.setPointSize(14)
         self.btn_initiate_inprogress.setFont(font)
-        self.btn_initiate_inprogress.setStyleSheet("border-radius: 8px;\n"
+        self.btn_initiate_inprogress.setStyleSheet("QPushButton{\n"
 "color: rgb(255, 255, 255);\n"
-"background-color: rgb(86, 149, 246);")
+"background-color: rgb(86, 149, 246);\n"
+"}\n"
+"QPushButton:hover {\n"
+"color: rgb(86, 149, 246);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border: 2px  solid  rgb(86, 149, 246);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"border: 6px  solid  rgb(86, 149, 246);\n"
+"}\n"
+"border-radius: 8px;\n"
+"")
         self.btn_initiate_inprogress.setObjectName("btn_initiate_inprogress")
         self.lbl_support_error = QtWidgets.QWidget(self.body_support)
         self.lbl_support_error.setGeometry(QtCore.QRect(430, 450, 291, 131))
@@ -1758,14 +1838,14 @@ class Ui_Logged_Screen(object):
         self.horizontalWidget_3.raise_()
         self.btn_5s_back.raise_()
         self.btn_5s_next.raise_()
-        self.body_support.raise_()
-        self.body_home.raise_()
         self.body_FPL.raise_()
         self.body_FPL_error.raise_()
         self.body_FPL_success.raise_()
         self.body_FPL_fail_2.raise_()
         self.body_FPL_fail_3.raise_()
         self.body_FPL_fail.raise_()
+        self.body_support.raise_()
+        self.body_home.raise_()
         self.sidebar.raise_()
         self.footer.raise_()
         self.main.raise_()
@@ -1794,6 +1874,8 @@ class Ui_Logged_Screen(object):
         self.lbl_value_line.setText(_translate("MainWindow", "Carregando..."))
         self.lbl_value_number_actionsLPA.setText(_translate("MainWindow", "5"))
         self.lbl_value_number_invalidFPL.setText(_translate("MainWindow", "5"))
+        self.lbl_value_nickname.setText(_translate("MainWindow", "Carregando..."))
+        self.lbl_nickname.setText(_translate("MainWindow", "Apelido"))
         self.lbl_automation.setText(_translate("MainWindow", "BEL Automation, 2020"))
         self.lbl_value_version.setText(_translate("MainWindow", "v1.0"))
         self.lbl_productivity.setText(_translate("MainWindow", "Produtividade"))
@@ -1835,7 +1917,7 @@ class Ui_Logged_Screen(object):
         self.lbl_newticket_create.setText(_translate("MainWindow", "Novo Chamado"))
         self.lbl_sympton_create_2.setText(_translate("MainWindow", "Situação da linha"))
         self.rbtn_stopped_create.setText(_translate("MainWindow", "Parada"))
-        self.rbtn_going_create.setText(_translate("MainWindow", "Andando"))
+        self.rbtn_going_create.setText(_translate("MainWindow", "Rodando"))
         self.btn_cancelticket_waiting.setText(_translate("MainWindow", "Cancelar"))
         self.lbl_pending_waiting.setText(_translate("MainWindow", "Chamado pendente"))
         self.lbl_waiting_waiting.setText(_translate("MainWindow", "Aguardando atendimento..."))

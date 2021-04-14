@@ -14,9 +14,11 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 # 0 = received // 1 = sent // 2 = accepted // 3 = declined // 4 = ongoing // 5 = done
 class jit_support_controller():
-
     def setup_support_screen(self, workstation_name):
         try:
+            self.headers_update = {'content-type': 'application/json'}
+            self.url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Update'
+
             self.setup_mqtt(workstation_name)
             self.support_screen_ui_functions(workstation_name)
             self.fill_cbx_teamssymptons(workstation_name)
@@ -28,19 +30,16 @@ class jit_support_controller():
     def support_screen_ui_functions(self, workstation_name):
         self.btn_createticket_create.clicked.connect(lambda: self.create_ticket(workstation_name))
         self.btn_close_error.clicked.connect(lambda: self.lbl_support_error.setVisible(False))
-        self.btn_cancelticket_waiting.clicked.connect(self.finish_ticket)
-        self.btn_cancelticket_pending.clicked.connect(self.finish_ticket)
-        self.btn_cancelticket_inprogress.clicked.connect(self.finish_ticket)
+        self.btn_cancelticket_waiting.clicked.connect(self.cancel_ticket)
+        self.btn_cancelticket_pending.clicked.connect(self.cancel_ticket)
+        self.btn_cancelticket_inprogress.clicked.connect(self.cancel_ticket)
         self.btn_initiate_pending.clicked.connect(self.init_ticket)
         self.btn_initiate_inprogress.clicked.connect(self.finish_ticket)
         self.cbx_team_create.currentIndexChanged.connect(self.symptons_by_team)
-    
-    def setup_mqtt(self, workstation_name):
-        self.user = 'None'
-        self.client = mqtt.Client(workstation_name)
-        self.client.connect("test.mosquitto.org")
-        self.client.on_message=self.on_message
-        self.client.loop_start()
+
+    def raise_error_window(self):
+        self.lbl_support_error.setVisible(True)
+        self.lbl_support_error.raise_()
     
 # creates and fills dictionaries with teams, symptons and it's ids - adds itens to the array that is used to fill comboboxes
     def fill_cbx_teamssymptons(self, workstation_name):
@@ -149,56 +148,14 @@ class jit_support_controller():
             
         time.sleep(2)
         self.btn_createticket_create.setEnabled(True)
-    
-# request updates the ticket status on the server side
 
-    def init_ticket(self):
-        self.updatemqtt = {'TicketId': self.requestID ,
-                                'UserName': self.user,
-                                'Status': 'OnGoing'
-                        }
-        self.mqtt_string = json.dumps(self.updatemqtt)
-        self.client.publish(self.mqtt_update, self.mqtt_string, qos=1)
-        headers_update = {'content-type': 'application/json'}
-        url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Update'
-        postBody_update = {'ticketStatus': 4, 'ticketId': int(self.requestID)}
-        request_update = requests.post(url_update, data=json.dumps(postBody_update), headers=headers_update)
-
-    def finish_ticket(self):
-        self.updatemqtt = {'TicketId': self.requestID ,
-                                'UserName': self.user,
-                                'Status': 'Done'
-                        }
-        self.mqtt_string = json.dumps(self.updatemqtt)
-        self.client.publish(self.mqtt_update, self.mqtt_string, qos=1)
-        headers_update = {'content-type': 'application/json'}
-        url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Update'
-        postBody_update = {'ticketStatus': 5, 'ticketId': int(self.requestID)}
-        request_update = requests.post(url_update, data=json.dumps(postBody_update), headers=headers_update)
-        self.client.unsubscribe("atualizar/" + str(self.team_id))
-
-
-    def update_ticket_status(self, status):
-        if(status==4):
-            self.btn_initiate_pending.setEnabled(False)
-            self.strstatus = "OnGoing"
-        elif(status==5):
-            self.strstatus = "Done"
-
-        self.updatemqtt = {'TicketId': self.requestID ,
-                                'UserName': self.user,
-                                'Status': self.strstatus
-                        }
-        self.mqtt_string = json.dumps(self.updatemqtt)
-        self.client.publish(self.mqtt_update, self.mqtt_string, qos=1)
-        headers_update = {'content-type': 'application/json'}
-        url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Update'
-        postBody_update = {'ticketStatus': status, 'ticketId': int(self.requestID)}
-        request_update = requests.post(url_update, data=json.dumps(postBody_update), headers=headers_update)
-
-    def raise_error_window(self):
-        self.lbl_support_error.setVisible(True)
-        self.lbl_support_error.raise_()
+# mqtt server functions
+    def setup_mqtt(self, workstation_name):
+        self.user = 'None'
+        self.client = mqtt.Client(workstation_name)
+        self.client.connect("test.mosquitto.org")
+        self.client.on_message=self.on_message
+        self.client.loop_start()
 
     def on_message(self, client, userdata, message):
         print("message received " ,str(message.payload.decode("utf-8")))
@@ -206,13 +163,48 @@ class jit_support_controller():
         if (d["TicketId"] == self.requestID and d["Status"] == "Accepted"):
             headers_update = {'content-type': 'application/json'}
             self.user = d["UserName"]
-            url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Confirm'
-            postBody_update = {'ticketId': int(d["TicketId"]), 'ip': d["Ip"]}
-            request_update = requests.post(url_update, data=json.dumps(postBody_update), headers=headers_update)
+            mqtt_url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Confirm'
+            mqtt_postBody_update = {'ticketId': int(d["TicketId"]), 'ip': d["Ip"]}
+            request_update = requests.post(mqtt_url_update, data=json.dumps(mqtt_postBody_update), headers=headers_update)
 
         print("message topic=",message.topic)
         print("message qos=",message.qos)
         print("message retain flag=",message.retain)
+
+# update ticket status on the server side
+    def init_ticket(self):
+        # update ticket mqtt side
+        updatemqtt = {'TicketId': self.requestID , 'UserName': self.user, 'Status': 'OnGoing'}
+        mqtt_string = json.dumps(updatemqtt)
+        self.client.publish(self.mqtt_update, mqtt_string, qos=1)
+
+        # update ticket api side
+        postBody_update = {'ticketStatus': 4, 'ticketId': int(self.requestID)}
+        request_update = requests.post(self.url_update, data=json.dumps(postBody_update), headers=self.headers_update)
+
+    def finish_ticket(self):
+        # update ticket mqtt side
+        updatemqtt = {'TicketId': self.requestID , 'UserName': self.user, 'Status': 'Done'}
+        mqtt_string = json.dumps(updatemqtt)
+        self.client.publish(self.mqtt_update, mqtt_string, qos=1)
+        
+        # update ticket api side
+        postBody_update = {'ticketStatus': 5, 'ticketId': int(self.requestID)}
+        request_update = requests.post(self.url_update, data=json.dumps(postBody_update), headers=self.headers_update)
+
+        self.client.unsubscribe("atualizar/" + str(self.team_id))
+
+    def cancel_ticket(self):
+        # update ticket mqtt side
+        updatemqtt = {'TicketId': self.requestID , 'UserName': self.user, 'Status': 'Canceled'}
+        mqtt_string = json.dumps(updatemqtt)
+        self.client.publish(self.mqtt_update, mqtt_string, qos=1)
+        
+        # update ticket api side
+        postBody_update = {'ticketStatus': 6, 'ticketId': int(self.requestID)}
+        request_update = requests.post(self.url_update, data=json.dumps(postBody_update), headers=self.headers_update)
+
+        self.client.unsubscribe("atualizar/" + str(self.team_id))
 
 # thread for checking the ticket status
 class WatchStatus(QThread):
@@ -232,9 +224,9 @@ class WatchStatus(QThread):
                 self.body_support.lbl_value_support_name_pending.setText(ticket_info_request[0])
                 self.body_support.subbody_pending_3.raise_()
 
-            elif(ticket_info_request['status'] == "OnGoing"):
+            elif ticket_info_request['status'] == "OnGoing":
                 self.body_support.subbody_inprogress_4.raise_()
-            elif(ticket_info_request['status'] == "Done"):
+            elif ticket_info_request['status'] == "Done" or ticket_info_request['status'] == "Canceled":
                 self.body_support.subbody_createticket_1.raise_()
                 return
 
