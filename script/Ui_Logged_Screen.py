@@ -1393,12 +1393,66 @@ class Ui_Logged_Screen(object):
 "border: 0px  solid rgb(0,0,0);")
         self.btn_close_error.setText("")
         self.btn_close_error.setObjectName("btn_close_error")
+        self.subbody_canceledticket_5 = QtWidgets.QWidget(self.body_support)
+        self.subbody_canceledticket_5.setGeometry(QtCore.QRect(280, 140, 602, 442))
+        self.subbody_canceledticket_5.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-radius: 8px")
+        self.subbody_canceledticket_5.setObjectName("subbody_canceledticket_5")
+        self.btn_canceledticket_return = QtWidgets.QPushButton(self.subbody_canceledticket_5)
+        self.btn_canceledticket_return.setGeometry(QtCore.QRect(170, 360, 261, 41))
+        font = QtGui.QFont()
+        font.setFamily("Inter UI")
+        font.setPointSize(14)
+        self.btn_canceledticket_return.setFont(font)
+        self.btn_canceledticket_return.setStyleSheet("QPushButton{\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(86, 149, 246);\n"
+"}\n"
+"QPushButton:hover {\n"
+"color: rgb(86, 149, 246);\n"
+"background-color: rgb(255, 255, 255);\n"
+"border: 2px  solid  rgb(86, 149, 246);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"border: 6px  solid  rgb(86, 149, 246);\n"
+"}\n"
+"border-radius: 8px;\n"
+"")
+        self.btn_canceledticket_return.setObjectName("btn_canceledticket_return")
+        self.lbl_newticket_create_2 = QtWidgets.QLabel(self.subbody_canceledticket_5)
+        self.lbl_newticket_create_2.setGeometry(QtCore.QRect(65, 160, 231, 31))
+        font = QtGui.QFont()
+        font.setFamily("Inter UI")
+        font.setPointSize(14)
+        self.lbl_newticket_create_2.setFont(font)
+        self.lbl_newticket_create_2.setObjectName("lbl_newticket_create_2")
+        self.lbl_value_canceledticket_name = QtWidgets.QLabel(self.subbody_canceledticket_5)
+        self.lbl_value_canceledticket_name.setGeometry(QtCore.QRect(300, 160, 231, 31))
+        font = QtGui.QFont()
+        font.setFamily("Inter UI")
+        font.setPointSize(14)
+        self.lbl_value_canceledticket_name.setFont(font)
+        self.lbl_value_canceledticket_name.setObjectName("lbl_value_canceledticket_name")
+        self.lbl_newticket_create_4 = QtWidgets.QLabel(self.subbody_canceledticket_5)
+        self.lbl_newticket_create_4.setGeometry(QtCore.QRect(60, 193, 461, 51))
+        font = QtGui.QFont()
+        font.setFamily("Inter UI")
+        font.setPointSize(14)
+        self.lbl_newticket_create_4.setFont(font)
+        self.lbl_newticket_create_4.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbl_newticket_create_4.setWordWrap(True)
+        self.lbl_newticket_create_4.setObjectName("lbl_newticket_create_4")
+        self.yellow_canceledticket = QtWidgets.QWidget(self.subbody_canceledticket_5)
+        self.yellow_canceledticket.setGeometry(QtCore.QRect(240, 50, 120, 80))
+        self.yellow_canceledticket.setStyleSheet("image: url(:/Img/yellowerror.png);")
+        self.yellow_canceledticket.setObjectName("yellow_canceledticket")
         self.lbl_support_error.raise_()
         self.lbl_JIT.raise_()
         self.lbl_blueline.raise_()
         self.subbody_waiting_2.raise_()
         self.subbody_inprogress_4.raise_()
         self.subbody_pending_3.raise_()
+        self.subbody_canceledticket_5.raise_()
         self.subbody_createticket_1.raise_()
         self.body_FPL = QtWidgets.QWidget(self.main)
         self.body_FPL.setGeometry(QtCore.QRect(410, 20, 341, 551))
@@ -1931,6 +1985,10 @@ class Ui_Logged_Screen(object):
         self.lbl_waiting_inprogress.setText(_translate("MainWindow", "Chamado em andamento, aguarde a conclusão."))
         self.btn_initiate_inprogress.setText(_translate("MainWindow", "Finalizar atendimento"))
         self.lbl_text_error.setText(_translate("MainWindow", "Ops! Algo deu errado. Verifique se todos os campos estão preenchidos corretamente e tente novamente.                                              Se o erro persistir contate Andre no ramal: 123456"))
+        self.btn_canceledticket_return.setText(_translate("MainWindow", "Voltar ao início"))
+        self.lbl_newticket_create_2.setText(_translate("MainWindow", "Chamado cancelado por"))
+        self.lbl_value_canceledticket_name.setText(_translate("MainWindow", "< >"))
+        self.lbl_newticket_create_4.setText(_translate("MainWindow", "Abra outro chamado caso seu problema não tenha sido resolvido."))
         self.ckb_FPL_0.setText(_translate("MainWindow", "CheckBox"))
         self.ckb_FPL_1.setText(_translate("MainWindow", "CheckBox"))
         self.ckb_FPL_2.setText(_translate("MainWindow", "CheckBox"))

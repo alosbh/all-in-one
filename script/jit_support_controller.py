@@ -30,6 +30,7 @@ class jit_support_controller():
     def support_screen_ui_functions(self, workstation_name):
         self.btn_createticket_create.clicked.connect(lambda: self.create_ticket(workstation_name))
         self.btn_close_error.clicked.connect(lambda: self.lbl_support_error.setVisible(False))
+        self.btn_canceledticket_return.clicked.connect(self.subbody_createticket_1.raise_)
         self.btn_cancelticket_waiting.clicked.connect(self.cancel_ticket)
         self.btn_cancelticket_pending.clicked.connect(self.cancel_ticket)
         self.btn_cancelticket_inprogress.clicked.connect(self.cancel_ticket)
@@ -153,19 +154,29 @@ class jit_support_controller():
     def setup_mqtt(self, workstation_name):
         self.user = 'None'
         self.client = mqtt.Client(workstation_name)
-        self.client.connect("test.mosquitto.org")
+        self.client.connect("BRBELM0MAT81.corp.jabil.org")
         self.client.on_message=self.on_message
         self.client.loop_start()
 
     def on_message(self, client, userdata, message):
         print("message received " ,str(message.payload.decode("utf-8")))
         d = json.loads(message.payload)
+        self.user = d["UserName"]
+
         if (d["TicketId"] == self.requestID and d["Status"] == "Accepted"):
-            headers_update = {'content-type': 'application/json'}
-            self.user = d["UserName"]
+            mqtt_headers_update = {'content-type': 'application/json'}
             mqtt_url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Confirm'
             mqtt_postBody_update = {'ticketId': int(d["TicketId"]), 'ip': d["Ip"]}
-            request_update = requests.post(mqtt_url_update, data=json.dumps(mqtt_postBody_update), headers=headers_update)
+            request_update = requests.post(mqtt_url_update, data=json.dumps(mqtt_postBody_update), headers=mqtt_headers_update)
+
+        elif (d["TicketId"] == self.requestID and d["Status"] == "Canceled") and d["UserName"] != "None":
+            postBody_update = {'ticketStatus': 6, 'ticketId': int(self.requestID)}
+            request_update = requests.post(self.url_update, data=json.dumps(postBody_update), headers=self.headers_update)
+            self.lbl_value_canceledticket_name.setText(self.user)
+            self.subbody_canceledticket_5.raise_()
+        else:
+            self.lbl_value_canceledticket_name.setText(self.user)
+            self.subbody_createticket_1.raise_()
 
         print("message topic=",message.topic)
         print("message qos=",message.qos)
@@ -196,7 +207,7 @@ class jit_support_controller():
 
     def cancel_ticket(self):
         # update ticket mqtt side
-        updatemqtt = {'TicketId': self.requestID , 'UserName': self.user, 'Status': 'Canceled'}
+        updatemqtt = {'TicketId': self.requestID , 'UserName': 'None', 'Status': 'Canceled'}
         mqtt_string = json.dumps(updatemqtt)
         self.client.publish(self.mqtt_update, mqtt_string, qos=1)
         
@@ -226,8 +237,10 @@ class WatchStatus(QThread):
 
             elif ticket_info_request['status'] == "OnGoing":
                 self.body_support.subbody_inprogress_4.raise_()
-            elif ticket_info_request['status'] == "Done" or ticket_info_request['status'] == "Canceled":
+            elif ticket_info_request['status'] == "Done":
                 self.body_support.subbody_createticket_1.raise_()
+                return
+            elif ticket_info_request['status'] == "Canceled":
                 return
 
             time.sleep(2)

@@ -148,7 +148,7 @@ class Ui_Login_Screen(object):
         self.lbl_workstation.setText(_translate("MainWindow", "POSTO"))
         self.lbl_value_hostname.setText(_translate("MainWindow", "BRBELRASP333"))
         self.lbl_hostname.setText(_translate("MainWindow", "HOSTNAME"))
-        self.lbl_value_nickname.setText(_translate("MainWindow", "GE GRID-Solda Onda-Touch up 2    "))
+        self.lbl_value_nickname.setText(_translate("MainWindow", ". . ."))
         self.lbl_nickname.setText(_translate("MainWindow", "APELIDO"))
 import resources_rc
 
