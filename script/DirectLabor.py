@@ -44,7 +44,7 @@ class DirectLabor:
         self.Name = name_array[0] + " " + name_array[name_len-1]
 
         self.ID_trim = LoginResponse["UserRegistration"]
-        # self.Load_Metrics(hostname)
+        self.Load_Metrics(hostname)
         
         # get used id
         baseUrl = "http://brbelm0apps02/AIOService/Jmd/GetUserDetailsByRegistration/" + str(self.ID_trim)

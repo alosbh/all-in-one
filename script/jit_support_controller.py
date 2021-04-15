@@ -16,6 +16,7 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 class jit_support_controller():
     def setup_support_screen(self, workstation_name):
         try:
+            self.show_createticket_1()
             self.headers_update = {'content-type': 'application/json'}
             self.url_update = 'http://brbelm0itqa01/JITAPI/Ticket/Update'
 
@@ -30,7 +31,7 @@ class jit_support_controller():
     def support_screen_ui_functions(self, workstation_name):
         self.btn_createticket_create.clicked.connect(lambda: self.create_ticket(workstation_name))
         self.btn_close_error.clicked.connect(lambda: self.lbl_support_error.setVisible(False))
-        self.btn_canceledticket_return.clicked.connect(self.subbody_createticket_1.raise_)
+        self.btn_canceledticket_return.clicked.connect(self.show_createticket_1)
         self.btn_cancelticket_waiting.clicked.connect(self.cancel_ticket)
         self.btn_cancelticket_pending.clicked.connect(self.cancel_ticket)
         self.btn_cancelticket_inprogress.clicked.connect(self.cancel_ticket)
@@ -141,7 +142,7 @@ class jit_support_controller():
                 
                 self.thread_ticket_status = 1
                 self.watchthread.startThread(self)
-                self.subbody_waiting_2.raise_()
+                self.show_waiting_2()
             else:
                 self.raise_error_window()
         except:
@@ -173,10 +174,10 @@ class jit_support_controller():
             postBody_update = {'ticketStatus': 6, 'ticketId': int(self.requestID)}
             request_update = requests.post(self.url_update, data=json.dumps(postBody_update), headers=self.headers_update)
             self.lbl_value_canceledticket_name.setText(self.user)
-            self.subbody_canceledticket_5.raise_()
+            self.show_canceledticket_5()
         else:
             self.lbl_value_canceledticket_name.setText(self.user)
-            self.subbody_createticket_1.raise_()
+            self.show_createticket_1()
 
         print("message topic=",message.topic)
         print("message qos=",message.qos)
@@ -217,6 +218,34 @@ class jit_support_controller():
 
         self.client.unsubscribe("atualizar/" + str(self.team_id))
 
+# screen control functions to avoid labels glitching
+    def show_createticket_1(self):
+        self.subbody_canceledticket_5.hide()
+        self.subbody_inprogress_4.hide()
+        self.subbody_pending_3.hide()
+        self.subbody_waiting_2.hide()
+        self.subbody_createticket_1.show()
+
+    def show_waiting_2(self):
+        self.subbody_createticket_1.hide()
+        self.subbody_waiting_2.show()
+
+    def show_pending_3(self):
+        self.subbody_waiting_2.hide()
+        self.subbody_pending_3.show()
+
+    def show_inprogress_4(self):
+        self.subbody_createticket_1.hide()
+        self.subbody_pending_3.hide()
+        self.subbody_inprogress_4.show()
+    
+    def show_canceledticket_5(self):
+        self.subbody_canceledticket_5.show()
+        self.subbody_inprogress_4.hide()
+        self.subbody_pending_3.hide()
+        self.subbody_waiting_2.hide()
+        self.subbody_createticket_1.hide()
+
 # thread for checking the ticket status
 class WatchStatus(QThread):
  
@@ -233,12 +262,12 @@ class WatchStatus(QThread):
                 ticket_info_request = ticket_info_request.split(' ', 1)
 
                 self.body_support.lbl_value_support_name_pending.setText(ticket_info_request[0])
-                self.body_support.subbody_pending_3.raise_()
+                self.body_support.show_pending_3()
 
             elif ticket_info_request['status'] == "OnGoing":
-                self.body_support.subbody_inprogress_4.raise_()
+                self.body_support.show_inprogress_4()
             elif ticket_info_request['status'] == "Done":
-                self.body_support.subbody_createticket_1.raise_()
+                self.body_support.show_createticket_1()
                 return
             elif ticket_info_request['status'] == "Canceled":
                 return
