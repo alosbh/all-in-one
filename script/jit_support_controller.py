@@ -227,17 +227,25 @@ class jit_support_controller():
         self.subbody_createticket_1.show()
 
     def show_waiting_2(self):
-        self.subbody_createticket_1.hide()
+        self.subbody_canceledticket_5.hide()
+        self.subbody_inprogress_4.hide()
+        self.subbody_pending_3.hide()
         self.subbody_waiting_2.show()
+        self.subbody_createticket_1.hide()
 
     def show_pending_3(self):
-        self.subbody_waiting_2.hide()
+        self.subbody_canceledticket_5.hide()
+        self.subbody_inprogress_4.hide()
         self.subbody_pending_3.show()
+        self.subbody_waiting_2.hide()
+        self.subbody_createticket_1.hide()
 
     def show_inprogress_4(self):
-        self.subbody_createticket_1.hide()
-        self.subbody_pending_3.hide()
+        self.subbody_canceledticket_5.hide()
         self.subbody_inprogress_4.show()
+        self.subbody_pending_3.hide()
+        self.subbody_waiting_2.hide()
+        self.subbody_createticket_1.hide()
     
     def show_canceledticket_5(self):
         self.subbody_canceledticket_5.show()
@@ -251,6 +259,7 @@ class WatchStatus(QThread):
  
     def run(self):
         while(self.body_support.thread_ticket_status == 1):
+            print(self.url_thread)
             ticket_info_request = requests.get(self.url_thread)
             ticket_info_request = ticket_info_request.json()
             
