@@ -124,12 +124,9 @@ class jit_support_controller():
                 self.calltime = str(request_create.json()['receivedTime'])
                 self.calltime = self.calltime[:-17]
                 self.calltime = self.calltime[11:]
-                if(self.line_situation == 0):
-                    self.risk = "Parada"
-                else:
-                    self.risk = "Rodando"
+                
                 self.payloadmqtt = {'id': self.requestID ,
-                                'risk': self.risk,
+                                'risk': self.line_situation,
                                 'workstation': workstation_name,
                                 'calltime': self.calltime,
                                 'description': self.cbx_sympton_create.currentText()
