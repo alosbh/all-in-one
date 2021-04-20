@@ -21,7 +21,7 @@ class Fpl_controller():
         self.get_all_documents(1)
     
     def preload_setup_fpl(self):
-        #self.btn_FPL.disconnect()
+        self.btn_FPL.disconnect()
         self.btn_FPL.hide()
         self.widget_FPL_2.hide()
         self.thread_vt = thread_vt()
