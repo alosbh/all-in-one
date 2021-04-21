@@ -1,6 +1,23 @@
 ---
-    OJT: 
-        baseUrl: http://brbelm0itqa01.corp.jabil.org/OJT/ojtws/
+    LoginAPI:
+        baseUrl: http://brbelm0apps99/RaspLoginAPI/
+        
+        Authentication:
+            LoginByLeader:
+                Type: Post
+                ArgumentsCount: 1 
+            
+            LoginByWorker:
+                Type: Post
+                ArgumentsCount: 2
+                
+            Logout:
+                Type: Post
+                ArgumentsCount: 2
+
+    OJT:
+                    
+        baseUrl: http://brbelm0apps99.corp.jabil.org/OJT/ojtws/
 
         Configuration:
             ChangeLeaderPassword:
@@ -11,19 +28,6 @@
             GetDocumentsByFilter:
                 Type: Post
                 ArgumentsCount: 1
-
-        Authentication:
-            LoginByLeader:
-                Type: Post
-                ArgumentsCount: 1 
-
-            LoginByWorker:
-                Type: Post
-                ArgumentsCount: 2 
-
-            Logout:
-                Type: Post
-                ArgumentsCount: 2 
 
         Workstation:            
             GetNameByRaspberry:
@@ -69,7 +73,7 @@
                 ArgumentsCount: 1
 
     AIO_Dashboard:
-        baseUrl: http://brbelm0itqa01.corp.jabil.org/AIOService_AIODashboard/
+        baseUrl: http://brbelm0apps99.corp.jabil.org/AIOService_AIODashboard/
 
         Prodash:
             GetActualUserAttributes:
