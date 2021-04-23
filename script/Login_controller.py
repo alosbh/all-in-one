@@ -10,6 +10,8 @@ else:
     from RFRead_controller import RFRead_controller
 import logging
 import time
+import requests
+import json
 
 GlobalParameters = GlobalParameters()
 
@@ -84,8 +86,8 @@ class Login_controller(QThread):
                         try:
                             # Api call to login a user on OJT server
                             logger.debug("Login user " + str(self.Read_ID) + "..........")
-
-                            LoginResponse = self.API.Request(self.API.OJT, "LoginByWorker", {'HostName': self.host, 'Badge': self.Read_ID}) 
+                            LoginResponse = requests.post(url='http://brbelm0apps99/RaspLoginAPI/Authentication/LoginByWorker',data={'HostName': self.host, 'Badge': self.Read_ID})
+                            LoginResponse = json.loads(LoginResponse.content) 
                             # catch login status
                             status = LoginResponse['Status']
                             # status="Login realizado"
@@ -129,7 +131,8 @@ class Login_controller(QThread):
                                 # API Call to logout the user
                                 print("Logout user " + self.Actual_ID + ".........")
                                 logger.debug("Logout user " + self.Actual_ID + ".........")
-                                LogoutResponse = self.API.Request(self.API.OJT, "Logout", {'HostName': self.host, 'Badge': self.Actual_ID});
+                                LogoutResponse = requests.post(url='http://brbelm0apps99/RaspLoginAPI/Authentication/Logout',data={'HostName': self.host, 'Badge': self.Actual_ID}) 
+                                LogoutResponse = json.loads(LogoutResponse.content) 
                                 status = LogoutResponse['Status']
 
                                 if((status=="Logout realizado")or (status=="Não encontrado")):

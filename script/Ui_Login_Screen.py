@@ -140,7 +140,7 @@ class Ui_Login_Screen(object):
 "")
         self.btn_login.setObjectName("btn_login")
         self.body_login_fail = QtWidgets.QWidget(self.main_loginscreen)
-        self.body_login_fail.setGeometry(QtCore.QRect(580, 420, 201, 121))
+        self.body_login_fail.setGeometry(QtCore.QRect(580, 420, 201, 141))
         self.body_login_fail.setStyleSheet("QWidget{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;\n"
@@ -148,7 +148,7 @@ class Ui_Login_Screen(object):
 "}")
         self.body_login_fail.setObjectName("body_login_fail")
         self.lbl_login_fail = QtWidgets.QLabel(self.body_login_fail)
-        self.lbl_login_fail.setGeometry(QtCore.QRect(20, 10, 161, 51))
+        self.lbl_login_fail.setGeometry(QtCore.QRect(20, 10, 161, 61))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.lbl_login_fail.setFont(font)
@@ -159,7 +159,7 @@ class Ui_Login_Screen(object):
         self.lbl_login_fail.setWordWrap(True)
         self.lbl_login_fail.setObjectName("lbl_login_fail")
         self.label = QtWidgets.QLabel(self.body_login_fail)
-        self.label.setGeometry(QtCore.QRect(77, 60, 47, 51))
+        self.label.setGeometry(QtCore.QRect(77, 80, 47, 51))
         self.label.setStyleSheet("border-radius: 0px;\n"
 "border: 0px  solid rgb(0,0,0);\n"
 "color: rgb(45, 34, 94);\n"
@@ -195,7 +195,7 @@ class Ui_Login_Screen(object):
         self.lbl_hostname.setText(_translate("MainWindow", "HOSTNAME"))
         self.lbl_matricula.setText(_translate("MainWindow", "Matrícula:"))
         self.btn_login.setText(_translate("MainWindow", "Login"))
-        self.lbl_login_fail.setText(_translate("MainWindow", "Login falhou, tente novamente"))
+        self.lbl_login_fail.setText(_translate("MainWindow", "Matrícula não encontrada, tente novamente."))
 import resources_rc
 
 

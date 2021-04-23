@@ -9,7 +9,7 @@ class buttons_controller():
 
     def build_sidebar_buttons(self, hostname, workstation, route):
         try:
-            array_buttons = ['LPA','FI', 'SCTC', 'Posto 5s', 'JIT suporte']
+            array_buttons = ['LPA','FI', 'SCTC', 'Posto 5s', 'JIT suporte', 'Boas Ideias']
 
             self.define_icons()
             # array_buttons = []
@@ -26,16 +26,16 @@ class buttons_controller():
             #         array_buttons.append(botao['Name'])
 
             if not array_buttons:
-                array_buttons = ['LPA','FI', 'SCTC', 'Posto 5s', 'JIT suporte']
+                array_buttons = ['LPA','FI', 'SCTC', 'Posto 5s', 'JIT suporte', 'Boas Ideias']
 
         except:
             print("erro")
-            array_buttons = ['LPA','FI', 'SCTC', 'Posto 5s', 'JIT suporte']
+            array_buttons = ['LPA','FI', 'SCTC', 'Posto 5s', 'JIT suporte', 'Boas Ideias']
 
         # workstations with stopwatcher fucntion
         print(array_buttons)
         # stopwatch_array = ['GEWBOXPSA001', 'GEWBOXPSA002', 'GEWBOXTBSUBM', 'GEWBOXPSC001', 'GEWBOXPSCLEAN', 'GEWBOXPSPACK']
-        stopwatch_array = ['GE Wind', 'GE WIND CONVERTER', 'GE WIND Top Box']
+        stopwatch_array = ['GE Wind', 'GE WIND CONVERTER', 'GE WIND Top Box', 'GEWBOXPSC001', 'GEWBOXPSCLEAN', 'GEWBOXPSPACK']
         OR_monitor_array = ['INGCUSLIB001', 'INGCUSPAM001', 'INGCUSHOR001', 'INGCUSMIN001', 'INGCUSDIA001', 'INGCUSREW001']
         print("Linha: " + route)
         if route not in stopwatch_array:

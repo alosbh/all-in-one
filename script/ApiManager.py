@@ -197,7 +197,7 @@ class ApiManager:
     def load_5s(self,Workstation):
 
         
-        baseUrl = 'http://brbelm0itqa01/AIOServiceSTG/Images5S/GetAll?query='
+        baseUrl = 'http://brbelm0apps99/AIOServiceSTG/Images5S/GetAll?query='
         baseUrl = baseUrl + str(Workstation)
         print("###########")
         logger.error(baseUrl)

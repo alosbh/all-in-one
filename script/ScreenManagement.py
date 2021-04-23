@@ -171,7 +171,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.Raspberry = Raspberry
         self.build_sidebar_buttons(self.Raspberry.Name, self.Station.Name, self.Station.RouteName)
         self.generate_5s(self.Station.Name)
-        #self.setup_support_screen(self.Station.Name)
+        self.setup_support_screen(self.Station.Name)
 
         # Fills labels with workstation values
         self.lbl_value_workstation.setText(str(self.Station.Name)) 
@@ -211,8 +211,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.lbl_value_name.setText("Carregando...")
         self.btn_actionsLPA.hide()
         self.lbl_value_number_actionsLPA.hide()
-        self.lbl_value_yield.setText('-')
-        self.lbl_value_productivity.setText('-')
         self.lbl_value_goodideas.setText('-')
         self.lbl_value_jabilcoins.setText('-')
 
@@ -224,8 +222,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.LPAactions_functions(self.Station.Name)
         self.load_announcements_label()
         self.Station.get_product_info()
-        # self.lbl_value_yield.setText(DL.Yield)
-        # self.lbl_value_productivity.setText(DL.Productivity)
+        self.lbl_value_yield.setText(DL.Yield)
+        self.lbl_value_productivity.setText(DL.Productivity)
         self.lbl_value_product.setText(str(self.Station.ProductName))
         self.lbl_value_client.setText(str(self.Station.ClientName))
         self.setup_fpl(DL.Name, DL.ID_trim)

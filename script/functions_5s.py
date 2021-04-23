@@ -38,7 +38,7 @@ class functions_5s():
                 self.horizontalWidget_3.setVisible(True)
                 self.btn_5s_next.setVisible(True)
         else:
-            url = 'http://brbelm0itqa01.corp.jabil.org/AIOServiceSTG/Images5S/NaoEncontrado.png'
+            url = 'http://brbelm0apps99.corp.jabil.org/AIOServiceSTG/Images5S/NaoEncontrado.png'
 
         self.load_url_signal.signal.emit(url)
 

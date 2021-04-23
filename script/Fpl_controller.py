@@ -249,7 +249,7 @@ class thread_vt(QThread):
                 time.sleep(0.5)
 
     def get_user_by_badge(self, badge):
-        url_getuser = 'http://brbelm0itqa01.corp.jabil.org/OJT/ojtws/Authentication/GetUserByBadge?badge=' + badge
+        url_getuser = 'http://brbelm0apps99.corp.jabil.org/OJT/ojtws/Authentication/GetUserByBadge?badge=' + badge
         headers_getuser = {'content-type': 'application/json'}
         request_getuser = requests.get(url_getuser, headers=headers_getuser)
         response_getuser = json.loads(request_getuser.content)
