@@ -2,6 +2,7 @@ from Ui_Login_Screen import *
 from Ui_Logged_Screen import *
 from Reset import *
 from GlobalParameters import GlobalParameters
+from flask_api import Flask_api
 from FI import FI
 from labels import labels
 from Raspberry import Raspberry as Rasp
@@ -154,6 +155,8 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
 
         self.ActualFIPage = 1
 
+        self.thread_api = Flask_api()
+
     def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window):
         self.setupUi(self.Logged_QtWindow)
         self.build_body_web()
@@ -174,6 +177,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
 
         # Starts the main thread and set its parameters
         self.thread.start()
+        self.thread_api.start()
         self.thread.host = Raspberry.Name
         self.thread.objStation = Station
         # Serves the thread the screen objects, so it can hide, show and manage the windows when needed.

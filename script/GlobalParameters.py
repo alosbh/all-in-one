@@ -4,7 +4,6 @@ import os
 from pathlib import Path
 
 class GlobalParameters:
-
     script_location = Path(__file__).absolute().parent
 
     def __init__(self, FilePath = script_location / 'GlobalParameters.yml'):
@@ -24,4 +23,8 @@ class GlobalParameters:
 
         # Set the All in One Current Version
         self.AIO_Version = cfg['Version']['Actual'];
-        
+        global version_aio
+        version_aio = self.AIO_Version
+
+    def return_version_aio():
+        return version_aio
