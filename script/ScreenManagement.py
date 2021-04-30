@@ -128,7 +128,7 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
 #----------------------------------------------------------------------------------
 
 # Inherits the qt Ui_Logged_Screen (main screen) design and manages its setup
-class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, buttons_controller, jit_support_controller, LPAactions_controller, Announcements_controller, Fpl_controller, theme_controller):
+class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, buttons_controller, jit_support_controller, LPAactions_controller, Announcements_controller, Fpl_controller, theme_controller, Flask_api):
     
     # Instance of the signal to act on button's click
     load_url_signal = QtSignal()
@@ -155,7 +155,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
 
         self.ActualFIPage = 1
 
-        self.thread_api = Flask_api()
+        self.hello_world()
 
     def Setup(self, Station, Raspberry, Params, NonLogged_Window, Reset_Window):
         self.setupUi(self.Logged_QtWindow)
@@ -177,7 +177,6 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
 
         # Starts the main thread and set its parameters
         self.thread.start()
-        self.thread_api.start()
         self.thread.host = Raspberry.Name
         self.thread.objStation = Station
         # Serves the thread the screen objects, so it can hide, show and manage the windows when needed.

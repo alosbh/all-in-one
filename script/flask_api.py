@@ -1,14 +1,8 @@
-from flask import Flask
 from GlobalParameters import *
-from PyQt5.QtCore import QObject, pyqtSignal, QUrl, QThread
 
-app = Flask(__name__)
-
-class Flask_api(QThread):
+class Flask_api():
     GlobalParameters = GlobalParameters()
-    @app.route('/')
-    def hello_world():
-        return GlobalParameters.return_version_aio()
-    
-    def run(self):
-        app.run()
+    def hello_world(self):
+        f = open("C:/02 - www/myfile.txt", "w")
+        f.write(GlobalParameters.return_version_aio())
+        f.close()
