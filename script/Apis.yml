@@ -1,6 +1,6 @@
 ---
     LoginAPI:
-        baseUrl: http://brbelm0apps99/RaspLoginAPI/
+        baseUrl: http://localhost:3090/RaspLoginAPI/
         
         Authentication:
             LoginByLeader:
@@ -17,7 +17,7 @@
 
     OJT:
                     
-        baseUrl: http://brbelm0apps99.corp.jabil.org/OJT/ojtws/
+        baseUrl: http://localhost:3090/OJT/ojtws/
 
         Configuration:
             ChangeLeaderPassword:
@@ -47,7 +47,7 @@
                 ArgumentsCount: 1  
 
     AIO: 
-        baseUrl: http://brbelm0apps02.corp.jabil.org/AIOService/
+        baseUrl: http://localhost:3090/AIOService/
 
         CNCS:
             GetDocumentsByFilter:
@@ -73,7 +73,8 @@
                 ArgumentsCount: 1
 
     AIO_Dashboard:
-        baseUrl: http://brbelm0apps99.corp.jabil.org/AIOService_AIODashboard/
+        # baseUrl: http://localhost:3090/AIOService_AIODashboard/
+        baseUrl: http://localhost:3090/AIOService_AIODashboard/
 
         Prodash:
             GetActualUserAttributes:

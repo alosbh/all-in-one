@@ -296,7 +296,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
 
             self.urlFI = QUrl()
             self.urlFI.setScheme("http")
-            self.urlFI.setHost("brbelm0apps01")
+            self.urlFI.setHost("localhost:3090")
             self.urlFI.setPath("/FICreator/FiViewer/SlideShow")
             self.req = QNetworkRequest()
             self.req.setUrl(self.urlFI)

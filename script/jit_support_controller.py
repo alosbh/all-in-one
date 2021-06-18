@@ -18,7 +18,7 @@ class jit_support_controller():
         try:
             self.show_createticket_1()
             self.headers_update = {'content-type': 'application/json'}
-            self.url_update = 'http://brbelm0apps99/JITAPI/Ticket/Update'
+            self.url_update = 'http://localhost:3090/JITAPI/Ticket/Update'
 
             self.setup_mqtt(workstation_name)
             self.support_screen_ui_functions(workstation_name)
@@ -51,9 +51,9 @@ class jit_support_controller():
         team_id_list = []
 
         try:
-            request_team = requests.get(url = 'http://brbelm0apps99.corp.jabil.org/JITAPI/Team/GetAllActive', verify=False)
+            request_team = requests.get(url = 'http://localhost:3090/JITAPI/Team/GetAllActive', verify=False)
             response_team = request_team.json()
-            request_symptons = requests.get(url = 'http://brbelm0apps99/JITAPI/Symptom/GetAll', verify=False)
+            request_symptons = requests.get(url = 'http://localhost:3090/JITAPI/Symptom/GetAll', verify=False)
             response_symptons = request_symptons.json()
 
             # cria dict q relaciona nome e id do time
@@ -103,7 +103,7 @@ class jit_support_controller():
             self.line_situation = '0' # stopped line
         
         headers_create = {'content-type': 'application/json'}
-        url_create = 'http://brbelm0apps99/JITAPI/Ticket/Create'
+        url_create = 'http://localhost:3090/JITAPI/Ticket/Create'
         
         self.team_id = self.team_teamid_dict.get(self.cbx_team_create.currentText())
         self.selected_sympton = self.cbx_sympton_create.currentText()
@@ -117,6 +117,8 @@ class jit_support_controller():
             'symptomId': self.symptom_id,
             'description': self.cbx_sympton_create.currentText()
             }
+            print(url_create)
+            print(postBody_create)
             request_create = requests.post(url_create, data=json.dumps(postBody_create), headers=headers_create)
 
             if request_create.status_code == 201:
@@ -152,7 +154,7 @@ class jit_support_controller():
     def setup_mqtt(self, workstation_name):
         self.user = 'None'
         self.client = mqtt.Client(workstation_name)
-        self.client.connect("BRBELM0MAT81.corp.jabil.org")
+        self.client.connect("test.mosquitto.org")
         self.client.on_message=self.on_message
         self.client.loop_start()
 
@@ -163,7 +165,7 @@ class jit_support_controller():
 
         if (d["TicketId"] == self.requestID and d["Status"] == "Accepted"):
             mqtt_headers_update = {'content-type': 'application/json'}
-            mqtt_url_update = 'http://brbelm0apps99/JITAPI/Ticket/Confirm'
+            mqtt_url_update = 'http://localhost:3090/JITAPI/Ticket/Confirm'
             mqtt_postBody_update = {'ticketId': int(d["TicketId"]), 'ip': d["Ip"]}
             request_update = requests.post(mqtt_url_update, data=json.dumps(mqtt_postBody_update), headers=mqtt_headers_update)
 
@@ -282,5 +284,5 @@ class WatchStatus(QThread):
 
     def startThread(self, body_support):
         self.body_support = body_support
-        self.url_thread = "http://brbelm0apps99/JITAPI/Ticket/GetById/" + self.body_support.requestID
+        self.url_thread = "http://localhost:3090/JITAPI/Ticket/GetById/" + self.body_support.requestID
         self.start()

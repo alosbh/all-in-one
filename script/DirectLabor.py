@@ -47,7 +47,7 @@ class DirectLabor:
         self.Load_Metrics(hostname)
         
         # get used id
-        baseUrl = "http://brbelm0apps02/AIOService/Jmd/GetUserDetailsByRegistration/" + str(self.ID_trim)
+        baseUrl = "http://localhost:3090/AIOService/Jmd/GetUserDetailsByRegistration/" + str(self.ID_trim)
         userdid = requests.get(baseUrl)
         userdid = userdid.json()['idUser']
         self.ID = userdid
@@ -78,12 +78,12 @@ class DirectLabor:
 
 
     def load_avatar(self):
-        baseurl = 'http://brbelm0apps01/UserImage/' + self.ID_trim + '.jpg'
+        baseurl = 'http://localhost:3090/UserImage/' + self.ID_trim + '.jpg'
 
         try:
             url = urllib.request.urlopen(baseurl)
         except:
-            url = urllib.request.urlopen('http://brbelm0apps01/UserImage/Default.jpg')
+            url = urllib.request.urlopen('http://localhost:3090/UserImage/Default.jpg')
 
         data = url.read()
 

@@ -131,14 +131,14 @@ class ApiManager:
 
     def load_LPA(self,BadgeID,Workstep,RouteID):
 
-        baseUrl = 'http://brbelm0apps01/LPAEletronico/Lpa/Login?registration='
+        baseUrl = 'http://localhost:3090/LPAEletronico/Lpa/Login?registration='
         
         if (str(RouteID)=="187" or str(RouteID)=="168" or str(RouteID)=="23" or str(RouteID)=="13" or str(RouteID)=="20" or str(RouteID)=="26" or str(RouteID)=="197"):
             baseUrl = baseUrl + str(BadgeID) + '&idworkline=' + str(RouteID)
         
         elif(str(RouteID)=="152" or str(RouteID)=="153" or str(RouteID)=="200" or str(RouteID)=="208" or str(RouteID)=="205"):
 
-            baseUrl = 'http://brbelm0apps01/LPAVLS/Lpa/Login?registration='
+            baseUrl = 'http://localhost:3090/LPAVLS/Lpa/Login?registration='
             baseUrl = baseUrl + str(BadgeID) + '&idworkstep=' + str(Workstep)
 
         else:
@@ -156,7 +156,7 @@ class ApiManager:
     def load_BI(self,BadgeID,StationID):
 
         print("workstation id:" + str(StationID))
-        userIdurl = "http://brbelm0apps02/AIOService/Jmd/GetUserDetailsByRegistration/" + BadgeID
+        userIdurl = "http://localhost:8090/AIOService/Jmd/GetUserDetailsByRegistration/" + BadgeID
         r = requests.get(userIdurl)
         response = r.json()
         userId = response['idUser']
@@ -168,7 +168,7 @@ class ApiManager:
         return baseUrl
 
     def load_lineName(self,stationId):
-        baseUrl = 'http://brbelm0apps02/JMDDataServices/workstation/'
+        baseUrl = 'http://localhost:3090/JMDDataServices/workstation/'
         baseUrl = baseUrl + str(stationId) + '/productionlines'
         response = requests.get(baseUrl)
         return response.json()
@@ -181,7 +181,7 @@ class ApiManager:
         self.req = QWebEngineHttpRequest()
 
         self.url.setScheme("http")
-        self.url.setHost("brbelm0apps01")
+        self.url.setHost("localhost:3090")
         self.url.setPath("/FICreator/FIViewer/SlideShow")
 
         self.req.setUrl(self.url)
@@ -197,7 +197,7 @@ class ApiManager:
     def load_5s(self,Workstation):
 
         
-        baseUrl = 'http://brbelm0apps99/AIOServiceSTG/Images5S/GetAll?query='
+        baseUrl = 'http://localhost:3090/AIOServiceSTG/Images5S/GetAll?query='
         baseUrl = baseUrl + str(Workstation)
         print("###########")
         logger.error(baseUrl)
