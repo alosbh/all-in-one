@@ -86,7 +86,7 @@ class Login_controller(QThread):
                         try:
                             # Api call to login a user on OJT server
                             logger.debug("Login user " + str(self.Read_ID) + "..........")
-                            LoginResponse = requests.post(url='http://brbelm0apps99/RaspLoginAPI/Authentication/LoginByWorker',data={'HostName': self.host, 'Badge': self.Read_ID})
+                            LoginResponse = requests.post(url='http://localhost:3090/RaspLoginAPI/Authentication/LoginByWorker',data={'HostName': self.host, 'Badge': self.Read_ID})
                             LoginResponse = json.loads(LoginResponse.content) 
                             # catch login status
                             status = LoginResponse['Status']
@@ -130,7 +130,7 @@ class Login_controller(QThread):
                                 # API Call to logout the user
                                 print("Logout user " + self.Actual_ID + ".........")
                                 logger.debug("Logout user " + self.Actual_ID + ".........")
-                                LogoutResponse = requests.post(url='http://brbelm0apps99/RaspLoginAPI/Authentication/Logout',data={'HostName': self.host, 'Badge': self.Actual_ID}) 
+                                LogoutResponse = requests.post(url='http://localhost:3090/RaspLoginAPI/Authentication/Logout',data={'HostName': self.host, 'Badge': self.Actual_ID}) 
                                 LogoutResponse = json.loads(LogoutResponse.content) 
                                 status = LogoutResponse['Status']
 
