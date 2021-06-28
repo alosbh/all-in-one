@@ -159,10 +159,10 @@ class jit_support_controller():
             client_name = ( ''.join(random.choice(letters) for i in range(10)) )
 
             print("Client MQTT: " + client_name)
-            self.client = mqtt.Client(client_name)
+            self.client = mqtt.Client(client_id = client_name,clean_session=False)
         else:
             
-            self.client = mqtt.Client(workstation_name)
+            self.client = mqtt.Client(client_id = workstation_name,clean_session=False)
         self.client.connect("BRBELM0MAT81.corp.jabil.org")
         self.client.on_message=self.on_message
         self.client.loop_start()
