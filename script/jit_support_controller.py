@@ -97,7 +97,7 @@ class jit_support_controller():
 
 # Watch server functions 
     def create_ticket(self, workstation_name):
-        self.btn_initiate_pending.setEnabled(True)
+        self.show_loading()
         self.btn_createticket_create.setEnabled(False)
         if self.rbtn_going_create.isChecked():
             self.line_situation = '1' # ok line
@@ -147,7 +147,8 @@ class jit_support_controller():
         except:
             self.raise_error_window()
             
-        time.sleep(2)
+        time.sleep(1)
+        self.btn_initiate_pending.setEnabled(True)
         self.btn_createticket_create.setEnabled(True)
 
 # mqtt server functions
@@ -197,6 +198,7 @@ class jit_support_controller():
 # update ticket status on the server side
     def init_ticket(self):
 
+        self.show_loading()
         print("aqui que esta com erro pulando tela")
         # update ticket mqtt side
         updatemqtt = {'TicketId': self.requestID , 'UserName': self.user, 'Status': 'OnGoing'}
@@ -208,6 +210,7 @@ class jit_support_controller():
         request_update = requests.post(self.url_update, data=json.dumps(postBody_update), headers=self.headers_update)
 
     def finish_ticket(self):
+        self.show_loading()
         # update ticket mqtt side
         updatemqtt = {'TicketId': self.requestID , 'UserName': self.user, 'Status': 'Done'}
         mqtt_string = json.dumps(updatemqtt)
@@ -220,6 +223,7 @@ class jit_support_controller():
         self.client.unsubscribe("atualizar/" + str(self.team_id))
 
     def cancel_ticket(self):
+        self.show_loading()
         # update ticket mqtt side
         updatemqtt = {'TicketId': self.requestID , 'UserName': 'None', 'Status': 'Canceled'}
         mqtt_string = json.dumps(updatemqtt)
@@ -232,7 +236,17 @@ class jit_support_controller():
         self.client.unsubscribe("atualizar/" + str(self.team_id))
 
 # screen control functions to avoid labels glitching
+    
+    def show_loading(self):
+        self.loading_gif.show()
+        self.subbody_canceledticket_5.hide()
+        self.subbody_inprogress_4.hide()
+        self.subbody_pending_3.hide()
+        self.subbody_waiting_2.hide()
+        self.subbody_createticket_1.hide()
+
     def show_createticket_1(self):
+        self.loading_gif.hide()
         self.subbody_canceledticket_5.hide()
         self.subbody_inprogress_4.hide()
         self.subbody_pending_3.hide()
@@ -240,6 +254,7 @@ class jit_support_controller():
         self.subbody_createticket_1.show()
 
     def show_waiting_2(self):
+        self.loading_gif.hide()
         self.subbody_canceledticket_5.hide()
         self.subbody_inprogress_4.hide()
         self.subbody_pending_3.hide()
@@ -247,6 +262,7 @@ class jit_support_controller():
         self.subbody_createticket_1.hide()
 
     def show_pending_3(self):
+        self.loading_gif.hide()
         self.subbody_canceledticket_5.hide()
         self.subbody_inprogress_4.hide()
         self.subbody_pending_3.show()
@@ -254,6 +270,7 @@ class jit_support_controller():
         self.subbody_createticket_1.hide()
 
     def show_inprogress_4(self):
+        self.loading_gif.hide()
         self.subbody_canceledticket_5.hide()
         self.subbody_inprogress_4.show()
         self.subbody_pending_3.hide()
@@ -261,6 +278,7 @@ class jit_support_controller():
         self.subbody_createticket_1.hide()
     
     def show_canceledticket_5(self):
+        self.loading_gif.hide()
         self.subbody_canceledticket_5.show()
         self.subbody_inprogress_4.hide()
         self.subbody_pending_3.hide()
