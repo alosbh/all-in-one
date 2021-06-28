@@ -3,7 +3,9 @@ from PyQt5.QtCore import QThread
 
 import paho.mqtt.client as mqtt
 
-
+from OS_define import OS_define
+import string
+import random
 import requests
 import json
 import time
@@ -151,7 +153,16 @@ class jit_support_controller():
 # mqtt server functions
     def setup_mqtt(self, workstation_name):
         self.user = 'None'
-        self.client = mqtt.Client(workstation_name)
+        if OS_define.get_OS_name() == 1:
+            letters = string.ascii_lowercase
+            print ( ''.join(random.choice(letters) for i in range(10)) )
+            client_name = ( ''.join(random.choice(letters) for i in range(10)) )
+
+            print("Client MQTT: " + client_name)
+            self.client = mqtt.Client(client_name)
+        else:
+            
+            self.client = mqtt.Client(workstation_name)
         self.client.connect("BRBELM0MAT81.corp.jabil.org")
         self.client.on_message=self.on_message
         self.client.loop_start()
@@ -162,9 +173,12 @@ class jit_support_controller():
         self.user = d["UserName"]
 
         if (d["TicketId"] == self.requestID and d["Status"] == "Accepted"):
+            url_getWatchbyUserID = 'http://brbelm0apps99/JITAPI/Smartwatch/GetbyUserId/' + str(d["userID"])
+            request_getWatchIP = requests.get(url=url_getWatchbyUserID,verify=False)
+            response_watchbyUserId = request_getWatchIP.json()
             mqtt_headers_update = {'content-type': 'application/json'}
             mqtt_url_update = 'http://brbelm0apps99/JITAPI/Ticket/Confirm'
-            mqtt_postBody_update = {'ticketId': int(d["TicketId"]), 'ip': d["Ip"]}
+            mqtt_postBody_update = {'ticketId': int(d["TicketId"]), 'ip': response_watchbyUserId['ip']}
             request_update = requests.post(mqtt_url_update, data=json.dumps(mqtt_postBody_update), headers=mqtt_headers_update)
 
         elif (d["TicketId"] == self.requestID and d["Status"] == "Canceled") and d["UserName"] != "None":
@@ -174,7 +188,7 @@ class jit_support_controller():
             self.show_canceledticket_5()
         else:
             self.lbl_value_canceledticket_name.setText(self.user)
-            self.show_createticket_1()
+            # self.show_createticket_1()
 
         print("message topic=",message.topic)
         print("message qos=",message.qos)
@@ -182,6 +196,8 @@ class jit_support_controller():
 
 # update ticket status on the server side
     def init_ticket(self):
+
+        print("aqui que esta com erro pulando tela")
         # update ticket mqtt side
         updatemqtt = {'TicketId': self.requestID , 'UserName': self.user, 'Status': 'OnGoing'}
         mqtt_string = json.dumps(updatemqtt)
@@ -256,9 +272,15 @@ class WatchStatus(QThread):
  
     def run(self):
         while(self.body_support.thread_ticket_status == 1):
+
+            print("Status do Ticket")
+            print(str(self.body_support.thread_ticket_status))
+
             print(self.url_thread)
             ticket_info_request = requests.get(self.url_thread)
             ticket_info_request = ticket_info_request.json()
+            print("Resposta da API")
+            print(ticket_info_request)
             
             if(ticket_info_request['status'] == "Accepted"):
                 # a API retorna um array em formato de string (???)
@@ -276,6 +298,7 @@ class WatchStatus(QThread):
                 self.body_support.show_createticket_1()
                 return
             elif ticket_info_request['status'] == "Canceled":
+                self.body_support.show_canceledticket_5()
                 return
 
             time.sleep(2)
