@@ -1086,13 +1086,18 @@ class Ui_Logged_Screen(object):
         self.body_support.setObjectName("body_support")
         
         #LOADING GIF
-        self.loading_gif = QtWidgets.QLabel(self.body_support)
-        self.loading_gif.setGeometry(QtCore.QRect(455, 220, 220, 220))
+        self.subbody_loading_gif = QtWidgets.QWidget(self.body_support)
+        self.subbody_loading_gif.setGeometry(QtCore.QRect(280, 140, 602, 442))
+        self.subbody_loading_gif.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-radius: 8px")
+        self.subbody_loading_gif.setObjectName("subbody_loading_gif")
+        self.loading_gif = QtWidgets.QLabel(self.subbody_loading_gif)
+        self.loading_gif.setGeometry(QtCore.QRect(191, 111, 220, 220))
         self.loading_gif.setObjectName("loading_gif")
         self.movie = QMovie(os.path.abspath(os.path.join(os.path.dirname( __file__ ),'teste2.gif')))
         self.loading_gif.setMovie(self.movie)
         self.movie.start()
-        self.loading_gif.setVisible(False)
+        self.subbody_loading_gif.setVisible(False)
 
         self.lbl_JIT = QtWidgets.QLabel(self.body_support)
         self.lbl_JIT.setGeometry(QtCore.QRect(40, 20, 491, 61))
@@ -1464,6 +1469,7 @@ class Ui_Logged_Screen(object):
         self.subbody_pending_3.raise_()
         self.subbody_canceledticket_5.raise_()
         self.subbody_createticket_1.raise_()
+        self.subbody_loading_gif.raise_()
         self.loading_gif.raise_()
         self.body_FPL = QtWidgets.QWidget(self.main)
         self.body_FPL.setGeometry(QtCore.QRect(410, 20, 341, 551))
@@ -1995,7 +2001,7 @@ class Ui_Logged_Screen(object):
         self.lbl_pending_inprogress.setText(_translate("MainWindow", "Chamado em andamento"))
         self.lbl_waiting_inprogress.setText(_translate("MainWindow", "Chamado em andamento, aguarde a conclusão."))
         self.btn_initiate_inprogress.setText(_translate("MainWindow", "Finalizar atendimento"))
-        self.lbl_text_error.setText(_translate("MainWindow", "Ops! Algo deu errado. Verifique se todos os campos estão preenchidos corretamente e tente novamente.                                              Se o erro persistir contate Andre no ramal: 123456"))
+        self.lbl_text_error.setText(_translate("MainWindow", "Ops! Algo deu errado. Verifique se todos os campos estão preenchidos corretamente e tente novamente.                                              Se o erro persistir contate Andre no ramal: 6776"))
         self.btn_canceledticket_return.setText(_translate("MainWindow", "Voltar ao início"))
         self.lbl_newticket_create_2.setText(_translate("MainWindow", "Chamado cancelado por"))
         self.lbl_value_canceledticket_name.setText(_translate("MainWindow", "< >"))

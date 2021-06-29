@@ -18,6 +18,8 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 class jit_support_controller():
     def setup_support_screen(self, workstation_name):
         try:
+            self.lbl_support_error.setVisible(False)
+            self.workstation_name = workstation_name
             self.show_createticket_1()
             self.headers_update = {'content-type': 'application/json'}
             self.url_update = 'http://brbelm0apps99/JITAPI/Ticket/Update'
@@ -26,6 +28,7 @@ class jit_support_controller():
             self.support_screen_ui_functions(workstation_name)
             self.fill_cbx_teamssymptons(workstation_name)
             self.watchthread = WatchStatus()
+            self.requestthread = ThreadCreateTicket()
         except:
             self.btn_JIT.setText("   INDISPONIVEL")
             self.btn_JIT.clicked.disconnect()
@@ -99,55 +102,19 @@ class jit_support_controller():
     def create_ticket(self, workstation_name):
         self.show_loading()
         self.btn_createticket_create.setEnabled(False)
+        
+        
         if self.rbtn_going_create.isChecked():
             self.line_situation = '1' # ok line
         else:
             self.line_situation = '0' # stopped line
-        
-        headers_create = {'content-type': 'application/json'}
-        url_create = 'http://brbelm0apps99/JITAPI/Ticket/Create'
-        
+
         self.team_id = self.team_teamid_dict.get(self.cbx_team_create.currentText())
         self.selected_sympton = self.cbx_sympton_create.currentText()
         self.symptom_id = self.symptons_symptonid_dict.get(self.selected_sympton)
-        self.client.subscribe("atualizar/" + str(self.team_id), qos=1)
 
-        try:
-            postBody_create = {'productionLineStatus': self.line_situation,
-            'workstationName': workstation_name,
-            'teamId': self.team_id,
-            'symptomId': self.symptom_id,
-            'description': self.cbx_sympton_create.currentText()
-            }
-            request_create = requests.post(url_create, data=json.dumps(postBody_create), headers=headers_create)
+        self.requestthread.startThread(self)
 
-            if request_create.status_code == 201:
-                self.requestID = str(request_create.json()['id'])
-                self.calltime = str(request_create.json()['receivedTime'])
-                self.calltime = self.calltime[:-17]
-                self.calltime = self.calltime[11:]
-                
-                self.payloadmqtt = {'id': self.requestID ,
-                                'risk': self.line_situation,
-                                'workstation': workstation_name,
-                                'calltime': self.calltime,
-                                'description': self.cbx_sympton_create.currentText()
-                                }
-                self.mqtt_string = json.dumps(self.payloadmqtt)
-                self.mqtt_topic = "receber/"+ str(self.team_id)
-                self.mqtt_update = "atualizar/"+ str(self.team_id)
-                self.client.publish(self.mqtt_topic, self.mqtt_string, qos=1)
-                
-                
-                self.thread_ticket_status = 1
-                self.watchthread.startThread(self)
-                self.show_waiting_2()
-            else:
-                self.raise_error_window()
-        except:
-            self.raise_error_window()
-            
-        time.sleep(1)
         self.btn_initiate_pending.setEnabled(True)
         self.btn_createticket_create.setEnabled(True)
 
@@ -170,26 +137,40 @@ class jit_support_controller():
 
     def on_message(self, client, userdata, message):
         print("message received " ,str(message.payload.decode("utf-8")))
+        
+        print("topic received " ,str(message.topic))
         d = json.loads(message.payload)
-        self.user = d["UserName"]
+        if(self.mqtt_topic==str(message.topic)):
+            if (d["id"] == self.requestID):
+                self.show_waiting_2()
 
-        if (d["TicketId"] == self.requestID and d["Status"] == "Accepted"):
-            url_getWatchbyUserID = 'http://brbelm0apps99/JITAPI/Smartwatch/GetbyUserId/' + str(d["userID"])
-            request_getWatchIP = requests.get(url=url_getWatchbyUserID,verify=False)
-            response_watchbyUserId = request_getWatchIP.json()
-            mqtt_headers_update = {'content-type': 'application/json'}
-            mqtt_url_update = 'http://brbelm0apps99/JITAPI/Ticket/Confirm'
-            mqtt_postBody_update = {'ticketId': int(d["TicketId"]), 'ip': response_watchbyUserId['ip']}
-            request_update = requests.post(mqtt_url_update, data=json.dumps(mqtt_postBody_update), headers=mqtt_headers_update)
+                print("Esse é exatamente meu ticket")
 
-        elif (d["TicketId"] == self.requestID and d["Status"] == "Canceled") and d["UserName"] != "None":
-            postBody_update = {'ticketStatus': 6, 'ticketId': int(self.requestID)}
-            request_update = requests.post(self.url_update, data=json.dumps(postBody_update), headers=self.headers_update)
-            self.lbl_value_canceledticket_name.setText(self.user)
-            self.show_canceledticket_5()
-        else:
-            self.lbl_value_canceledticket_name.setText(self.user)
-            # self.show_createticket_1()
+       
+        elif(self.mqtt_update==str(message.topic)):
+        
+
+            print("Eh topico de atualizar")
+            
+            self.user = d["UserName"]
+
+            if (d["TicketId"] == self.requestID and d["Status"] == "Accepted"):
+                url_getWatchbyUserID = 'http://brbelm0apps99/JITAPI/Smartwatch/GetbyUserId/' + str(d["userID"])
+                request_getWatchIP = requests.get(url=url_getWatchbyUserID,verify=False)
+                response_watchbyUserId = request_getWatchIP.json()
+                mqtt_headers_update = {'content-type': 'application/json'}
+                mqtt_url_update = 'http://brbelm0apps99/JITAPI/Ticket/Confirm'
+                mqtt_postBody_update = {'ticketId': int(d["TicketId"]), 'ip': response_watchbyUserId['ip']}
+                request_update = requests.post(mqtt_url_update, data=json.dumps(mqtt_postBody_update), headers=mqtt_headers_update)
+
+            elif (d["TicketId"] == self.requestID and d["Status"] == "Canceled") and d["UserName"] != "None":
+                postBody_update = {'ticketStatus': 6, 'ticketId': int(self.requestID)}
+                request_update = requests.post(self.url_update, data=json.dumps(postBody_update), headers=self.headers_update)
+                self.lbl_value_canceledticket_name.setText(self.user)
+                self.show_canceledticket_5()
+            else:
+                self.lbl_value_canceledticket_name.setText(self.user)
+                # self.show_createticket_1()
 
         print("message topic=",message.topic)
         print("message qos=",message.qos)
@@ -198,7 +179,7 @@ class jit_support_controller():
 # update ticket status on the server side
     def init_ticket(self):
 
-        self.show_loading()
+        # self.show_loading()
         print("aqui que esta com erro pulando tela")
         # update ticket mqtt side
         updatemqtt = {'TicketId': self.requestID , 'UserName': self.user, 'Status': 'OnGoing'}
@@ -210,7 +191,7 @@ class jit_support_controller():
         request_update = requests.post(self.url_update, data=json.dumps(postBody_update), headers=self.headers_update)
 
     def finish_ticket(self):
-        self.show_loading()
+        # self.show_loading()
         # update ticket mqtt side
         updatemqtt = {'TicketId': self.requestID , 'UserName': self.user, 'Status': 'Done'}
         mqtt_string = json.dumps(updatemqtt)
@@ -223,7 +204,7 @@ class jit_support_controller():
         self.client.unsubscribe("atualizar/" + str(self.team_id))
 
     def cancel_ticket(self):
-        self.show_loading()
+        # self.show_loading()
         # update ticket mqtt side
         updatemqtt = {'TicketId': self.requestID , 'UserName': 'None', 'Status': 'Canceled'}
         mqtt_string = json.dumps(updatemqtt)
@@ -238,7 +219,7 @@ class jit_support_controller():
 # screen control functions to avoid labels glitching
     
     def show_loading(self):
-        self.loading_gif.show()
+        self.subbody_loading_gif.show()
         self.subbody_canceledticket_5.hide()
         self.subbody_inprogress_4.hide()
         self.subbody_pending_3.hide()
@@ -246,7 +227,7 @@ class jit_support_controller():
         self.subbody_createticket_1.hide()
 
     def show_createticket_1(self):
-        self.loading_gif.hide()
+        # self.subbody_loading_gif.hide()
         self.subbody_canceledticket_5.hide()
         self.subbody_inprogress_4.hide()
         self.subbody_pending_3.hide()
@@ -254,7 +235,7 @@ class jit_support_controller():
         self.subbody_createticket_1.show()
 
     def show_waiting_2(self):
-        self.loading_gif.hide()
+        self.subbody_loading_gif.hide()
         self.subbody_canceledticket_5.hide()
         self.subbody_inprogress_4.hide()
         self.subbody_pending_3.hide()
@@ -262,7 +243,7 @@ class jit_support_controller():
         self.subbody_createticket_1.hide()
 
     def show_pending_3(self):
-        self.loading_gif.hide()
+        # self.subbody_loading_gif.hide()
         self.subbody_canceledticket_5.hide()
         self.subbody_inprogress_4.hide()
         self.subbody_pending_3.show()
@@ -270,7 +251,7 @@ class jit_support_controller():
         self.subbody_createticket_1.hide()
 
     def show_inprogress_4(self):
-        self.loading_gif.hide()
+        # self.subbody_loading_gif.hide()
         self.subbody_canceledticket_5.hide()
         self.subbody_inprogress_4.show()
         self.subbody_pending_3.hide()
@@ -278,27 +259,85 @@ class jit_support_controller():
         self.subbody_createticket_1.hide()
     
     def show_canceledticket_5(self):
-        self.loading_gif.hide()
+        # self.subbody_loading_gif.hide()
         self.subbody_canceledticket_5.show()
         self.subbody_inprogress_4.hide()
         self.subbody_pending_3.hide()
         self.subbody_waiting_2.hide()
         self.subbody_createticket_1.hide()
 
+
+class ThreadCreateTicket(QThread):
+
+    def run(self):
+        
+        requests.get("https://httpbin.org/delay/5")
+        
+        #### REQUEST HTTP
+        headers_create = {'content-type': 'application/json'}
+        url_create = 'http://brbelm0apps99/JITAPI/Ticket/Create'
+        
+        try:
+            postBody_create = {'productionLineStatus': self.body_support.line_situation,
+            'workstationName': self.body_support.workstation_name,
+            'teamId': self.body_support.team_id,
+            'symptomId': self.body_support.symptom_id,
+            'description': self.body_support.cbx_sympton_create.currentText()
+            }
+            request_create = requests.post(url_create, data=json.dumps(postBody_create), headers=headers_create)
+            
+            if request_create.status_code == 201:
+                self.body_support.requestID = str(request_create.json()['id'])
+                self.body_support.calltime = str(request_create.json()['receivedTime'])
+                self.body_support.calltime = self.body_support.calltime[:-17]
+                self.body_support.calltime = self.body_support.calltime[11:]
+                
+                payloadmqtt = {'id': self.body_support.requestID ,
+                                'risk': self.body_support.line_situation,
+                                'workstation': self.body_support.workstation_name,
+                                'calltime': self.body_support.calltime,
+                                'description': self.body_support.cbx_sympton_create.currentText()
+                                }
+                self.body_support.mqtt_string = json.dumps(payloadmqtt)
+                self.body_support.mqtt_topic = "receber/"+ str(self.body_support.team_id)
+                self.body_support.mqtt_update = "atualizar/"+ str(self.body_support.team_id)
+                self.body_support.client.subscribe(self.body_support.mqtt_topic, qos=1)
+                self.body_support.client.subscribe(self.body_support.mqtt_update, qos=1)
+                self.body_support.client.publish(self.body_support.mqtt_topic, self.body_support.mqtt_string, qos=1)
+                
+                
+                self.body_support.thread_ticket_status = 1
+                self.body_support.watchthread.startThread(self.body_support)
+                # self.body_support.show_waiting_2()
+            else:
+                print(request_create)
+                self.body_support.raise_error_window()
+        except Exception as e:
+
+            print (e)
+            self.body_support.raise_error_window()
+            
+    def startThread(self, body_support):
+        print("BELEZA INICIEI A THREAD..........")
+        self.body_support = body_support
+        
+
+
+        self.start()
 # thread for checking the ticket status
 class WatchStatus(QThread):
  
     def run(self):
         while(self.body_support.thread_ticket_status == 1):
 
-            print("Status do Ticket")
-            print(str(self.body_support.thread_ticket_status))
+            # print("Status do Ticket")
+            # print(str(self.body_support.thread_ticket_status))
 
-            print(self.url_thread)
+            # print(self.url_thread)
             ticket_info_request = requests.get(self.url_thread)
             ticket_info_request = ticket_info_request.json()
-            print("Resposta da API")
-            print(ticket_info_request)
+            # print("Resposta da API")
+            # print(ticket_info_request)
             
             if(ticket_info_request['status'] == "Accepted"):
                 # a API retorna um array em formato de string (???)
