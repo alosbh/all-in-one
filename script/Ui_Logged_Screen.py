@@ -1082,7 +1082,7 @@ class Ui_Logged_Screen(object):
         self.layout_5s_dots.setObjectName("layout_5s_dots")
         self.body_support = QtWidgets.QWidget(self.main)
         self.body_support.setGeometry(QtCore.QRect(0, 0, 1131, 661))
-        self.body_support.setStyleSheet("background-color:rgb(235, 235, 235)")
+        self.body_support.setStyleSheet("background-color:rgb(201, 202, 203)")
         self.body_support.setObjectName("body_support")
         
         #LOADING GIF
