@@ -29,6 +29,9 @@ class jit_support_controller():
             self.fill_cbx_teamssymptons(workstation_name)
             self.watchthread = WatchStatus()
             self.requestthread = ThreadCreateTicket()
+            self.cancelthread = ThreadCancelTicket()
+            self.initthread = ThreadInitTicket()
+            self.endthread = ThreadEndTicket()
         except:
             self.btn_JIT.setText("   INDISPONIVEL")
             self.btn_JIT.clicked.disconnect()
@@ -162,12 +165,23 @@ class jit_support_controller():
                 mqtt_url_update = 'http://brbelm0apps99/JITAPI/Ticket/Confirm'
                 mqtt_postBody_update = {'ticketId': int(d["TicketId"]), 'ip': response_watchbyUserId['ip']}
                 request_update = requests.post(mqtt_url_update, data=json.dumps(mqtt_postBody_update), headers=mqtt_headers_update)
-
+                
+                self.lbl_value_support_name_pending.setText(d["UserName"].split(' ', 1)[0])
+                self.show_pending_3()
+            
+            elif (d["TicketId"] == self.requestID and d["Status"] == "OnGoing"):
+                self.show_inprogress_4()
+            elif (d["TicketId"] == self.requestID and d["Status"] == "Done"):
+                self.show_createticket_1()
             elif (d["TicketId"] == self.requestID and d["Status"] == "Canceled") and d["UserName"] != "None":
                 postBody_update = {'ticketStatus': 6, 'ticketId': int(self.requestID)}
                 request_update = requests.post(self.url_update, data=json.dumps(postBody_update), headers=self.headers_update)
                 self.lbl_value_canceledticket_name.setText(self.user)
-                self.show_canceledticket_5()
+                # self.show_canceledticket_5()
+                self.show_createticket_1()
+            elif (d["TicketId"] == self.requestID and d["Status"] == "Canceled") and d["UserName"] == "None":
+                self.show_createticket_1()
+                # self.show_canceledticket_5()
             else:
                 self.lbl_value_canceledticket_name.setText(self.user)
                 # self.show_createticket_1()
@@ -179,42 +193,21 @@ class jit_support_controller():
 # update ticket status on the server side
     def init_ticket(self):
 
-        # self.show_loading()
-        print("aqui que esta com erro pulando tela")
-        # update ticket mqtt side
-        updatemqtt = {'TicketId': self.requestID , 'UserName': self.user, 'Status': 'OnGoing'}
-        mqtt_string = json.dumps(updatemqtt)
-        self.client.publish(self.mqtt_update, mqtt_string, qos=1)
+        self.show_loading()
+        self.initthread.startThread(self)
 
-        # update ticket api side
-        postBody_update = {'ticketStatus': 4, 'ticketId': int(self.requestID)}
-        request_update = requests.post(self.url_update, data=json.dumps(postBody_update), headers=self.headers_update)
 
     def finish_ticket(self):
-        # self.show_loading()
-        # update ticket mqtt side
-        updatemqtt = {'TicketId': self.requestID , 'UserName': self.user, 'Status': 'Done'}
-        mqtt_string = json.dumps(updatemqtt)
-        self.client.publish(self.mqtt_update, mqtt_string, qos=1)
-        
-        # update ticket api side
-        postBody_update = {'ticketStatus': 5, 'ticketId': int(self.requestID)}
-        request_update = requests.post(self.url_update, data=json.dumps(postBody_update), headers=self.headers_update)
+        self.show_loading()
+        self.endthread.startThread(self)
 
-        self.client.unsubscribe("atualizar/" + str(self.team_id))
 
     def cancel_ticket(self):
-        # self.show_loading()
-        # update ticket mqtt side
-        updatemqtt = {'TicketId': self.requestID , 'UserName': 'None', 'Status': 'Canceled'}
-        mqtt_string = json.dumps(updatemqtt)
-        self.client.publish(self.mqtt_update, mqtt_string, qos=1)
-        
-        # update ticket api side
-        postBody_update = {'ticketStatus': 6, 'ticketId': int(self.requestID)}
-        request_update = requests.post(self.url_update, data=json.dumps(postBody_update), headers=self.headers_update)
+        self.show_loading()
 
-        self.client.unsubscribe("atualizar/" + str(self.team_id))
+        self.cancelthread.startThread(self)
+
+       
 
 # screen control functions to avoid labels glitching
     
@@ -227,7 +220,7 @@ class jit_support_controller():
         self.subbody_createticket_1.hide()
 
     def show_createticket_1(self):
-        # self.subbody_loading_gif.hide()
+        self.subbody_loading_gif.hide()
         self.subbody_canceledticket_5.hide()
         self.subbody_inprogress_4.hide()
         self.subbody_pending_3.hide()
@@ -243,7 +236,7 @@ class jit_support_controller():
         self.subbody_createticket_1.hide()
 
     def show_pending_3(self):
-        # self.subbody_loading_gif.hide()
+        self.subbody_loading_gif.hide()
         self.subbody_canceledticket_5.hide()
         self.subbody_inprogress_4.hide()
         self.subbody_pending_3.show()
@@ -251,7 +244,7 @@ class jit_support_controller():
         self.subbody_createticket_1.hide()
 
     def show_inprogress_4(self):
-        # self.subbody_loading_gif.hide()
+        self.subbody_loading_gif.hide()
         self.subbody_canceledticket_5.hide()
         self.subbody_inprogress_4.show()
         self.subbody_pending_3.hide()
@@ -259,7 +252,7 @@ class jit_support_controller():
         self.subbody_createticket_1.hide()
     
     def show_canceledticket_5(self):
-        # self.subbody_loading_gif.hide()
+        self.subbody_loading_gif.hide()
         self.subbody_canceledticket_5.show()
         self.subbody_inprogress_4.hide()
         self.subbody_pending_3.hide()
@@ -267,11 +260,97 @@ class jit_support_controller():
         self.subbody_createticket_1.hide()
 
 
+
+
+class ThreadCancelTicket(QThread):
+
+    def run(self):
+        # requests.get("https://httpbin.org/delay/1")
+        
+        try:
+            postBody_update = {'ticketStatus': 6, 'ticketId': int(self.body_support.requestID)}
+            print(postBody_update)
+            request_update = requests.post(self.body_support.url_update, data=json.dumps(postBody_update), headers=self.body_support.headers_update)
+            if request_update.status_code == 200:
+                updatemqtt = {'TicketId': self.body_support.requestID , 'UserName': 'None', 'Status': 'Canceled'}
+                mqtt_string = json.dumps(updatemqtt)
+                self.body_support.client.publish(self.body_support.mqtt_update, mqtt_string, qos=1)
+                self.body_support.client.unsubscribe("atualizar/" + str(self.body_support.team_id))
+            else:
+                print("Erro cancelar:" + str(request_update.json()))
+                self.body_support.show_createticket_1()
+                # self.body_support.raise_error_window()
+        except Exception as e:
+            print (e)
+            # self.body_support.raise_error_window()
+            self.body_support.show_createticket_1()
+        
+    def startThread(self, body_support):
+        print("BELEZA INICIEI A THREAD CANCELAR..........")
+        self.body_support = body_support
+        self.start()
+
+
+class ThreadEndTicket(QThread):
+
+    def run(self):
+        # requests.get("https://httpbin.org/delay/1")
+        
+        try:
+            postBody_update = {'ticketStatus': 5, 'ticketId': int(self.body_support.requestID)}
+            print(postBody_update)
+            request_update = requests.post(self.body_support.url_update, data=json.dumps(postBody_update), headers=self.body_support.headers_update)
+            if request_update.status_code == 200:
+
+                updatemqtt = {'TicketId': self.body_support.requestID , 'UserName': self.body_support.user, 'Status': 'Done'}
+                mqtt_string = json.dumps(updatemqtt)
+                self.body_support.client.publish(self.body_support.mqtt_update, mqtt_string, qos=1)
+                self.body_support.client.unsubscribe("atualizar/" + str(self.body_support.team_id))
+            else:
+                print("Erro iniciar:" + str(request_update.json()))
+                self.body_support.raise_error_window()
+        except Exception as e:
+            print (e)
+            self.body_support.raise_error_window()
+        
+    def startThread(self, body_support):
+        print("BELEZA INICIEI A THREAD FINALIZAR..........")
+        self.body_support = body_support
+        self.start()
+
+class ThreadInitTicket(QThread):
+
+    def run(self):
+        # requests.get("https://httpbin.org/delay/1")
+        
+        try:
+            postBody_update = {'ticketStatus': 4, 'ticketId': int(self.body_support.requestID)}
+            print(postBody_update)
+            request_update = requests.post(self.body_support.url_update, data=json.dumps(postBody_update), headers=self.body_support.headers_update)
+            if request_update.status_code == 200:
+
+                updatemqtt = {'TicketId': self.body_support.requestID , 'UserName': self.body_support.user, 'Status': 'OnGoing'}
+                mqtt_string = json.dumps(updatemqtt)
+                self.body_support.client.publish(self.body_support.mqtt_update, mqtt_string, qos=1)
+                
+            else:
+                print("Erro iniciar:" + str(request_update.json()))
+                self.body_support.raise_error_window()
+        except Exception as e:
+            print (e)
+            self.body_support.raise_error_window()
+        
+    def startThread(self, body_support):
+        print("BELEZA INICIEI A THREAD INICIAR..........")
+        self.body_support = body_support
+        self.start()
+
+
 class ThreadCreateTicket(QThread):
 
     def run(self):
         
-        requests.get("https://httpbin.org/delay/5")
+        # requests.get("https://httpbin.org/delay/1")
         
         #### REQUEST HTTP
         headers_create = {'content-type': 'application/json'}
@@ -307,7 +386,7 @@ class ThreadCreateTicket(QThread):
                 
                 
                 self.body_support.thread_ticket_status = 1
-                self.body_support.watchthread.startThread(self.body_support)
+                # self.body_support.watchthread.startThread(self.body_support)
                 # self.body_support.show_waiting_2()
             else:
                 print(request_create)
