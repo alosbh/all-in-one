@@ -23,6 +23,7 @@ RUN python3 /home/app/spi/setup.py install
 
 # copy script files
 COPY script/. /aio/
+COPY uis/teste2.gif /aio/
 RUN chmod +x /aio/main.py
 
 COPY startup.sh /aio

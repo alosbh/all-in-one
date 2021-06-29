@@ -1089,7 +1089,7 @@ class Ui_Logged_Screen(object):
         self.loading_gif = QtWidgets.QLabel(self.body_support)
         self.loading_gif.setGeometry(QtCore.QRect(455, 220, 220, 220))
         self.loading_gif.setObjectName("loading_gif")
-        self.movie = QMovie(os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, 'uis','teste2.gif')))
+        self.movie = QMovie(os.path.abspath(os.path.join(os.path.dirname( __file__ ),'teste2.gif')))
         self.loading_gif.setMovie(self.movie)
         self.movie.start()
         self.loading_gif.setVisible(False)
