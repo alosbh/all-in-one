@@ -158,11 +158,11 @@ class jit_support_controller():
             self.user = d["UserName"]
 
             if (d["TicketId"] == self.requestID and d["Status"] == "Accepted"):
-                url_getWatchbyUserID = 'http://brbelm0apps99/JITAPI/Smartwatch/GetbyUserId/' + str(d["userID"])
+                url_getWatchbyUserID = 'http://brbelm0apps99.corp.jabil.org/JITAPI/Smartwatch/GetbyUserId/' + str(d["userID"])
                 request_getWatchIP = requests.get(url=url_getWatchbyUserID,verify=False)
                 response_watchbyUserId = request_getWatchIP.json()
                 mqtt_headers_update = {'content-type': 'application/json'}
-                mqtt_url_update = 'http://brbelm0apps99/JITAPI/Ticket/Confirm'
+                mqtt_url_update = 'http://brbelm0apps99.corp.jabil.org/JITAPI/Ticket/Confirm'
                 mqtt_postBody_update = {'ticketId': int(d["TicketId"]), 'ip': response_watchbyUserId['ip']}
                 request_update = requests.post(mqtt_url_update, data=json.dumps(mqtt_postBody_update), headers=mqtt_headers_update)
                 
