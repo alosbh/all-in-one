@@ -22,7 +22,7 @@ class jit_support_controller():
             self.workstation_name = workstation_name
             self.show_createticket_1()
             self.headers_update = {'content-type': 'application/json'}
-            self.url_update = 'http://brbelm0apps99/JITAPI/Ticket/Update'
+            self.url_update = 'http://brbelm0apps99.corp.jabil.org/JITAPI/Ticket/Update'
 
             self.setup_mqtt(workstation_name)
             self.support_screen_ui_functions(workstation_name)
@@ -354,7 +354,7 @@ class ThreadCreateTicket(QThread):
         
         #### REQUEST HTTP
         headers_create = {'content-type': 'application/json'}
-        url_create = 'http://brbelm0apps99/JITAPI/Ticket/Create'
+        url_create = 'http://brbelm0apps99.corp.jabil.org/JITAPI/Ticket/Create'
         
         try:
             postBody_create = {'productionLineStatus': self.body_support.line_situation,
