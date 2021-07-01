@@ -13,22 +13,22 @@ class Announcements_controller:
 
         try:
             self.lbl_value_announcement_02.setVisible(True)
-            url2_pixmap = self.get_pixmap('http://brbelm0apps99/AIOServiceSTG/Images5S/Lean.png')
+            url2_pixmap = self.get_pixmap('http://brbelm0apps99/AIOServiceSTG/Images5S/Toolbox.png')
             self.lbl_value_announcement_02.setPixmap(url2_pixmap)
         except:
             self.lbl_value_announcement_02.setVisible(False)
         
-        try:
-            self.lbl_value_announcement_03.setVisible(True)
-            url3_pixmap = self.get_pixmap('http://brbelm0apps99/AIOServiceSTG/Images5S/Toolbox.png')
-            self.lbl_value_announcement_03.setPixmap(url3_pixmap)
-        except:
-            self.lbl_value_announcement_03.setVisible(False)
+        # try: CONFLITO COM ACHIEVMENTS
+        #     self.lbl_value_announcement_03.setVisible(False)
+        #     # url3_pixmap = self.get_pixmap('http://brbelm0apps99/AIOServiceSTG/Images5S/Lean.png')
+        #     # self.lbl_value_announcement_03.setPixmap(url3_pixmap)
+        # except:
+        #     self.lbl_value_announcement_03.setVisible(False)
 
         try:
-            self.lbl_value_announcement_04.setVisible(True)
-            url4_pixmap = self.get_pixmap('http://brbelm0apps99/AIOServiceSTG/Images5S/Environment.png')
-            self.lbl_value_announcement_04.setPixmap(url4_pixmap)
+            self.lbl_value_announcement_04.setVisible(False)
+            # url4_pixmap = self.get_pixmap('http://brbelm0apps99/AIOServiceSTG/Images5S/Environment.png')
+            # self.lbl_value_announcement_04.setPixmap(url4_pixmap)
         except:
             self.lbl_value_announcement_04.setVisible(False)
     

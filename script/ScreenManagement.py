@@ -16,6 +16,7 @@ from Login_controller import Login_controller
 from Fpl_controller import *
 from theme_controller import theme_controller
 from buttons_controller import buttons_controller
+from Achievments import *
 
 import time
 import sys
@@ -127,9 +128,7 @@ class NonLogged_Screen(QtWidgets.QMainWindow, Ui_Login_Screen):
 #----------------------------------------------------------------------------------
 
 # Inherits the qt Ui_Logged_Screen (main screen) design and manages its setup
-class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, buttons_controller, jit_support_controller, LPAactions_controller, Announcements_controller, Fpl_controller, theme_controller):
-    
-    # Instance of the signal to act on button's click
+class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, buttons_controller, jit_support_controller, LPAactions_controller, Announcements_controller, Fpl_controller, theme_controller,build_achievments_widgets):    # Instance of the signal to act on button's click
     load_url_signal = QtSignal()
 
     global Logged_QtWindow
@@ -160,6 +159,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.Station = Station
         self.DL = DL()
         self.Raspberry = Raspberry
+        self.build_achiev()
         self.build_sidebar_buttons(self.Raspberry.Name, self.Station.Name, self.Station.RouteName)
         self.generate_5s(self.Station.Name)
         self.setup_support_screen(self.Station.Name)
@@ -216,7 +216,7 @@ class Logged_Screen(QtWidgets.QMainWindow, Ui_Logged_Screen, functions_5s, butto
         self.lbl_value_productivity.setText(DL.Productivity)
         self.lbl_value_product.setText(str(self.Station.ProductName))
         self.lbl_value_client.setText(str(self.Station.ClientName))
-        self.setup_fpl(DL.Name, DL.ID_trim)
+        # self.setup_fpl(DL.Name, DL.ID_trim) # FPL FUNCTIONS
         print('User loaded.')
         print('Functions working.')
         

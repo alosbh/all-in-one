@@ -2,14 +2,12 @@ version: '2'
 services:
   # All in One appication
   AIO:
-    image: docker.corp.jabil.org/automation-bel/aio:latest
+    image: aioandre:latest
     volumes:
       - /run/dbus:/host/run/dbus
       - /proc/sysrq-trigger:/aio/sysrq
-      - /storage/pi/:/storage/pi/:z
-    ports:
-      - "8080:5900"
     privileged: true
     tty: true
-    hostname: BRBELRASP281
+    hostname: BRBELRASP124
     dns_search: corp.jabil.org
+
